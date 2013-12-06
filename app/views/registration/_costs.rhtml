@@ -1,0 +1,5 @@
+<div id="reg-form-cart">
+<table>
+  <%= render(:partial => "/registration/cost_item", :collection => Charge.find(:all, :conditions => "year = #{Year.this_year}")) %>
+</table>
+</div>

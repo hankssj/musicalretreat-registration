@@ -1,0 +1,16 @@
+<div id="admin-banner">MMR Document Archive</div>
+<div id="reg-list-table">
+<table>
+
+<tr>
+    <td class="reg-list-table-heading-cell">Description</td>
+    <td class="reg-list-table-heading-cell">Uploaded By</td>
+    <td class="reg-list-table-heading-cell">Date</td>
+    <td class="reg-list-table-heading-cell">&nbsp</td>
+</tr>
+<%= render :partial => "archive_entry", :collection => @archive_entries %>
+
+</table>
+
+<%= button_to "UPLOAD", :action => :new %>
+</div>

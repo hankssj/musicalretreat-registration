@@ -1,0 +1,33 @@
+Dear <%= @registration.first_name %> <%= @registration.last_name %>,
+
+Thank you for registering for Midsummer Musical Retreat <%= Year.this_year %>.
+
+Your Charge Summary:
+
+<% for charge_item in @cart.charge_items %>
+<% if charge_item.total != 0 %>
+  <%= h(charge_item.name) %> @ <%= number_to_currency(charge_item.total) %>
+<% end %>
+<% end %>
+
+Less Payment: <%= number_to_currency(@payment) %> (*)
+Balance:  <%= number_to_currency(@balance) %>
+
+(*) Subject to confirmation of online payment or receipt of check
+
+Next Steps:
+
+   If you are paying by check, please send deposit immediately to
+
+                                        Jessica Croysdale, MMR Registrar
+                                        12639 NW Ally Elizabeth Ct.
+                                        Portland, OR 97229
+
+	*  Make your check payable to "Midsummer Musical Retreat"
+	*  Registration is not considered complete until deposit check is received or credit card payment is confirmed.
+	*  Balance is due by <%= RegDates.registration_balance_due.strftime("%b %d, %Y") %>, sent to same address.
+	*  You can visit our registration page at http://registration.musicalretreat.org/registration"> to review and get current
+	      information about your registration
+	*  Send email to registrar@musicalretreat.org or call 1-800-471-2419 if you have questions or need to give us more information
+		about your registration
+

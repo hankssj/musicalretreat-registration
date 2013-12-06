@@ -1,0 +1,215 @@
+NOTE -- this is kind of brain dump stuff.  Keep "clean" instructions in README
+
+Notes on the ongoing bizarrenesss of the registration app.
+
+12/22/2009
+Prior to working on the credit card payment, I need a way to port easily between 
+Bluehost and a local dev box.  (Or maybe instead I should just do dev on bluehost, who knows.)
+So that raises the question of how to port data when we port the app.
+As of today, I didn't even do migrations to build the DB, probably just due to ignorance when 
+I first wrote the app.
+
+So the scheme now:
+  -- create all of the DB tables using migrations
+  -- but none of the data 
+  -- save state by mysqldump
+  -- restore state by a mysql read
+
+==>
+  Now have rake tasks data_save and data_restore.
+  They write/read to a file tmp/db-full.sql
+
+Note that the charges and instruments are special.  The instruments are in database 
+tables and need to stay there because of the ID field.   So to add new instruments or 
+delete old instruments, we have to go to the DB directly.  Charges are not referred to 
+by ID, so they go in a YAML file in the config directory (or where else would be good??)
+
+====================================
+To convert to a new year assuming you were just on the host:
+  *   Update any instruments in the DB
+  *   Put the new charges in charges.yaml    NOTE, YOU REALLY HAVE TO DO THIS, EVEN IF THE CHARGES
+      ARE THE SAME, OTHERWISE YOU GET AN OBSCURE ERROR ON RENDERING THE REGISTRATIO FORM
+  *   Reset the state of any closed instruments (this is a bit in the DB)
+  *  Look at the registration dates in reg_dates.rb -- these should stay the same, but who knows?
+  *  Advance the year in year.rb
+  *  Look at the early invitees in the registration controller to see if these are really the right people, 
+      and try to remember what early invitees are for anyway .... maybe just in the mailer.
+  *  You can control registration being open by two flags in registration.rb
+         @@FORCE_CLOSE sets to false no matter what,  
+         @@FORCE_OPEN sets to true no matter what (force close wins)
+         Otherwise the status will be "premature" until 1/1 of the current year.  
+	 This will affect whether buttons are live, as well as messaging on the index page and who knows, maybe elsewhere too
+  
+=================
+Questions:
+  What is the charge model for board members.  (previously 
+  Are we still giving a discount for anybody?
+
+
+COB:  Registration form is rendering and calculating the CC payment.
+On successful registration, dispatching on cc_payment -- that will be dispatch to the Paypal site.
+
+===========================
+12/24
+Going after Paypal now.  
+Also should augment Payment so at least there is a source and third-party token and a reconciled
+flag.   But let's wait and actually get one first.
+
+-->  Install activemerchant   
+
+gem install activemerchant
+gem install plugin ssl_requirement
+
+Remember rails:freeze:gems
+
+=================
+Now go after config/paypal.yml that comes from Justin's project.
+He has three login/password/signature triples for test, production, and development.
+    *  development and test have different email addresses and passwords, but the same signature.
+    *  assume that production will never be used, so let's get 
+So now we need to do two things: 
+   find out how the sandbox works
+   get it so when we're running in the test environment we go to the sandbox.
+
+Fixed up my own paypal.yml and copied in the signature I already got from paypal.
+Also I have an API username and an API password.  So let's go to the sandbox:
+
+Steps apparently are:
+  -- sign up for sandbox access
+      hanks@pobox.com w/ usual DN password
+  -- create a seller account and one or more buyer accounts
+
+    Seller account: seller_1261683294_biz@pobox.com
+                    password: 1261683300
+                    signature:  AiPC9BjkCyDFQXbSkoZcgqH3hpacAkVoSpwBcKl7Aww-ZrvvcFj5BOv1
+
+    Buyer account 1:  buyer_1261683421_per@pobox.com
+                    password: 12345678
+
+   (But why would we want a buyer account??  Probably just for Paypal payment?)
+
+Then the URL for the sandbox should be:
+https://www.sandbox.paypal.com/cgi-bin/webscr"
+method="post"
+
+Though elsewhere I found: 
+Sandbox API Signature Name-Value Pair https://api-3t.sandbox.paypal.com/nvp 
+Sandbox API Signature SOAP https://api-3t.sandbox.paypal.com/2.0/ 
+
+============
+Then put the seller login, password, and signature into the test section of paypal.yml -- 
+
+============
+Now the small enchilada:
+   write a test controller in registration that will 
+     * index puts up a text field with the amount;  hidden field should have some identifying info
+     * on submit, get the amount and indirect to pay pal
+     * failure and success returns
+
+-- create controller and index method
+
+==>  So this has been a total failure.  Active Merchant does not play well with Standard
+Payments, and I think it's because standard is supposed to be so simple, you don't need an 
+API.  A simple post request does the job, and the assumption is that a button can give 
+the basic information, and then Paypal does additional configuration (like number of units).
+
+So next attempt will be to try to dummy up the POST request myself.  Starting here:
+https://cms.paypal.com/us/cgi-bin/?&cmd=_render-content&content_ID=developer/e_howto_html_formbasics
+
+Try to get all the relevant form fields.
+<FORM action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+cmd = "_xclick"
+notify_url (for callback)
+amount =  cents (??)
+item_name = 
+item_number =   (an ID ;  passed back)
+quantity = 1
+(check account profile for tax and shipping settings -- we may be able to disable them for everything and everyone)
+address1
+address2
+city 
+country
+email
+first_name
+last_name
+night_phone_a
+state
+zip
+
+page_style = primary   (use primary in your profile)
+image_url   150x150
+cpp_header_image  750x950 max
+cpp_headerback_color
+cpp_headerborder_color
+no_note = 1  (disable notes on checkout)
+
+no_shipping = 1
+
+return = url
+rm = "GET"
+cbt   sets text on return to merchant button on successful completion
+cancel_return   URL for cancelling out of payment
+
+==========================
+First cut:
+   authentication seems to be an issue.  Maybe all you need is a signature?
+   Let's try that.
+   Well easy didn't work.  We can't do a simple redirect, because redirect_to does a GET, 
+     and apparently there's no way around it.
+
+   For now, and to get *something* working, let's put all the stuff in hidden fields 
+   and have the input form do the POST.
+  
+===============
+COB Christmas Eve!!!
+
+The index and post is working.   
+Need to work on 
+  -- redirect back to MMR site
+  -- customize the Paypal experience
+
+Then on to integration! 
+We will need serious messaging on the site due to the massive bogosity of the
+Paypal experience.
+
+=====================================
+2010/2011
+
+Want to rethink the whole testing model.  Ideally we would like to open the site "for real" to people on 
+an early testing list.  Then automatically on 1/1, it would open to everybody.
+
+Right now we have 
+ @@FORCE_CLOSE and @@FORCE_OPEN
+
+Also we have Registrtion.status which can be :closed or :open or :premature
+But then at the same time we have an instance variables in the controller @status.
+
+There is a method test in the controller, which I believe was tied to a test button in the index view.
+This sets a session[:testing] variable then redirects to the index page.
+The session[:testing] variable is used then for can_register? in the controller
+can_register? will cause the new method to error
+
+In the view, the @status variable is used to gate the buttons;  the registration button is enabled 
+on :open only;  the pay button will be OK on :open or :closed.
+
+Desired behavior:
+  1.  Prior to test period, nobody can register or pay
+  2.  During the test period, selected individuals can both register and pay
+  3.  Automatically at midnight, everybody can register and pay
+  4.  When registration closes, registration closes, but everybody can pay
+  5.  After the payment close deadline, payment closes too
+
+Plan:  
+  1. In phase 1, @@FORCE_REG_CLOSE and @@FORCE_PAY_CLOSE true shuts everybody out
+       * need to make sure that registration year > current year
+  2. To begin test period, set those two variables to FALSE and make sure the list is instantiated.
+     The controller recognizes it's not time yet, so only the test list is allowed
+  3. At midnight, the controller is aware of the time and the two forces are false, so everybody goes
+  4. When registration closes, @@FORCE_REG_CLOSE goes true
+  5. After payment deadline, @@FORCE_REG_CLOSE goes true
+
+All logic in the controller, through the variables @can_register? and @can_pay?
+
+===================================
+Beginning of year:

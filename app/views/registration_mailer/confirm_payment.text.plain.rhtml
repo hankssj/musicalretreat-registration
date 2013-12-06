@@ -1,0 +1,38 @@
+Dear <%= @payment.registration.first_name %> <%= @payment.registration.last_name %>,
+
+We have received and recorded your payment of <%= number_to_currency(@payment.amount) %>.
+
+<% if @payment.check_number.size > 0 %>
+For your records, your check number was recorded as <%= @payment.check_number %>
+<% end %>
+
+<% if @payment.note.size > 0 %>
+The registrar recorded the following note with your payment:
+    <%= @payment.note %>
+<% end %>
+
+<% if @payment.registration.balance <= 0 %>
+You are paid in full, and we look forward to seeing you at MMR <%= @year %>!
+<% elsif @payment.registration.deposit_complete? %>
+Since we have received your complete deposit, your balance of <%= number_to_currency(@payment.registration.balance) %>
+is due no later than <%= RegDates.registration_balance_due %>.  We will send you a reminder notice shortly
+before this deadline.
+<% else %>
+The balance of your deposit, <%= number_to_currency(@payment.registration.deposit_balance) %> is still due,
+and should be sent to the following address as soon as possible:
+
+                Jessica Croysdale, MMR Registrar
+                12639 NW Ally Elizabeth Ct.
+                Portland, OR 97229
+<% end %>
+
+You can visit our registration page at
+    http://registration.musicalretreat.org/registration
+to review and get current information about your registration
+
+
+If you have questions or need to give us more information about your registration you can:
+
+		*  send email to registrar@musicalretreat.org  or
+		*  call us at 1-800-471-2419
+

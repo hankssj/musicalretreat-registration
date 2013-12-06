@@ -1,0 +1,74 @@
+<div id="confirm-page">
+<div class="confirm-page-banner">Thank you for Registering for Midsummer Musical Retreat <%= Year.this_year %></div>
+
+<div class="confirm-page-email">A confirmation email has been sent to <%= @email %></div>
+
+<div id="confirm-page-summary">
+	<div class="confirm-page-text">Your Charge Summary</div>
+
+	<div id="confirm-page-table">
+		<table>
+		<% for charge_item in @cart.charge_items %>
+			<% if charge_item.total != 0 %>
+				  <tr><td></td><td class="confirm-item-name"><%= h(charge_item.name) %></td><td class="confirm-item-price"><%= number_to_currency(charge_item.total) %></td></tr>
+			<% end %>
+			<% end %>
+		<tr><td><td class="confirm-total-label">Less Payment</td><td class="confirm-deposit-cell"><%= number_to_currency(-@cart.payment_net) %></td></tr>
+		<tr><td><td class="confirm-total-label">Balance</td><td class="confirm-total-cell"><%= number_to_currency(@cart.balance) %></td></tr>
+		</table>
+	</div>
+
+</div>
+
+<div id="confirm-page-continued">
+	<span class="confirm-page-text">Next Steps</span>
+	<ul>
+	<li> If you did not pay online, please send deposit immediately to
+				<div class="address">
+					Jessica Croysdale, MMR Registrar<br/>
+					 12639 NW Ally Elizabeth Ct.<br/>
+					Portland, OR 97229 <br/>
+				</div></li>
+	<li> Make check payable to </i>Midsummer Musical Retreat</i></li>
+	<li> Registration is not considered complete until deposit is received.</li>
+	<li> Balance is due by <%= RegDates.registration_balance_due %>, sent to same address or pay online.</li>
+	<li> You can visit our <a href="http://registration.musicalretreat.org/registration"> our registration page</a> to review and get current information about your registration</li>
+	<li> If you have questions or need to give us more information
+		about your registration
+		<ul>
+		<li>send email to <a href="mailto:registrar@musicalretreat.org">registrar@musicalretreat.org</a> or </li>
+		<li>call us at 1-800-471-2419</li>
+		</ul></li>
+	</ul>
+</div>
+
+<div id="confirm-page-continued">
+<center>
+<div class="confirm-link"> <%= link_to "Back to Registration Page", :action => :index %></div>
+<div class="confirm-link"> <%= link_to "Done - Log Me Out", :action => :done %></div>
+</center>
+</div>
+
+</div>
+
+<!-- Google Code for New Registration NOCC Conversion Page -->
+<script type="text/javascript">
+<!--
+var google_conversion_id = 1023612822;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "c_itCJKgnAEQlq-M6AM";
+var google_conversion_value = 0;
+if (10) {
+  google_conversion_value = 10;
+}
+//-->
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1023612822/?value=10&amp;label=c_itCJKgnAEQlq-M6AM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>

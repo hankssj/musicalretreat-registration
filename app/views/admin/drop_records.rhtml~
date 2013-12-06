@@ -1,0 +1,7 @@
+<h2>New Records for You!</h2>
+<ul>
+  <li> <%= @registration_count %> registration records</li>
+  <li> <%= @payment_count %> payment records</li>
+  <li> Dropbox start says: <%= @dropbox_message %></li>
+</ul>
+

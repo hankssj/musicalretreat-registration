@@ -1,0 +1,35 @@
+Transition notes to incorporate chages to MMR web site on 12/15:
+
+*  payments 
+   Admin can add payments through the admin controller
+   Payments show up in the view page
+   [[ New payment table  that is 1:N with registrations ]]
+   
+*  event logging
+   Controllers and email model post log events
+   [[ New events table ]]
+   
+
+First change these in MySQL
+
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL auto_increment,
+  `registration_id` int(11) NOT NULL,
+  `amount` decimal(8,2) NOT NULL,
+  `check_number` varchar(255) default NULL,
+  `note` varchar(255) default NULL,
+  `date_received` date default NULL,
+  `created_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `fk_payments_registration_id` (`registration_id`),
+  CONSTRAINT `fk_payments_registration_id` FOREIGN KEY (`registration_id`) REFERENCES `registrations` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL auto_increment,
+  `note` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+Then port over the APP files and style sheet

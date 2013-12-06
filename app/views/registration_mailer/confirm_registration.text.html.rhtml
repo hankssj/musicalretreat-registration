@@ -1,0 +1,46 @@
+Dear <%= @registration.first_name %> <%= @registration.last_name %>,
+
+<p>We have successfully recorded your registration for MMR <%= Year.this_year %>.</p>
+
+<div id="confirm-page-summary">
+	<div class="confirm-page-text">Your Charge Summary</div>
+	<p/>
+
+	<div id="confirm-page-table">
+		<table>
+		<% for charge_item in @cart.charge_items %>
+			<% if charge_item.total != 0 %>
+				  <tr><td>&nbsp;&nbsp;</td><td class="confirm-item-name"><%= h(charge_item.name) %></td><td>&nbsp;&nbsp;&nbsp;</td><td class="confirm-item-price"><%= number_to_currency(charge_item.total) %></td></tr>
+			<% end %>
+			<% end %>
+		<tr><td><td class="confirm-total-label">Less Payment (*)</td><td>&nbsp;&nbsp;&nbsp;</td><td class="confirm-deposit-cell"><%= number_to_currency(@payment) %></td></tr>
+		<tr><td><td class="confirm-total-label">Balance</td><td>&nbsp;&nbsp;&nbsp;</td><td class="confirm-total-cell"><%= number_to_currency(@balance) %></td></tr>
+		</table>
+	</div>
+
+<p/>
+</div>
+
+<div>(*) Subject to confirmation of credit-card payment or receipt of check.</div>
+<p/>
+<div id="confirm-page-continued">
+	<span class="confirm-page-text">Next Steps</span>
+	<ul>
+	<li> If you are paying by check, please send deposit immediately to
+				<div class="address">
+                Jessica Croysdale, MMR Registrar<br/>
+                12639 NW Ally Elizabeth Ct.<br/>
+                Portland, OR 97229<br/>
+				</div></li>
+	<li> Make check payable to </i>Midsummer Musical Retreat</i></li>
+	<li> Registration is not considered complete until deposit check is received or credit card payment is confirmed.</li>
+	<li> Balance is due by <%= RegDates.registration_balance_due.strftime("%b %d, %Y") %>, sent to same address.</li>
+	<li> You can visit our <a href="http://registration.musicalretreat.org/registration"> our registration page</a> to review and get current information about your registration</li>
+	<li> If you have questions or need to give us more information
+		about your registration
+		<ul>
+		<li>send email to <a href="mailto:registrar@musicalretreat.org">registrar@musicalretreat.org</a> or </li>
+		<li>call us at 1-800-471-2419</li>
+		</ul></li>
+	</ul>
+</div>

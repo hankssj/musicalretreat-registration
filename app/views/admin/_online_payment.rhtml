@@ -1,0 +1,11 @@
+<tr class="reg-list-row">
+	<td class="reg-list-line-summary-cell"><%= mail_to(online_payment.registration.email) %></td>
+	<td class="reg-list-line-summary-cell"><%= online_payment.registration.first_name %> <%= online_payment.registration.last_name %></td>
+	<td class="reg-list-line-summary-cell"><%= number_to_currency(online_payment.amount) %></td>
+	<td class="reg-list-line-summary-cell"><%= online_payment.date_received %></td>
+	<td class="reg-list-line-summary-cell">
+		<%= link_to "VIEW",
+		{:action => :view_registration, :id => online_payment.registration.user_id},
+		{:class => "reg-list-row-button"} %>
+	</td>
+</tr>

@@ -1,0 +1,249 @@
+<div id="reg-form-main">
+  <% @view = (@regform_type == :view) %>
+  <% @edit = (@regform_type == :edit) %>
+  <% @new = (@regform_type == :new) %>
+
+  <%= error_messages_for 'registration' %>
+  <% form_for :registration, :action  => @regform_type , :html => { :id => "reg-form"} do |form| %>
+
+  <%= form.hidden_field :user_id %>
+  <%= form.hidden_field :year %>
+
+  <table width="100%">
+  <!--  First row full length for banner only -->
+  <tr><td colspan="2">
+  <div id="reg-form-banner">
+    <% if @regform_type == :view %>
+      <span class="title">MMR <%= @registration.year %> Registration Summary</span>
+    <% else %>
+      <span class="title">MMR <%= Year.this_year %> Registration Form</span>
+    <% end %>
+  </div>
+  </td></tr>
+
+  <tr>
+
+
+  <tr> <!-- Second row is charges plus the "Registrant Information" section -->
+
+    <td id="reg-form-left">
+      <table class="reg-form-section">
+      <tr width="100%" class="reg-form-section-title"><td>Charges</td></tr>
+      <tr><td class="reg-form-column">
+        <div id="cart"><%= render :partial => "cart", :object => @registration.cart(@new)  %></div>
+          </td>
+      </tr>
+
+      <tr height="4px"/>
+      <%if @view || @edit %>
+        <tr  width="100%" class="reg-form-section-title"><td>Payments</td></tr>
+        <tr><td class="reg-form-column" height="100%">
+                 <table>
+          <%if @edit %>
+	       <tr><td><%= link_to "New payment",:controller => :admin, :action => :new_payment, :id => @registration.id %></td></tr>
+          <% end %>
+               <% if @registration.payments && @registration.payments.size > 0%>
+                  <% for payment in @registration.payments %>
+                    <%= render :partial => "payment", :object => payment %>
+                  <% end %>
+               <% else %>
+                  <tr><td>No payments have been received</td></tr>
+               <% end %>
+             </table>
+        </td></tr>
+        <tr class="reg-form-section-title"><td>Balance</td></tr>
+        <tr><td class="reg-form-column">Balance: <strong><%= number_to_currency(@registration.balance) %></strong></td</tr>
+       <% end %>
+      <%if @new %>
+        <tr style="margin-top: 4px" width="100%" class="reg-form-section-title"><td colspan="2">Payment Options</td></tr>
+        <tr width="100%" class="reg-form-column"> <td colspan="2">
+        <table>  
+        <tr><td> Pay Deposit w/ Credit Card</td>
+            <td><%= form.radio_button :payment_mode, :deposit_cc %></td></tr>
+        <tr><td> Pay Balance w/ Credit Card</td>
+            <td><%= form.radio_button :payment_mode, :balance_cc %></td></tr>
+        <tr><td> Pay Deposit w/ Check</td>
+            <td><%= form.radio_button :payment_mode, :deposit_check %></td></tr>
+        <tr><td> Pay Balance w/ Check</td>
+            <td><%= form.radio_button :payment_mode, :balance_check %></td></tr>
+        </table>
+        </td></tr>
+      <% end %>
+      </table>
+
+    </td>
+
+    <td id="reg-form-right">
+      <table class="reg-form-section">
+        <tr class="reg-form-section-title"><td colspan="2">Registrant Information</td></tr>
+        <tr>
+          <td class="reg-form-column">
+            <table>
+              <tr><td style="vertical-align:middle">Gender:&nbsp;&nbsp;M&nbsp;<%= form.radio_button :gender, "M", :readonly => @view, :class => "bigradio" %>
+                    &nbsp;F&nbsp;<%= form.radio_button :gender, "F", :readonly => @view, :class => "bigradio" %></td></tr>
+            </table>
+            <table>
+              <tr><td>First Name</td><td>Last Name</td></tr>
+              <tr><td><%= form.text_field :first_name, :size => 20, :readonly => @view %></td><td><%= form.text_field :last_name, :size => 20, :readonly => @view %></td></tr>
+            </table>
+
+	    <table>
+            <tr><td>
+	    <span>Street Address:</span><BR />
+              <%= form.text_field :street1, :size => 47, :readonly => @view %><BR />
+              <%= form.text_field :street2, :size => 47, :readonly => @view %>
+	    </span>
+	    </td></tr>
+	    </table>
+
+            <table>
+              <tr><td>City</td><td>State</td><td>Zip</td></tr>
+              <tr><td><%= form.text_field :city, :size => 22, :readonly => @view %></td>
+                <td><%= form.text_field :state, :size => 2, :readonly => @view %></td>
+                <td><%= form.text_field :zip, :size => 10, :readonly => @view %></td>
+	      <tr><td colspan="3">Country:&nbsp;&nbsp;  
+                    <% if @view %><input size="4" value="<%= @registration.country %>" readonly>
+                    <% else %><%= form.select :country, Country.menu_selection, :default => 0 %>
+                    <% end %>
+	      </td></tr>
+	      <tr height="4px"/>
+	      <tr><td colspan="3">Occupation:&nbsp;&nbsp;  <%= form.text_field :occupation, :size => 20, :readonly => @view %></td></tr>
+              <tr><td colspan="3">Emergency Contact Name:&nbsp;&nbsp;<%= form.text_field :emergency_contact_name, :size => 20, :readonly => @view %></td></tr>
+	      <tr><td colspan="3">Emergency Contact Phone:&nbsp;&nbsp;<%= form.text_field :emergency_contact_phone, :size => 20, :readonly => @view %></td></tr>
+            </table>
+          </td> <!-- end left column -->
+
+          <td class="reg-form-column">
+            <!-- <p>E-mail Address:&nbsp;&nbsp;<%= form.text_field :email,  :size => 32, :disabled => true %></p> -->
+            <p>E-mail Address:&nbsp;&nbsp;<span class="email-address"> <%= @registration.email %></span></p>
+	    <p>Phone numbers <br>(please include area code)
+	      <table>
+              <tr><td width="15"/><td>Home:</td><td><%= form.text_field :home_phone, :size => 24, :readonly => @view %></td></tr>
+              <tr><td width="15"/><td>Cell:</td><td><%= form.text_field :cell_phone, :size => 24, :readonly => @view %></td></tr>
+              <tr><td width="15"/><td>Work:</td><td><%= form.text_field :work_phone, :size => 24, :readonly => @view %></td></tr>
+              </table>
+            </p>
+            <p>Comments or Other Registration Information:<BR />&nbsp;&nbsp;<%= form.text_area :comments, :rows => 6, :columns => 20, :readonly => @view %></p>
+          </td> <!-- end right column -->
+        </tr> <!-- end top row -->
+      </table>
+    </td>
+  </tr>   <!-- Close second row -->
+
+  <tr>  <!-- Third row is directory information in the left column, then program and housing and meals -->
+
+    <td id="reg-form-left">
+      <table class="reg-form-section">
+        <tr width="100%" class="reg-form-section-title"><td>Information</td></tr>
+        <tr><td class="reg-form-column">
+          <table>
+          <tr><td>First-time Camper?</td><td><%= form.check_box :firsttime, :readonly => @view, :class => "bigcheck" %></td></tr>
+          <tr><td>Want to Be On Mailing List?</td><td><%= form.check_box :mailinglist, :readonly => @view, :class => "bigcheck" %></td></tr>
+          <tr><td>Omit Personal Information From Program Booklet?&nbsp;</td><td><%= form.check_box :donotpublish, :readonly => @view, :class => "bigcheck" %></td></tr>
+          </table>
+        </td></tr>
+      </table>
+    </td> <!-- close left column third row -->
+
+
+    <td>      <!-- Right column third row -->
+    <table class="reg-form-section">
+      <tr><td>
+        <table class="reg-form-section">
+          <tr class="reg-form-section-title"><td colspan="2">Program, Housing, and Meals</td></tr>
+          <tr>
+            <td class="reg-form-column">
+	      <table>
+	        <tr><td>Instrumental or Vocal Participant</td><td width="15"><%= form.radio_button :participant, true, :readonly => @view, :class => "bigradio" %></td></tr>
+                <tr><td>Non-participant</td><td width="15"><%= form.radio_button :participant, false, :readonly => @view, :class => "bigradio"  %></td></tr>
+	        <tr><td colspan="2">
+   	          Primary Instrument or Voice:<br/>&nbsp;&nbsp;
+                    <% if @view %><input size="24" value="<%= @registration.instrument_name %>" readonly>
+                    <% else %><%= form.select :instrument_id, Instrument.menu_selection, :prompt => "- select -", :default => -1 %>
+                    <% end %></td></tr>
+                 <tr><td>Meals</td>          <td width="15"/>   <%= form.check_box :meals, :readonly => @view, :class => "bigcheck" %><td></tr>
+                 <tr><td>Vegetarian?</td>        <td width="15"/><%= form.check_box :vegetarian, :readonly => @view, :class => "bigcheck" %></td></tr>
+                 <tr><td>Need Airport Pickup?</td><td width="15"/><%= form.check_box :airport_pickup, :readonly => @view, :class => "bigcheck" %></td></tr>
+               </table>
+            </TD>   <!-- end left column -->
+
+            <TD class="reg-form-column">
+	         <table >
+                 <tr><td>On-Campus Housing?</td>  <td width="10"/>   <td><%= form.check_box :dorm, :readonly => @view, :class => "bigcheck" %><br/>
+                 <tr><td>Single Room?</td>  <td width="10"/>   <td><%= form.check_box :single_room, :readonly => @view, :class => "bigcheck" %></td></tr>
+                 <tr><td>Air-Conditioned Room?</td>  <td width="10"/>   <td><%= form.check_box :aircond, :readonly => @view, :class => "bigcheck" %></td></tr>
+                 <tr><td>Need Fan?</td>  <td width="10"/>   <td><%= form.check_box :fan, :readonly => @view, :class => "bigcheck" %></td></tr>
+                 <tr><td>Need Handicap Access?</td>  <td width="10"/>   <td><%= form.check_box :handicapped_access, :readonly => @view, :class => "bigcheck" %></td></tr>
+                 <tr><td>Share housing with:</td>    <td width="10"/>   <td><%= form.text_field :share_housing_with, :size => 20, :readonly => @view %></td></tr>
+                </table>
+            </TD>  <!-- end right column -->
+          </TR>  <!-- end form row -->
+        </table>   <!-- end section -->
+      </td></tr>
+    </table>
+  </td>  <!-- end right column third row -->
+  </tr>  <!-- end third row -->
+
+  <tr>  <!-- fourth row is buttons in the left column and additions etc in the right column -->
+    <td id="reg-form-left">
+      <% if @regform_type == :new %>
+        <table class="reg-form-section">
+          <tr><td><center><%= submit_tag "Register", :class => "reg-form-button" %></center></td></tr>
+          <tr><td><center><%= submit_tag "Clear", :class => "reg-form-button", :type => 'reset' %></center></td></tr>
+        </table>
+      <% elsif @regform_type == :edit %>
+        <table class="reg-form-section">
+          <tr><td><center><%= submit_tag "Save", :class => "reg-form-button" %></center></td></tr>
+          <tr><td><center><%= submit_tag "Restore", :class => "reg-form-button", :type => 'reset' %></center></td></tr>
+        </table>
+      <% end %>
+    </td>  <!-- close left column fourth row -->
+
+
+    <td> <!-- fourth row right column  -->
+        <table class="reg-form-section">
+          <tr class="reg-form-section-title"><td colspan="2">Additions and Donations</td></tr>
+          <TR>
+            <TD class="reg-form-column">
+              <table>
+	      <% if @registration.staff? || @registration.board? || @regform_type == :edit %>
+                   <tr><td>Sunday Arrival?</td><td><%= form.check_box :sunday, :readonly => @view, :class => "bigcheck" %></td></tr>
+              <% end %>
+                <tr><td>Tax-Deductible Donation:</td><td>$<%= form.text_field :donation, :size => 7, :readonly => @view %></td></tr>
+		<tr><td>Commemorative Wine Glass? <br>($20 per glass suggested donation):</td><td> <%= form.select :wine_glasses, [[0,0], [1,1], [2,2], [3,3]], :prompt => "- # Glasses -", :default => 0, :readonly => @view %></td></tr>
+		<tr><td colspan="2">
+                T-Shirt(s):&nbsp;&nbsp;&nbsp;
+                  <strong>S</strong>
+                  <%= form.select :tshirts, [[0,0], [1,1], [2,2], [3,3]], :prompt => "- S T-shirt -", :default => 0, :readonly => @view %>
+                    &nbsp;&nbsp;&nbsp;
+                  <strong>M</strong>
+                  <%= form.select :tshirtm, [[0,0], [1,1], [2,2], [3,3]], :prompt => "- M T-shirt -", :default => 0, :readonly => @view %>
+                    &nbsp;&nbsp;&nbsp;
+                  <strong>L</strong>
+                  <%= form.select :tshirtl, [[0,0], [1,1], [2,2], [3,3]], :prompt => "- L T-shirt -", :default => 0, :readonly => @view %>
+                    &nbsp;&nbsp;&nbsp;
+                  <strong>XL</strong>
+                  <%= form.select :tshirtxl, [[0,0], [1,1], [2,2], [3,3]], :prompt => "- XL T-shirt -", :default => 0, :readonly => @view %>
+                      &nbsp;&nbsp;&nbsp;
+                  <strong>XXL</strong>
+                  <%= form.select :tshirtxxl, [[0,0], [1,1], [2,2], [3,3]], :prompt => "- XXL T-shirt -", :default => 0, :readonly => @view %>
+                      &nbsp;&nbsp;&nbsp;
+                  <strong>XXXL</strong>
+                  <%= form.select :tshirtxxxl, [[0,0], [1,1], [2,2], [3,3]], :prompt => "- XXXL T-shirt -", :default => 0, :readonly => @view %>
+                 </td></tr>
+               </table>
+            </td>  <!-- end right column -->
+          </TR>  <!-- end form row -->
+        </table>   <!-- end section -->
+    </td>  <!-- end fourth row right column -->
+    </tr>  <!-- end fourth row -->
+  <% end %>  <!-- form enclosure -->
+  <!-- The back button for view must be outside the form -->
+    <% if @regform_type == :view %>
+      <tr class="reg-form-section"><td colspan="2"><center><%= button_to "Back", {:controller => @back_controller, :action => @back_action}, {:class => "reg-form-button"} %></center></td></tr>
+   <% end %>
+ </table>
+ </div> <!-- reg-form-container -->
+ <% if @regform_type != :view %>
+ <%= observe_form 'reg-form', :frequency => 5, :url => {:controller => :registration, :action => :update_cart}, :update => :cart %>
+<% end %>

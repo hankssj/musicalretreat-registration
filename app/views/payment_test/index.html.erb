@@ -1,0 +1,10 @@
+<h3>Test a Payment</h3>
+
+<% form_tag("https://sandbox.paypal.com/webscr") do  %>
+  <%= hidden_field_tag :business, @user %>
+  <%= hidden_field_tag :cmd, @cmd %>
+  <%= hidden_field_tag :item_name, @item_name %>
+  <%= text_field_tag :amount %>
+  <%= submit_tag "REGISTER" %>
+<% end %>
+

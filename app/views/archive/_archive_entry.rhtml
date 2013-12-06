@@ -1,0 +1,6 @@
+<tr class="reg-list-row">
+	<td class="reg-list-line-summary-cell"><%= archive_entry.description %></td>
+	<td class="reg-list-line-summary-cell"><%= archive_entry.created_by %></td>
+	<td class="reg-list-line-summary-cell"><%= archive_entry.display_date %></td>
+	<td class="reg-list-line-summary-cell"><%= link_to  "Download", :action => :download, :id => archive_entry.id %></td>
+</tr>

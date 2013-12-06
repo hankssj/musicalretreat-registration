@@ -1,0 +1,12 @@
+<h3>Make a Payment</h3>
+<p/>
+<table>
+<% if !@registration.deposit_complete? %>
+<tr>	<td class="bordered">Pay deposit only (<%= number_to_currency(@registration.deposit_balance )%>)</td>
+	<td class="bordered"><%= button_to "Go", :action => :payment, :id => @registration.id, :type => "deposit" %></td>
+</tr>
+<% end %>
+<tr>	<td class="bordered">Pay full balance (<%= number_to_currency(@registration.balance)%>)</td>
+	<td class="bordered"><%= button_to "Go", {:action => :payment, :id => @registration.id, :type => "balance"}, {:style => "text-align: center"} %></td>
+</tr>
+</table>

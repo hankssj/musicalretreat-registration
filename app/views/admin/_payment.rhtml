@@ -1,0 +1,8 @@
+<tr><td><%= "amount: #{number_to_currency(payment.amount)} received on #{payment.date_received.month}/#{payment.date_received.day}" %>
+		<% if payment.check_number.size > 0 %> <%= " (\##{payment.check_number})" %> <% end %>
+		<% if payment.note.size > 0 %> <%= " [Note: #{payment.note}]" %> <% end %>
+		<%= link_to image_tag("delete.gif", :size => "12x12"), 
+			{:action => :delete_payment, :id => payment.id}, 
+			{:confirm => "Confirm delete payment of #{number_to_currency(payment.amount)}?"} %>
+</td></tr>
+<tr><td><hr/></td></tr>

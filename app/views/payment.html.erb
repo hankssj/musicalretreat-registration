@@ -1,0 +1,7 @@
+<h2>Make a Payment</h2>
+<table>
+<if @registration.balance <= @registration.standard_deposit %>
+<tr><td>Pay deposit only (<%= @registration.standard_deposit %></td><td><%= button_to "Go", {:action => :payment, :id => @registration.id, :type => "deposit"} %></td></tr>
+<% end %>
+<tr><td>Pay full balance (<%= @registration.balance %></td><td><%= button_to "Go", {:action => :payment, :id => @registration.id, :type => "balance"} %></td></tr>
+</table>
