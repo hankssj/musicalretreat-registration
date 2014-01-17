@@ -1,0 +1,20 @@
+<h2>Finished sending <%= @sent.size %>!</h2>
+<ul>
+<li>Sent:
+	<ul>
+	<% @sent.each do |email| %>
+		<li> <%= email %></li>
+	<% end %>
+	</ul>
+</li>
+<li>Skipped:
+	<ul>
+	<% @skipped.each do |email| %>
+		<li> <%= email %></li>
+	<% end %>
+	</ul>
+</li>
+<li>Remaining: <%= @remaining %></li>
+</ul>
+
+

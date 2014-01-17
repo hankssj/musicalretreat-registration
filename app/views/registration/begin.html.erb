@@ -1,0 +1,121 @@
+<div id="begin-page" style="border:none">
+  <div style="text-align: center; font-weight: bold; padding: 5pt">
+    <span style="font-size: larger;">Welcome to MMR <%= Year.this_year %> Registration</span><p/>
+    Please Read the Following Instructions and Policies, <br/>Then Choose One of the Three Options On the Left
+  </div>
+
+  <table width="100%" style="border: 1px solid black">
+    <tr>
+      <td width="3%" class="bordered">
+	<table>
+	  <tr><td>I Have My Email and Password and I Want to Register Online Now</td></tr>
+	  <tr><td>
+	      <% if @can_register %>
+	      <%= button_to "DO IT NOW", :action => :new %>
+	      <% else %>
+	      Status is <%= @status %>, register is <%= @can_register %> pay is <%= @can_pay %> email is <%= @email %>
+	      <%= button_to "NOT YET!" %>
+	      <% end %>
+	  </td></tr>
+
+	  <tr height="100px"><td>&nbsp;</td></tr>
+	  <tr><td>I Want to Register Online, but Do Not Have a Password (Please Email Me One)</td></tr>
+	  <tr><td><%= button_to "DO IT SOON", :action => :new_password, :email => @email %></td></tr>
+
+	  <tr height="100px"><td>&nbsp;</td></tr>
+
+	  <tr><td>I Want to Print a Registration Form and Send It In</td></tr>
+	  <tr><td><%= button_to "DO IT ON PAPER", :action => :paper_form %></td></tr>
+	  
+	</table>
+      </td>
+
+      <td width="97%" id="policy">
+	<ul>
+	  <li><strong>Paying By Credit Card or PayPal</strong>
+	    <ul>
+	      <li>This year you can pay your deposit or balance using a credit card or a PayPal account.</li>
+	      <li>On the registration form you will be given the option of paying either the deposit or the entire balance by credit card or PayPal.</li>
+	      <li>If you opt to pay by credit card or PayPal, you will be directed to a secure third-party site that will process your payment.</li>
+	      <li>MMR never sees your credit card number.</li>
+	      <li>We will charge you a fee of $0.30 plus 3% of the cost, which is what the credit-card company charges
+		us.  This will be approximately $4.80 if you pay the deposit only, and $25.05 if you pay the balance onine.</li>
+	      <li>You can pay the deposit by credit card, then send a check for the balance when it is due.</li>
+	      <li>If you pay by credit card, your application is considered complete (for the purpose of housing assignment) immediately when you register;  if you mail a check, the postmark date is used.</li>
+	      <li><strong>Credit card fees are non-refundable</strong></li>
+	    </ul>
+	  <li><strong>Online Registration</strong>
+	    <ul>
+	      <li>In order to register online, you need an email address and a password. The email address is your user-id.</li>
+	      <li>There can be only one registration per email address, so a couple registering together would either have to do so using two emails, or mail in paper registration forms.</li>
+	      <li>Visit the registration site at <a href="http://registration.musicalretreat.org/registration/index">http://registration.musicalretreat.org/registration/index</a> to establish an account or ask to have your password changed.</li>
+	      <li>When you use the online system we will remind you about things like the amount of and due date for your registration balance.</li>
+	    </ul>
+	  </li>
+	  <p/>
+	  <li><strong>Registration and Fees</strong>
+	    <ul>
+	      <li> Applications must include the deposit of $150. A registration will only be considered
+		complete when both the form and the deposit have been received.
+		The application date will be determined by the postmark of the deposit (mailed check) or time of registration (online payment).</li>
+	      <li> The address to send the deposit check will appear on the confirmation page and email (online registration) or on
+		the paper registration form.</li>
+	      <li>Two participants requesting a room together will be placed in housing according
+		to the completed application date of the deposit of the second roommate to register.
+		Both deposits must be received before housing can be assigned.</li>
+	      <li>All fees are due in full on <%= RegDates.registration_balance_due.strftime("%b %d, %Y") %>. including registration,
+		tuition, housing and meals.  If you register online, you will be reminded by email.</li>
+	    </ul>
+	  </li>
+	  <p/>
+	  <li><strong>Wait Lists & Section Caps</strong>
+	    <ul>
+	      <li>All sections in the large ensembles will have numerical caps.
+		This includes the orchestra, band, chorus and string orchestra.
+		When the sections are filled, the registrar will establish waiting
+		lists on a first-come, first-served basis.
+		People who have been wait-listed will be notified of
+		their status by <%= RegDates.wait_list_notification.strftime("%b %d, %Y") %> and given the option to remain on the list.
+		A full refund will be sent to those withdrawing their application at this time.
+		The deposit will be held for those electing to stay on the wait list.
+		A full refund will be made to those on the wait list for whom there
+		is no space when MMR begins.
+	      </li>
+	    </ul>
+          </li>
+	  <p/>
+	  <!--
+	     <li><strong>Orchestra Brass, Winds, and Percussion</strong>
+               <ul>
+		 <li>The Lottery for placement of Brass and Winds and Percussion in the Orchestra will be
+   		   conducted on July 1. To be included, applicants must have submitted
+		   their self-evaluation form and paid all fees.
+		 </li>
+	       </ul>
+	     </li>
+	  <p/>
+          -->
+
+	  <li><strong>Scholarships</strong>
+	    <ul>
+	      <li> <%= RegDates.scholarship_application.strftime("%b %d, %Y") %> is the last date for applying for financial aid.
+		Applicants must submit registration form and deposit prior to requesting
+		financial aid.</li>
+	      <li> Financial aid recipients will be notified by <%= RegDates.scholarship_notification.strftime("%b %d, %Y") %>.</li>
+	    </ul>
+	  </li>
+	  <p/>
+
+	  <li><strong>Withdrawls and Refunds</strong>
+	    <ul>
+	      <li>Applicants who withdraw their application will not receive a refund of the deposit.</li>
+	      <li>Applicants who are not accepted will receive a full refund.</li>
+	      <li>Wait-listed applicants who are not admitted will receive a full refund.</li>
+	      <li>Wait-listed applicants must pay full balance upon acceptance.</li>
+	    </ul>
+	  </li>
+	</ul>
+      </td>
+    </tr>
+  </table>
+</div> <!-- page div -->

@@ -1,0 +1,7 @@
+Options -MultiViews
+RewriteEngine Off
+PassengerResolveSymlinksInDocumentRoot on
+#Set this to whatever environment you'll be running in
+RailsEnv production
+RackBaseURI /
+SetEnv GEM_HOME /home1/musical9/ruby/gems

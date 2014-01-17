@@ -1,0 +1,18 @@
+<div id="login-container">
+  <fieldset>
+    <legend>Send An Email Invitation (and Password Reset!) To</legend>
+
+    <%= form_tag(:controller => :admin, :action => :reg_invitation) do %>
+      <table>
+      	<tr><td class="form-label"><label for="email">Email:</label></td>
+      		<td><%= text_field_tag :email, params[:email] %></td>
+      	</tr>
+      	<tr><td class="form-label"><label for="email_confirm">Confirm Email:</label></td>
+            <td><%= text_field_tag :email_confirm, params[:email_confirm] %></td>
+        </tr>
+        <tr><td /><td><%= submit_tag "Send it!" %></td>
+        </tr>
+       </table>
+    <% end %>
+  </fieldset>
+</div>

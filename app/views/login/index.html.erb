@@ -1,0 +1,12 @@
+<h1>Login Landing Page</h1>
+
+<% if session[:user_id] %>
+You are logged in as <%= User.find(session[:user_id]).email %>
+<% else %>
+You are not logged in.
+<% end %>
+
+<%= button_to "Login", :controller => :login, :action => :login %>
+<%= button_to "Logout", :controller => :login, :action => :logout %>
+
+

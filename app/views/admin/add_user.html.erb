@@ -1,0 +1,20 @@
+<div class="reg-form-main">
+
+	<%= error_messages_for 'user' %>
+	<% form_for :user, :action => :add_user do |form| %>
+		<table>
+		<tr><td>Email address</td><td><%= form.text_field :email, :size => 24 %></td></tr>
+		<tr><td>Password</td><td><%= form.password_field :password, :size => 24 %></td></tr>
+		<tr><td>Confirm Password</td><td><%= form.password_field :password_confirmation, :size => 24 %></td></tr>
+		</table>
+
+	<div style="padding: 20px">
+		<%= submit_tag "Create It!" %>&nbsp;&nbsp;&nbsp;
+		<%= submit_tag "Clear", :type => 'reset' %>
+	</div>
+
+ 	<% end %>
+ </div>
+
+
+

@@ -1,0 +1,17 @@
+<div id="reg-list-table">
+<table>
+  <tr>
+    <th style="width:160px" class="reg-list-table-heading-cell"><%= sort_link "Email", "email" %></th>
+    <th style="width:125px" class="reg-list-table-heading-cell"><%= sort_link "Name", "sort_name" %></th>
+    <th style="width:83px" class="reg-list-table-heading-cell"><%= sort_link "Instrument", "instrument_name" %></th>
+    <th style="width:47px" class="reg-list-table-heading-cell"><%= sort_link "Dorms?", "dorm?" %></th>
+    <th style="width:47px" class="reg-list-table-heading-cell"><%= sort_link "Single?", "single_room?" %></th>
+    <th style="width:47px" class="reg-list-table-heading-cell"><%= sort_link "Meals?", "meals"%></th>
+    <th style="width:47px" class="reg-list-table-heading-cell"><%= sort_link "First?", "firsttime" %></th>
+    <th style="width:50px" class="reg-list-table-heading-cell"><%= sort_link "DepDate", "deposit_date" %></th>
+    <th style="width:60px" class="reg-list-table-heading-cell"><%= sort_link "Balance", "balance" %></th>
+  </tr>
+
+  <%= render(:partial => "registration_line_summary", :collection => @registrations) %>
+</table>
+</div>

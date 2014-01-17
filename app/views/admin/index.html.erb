@@ -1,0 +1,33 @@
+<div id="admin-index">
+  <table id="admin-index-table">
+    <tr>
+      <td colspan="2" id="reg-index-banner">
+	Welcome to MMR Administration
+	<br/>
+	<span class="reg-index-email"><% if @admin_email %>(You are logged in as <%= @admin_email %>)<% else %>(You are not logged in)<% end %></span>
+    </tr>
+
+    <tr>
+      <td class="bordered">List Registrations<%= button_to "GO", :action => :list_registrations %></td>
+<!--      <td class="bordered">Enter a New Registration<%= button_to "GO", :action => :new_registration %></td> -->
+      <td class="bordered">Enter a New Registration<br/><%= button_tag "XXX" %></td>
+    </tr>
+
+    <tr>
+      <td class="bordered">Reset Password<%= button_to "GO", :action => :reset_password %></td>
+      <td class="bordered">Send a Registration Invitation Email<%= button_to "GO", :action => :reg_invitation %></td>
+    </tr>
+
+    <tr>
+      <td class="bordered">Change Email for Existing User<%= button_to "GO", :action => :change_email %></td>
+<!--      <td class="bordered">List Online Payments<%= button_to "GO", :action => :list_online_payments %></td> -->
+      <td class="bordered">List Online Payments<br/><%= button_tag "XXX" %></td>
+    </tr>
+
+    <tr>
+      <td class="bordered">Edit Registration"<br/><%= button_tag "XXX" %></td>
+      <td class="bordered">Log Out<%= button_to "GO", :action => :logout %></td>
+    </tr>
+  </table>
+</div>
+

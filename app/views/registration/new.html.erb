@@ -1,0 +1,209 @@
+<% if @registration.errors.any? %>
+<div id="form-errors">
+<table>
+<tr>
+<td>Please correct the following errors:</td>
+</tr>
+<tr>
+<td>
+   <ul>
+      <% @registration.errors.each do |attr, msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+</td></tr>
+</table>
+</div>
+<% end %>
+
+<div id="reg-form-main">
+
+  <%= form_for  @registration, url: {action: 'create'}, method: 'post', html: {id: 'reg-form'} do |form| %>
+
+  <%= form.hidden_field :user_id %>
+  <%= form.hidden_field :year %>
+
+  <table width="100%">
+
+    <!--  First row full length for banner only -->
+    <tr><td colspan="2">
+	<div id="reg-form-banner">
+	  <span class="title">MMR <%= Year.this_year %> Registration Form</span>
+	</div>
+    </td></tr>
+
+    <tr> <!-- Second row is charges plus the "Registrant Information" section -->
+
+      <td id="reg-form-left">
+	<table class="reg-form-section"> <!- table reg-form-section ->
+	  <tr width="100%" class="reg-form-section-title"><td>Charges</td></tr>
+	  <tr>
+	    <td class="reg-form-column">
+              <div id="cart"><%= render :partial => "cart", :object => @registration.cart(@new) %></div>
+            </td>
+	  </tr>
+
+	  <tr height="4px"/>
+	  <tr style="margin-top: 4px" width="100%" class="reg-form-section-title"><td colspan="2">Payment Options</td></tr>
+          <tr width="100%" class="reg-form-column"> 
+	    <td colspan="2">
+              <table>  
+		<tr><td> Pay Deposit w/ Credit Card</td>
+		  <td><%= form.radio_button :payment_mode, :deposit_cc %></td></tr>
+		<tr><td> Pay Balance w/ Credit Card</td>
+		  <td><%= form.radio_button :payment_mode, :balance_cc %></td></tr>
+		<tr><td> Pay Deposit w/ Check</td>
+		  <td><%= form.radio_button :payment_mode, :deposit_check %></td></tr>
+		<tr><td> Pay Balance w/ Check</td>
+		  <td><%= form.radio_button :payment_mode, :balance_check %></td></tr>
+              </table>
+            </td>
+	  </tr>
+	</table> <!- table reg-form-section ->
+      </td>
+
+      <td>
+	<table class="reg-form-section">
+          <tr class="reg-form-section-title"><td colspan="2">Registrant Information</td></tr>
+          <tr>
+            <td class="reg-form-column">
+              <table>
+		<tr>
+		  <td style="vertical-align:middle">
+                    <table><tr><td>Gender:</td><td width="15"/> <td>M</td><td><%= form.radio_button :gender, "M", :class => "bigradio" %></td>
+			<td>F</td><td><%= form.radio_button :gender, "F", :class => "bigradio" %></td></tr></table>
+		  </td>
+		</tr>
+              </table>
+              <table>
+		<tr><td>First Name</td><td>Last Name</td></tr>
+		<tr>
+		  <td><%= form.text_field :first_name, :size => 20 %></td><td><%= form.text_field :last_name, :size => 20 %>
+		  </td>
+		</tr>
+              </table>
+
+	      <table>
+		<tr>
+		  <td>
+		    <span>Street Address:</span><BR />
+		    <%= form.text_field :street1, :size => 47 %><BR />
+		    <%= form.text_field :street2, :size => 47 %>
+		  </td>
+		</tr>
+	      </table>
+
+	      <table>
+		<tr><td>City</td><td>State</td><td>Zip</td></tr>
+		<tr><td><%= form.text_field :city, :size => 22 %></td>
+		  <td><%= form.text_field :state, :size => 2 %></td>
+		  <td><%= form.text_field :zip, :size => 10 %></td>
+		<tr><td colspan="3">Country:&nbsp;&nbsp; <%= form.select :country, Country.menu_selection, :default => 0 %></td></tr>
+		<tr height="4px"/>
+		<tr><td colspan="3">Emergency Contact Name:&nbsp;&nbsp;<%= form.text_field :emergency_contact_name, :size => 20 %></td></tr>
+		<tr><td colspan="3">Emergency Contact Phone:&nbsp;&nbsp;<%= form.text_field :emergency_contact_phone, :size => 20 %></td></tr>
+	      </table>
+	    </td> <!-- end left column -->
+
+	    <td class="reg-form-column">
+	      <p>E-mail Address:&nbsp;&nbsp;<span class="email-address"> <%= @registration.email %></span></p>
+	      <p>Phone numbers <br>(please include area code)
+		<table>
+		  <tr><td width="15"/><td>Home:</td><td><%= form.text_field :home_phone, :size => 24 %></td></tr>
+		  <tr><td width="15"/><td>Cell:</td><td><%= form.text_field :cell_phone, :size => 24 %></td></tr>
+		  <tr><td width="15"/><td>Work:</td><td><%= form.text_field :work_phone, :size => 24 %></td></tr>
+		</table>
+	      </p>
+	      <p>Comments or Other Registration Information:<BR />&nbsp;&nbsp;<%= form.text_area :comments, :rows => 6, :columns => 25 %></p>
+	    </td> <!-- end right column -->
+	  </tr> <!-- end top row -->
+	</table>
+      </td>
+    </tr>   <!-- Close second row -->
+
+    <tr>  <!-- Third row is directory information in the left column, then program and housing and meals -->
+
+      <td id="reg-form-left">
+	<table class="reg-form-section">
+	  <tr width="100%" class="reg-form-section-title"><td>Information</td></tr>
+	  <tr>
+	    <td class="reg-form-column">
+              <table>
+		<tr><td>First-time Camper?</td><td><%= form.check_box :firsttime, :class => "bigcheck" %></td></tr>
+		<tr><td>Want to Be On Mailing List?</td><td><%= form.check_box :mailinglist, :class => "bigcheck" %></td></tr>
+		<tr><td>Omit Personal Information From Program Booklet?&nbsp;</td><td><%= form.check_box :donotpublish, :class => "bigcheck" %></td></tr>
+              </table>
+	    </td>
+	  </tr>
+	</table>
+      </td> <!-- close left column third row -->
+
+      <td id="reg-form-right">      <!-- Right column third row:  program lodging meals -->
+	<table width="100%">
+	  <tr colspan="2" class="reg-form-section-title"><td colspan="2">Program, Lodging, Meals</td></tr>
+	  <tr><td colspan="2" class="reg-form-column"><%= render :partial => "reg_form_program_section", :locals => {:form => form} %></td></tr>
+	</table>
+      </td>
+    </tr>  <!-- end third row -->
+
+    <tr>  <!-- fourth row is buttons in the left column and additions etc in the right column -->
+      <td id="reg-form-left">
+	<table class="reg-form-section">
+	  <tr><td><center><%= submit_tag "Register", :class => "reg-form-button" %></center></td></tr>
+	</table>
+      </td>  <!-- close left column fourth row -->
+
+      <td> <!-- fourth row right column  -->
+	<table class="reg-form-section">
+	  <tr class="reg-form-section-title"><td colspan="2">Additions and Donations</td></tr>
+	  <tr>
+            <td class="reg-form-column">
+              <table>
+		<tr><td>Tax-Deductible Donation:&nbsp; &nbsp; &nbsp;
+		    <%= form.select :donation, 
+			     [
+			     ['None', 0],      ['$1.00', 1], ['$5.00', 5],     ['$10.00', 10],   ['$15.00', 15], ['$20.00', 20], 
+			     ['$25.00', 25],   ['$30.00', 30],   ['$35.00', 35],   ['$40.00', 40], ['$45.00', 45], 
+			     ['$50.00', 50],   ['$55.00', 55],   ['$60.00', 60],   ['$65.00', 65], ['$70.00', 70], 
+			     ['$75.00', 75],   ['$80.00', 80],   ['$85.00', 85],   ['$90.00', 90], ['$95.00', 95], 
+			     ['$100.00', 100], ['$125.00', 125], ['$150.00', 150], ['$175.00', 175], 
+			     ['$200.00', 200], ['$225.00', 225], ['$250.00', 250], ['$275.00', 275], 
+			     ['$300.00', 300], ['$400.00', 400], ['$500.00', 500], ['$600.00', 600], 
+			     ['$700.00', 700], ['$800.00', 800], ['$900.00', 900], ['$1000.00', 1000]
+			     ], 
+			     {:default => 0},
+   		             :data => {:remote => true, :url => url_for(:action => :update_donation)}
+			  %>
+		    </td>
+		</tr>
+		<tr>
+		  <td colspan="2">
+                    T-Shirt(s):&nbsp;&nbsp;&nbsp;
+                    <strong>S</strong>
+                    <%= form.select :tshirts, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- S T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirts)} %>
+                    &nbsp;&nbsp;
+                    <strong>M</strong>
+                    <%= form.select :tshirtm, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- M T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirtm)}  %>
+                    &nbsp;&nbsp;
+                    <strong>L</strong>
+                    <%= form.select :tshirtl, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- L T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirtl)}  %>
+                    &nbsp;&nbsp;
+                    <strong>XL</strong>
+                    <%= form.select :tshirtxl, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- XL T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirtxl)}  %>
+                    &nbsp;&nbsp;
+                    <strong>XXL</strong>
+                    <%= form.select :tshirtxxl, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- XXL T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirtxxl)}  %>
+                    &nbsp;&nbsp;
+                    <strong>XXXL</strong>
+                    <%= form.select :tshirtxxxl, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- XXXL T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirtxxxl)}  %>
+		  </td>
+		</tr>
+              </table>
+            </td>  <!-- end right column -->
+	  </tr>  <!-- end form row -->
+	</table>   <!-- end section -->
+      </td>  <!-- end fourth row right column -->
+    </tr>  <!-- end fourth row -->
+    <% end %>  <!-- form enclosure -->
+  </table>
+</div> <!-- reg-form-container -->

@@ -1,0 +1,87 @@
+<table>
+  <tr>
+    <td>
+      <table>
+	<tr>
+	  <td>Instrumental or Vocal Participant</td>
+	  <td width="15"/>
+	  <td><%= form.radio_button :participant, true, {:class => "bigradio", :disabled => "disabled"} %>
+	  </td>
+	</tr>
+	<tr>
+	  <td>Non-participant</td>
+	  <td width="15"/>
+	  <td> <%= form.radio_button :participant, false, {:class => "bigradio", :data => {:remote => true, :url => url_for(:action => :update_participant)}} %>
+	  </td>
+	</tr>
+	<tr>
+	  <td>Primary Instrument or Voice:</td><td/><td/>
+	</tr>
+	<tr>
+	  <td colspan="3", align="right">
+	    <%= form.select(:instrument_id, Instrument.menu_selection, {:prompt => "- select -", :default => -1}, {:disabled => "disabled"}) %>
+	  </td>
+	</tr>
+      </table>
+    </td>
+    <td width="50"/>
+    <td align="right" valign="top">
+      <table>
+	<tr>
+	  <td>Double-Occupancy Dorm Room</td>
+	  <td width="15"/>
+	  <td><%= form.radio_button :dorm_selection, 'd', {:class => "bigradio", :data => {:remote => true, :url => url_for(:action => :update_dorm_selection)}} %></td>
+	</tr>
+	<tr>
+	  <td>Single-Occupancy Dorm Room<br/>(Request)</td>
+	  <td width="15"/>
+	  <td><%= form.radio_button :dorm_selection, 's', {:class => "bigradio", :disabled => "disabled"} %>
+	  </td>
+	</tr>
+	<tr>
+	  <td>Off-Campus Housing</td>
+	  <td width="15"/>
+	  <td> <%= form.radio_button :dorm_selection, 'n', {:class => "bigradio", :disabled => "disabled"} %>
+	  </td>
+	</tr>
+      </table>
+    </td>
+  </tr>
+  <tr height="10"/>
+  <tr>
+    <td>
+      <table>
+	<tr>
+	  <td>Full Meals</td>
+	  <td width="15"/>
+	  <td> <%= form.radio_button :meals_selection, 'f', {:class => "bigradio", :disabled => "disabled"} %>
+	  </td>
+	</tr>
+	<tr>
+	  <td>Lunch and Dinner Only</td>
+	  <td width="15"/>
+	  <td> <%= form.radio_button :meals_selection, 'l', {:class => "bigradio", :disabled => "disabled"} %>
+	  </td>
+	</tr>
+	<tr>
+	  <td>No Meals</td>
+	  <td width="15"/>
+	  <td> <%= form.radio_button :meals_selection, 'n', {:class => "bigradio", :disabled => "disabled"} %>
+	  </td>
+	</tr>
+      </table>
+    </td>
+    <td width="50"/>
+    <td>
+      <table>
+	<% if @registration.staff? || @registration.board?  %>
+        <tr><td>Sunday Arrival?</td><td width="55"/><td><%= form.check_box :sunday,  {:class => "bigcheck",  :disabled => "disabled"} %></td></tr>
+        <% end %>
+	<tr><td>Vegetarian Meals?</td><td width="55"/><td><%= form.check_box :vegetarian, :class => "bigcheck", :disabled => "disabled" %></td></tr>
+	<tr><td>Need Airport Pickup?</td><td width="55"/><td><%= form.check_box :airport_pickup, :class => "bigcheck", :disabled => "disabled" %></td></tr>
+        <tr><td>Need Fan?</td>  <td width="55"/> <td><%= form.check_box :fan, :class => "bigcheck", :disabled => "disabled" %></td></tr>
+        <tr><td>Need Handicap Access?</td>  <td width="55"/> <td><%= form.check_box :handicapped_access, :class => "bigcheck", :disabled => "disabled" %></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>

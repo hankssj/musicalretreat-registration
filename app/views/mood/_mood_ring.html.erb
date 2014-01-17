@@ -1,0 +1,13 @@
+<% if mood_ring %>
+<p>I am a mood ring:
+<ul>
+  <li>Mood: <%= mood_ring.mood %></li>
+  <li>Optimistic: <%= mood_ring.optimistic %></li>
+  <li>Trending: <%= mood_ring.trending %></li>
+  <li>Comment: <%= mood_ring.comment %></li>
+  <li>Confidence: <%= mood_ring.confidence %></li>
+</ul>
+</p>
+<% else %>
+There is no mood ring
+<% end %>   

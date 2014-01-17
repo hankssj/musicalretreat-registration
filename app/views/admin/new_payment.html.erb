@@ -1,0 +1,38 @@
+<div class="reg-form-main">
+
+<table width="100%">
+
+  <% if @payment.errors.any? %>
+  <tr><td colspan="2">
+      <ul>
+	<% @payment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+  </td></tr>
+  <% end %>
+
+  <tr><td>
+      <%= form_for :payment, :url => {:action => :add_payment} do |form| %>
+      <%= form.hidden_field :registration_id %>
+      <table>
+	<tr><td colspan="2" style="text-align: center; border: 1px solid black; font-variant: small-caps"><b>New Payment for <%= @payment.registration.email %></b></td></tr>
+	<tr><td>Payment Amount:</td><td><%= form.text_field :amount, :size => 8 %></td></tr>
+	<tr><td>Check Number:</td><td><%= form.text_field :check_number, :size => 5 %></td></tr>
+	<tr><td>Date Received:</td><td><%= form.text_field :date_received, :size => 24 %></td></tr>
+	<tr><td>Note:</td><td><%= form.text_field :note, :size => 48 %></td></tr>
+	<tr><td>Scholarship?:</td><td><%= form.check_box :scholarship %></td></tr>
+      </table>
+      Send confirm email to camper?  <%= form.check_box :email, :checked => true %>
+
+      <div style="padding: 20px">
+	<%= submit_tag "Record It!" %>&nbsp;&nbsp;&nbsp;
+	<%= submit_tag "Clear", :type => 'reset' %>
+      </div>
+      <% end %>
+    <td></tr>
+</table>
+</div>
+
+
+

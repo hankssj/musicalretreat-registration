@@ -1,0 +1,90 @@
+<div id="reg-form-main">
+  <table width="100%">
+  <tr><td>MMR <%= Year.this_year %> Registration Summary</td></tr>
+
+  <tr><td>Contact Information</td></tr>
+  <tr><td>Name: <%= @registration.first_name %> <%= @registration.last_name %> (<%= @registration.gender %>)</td></tr>
+  <tr><td><% if @registration.participant %>Instrument: <%= @registration.instrument_name %> <% else %> Non-participant <% end %></td></tr>
+  <tr>
+    <td>Address: <%= @registration.street1 %><% if @registration.street2 && !@registration.street2.empty? %>, <%= @registration.street2 %><% end %>;	<%= @registration.city %>, <%= @registration.state %>, <%= @registration.zip %>
+    </td>
+  </tr>
+  <tr>
+      <td>Phones: 
+	<% if @registration.home_phone && !@registration.home_phone.empty?%> <%= @registration.home_phone %> (H) <% end %>
+	<% if @registration.cell_phone && !@registration.cell_phone.empty?%> <%= @registration.cell_phone %> (M) <% end %>
+	<% if @registration.work_phone && !@registration.work_phone.empty?%> <%= @registration.work_phone %> (W) <% end %>
+      </td>
+  </tr>
+  <% if @registration.emergency_contact_name && !@registration.emergency_contact_name.empty? %>
+  <tr><td>Emergency Contact: <%= @registration.emergency_contact_name %>, <%= @registration.emergency_contact_phone %></td></tr>
+  <% end %>
+  <tr>
+    <td> Other:  
+      First time? <% if @registration.firsttime %>Yes<% else %>No<% end %>, 
+      Mailing list? <% if @registration.mailinglist %>Yes<% else %>No<% end %>, 
+      Do not publish? <% if @registration.donotpublish %>Yes<% else %>No<% end %>
+    </td>
+  </tr>
+
+  <tr><td>Lodging and Meals</td></tr>
+  <% if @registration.dorm %>
+  <tr><td>
+      Dorm room requested.  
+      <% if @registration.single_room %>Single room requested. <% end %>
+      <% if @registration.aircond %>Air conditioning requested. <% end %>
+      <% if @registration.fan %>Fan requested. <% end %>
+      <% if @registration.handicapped_access %>Handicap access requested. <% end %>
+      </td>
+  </tr>
+
+  <% if @registration.share_housing_with %>
+  <tr><td>Share housing with: <%= @registration.share_housing_with %></td></tr>
+  <% end %>
+  <% else %>
+  <tr><td>No dorm room requested.</td></tr>
+  <% end %>
+
+  <% if @registration.meals %>
+  <tr><td>Meals requested.  <% if @registration.vegetarian %> Vegetarian requested<% end %></td></tr>
+  <% else %>
+  <tr><td>No meals requested.</td></tr>
+  <% end %>
+  
+  <tr><td>Other</td></tr>
+  <% if @registration.comments && !@registration.comments.empty?%>
+  <tr><td>Comments:  <p><%= @registration.comments %></p></td></tr>
+  <% end %>
+  <% if @registration.airport_pickup %>
+  <tr><td>Request airport pickup</td></tr>
+  <% end %>
+  <% if @registration.donation  && @registration.donation > 0.0%>
+  <tr><td>Donation:  <%= number_to_currency(@registration.donation.to_f) %></td></tr>
+  <% end %>
+  <% if (@registration.tshirts + @registration.tshirtm + @registration.tshirtl + @registration.tshirtxl + @registration.tshirtxxl + @registration.tshirtxxxl) > 0 %>
+  <tr><td>T-Shirts:  
+      <% if @registration.tshirts > 0 %> Small: <%= @registration.tshirts %> <% end %>
+      <% if @registration.tshirtm > 0 %> Medium: <%= @registration.tshirtm %> <% end %>
+      <% if @registration.tshirtl > 0 %> Large: <%= @registration.tshirtl %> <% end %>
+      <% if @registration.tshirtxl > 0 %> XLarge: <%= @registration.tshirtxl %> <% end %>
+      <% if @registration.tshirtxxl > 0 %> XXLarge: <%= @registration.tshirtxxl %> <% end %>
+      <% if @registration.tshirtxxxl > 0 %> XXXLarge: <%= @registration.tshirtxxxl %> <% end %>
+  </td></tr>
+  <% end %>
+
+  <tr><td>Charges and Payments</td></tr>
+  <tr><td>
+      <div id="cart"><%= render :partial => "cart", :object => @registration.cart %></div>
+  </td></tr>
+  <% if @registration.payments && @registration.payments.size > 0 %>
+    <tr><td>
+      <ul>
+        <% for payment in @registration.payments %>
+           <li><%= render :partial => "payment", :object => payment %></li>
+        <% end %>
+      </ul>
+    </td></tr>
+  <% end %>
+    
+  </table>
+</div>
