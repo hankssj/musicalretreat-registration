@@ -1,8 +1,0 @@
-<% form_for (:archive_entry, @archive_entry, :url => {:action=>'create'}, :html=> {:multipart=>true}) do |form| %>
-<%= form.hidden_field :user_id, :value => session[:user_id] %>
-<ul>
-<li>File:	<%= form.file_field :remote_file %> </li>
-<li>Description: <%= form.text_field :description %></li>
-<li><%= submit_tag "Upload" %>
-</ul>
-<% end %>
