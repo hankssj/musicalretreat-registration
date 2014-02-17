@@ -15,7 +15,9 @@
 			 {:class => "reg-list-row-button"} %> 
 	</td>
 	<td class="reg-list-line-summary-cell">
-                EDIT
+		<%= link_to "EDIT", 
+              {:controller => :registration, :action => :edit, :id => registration_line_summary.user_id},
+              {:class => "reg-list-row-button"} %> 
 	</td>
 	<td class="reg-list-line-summary-cell">
 		<%= link_to "PAYMENT",

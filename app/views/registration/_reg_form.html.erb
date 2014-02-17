@@ -1,0 +1,24 @@
+<div id="reg-form-main">
+  <%= form_for(@registration, :url => {:controller => :registration, :action => @action}) do |form| %>
+
+  <%= form.hidden_field :user_id %>
+  <%= form.hidden_field :year %>
+  <%= form.hidden_field :id %>
+
+
+  <table width="100%">
+    <!--  First row full length for banner only -->
+    <tr> <%= render :partial => "reg_form_row_1", :locals => {:form => form}  %> </tr>
+
+    <!-- Second row is charges plus the "Registrant Information" section -->
+    <tr> <%= render :partial => "reg_form_row_2", :locals => {:form => form} %> </tr>
+
+    <!-- Third row is directory information in the left column, then program and housing and meals -->
+    <tr>  <%= render :partial => "reg_form_row_3", :locals => {:form => form} %> </tr>
+
+    <!-- Fourth row is buttons in the left column and additions etc in the right column -->
+    <tr>  <%= render :partial => "reg_form_row_4", :locals => {:form => form} %> </tr>
+  </table>
+
+  <% end %>
+</div>

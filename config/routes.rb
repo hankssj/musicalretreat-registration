@@ -28,6 +28,7 @@ RegistrationDevelopment::Application.routes.draw do
   get  "registration/logout"
   get  "registration/confirm_registration"
   get  "registration/done"
+
   resources :registration
 
   get "login/change_password"

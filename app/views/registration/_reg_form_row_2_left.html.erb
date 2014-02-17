@@ -1,0 +1,40 @@
+<table class="reg-form-section"> <!- table reg-form-section ->
+  <tr width="100%" class="reg-form-section-title"><td>Charges</td></tr>
+  <tr>
+    <td class="reg-form-column">
+      <div id="cart"><%= render :partial => "cart", :object => @registration.cart(@new) %></div>
+    </td>
+  </tr>
+
+  <tr height="4px"/>
+  <% if @show_payments %>
+  <tr  width="100%" class="reg-form-section-title"><td>Payments</td></tr>
+  <tr><td class="reg-form-column" height="100%">
+      <table>
+	<% if @registration.payments && @registration.payments.size > 0%>
+        <% for payment in @registration.payments %>
+        <%= render :partial => "payment", :object => payment %>
+        <% end %>
+	<% else %>
+        <tr><td>No payments have been received</td></tr>
+	<% end %>
+      </table>
+  </td></tr>
+  <% else %>
+  <tr style="margin-top: 4px" width="100%" class="reg-form-section-title"><td colspan="2">Payment Options</td></tr>
+  <tr width="100%" class="reg-form-column"> 
+    <td colspan="2">
+      <table>  
+	<tr><td> Pay Deposit w/ Credit Card</td>
+	  <td><%= form.radio_button :payment_mode, :deposit_cc %></td></tr>
+	<tr><td> Pay Balance w/ Credit Card</td>
+	  <td><%= form.radio_button :payment_mode, :balance_cc %></td></tr>
+	<tr><td> Pay Deposit w/ Check</td>
+	  <td><%= form.radio_button :payment_mode, :deposit_check %></td></tr>
+	<tr><td> Pay Balance w/ Check</td>
+	  <td><%= form.radio_button :payment_mode, :balance_check %></td></tr>
+      </table>
+    </td>
+  </tr>
+  <% end %>
+</table> <!- table reg-form-section ->

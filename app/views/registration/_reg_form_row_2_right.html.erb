@@ -1,0 +1,63 @@
+<table class="reg-form-section">
+  <tr class="reg-form-section-title"><td colspan="2">Registrant Information</td></tr>
+  <tr>
+    <td class="reg-form-column">
+      <table>
+	<tr>
+	  <td style="vertical-align:middle">
+            <table><tr>
+		<td>Gender:</td>
+		<td width="15"/> 
+		<td>M</td>
+		<td><%= form.radio_button :gender, "M", :class => "bigradio", :disabled => @disabled %></td>
+		<td>F</td>
+		<td><%= form.radio_button :gender, "F", :class => "bigradio", :disabled => @disabled %></td>
+	    </tr></table>
+	  </td>
+	</tr>
+      </table>
+
+      <table>
+	<tr><td>First Name</td><td>Last Name</td></tr>
+	<tr>
+	  <td><%= form.text_field :first_name, :size => 20, :disabled => @disabled %></td>
+	  <td><%= form.text_field :last_name, :size => 20, :disabled => @disabled %>
+	  </td>
+	</tr>
+      </table>
+
+      <table>
+	<tr>
+	  <td>
+	    <span>Street Address:</span><BR />
+	    <%= form.text_field :street1, :size => 47, :disabled => @disabled %><BR />
+	    <%= form.text_field :street2, :size => 47, :disabled => @disabled %>
+	  </td>
+	</tr>
+      </table>
+
+      <table>
+	<tr><td>City</td><td>State</td><td>Zip</td></tr>
+	<tr><td><%= form.text_field :city, :size => 22, :disabled => @disabled %></td>
+	  <td><%= form.text_field :state, :size => 2, :disabled => @disabled %></td>
+	  <td><%= form.text_field :zip, :size => 10, :disabled => @disabled %></td>
+	<tr><td colspan="3">Country:&nbsp;&nbsp; <%= form.select :country, Country.menu_selection, {:default => 0}, {:disabled => @disabled} %></td></tr>
+	<tr height="4px"/>
+	<tr><td colspan="3">Emergency Contact Name:&nbsp;&nbsp;<%= form.text_field :emergency_contact_name, :size => 20, :disabled => @disabled %></td></tr>
+	<tr><td colspan="3">Emergency Contact Phone:&nbsp;&nbsp;<%= form.text_field :emergency_contact_phone, :size => 20, :disabled => @disabled %></td></tr>
+      </table>
+    </td> <!-- end left column -->
+
+    <td class="reg-form-column">
+      <p>E-mail Address:&nbsp;&nbsp;<span class="email-address"> <%= @registration.email %></span></p>
+      <p>Phone numbers <br>(please include area code)
+	<table>
+	  <tr><td width="15"/><td>Home:</td><td><%= form.text_field :home_phone, :size => 24, :disabled => @disabled %></td></tr>
+	  <tr><td width="15"/><td>Cell:</td><td><%= form.text_field :cell_phone, :size => 24, :disabled => @disabled %></td></tr>
+	  <tr><td width="15"/><td>Work:</td><td><%= form.text_field :work_phone, :size => 24, :disabled => @disabled %></td></tr>
+	</table>
+      </p>
+      <p>Comments or Other Registration Information:<BR />&nbsp;&nbsp;<%= form.text_area :comments, :rows => 6, :columns => 25, :disabled => @disabled, :style => "background:white" %></p>
+    </td> <!-- end right column -->
+  </tr> <!-- end top row -->
+</table>

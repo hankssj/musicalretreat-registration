@@ -1,0 +1,17 @@
+<% if @registration.errors.any? %>
+<div id="form-errors">
+<table>
+<tr>
+<td>Please correct the following errors:</td>
+</tr>
+<tr>
+<td>
+   <ul>
+      <% @registration.errors.each do |attr, msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+</td></tr>
+</table>
+</div>
+<% end %>

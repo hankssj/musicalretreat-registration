@@ -60,7 +60,7 @@ class AdminController < ApplicationController
     user_id = payment.registration.user.id
     payment.destroy
     Event.log("Deleted payment #{payment.id} in amount of #{payment.amount} for registration #{reg_id}, user #{user_id}")
-    redirect_to :action => :edit_registration, :id => user_id
+    redirect_to :action => {:controller => 'registration', :action => 'edit'}, :id => user_id
   end
 
   #############################
@@ -75,7 +75,7 @@ class AdminController < ApplicationController
         user = User.find_by_email(params[:email])
         user = User.create(:email => params[:email], :password => User.new_random_password(params[:email])) unless user
         session[:reg_form_callback] = [:admin, :index]
-        redirect_to :controller => :registration, :action => :new, :id => user.id, :admin => true
+        redirect_to :controller => :registration, :action => :new, :user_id => user.id, :admin => true
       else
         flash[:notice] = "Email addresses do not match."
       end

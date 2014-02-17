@@ -1,0 +1,12 @@
+<table class="reg-form-section">
+  <tr width="100%" class="reg-form-section-title"><td>Information</td></tr>
+  <tr>
+    <td class="reg-form-column">
+      <table>
+	<tr><td>First-time Camper?</td><td><%= form.check_box :firsttime, :class => "bigcheck", :disabled => @disabled %></td></tr>
+	<tr><td>Want to Be On Mailing List?</td><td><%= form.check_box :mailinglist, :class => "bigcheck", :disabled => @disabled %></td></tr>
+	<tr><td>Omit Personal Information From Program Booklet?&nbsp;</td><td><%= form.check_box :donotpublish, :class => "bigcheck", :disabled => @disabled %></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>

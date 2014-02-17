@@ -1,0 +1,49 @@
+<table class="reg-form-section">
+  <tr class="reg-form-section-title"><td colspan="2">Additions and Donations</td></tr>
+  <tr>
+    <td class="reg-form-column">
+      <table>
+	<tr><td>Tax-Deductible Donation:&nbsp; &nbsp; &nbsp;
+	    <%= form.select :donation, 
+		[
+		['None', 0],      ['$1.00', 1], ['$5.00', 5],     ['$10.00', 10],   ['$15.00', 15], ['$20.00', 20], 
+		['$25.00', 25],   ['$30.00', 30],   ['$35.00', 35],   ['$40.00', 40], ['$45.00', 45], 
+		['$50.00', 50],   ['$55.00', 55],   ['$60.00', 60],   ['$65.00', 65], ['$70.00', 70], 
+		['$75.00', 75],   ['$80.00', 80],   ['$85.00', 85],   ['$90.00', 90], ['$95.00', 95], 
+		['$100.00', 100], ['$125.00', 125], ['$150.00', 150], ['$175.00', 175], 
+		['$200.00', 200], ['$225.00', 225], ['$250.00', 250], ['$275.00', 275], 
+		['$300.00', 300], ['$400.00', 400], ['$500.00', 500], ['$600.00', 600], 
+		['$700.00', 700], ['$800.00', 800], ['$900.00', 900], ['$1000.00', 1000]
+		], 
+		{:default => 0},
+	    :disabled => @disabled,
+   	    :data => {:remote => true, :url => url_for(:action => :update_donation)}
+	    %>
+	  </td>
+	</tr>
+	<tr>
+	  <td colspan="2">
+            T-Shirt(s):&nbsp;&nbsp;&nbsp;
+            <strong>S</strong>
+            <%= form.select :tshirts, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- S T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirts), :disabled => @disabled} %>
+            &nbsp;&nbsp;
+            <strong>M</strong>
+            <%= form.select :tshirtm, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- M T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirtm), :disabled => @disabled}  %>
+            &nbsp;&nbsp;
+            <strong>L</strong>
+            <%= form.select :tshirtl, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- L T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirtl), :disabled => @disabled}  %>
+            &nbsp;&nbsp;
+            <strong>XL</strong>
+            <%= form.select :tshirtxl, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- XL T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirtxl), :disabled => @disabled}  %>
+            &nbsp;&nbsp;
+            <strong>XXL</strong>
+            <%= form.select :tshirtxxl, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- XXL T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirtxxl), :disabled => @disabled}  %>
+            &nbsp;&nbsp;
+            <strong>XXXL</strong>
+            <%= form.select :tshirtxxxl, [[0,0], [1,1], [2,2], [3,3]], {:prompt => "- XXXL T-shirt -", :default => 0}, :data => {:remote => true, :url => url_for(:action => :update_tshirtxxxl), :disabled => @disabled}  %>
+	  </td>
+	</tr>
+      </table>
+    </td>  <!-- end right column -->
+  </tr>  <!-- end form row -->
+</table>   <!-- end section -->

@@ -1,5 +1,10 @@
 /* Global styles */
 
+input:disabled
+{
+background:#dddddd;
+}
+
 /************************   Flash Notice, Page Banner, and Page Body Consistent Across Pages */
 
 #main {

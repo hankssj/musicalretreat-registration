@@ -39,9 +39,9 @@
 
 <!-- Row 2 -->
   <tr>
-  <td class="bordered">Create New Account
+  <td class="bordered">Edit Your Registration
     <p/>
-    <%= button_to "GO", :action => :new_password %>
+    <%= button_to "GO", :action => :edit %>
   </td>
   <td class="bordered">Pay Online
     <p/>
@@ -62,15 +62,18 @@
   </tr>
 
    <tr>
-   <% if @email %> 	
-       <td class="bordered">Log Out
+     <td class="bordered">Create New Account
+       <p/>
+       <%= button_to "GO", :action => :new_password %>
+     </td>   
+     <% if @email %> 	
+     <td class="bordered">Log Out
        <%= button_to "GO", :action => :logout %>
-   <% else %>
-       <td class="bordered">Log In
+       <% else %>
+     <td class="bordered">Log In
        <%= button_to "GO", :action => :login %>
-   <% end %>
-   </td>
-   <td class="bordered">&nbsp;</td>
+       <% end %>
+     </td>
    </tr>
 
 <tr>

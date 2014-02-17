@@ -4,8 +4,8 @@ class RegistrationController < ApplicationController
 
   include RegistrationGating
 
-  before_filter :authorize, :only => [:create, :new, :show, :payment]
-  before_filter :authorize_admin, :only => [:edit, :update, :destroy]
+  before_filter :authorize, :only => [:create, :new, :show, :payment, :edit, :update]
+  before_filter :authorize_admin, :only => [:destroy]
 
   ############################################################################  
 
@@ -23,10 +23,21 @@ class RegistrationController < ApplicationController
   end
 
   ####################################################
+  #  New/create
+  #   Need a user_id -- either use the session user_id, or admin controller will pass one explicitly
 
-  # Form to fill out a new registration
   def new
-    user = User.find(session[:user_id])
+    user = nil
+    if params[:user_id]
+      redirect_to(:controller => :registration, :action=> :index) unless admin_session?
+      user = User.find(params[:user_id])
+      unless user
+        flash[:notice] = "No user with this ID found!"
+        redirect_to(:controller => :admin, :action=> :index)
+      end
+    else
+      user = User.find(session[:user_id])
+    end
     if user.has_current_registration
       flash[:notice] = "User #{user.email} is already registered"
       reg_redirect
@@ -35,72 +46,94 @@ class RegistrationController < ApplicationController
     end
   end
 
-  # Save the new registration
   def create
     verify_admin_or_self(params[:registration][:user_id])
+    admin = params[:registration][:user_id] && session[:user_id] && (params[:registration][:user_id].to_i != session[:user_id])
+
     @registration = Registration.new(post_params)
     if Registration.find_by_user_id_and_year(@registration.user_id, @registration.year)
       flash[:notice] = "We already have a registration for #{@registration.user.email}"
-      redirect_to :action => :index
+      redirect_to :controller => (admin ? :admin :registration) , :action => :index
     elsif @registration.save
       FileMakerContact.setContactID(@registration)
       Event.log("New registration created for #{@registration.user.email}")
-      RegistrationMailer.confirm_registration(@registration)
-      if @registration.payment_mode =~ /check/
+      if admin
         flash[:notice] = "New registration successful"
-        @email = @registration.user.email
-        @cart = @registration.cart
+        redirect_to :controller => :admin, :action => :index
       else
-        redirect_to :controller => :cc, :action => :depart, :id => @registration.id
+        RegistrationMailer.confirm_registration(@registration)
+        flash[:notice] = "New registration successful"
+        if @registration.payment_mode =~ /check/
+          redirect_to :controller => :registration, :action => :index
+        else
+          redirect_to :controller => :cc, :action => :depart, :id => @registration.id
+        end
       end
     else
       render :action => :new
     end
   end
   
+  #################################################################################
+  # Edit/update -- like new/create, two entry points, 
+  #  one from the user via registration controller and from admin via admin controller
+  #  In the first case, user/reg of the logged in user is same as reg to be edited.  Not in the second, 
+  #  where the call should send a user_id
+
+  def edit
+    user_id = params[:id].to_i > 0 ? params[:id] : session[:user_id]
+    registration = nil
+    if params[:id]
+      redirect_to(:controller => :registration, :action=> :index) unless admin_session?
+      registration = User.find(params[:id]).current_registration
+      unless registration
+        flash[:notice] = "No registration to edit!"
+        redirect_to(:controller => :admin, :action=> :index)
+      end
+    else
+      registration = User.find(session[:user_id]).current_registration
+      unless registration 
+        flash[:notice] = "No registration to edit!"
+        redirect_to(:controller => :registration, :action=> :index)
+      end
+    end
+    session[:registration] = @registration = registration
+  end
+
+  def update
+    verify_admin_or_self(params[:registration][:user_id])
+    controller = admin_session? ? :admin : :registration
+    user_id_mismatch = params[:registration][:user_id].to_i != session[:user_id]
+
+    @registration = Registration.find(params[:registration][:id])
+
+    if user_id_mismatch && !admin_session?
+      flash[:notice] = "Cannot update this registration."
+      redirect_to :controller => :registration, :action => :index
+    else
+      if @registration.update_attributes(post_params)
+        flash[:notice] = "Update was successful"
+        redirect_to :controller => controller, :action => :index
+      else
+        render :action => :edit
+      end
+    end
+  end
+
   ##########
   
   def show
     user_id = params[:id].to_i > 0 ? params[:id] : session[:user_id]
     verify_admin_or_self(user_id)
     @registration = Registration.find_by_user_id_and_year(user_id, Year.this_year)
-    @readonly = true
     if (!@registration)
       flash[:notice] = "No registration found"
       redirect_to :action => :index
     end
   end
-  
-  ##########
-  ##  For now we are not allowing users to edit, so all calls must come 
-  ##  with an ID, and be administrator validated
-  
-  def edit
-    if request.post? && params[:registration]
-      verify_admin_or_self(params[:registration][:user_id])
-      reg = User.find(params[:registration][:user_id]).current_registration
-      if reg.update_attributes(params[:registration])
-        flash[:notice] = "Edit successful"
-        reg_redirect(:index)
-      else
-        flash[:notice] = "Error updating"
-        @registration = Registration.new(params[:registration])
-        @regform_type = :edit
-      end
-    else
-      user_id = params[:id]    #  No session[:user_id]
-      verify_admin_or_self(user_id)
-      @registration = User.find(user_id).current_registration
-      if @registration
-        @regform_type = :edit
-      else
-        reg_redirect(:index, "No registration to edit")
-      end
-    end
-  end
-  
-  ##  Helpers for new/edit/view
 
+  ##########
+  
   def verify_admin_or_self(id_string)
     id = id_string.to_i
     return false if id == 0 || session[:user_id] == 0
@@ -143,7 +176,7 @@ class RegistrationController < ApplicationController
   private
   
   def post_params
-    params.require(:registration).permit(:user_id, :year, 
+    params.require(:registration).permit(:id, :user_id, :year, 
                                          :payment_mode, :gender, :first_name, :last_name, 
                                          :street1, :street2, :city, :state, :zip, :country, 
                                          :occupation, :emergency_contact_name, :emergency_contact_phone, 
