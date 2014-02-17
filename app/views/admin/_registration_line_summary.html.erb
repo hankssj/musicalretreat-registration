@@ -25,6 +25,9 @@
 					{:class => "reg-list-row-button"} %>
 	</td>
 	<td class="reg-list-line-summary-cell">
-                CANCEL
+          <%= link_to "CANCEL", 
+	      {:action => "cancel_registration", :id => registration_line_summary.id}, 
+	      {:confirm => "Confirm cancel for #{registration_line_summary.first_name} #{registration_line_summary.last_name}", 
+	       :class => "reg-list-row-button"} %>
 	</td>
 </tr>

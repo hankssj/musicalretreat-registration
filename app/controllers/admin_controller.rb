@@ -95,7 +95,7 @@ class AdminController < ApplicationController
   def cancel_registration
     reg = Registration.find(params[:id])
     name = reg.display_name
-    #reg.cancel
+    reg.cancel
     Event.log("Cancelled registration #{params[:id]} for #{name}")
     flash[:notice] = "Registration for #{name} successfully cancelled"
     redirect_to :action => :list_registrations
