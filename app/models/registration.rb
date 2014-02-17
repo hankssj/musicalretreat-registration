@@ -277,8 +277,10 @@ class Registration < ActiveRecord::Base
   end
 
   # 12/2013 I believe we have no more secondary instruments.  Consider dropping this
+  # 2/2014 -- You were right we don't.  But getting rid of it altogether alters the output file format
   def secondary_instrument_names
-    instruments.map{|i|i.display_name}.join("~")
+    #instruments.map{|i|i.display_name}.join("~")
+    ""
   end
 
   #  Save for later -- if we allow edit on the website, these might become real
@@ -298,6 +300,10 @@ class Registration < ActiveRecord::Base
     !single_room
   end
 
+  def lunch_and_dinner_only
+    meals && meals_lunch_and_dinner_only
+  end
+
   def self.fields
    [:contact_id, :first_name, :last_name,
     :street1, :street2, :city, :state,  :zip, :country,
@@ -314,7 +320,8 @@ class Registration < ActiveRecord::Base
     :tshirts, :tshirtm, :tshirtl, :tshirtxl, :tshirtxxl, :tshirtxxxl,
     :donation, :clean_comments, 
     :created_on_date, :updated_on_date,
-    :contact_type
+    :contact_type,
+    :lunch_and_dinner_only
    ]
   end
 
