@@ -70,7 +70,7 @@ class Registration < ActiveRecord::Base
   
   def self.populate(user)
     reg = user.most_recent_registration
-    new_reg = reg ? reg.clone : Registration.new
+    new_reg = reg ? reg.dup : Registration.new
     new_reg.year = Year.this_year
     new_reg.user_id = user.id
     new_reg.firsttime = false
