@@ -46,9 +46,7 @@ module RegistrationGating
 
   #  Controls messaging on the index page banner, also used do define can_register and can_pay
   def status
-    Rails.logger.debug("Status")
     return :open
-    Rails.logger.debug("After open Status")
     return :closed if @@FORCE_REGISTRATION_CLOSED
     return :open if Time.now > RegDates.registration_opens
     return :premature

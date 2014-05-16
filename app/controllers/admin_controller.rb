@@ -27,7 +27,6 @@ class AdminController < ApplicationController
 
   def change_email
     session[:original_uri] = url_for(:controller => :admin, :action => :index)
-    Registration.logger.info("Admin change email")
     redirect_to(:controller => :login, :action => :change_email)
   end
   

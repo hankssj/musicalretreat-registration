@@ -296,12 +296,33 @@ class Registration < ActiveRecord::Base
     !donotpublish
   end
 
+  #  2014  -- Dorm and meals attributes
+  #  Previously there were fields dorm, meals, and meals_lunch_and_dinner_only
+  #  As of 2014 there are two radio button controls and two new attributes
+  #     dorm:  attribute is dorm_selection and possible values are "d" "s" and "n" (double, single, none)
+  #     meals:  attribute is meals_selection and possible values are "f" "l" and "n" (full, lunch/dinner only, none)
+  #
+  #  The attributes dorm, meals, and meals_lunch_and_dinner_only are no longer set.
+  #  Filemaker must have the following fields:
+  #    dorm, no_single_room, meals, and other_2
+  #  the last one will be used for the lunch and dinner option, which will be a deduction from the meals charge.
+  #  
+  #  So we define those fields here:
+
+  def dorm 
+    dorm_selection == 'd' || dorm_selection == 's'
+  end
+  
   def no_single_room
-    !single_room
+    dorm_selection == 'd'
   end
 
-  def lunch_and_dinner_only
-    meals && meals_lunch_and_dinner_only
+  def meals
+    meals_selection == 'f' || meals_selection == 'l'
+  end
+
+  def other_2
+    meals_selection == 'l'
   end
 
   def self.fields
@@ -321,7 +342,7 @@ class Registration < ActiveRecord::Base
     :donation, :clean_comments, 
     :created_on_date, :updated_on_date,
     :contact_type,
-    :lunch_and_dinner_only
+    :other_2
    ]
   end
 
