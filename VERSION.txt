@@ -1,9 +1,5 @@
-Sun Mar  2 16:19:44 MST 2014
+Sun May 25 18:17:58 MDT 2014
 
 To https://github.com/hankssj/musicalretreat-registration.git
-   bd21988..16cb47d  master -> master
-
-Registration.populate now calls dup instead of clone.  Clone was using the old id field, which 
-was apparently causing rails to think it was an old record, which meant that the registration form 
-commit was forced to be /registration PATCH 
+   1d6c4bc..6c96214  master -> master
 
