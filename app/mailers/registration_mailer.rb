@@ -12,7 +12,6 @@ class RegistrationMailer < ActionMailer::Base
   def invitation(user)
     @first_name = user.first_name
     @year = Year.this_year
-#    mail(:to => user.email, :subject => "Come register for MMR #{Year.this_year}").deliver!
     mail(:from => "online-registration@musicalretreat.org", :to => user.email, :subject=> "MMR #{Year.this_year} Registration").deliver!
     Event.log("Sent invitation email to #{user.id}")
   end
@@ -52,4 +51,9 @@ class RegistrationMailer < ActionMailer::Base
     Event.log("Sent new account or password reset to #{@email} and #{@password}")
   end
 
+  def balance_reminder(registration)
+    @name = registration.display_name
+    @balance = registration.balance
+    mail(:to => registration.email, :subject => 'MMR Balance Due Reminber').deliver!
+  end
 end

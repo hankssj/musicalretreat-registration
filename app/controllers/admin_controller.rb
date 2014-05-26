@@ -2,7 +2,7 @@ class AdminController < ApplicationController
 
   before_filter :authorize_admin, :only => [
    :index, :new_user, :reset_password, :view_registration, :edit_registration, :list_registrations,
-   :reg_invitation, :send_all_invitations, :send_early_invitations, :show_events, :delete_events, :list_scholarships, 
+   :reg_invitation, :send_all_invitations, :send_early_invitations, :send_balance_reminders, :show_events, :delete_events, :list_scholarships, 
    :list_online_payments ]
   before_filter :authorize_registrar, :only => [ 
    :new_payment, :add_payment, :delete_payment, :new_registration,
@@ -171,12 +171,12 @@ class AdminController < ApplicationController
   ##########################################################################
   #  Balance reminder (sent one week prior to June 1 payment deadline)
 
-  def send_balance_reminder_email
-    #test_emails = ["jessicacroysdale@yahoo.com", "hanks@pobox.com"]
-    test_emails = nil
+  def send_balance_reminders
+    test_emails = ["steve_h@pobox.com"]
+    #test_emails = nil
     rr = Registration.find_all_by_year(Year.this_year).select{|r|r.balance > 0}
     rr = rr.select{|r|test_emails.include?(r.email)} if test_emails
-    rr.each{|r| RegistrationMailer.deliver_balance_reminder(r)}
+    rr.each{|r| RegistrationMailer.balance_reminder(r)}
     @emails = rr.map{|r|r.email}
   end
 
