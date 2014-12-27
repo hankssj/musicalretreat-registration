@@ -27,6 +27,7 @@ module RegistrationGating
       gpurkhiser@msn.com
       groupw@rocketwire.net 
       hanks@pobox.com 
+      hanks.steve@gmail.com
       ivoryharp@comcast.net
       jessicacroysdale@yahoo.com
       june.hiratsuka@comcast.net
@@ -46,7 +47,6 @@ module RegistrationGating
 
   #  Controls messaging on the index page banner, also used do define can_register and can_pay
   def status
-    return :open
     return :closed if @@FORCE_REGISTRATION_CLOSED
     return :open if Time.now > RegDates.registration_opens
     return :premature

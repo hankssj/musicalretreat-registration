@@ -68,13 +68,23 @@ class Registration < ActiveRecord::Base
     count
   end
   
+  #  Some fields need reasonable defaults (double occupancy, all meals, participant).  And we can't always 
+  #  rely on old registrations to have good default values because when we add field we have null values, and 
+  #  those cause mischeif!
+
   def self.populate(user)
     reg = user.most_recent_registration
     new_reg = reg ? reg.dup : Registration.new
     new_reg.year = Year.this_year
     new_reg.user_id = user.id
-    new_reg.firsttime = false
     new_reg.comments = ""
+
+    # defaults
+    new_reg.firsttime = reg.nil?
+    new_reg.participant ||= true
+    new_reg.dorm_selection ||= "d"
+    new_reg.meals_selection ||= "f"
+
     new_reg
   end
 
@@ -130,6 +140,7 @@ class Registration < ActiveRecord::Base
 
     #  Add-ons for everybody
     c.set_quantity("Tshirts", tstotal)
+    c.set_quantity("Commemorative Wine Glass", wine_glasses)
     donation ? c.install_charge("Donation", donation) : c.set_quantity("Donation", 0)
 
     c

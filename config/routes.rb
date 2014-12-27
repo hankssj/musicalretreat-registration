@@ -14,6 +14,7 @@ RegistrationDevelopment::Application.routes.draw do
   get "registration/update_tshirtxxl"
   get "registration/update_tshirtxxxl"
   get "registration/update_donation"
+  get "registration/update_wine_glasses"
 
   get "/registration", to: "registration#index"
   get "registration/index"

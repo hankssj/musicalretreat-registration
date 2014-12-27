@@ -149,7 +149,10 @@ class RegistrationController < ApplicationController
   #  dorm_selection (radio button) values d (double occupancy), s (single occupancy request), n (none)
   #  meals_selection (radio button, values  f (full), l (lunch), n (none)
   #  donation (dropdown)
+  #  wine_glasses (dropdown)
   #  tshirts, tshirtm, tshirtl, tshirtxl, tshirtxxl, tshirtxxxl (dropdown)
+  #
+  #  If you add to this list, remember to update routes.rb as well!
 
   def update_dorm_selection; update_field("dorm_selection"); end
   def update_sunday; update_field("sunday"); end
@@ -157,6 +160,7 @@ class RegistrationController < ApplicationController
   def update_participant; update_field("participant"); end
   def update_meals_selection; update_field("meals_selection"); end
   def update_donation; update_field("donation"); end
+  def update_wine_glasses; update_field("wine_glasses"); end
   def update_tshirts; update_field("tshirts"); end
   def update_tshirtm; update_field("tshirtm"); end
   def update_tshirtl; update_field("tshirtl"); end
