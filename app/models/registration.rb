@@ -84,7 +84,7 @@ class Registration < ActiveRecord::Base
     new_reg.participant ||= true
     new_reg.dorm_selection ||= "d"
     new_reg.meals_selection ||= "f"
-
+    new_reg.aircond ||= false
     new_reg
   end
 
