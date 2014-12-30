@@ -1,5 +1,7 @@
 class AdminController < ApplicationController
 
+  include RegistrationGating
+
   before_filter :authorize_admin, :only => [
    :index, :new_user, :reset_password, :view_registration, :edit_registration, :list_registrations,
    :reg_invitation, :send_all_invitations, :send_early_invitations, :send_balance_reminders, :show_events, :delete_events, :list_scholarships, 
@@ -197,13 +199,12 @@ class AdminController < ApplicationController
   def send_all_invitations
 
     if Invitee.count == 0
-      User.all.select{|u|!u.bounced_at}.each{|u|Invitee.create(:email => u.email)}
-      invitees = Invitee.all
+      User.all.reject{|u|u.bounced_at}.each{|u|Invitee.create(:email => u.email)}
     end
     
     limit = 100
 
-    invitees = Invitee.all.select{|i| !i.sent}
+    invitees = Invitee.all.reject{|i| i.sent}
     invitees = invitees[0..limit-1] if invitees.size > limit
 
     @sent = []
@@ -248,13 +249,11 @@ class AdminController < ApplicationController
     @remaining = Invitee.all.reject{|r|r.sent}.size
   end
 
-  #  This is to the early invitees.  Use the same Invitee table, but assume we can do them all in one batch
+  #  This is to the early invitees.  Use the list in the registration gating module directly.
+
   def send_early_invitations
-    Invitee.all.each do |invitee|
-      email = invitee.email
-      RegistrationMailer.early_invitation(email)
-    end
-    @sent = Invitee.count
+    early_invitees.each{|email| RegistrationMailer.early_invitation(email)}
+    @sent = early_invitees.size
   end
 
   ####################################################################

@@ -45,6 +45,12 @@ module RegistrationGating
       suecdc@msn.com
 }
 
+  #@@EARLY_INVITEES = ["hanks@pobox.com"]
+
+  def early_invitees
+    @@EARLY_INVITEES
+  end
+
   #  Controls messaging on the index page banner, also used do define can_register and can_pay
   def status
     return :closed if @@FORCE_REGISTRATION_CLOSED
