@@ -1,13 +1,13 @@
 require 'date'
 class RegDates
 
-  def self.registration_opens
-    Time.local(Year.this_year,1,15,1,0,0)
-  end
-
 #  def self.registration_opens
-#    Time.local(Year.this_year,1,1,1,0,0)
+#    Time.local(Year.this_year,1,15,1,0,0)
 #  end
+
+  def self.registration_opens
+    Time.local(Year.this_year,1,1,1,0,0)
+  end
 
   def self.registration_balance_due
     Date.new(Year.this_year.to_i, 6, 1)
