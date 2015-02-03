@@ -26,13 +26,13 @@
     <td colspan="2">
       <table>  
 	<tr><td> Pay Deposit w/ Credit Card</td>
-	  <td><%= form.radio_button :payment_mode, :deposit_cc %></td></tr>
+	  <td><%= form.radio_button :payment_mode, :deposit_cc, {:data => {:remote => true, :url => url_for(:action => :update_payment_mode)}} %></td></tr>
 	<tr><td> Pay Balance w/ Credit Card</td>
-	  <td><%= form.radio_button :payment_mode, :balance_cc %></td></tr>
+	  <td><%= form.radio_button :payment_mode, :balance_cc,{:data => {:remote => true, :url => url_for(:action => :update_payment_mode)}} %></td></tr>
 	<tr><td> Pay Deposit w/ Check</td>
-	  <td><%= form.radio_button :payment_mode, :deposit_check %></td></tr>
+	  <td><%= form.radio_button :payment_mode, :deposit_check, {:data => {:remote => true, :url => url_for(:action => :update_payment_mode)}} %></td></tr>
 	<tr><td> Pay Balance w/ Check</td>
-	  <td><%= form.radio_button :payment_mode, :balance_check %></td></tr>
+	  <td><%= form.radio_button :payment_mode, :balance_check,{:data => {:remote => true, :url => url_for(:action => :update_payment_mode)}} %></td></tr>
       </table>
     </td>
   </tr>

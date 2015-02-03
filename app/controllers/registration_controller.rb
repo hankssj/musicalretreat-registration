@@ -167,6 +167,7 @@ class RegistrationController < ApplicationController
   def update_tshirtxl; update_field("tshirtxl"); end
   def update_tshirtxxl; update_field("tshirtxxl"); end
   def update_tshirtxxxl; update_field("tshirtxxxl"); end
+  def update_payment_mode; update_field("payment_mode"); end
 
   def update_field(field_name)
     new_value = params["registration"] && params["registration"][field_name] ? params["registration"][field_name] : false
