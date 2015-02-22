@@ -13,7 +13,7 @@
       <% if flash[:notice] -%>
       <div id="main-notice"><%= flash[:notice] %></div>
       <% end -%>
-      <%= yield %>
+      <%= yield :layout %>
     </div>
   </body>
 </html>
