@@ -1,0 +1,53 @@
+Server address is 
+node1650.speedyrails.net
+
+SSH access as user deploy, no password, need SSH private key.
+
+Github repository is here:
+https://github.com/hankssj/musicalretreat-registration
+
+There is a key registered so the deploy scripts pull directly from this repository.
+
+Two applications, one production mode, one development mode.
+The applications are musicalretreat and mmrdev respectively, as can be seen in  /var/www/apps
+
+Database:
+Production Credentials in the file /var/www/apps/musicalretreat/shared/config/database.yml 
+Development Credentials in the file /var/www/apps/mmrdev/shared/config/database.yml 
+
+Development uses a different database mmrdev and a different username and password
+
+
+Production:
+Application: musicalretreat
+Preview address: musicalretreat.node1650.speedyrails.net
+http://home.mmr-registration.org/registration
+
+Development:
+Application: mmrdev
+Preview address: mmrdev.node1650.speedyrails.net
+http://development.mmr-registration.org
+
+Deployment:  
+They provide ~/deploy.musicalretreat.rb
+Once only:  cd to project, 'capify .' which creates Capfile and ./config/deploy.rb then copy their 
+deploy.musicalretreat.rb over the top of deploy.rb
+
+Then 
+cap projection deploy
+cap development deploy
+from a project directory (seems like it doesn't matter which one since the deploy file is the same)?
+
+======================
+
+Email credentials
+Mandrill.com
+account is webmaster@musicalretreat.org
+Walla2walla2!
+
+SMTP credentials
+smtp.mandrillapp.com
+587
+webmaster@musicalretreat.org
+Password is "any valid API key"
+This might be one:  RGp7RkTx5LXIc8S40hRZfA

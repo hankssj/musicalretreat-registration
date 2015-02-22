@@ -232,19 +232,19 @@ class AdminController < ApplicationController
         next
       end
 
-      if user.has_current_registration 
-        Event.log("Skipped #{email} due to existing registration")
-        @skipped << email
-      elsif user.bounced_at
-        Event.log("Skipped #{email} due to bounceage")
-        @skipped << email
-      else 
+      # if user.has_current_registration 
+      #   Event.log("Skipped #{email} due to existing registration")
+      #   @skipped << email
+      # elsif user.bounced_at
+      #   Event.log("Skipped #{email} due to bounceage")
+      #   @skipped << email
+      # else 
         RegistrationMailer.invitation(user)
         Event.log("Bulk invitation to user #{email}")
         @sent << email
         invitee.sent = true
         invitee.save!
-      end
+      # end
     end
     @remaining = Invitee.all.reject{|r|r.sent}.size
   end

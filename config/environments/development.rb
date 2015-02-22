@@ -35,14 +35,13 @@ RegistrationDevelopment::Application.configure do
   ActionMailer::Base.raise_delivery_errors = true
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :address => "localhost",
-    :port => 25,
-    :domain => "registration-development.musicalretreat.org",
+    :address => "smtp.mandrillapp.com",
+    :port => 587,
+    :domain => "mmr-registration.org",
     :authentication => :login,
-    :user_name => "online-registration@musicalretreat.org",
-    :password => "Walla2walla2!",
-    :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,
-    :enable_starttls_auto => true
+    :enable_starttls_auto => true,
+    :user_name => "webmaster@musicalretreat.org",
+    :password => "RGp7RkTx5LXIc8S40hRZfA"
   }
   ActionMailer::Base.logger = Rails.logger
 
