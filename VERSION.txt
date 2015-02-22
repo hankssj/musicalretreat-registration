@@ -1,5 +1,0 @@
-Sun May 25 18:17:58 MDT 2014
-
-To https://github.com/hankssj/musicalretreat-registration.git
-   1d6c4bc..6c96214  master -> master
-
