@@ -39,6 +39,7 @@ RegistrationDevelopment::Application.configure do
     :port => 587,
     :domain => "mmr-registration.org",
     :authentication => :login,
+    :enable_starttls_auto => true,
     :user_name => "webmaster@musicalretreat.org",
     :password => "RGp7RkTx5LXIc8S40hRZfA"
   }
