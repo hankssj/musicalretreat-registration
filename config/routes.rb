@@ -1,4 +1,5 @@
 RegistrationDevelopment::Application.routes.draw do
+  get "ensembles/choose"
   get "static/index"
   root 'static#index'
 
