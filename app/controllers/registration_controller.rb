@@ -288,7 +288,12 @@ class RegistrationController < ApplicationController
     user = User.find(session[:user_id])
     if user && user.has_current_registration
       @registration = user.most_recent_registration
-      redirect_to{:controller => :ensembles, :action => :choose}
+      if !@registration.instrument
+        flash[:notice] = "You registered as a non-particpant -- no ensemble choice for you"
+        redirect_to :action => "index"
+      else
+        redirect_to(:controller => :ensembles, :action => :primary_ensemble)
+      end
     else
       flash[:notice] = "You do not have a current registration"
       Event.log("#{user.email} tried to choose ensembles but no registration")
