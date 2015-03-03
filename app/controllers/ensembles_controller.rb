@@ -8,7 +8,7 @@ class EnsemblesController < ApplicationController
     user = User.find(session[:user_id])
     if user && user.has_current_registration
       @registration = user.most_recent_registration
-      if !@registration.instrument
+      unless @registration.instrument
         flash[:notice] = "You registered as a non-particpant -- no ensemble choice for you"
         redirect_to :controller => :registration, :action => :index
       end
