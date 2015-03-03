@@ -2,7 +2,7 @@ class EnsemblesController < ApplicationController
 
   include RegistrationGating
 
-  before_filter :authorize, :only => [:primary_ensemble]
+  before_filter :authorize, :only => [:primary]
 
   def primary
     user = User.find(session[:user_id])
