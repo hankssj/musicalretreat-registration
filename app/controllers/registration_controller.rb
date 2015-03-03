@@ -4,7 +4,7 @@ class RegistrationController < ApplicationController
 
   include RegistrationGating
 
-  before_filter :authorize, :only => [:create, :new, :show, :payment, :edit, :update, :choose_ensembles]
+  before_filter :authorize, :only => [:create, :new, :show, :payment, :edit, :update]
   before_filter :authorize_admin, :only => [:destroy]
 
   ############################################################################  
@@ -283,22 +283,4 @@ class RegistrationController < ApplicationController
     session[:original_uri] = nil
     redirect_to(:controller => :login, :action => :logout)
   end
-
-  def choose_ensembles
-    user = User.find(session[:user_id])
-    if user && user.has_current_registration
-      @registration = user.most_recent_registration
-      if !@registration.instrument
-        flash[:notice] = "You registered as a non-particpant -- no ensemble choice for you"
-        redirect_to :action => "index"
-      else
-        redirect_to(:controller => :ensembles, :action => :primary_ensemble)
-      end
-    else
-      flash[:notice] = "You do not have a current registration"
-      Event.log("#{user.email} tried to choose ensembles but no registration")
-      redirect_to :action => "index"
-    end
-  end
-
 end
