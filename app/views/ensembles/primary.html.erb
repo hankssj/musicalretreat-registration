@@ -1,3 +1,9 @@
-<h1>Ensembles#choose</h1>
+<h1>Ensemble Choosing First Page:  Intro material and large ensemble</h1>
 <p>Choosing ensembles for <%= @registration.display_name %></p>
 <p>Your primary instrument is <%= @instrument_name %></p>
+<p>Your large ensemble option is <%= Instrument.find(@registration.instrument_id).large_ensemble %>
+
+<%= form_for(@ensemble_primary, :url => {:controller => :ensembles, :action => :create_ensemble_primary}) do |form| %>
+
+
+<% end %>
