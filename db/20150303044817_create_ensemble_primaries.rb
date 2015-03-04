@@ -1,15 +1,12 @@
-create table ensemble_primaries (id int(11) primary key auto_increment, registration_id int(11) not null, primary_instrument_id int(11) not null, large_ensemble_choice int(11) not null, chamber_ensemble_choice int(11) not null, created_at datetime, updated_at datetime);
+drop table ensemble_primaries;
+create table ensemble_primaries (id int(11) primary key auto_increment, 
+                                 registration_id int(11) not null, 
+                                 primary_instrument_id int(11) not null, 
+                                 large_ensemble_choice int(11) not null, 
+                                 chamber_ensemble_choice int(11) not null, 
+                                 ack_no_morning_ensemble tinyint(1),
+                                 want_sing_in_chorus tinyint(1),
+                                 want_percussion_in_band tinyint(1),
+                                 created_at datetime, 
+                                 updated_at datetime);
 
-class CreateEnsemblePrimaries < ActiveRecord::Migration
-  def change
-    create_table :ensemble_primaries do |t|
-      t.int :registration_id
-      t.int :primary_instrument_id
-      t.int :large_ensemble_choice
-      t.string :chamber_ensemble_choice
-      t.string :int
-
-      t.timestamps
-    end
-  end
-end

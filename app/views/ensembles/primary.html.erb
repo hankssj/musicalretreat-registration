@@ -1,9 +1,40 @@
 <h1>Ensemble Choosing First Page:  Intro material and large ensemble</h1>
 <p>Choosing ensembles for <%= @registration.display_name %></p>
 <p>Your primary instrument is <%= @instrument_name %></p>
-<p>Your large ensemble option is <%= Instrument.find(@registration.instrument_id).large_ensemble %>
+<% @large_ensemble_option = Instrument.find(@registration.instrument_id).large_ensemble %>
+<p>Your large ensemble option is <%= @large_ensemble_option %></p>
 
 <%= form_for(@ensemble_primary, :url => {:controller => :ensembles, :action => :create_ensemble_primary}) do |form| %>
 
-
+<% if @large_ensemble_option == :band_or_orchestra %>
+<table>
+<tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<tr><td>Either Band or Orchestra</td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
+<tr><td>Prefer Band </td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
+<tr><td>Prefer Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
+</table>
+<% elsif @large_ensemble_option == :band %>
+<table>
+<tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<tr><td>Band </td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
+</table>
+<% elsif @large_ensemble_option == :orchestra %>
+<table>
+<tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<tr><td>Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
+</table>
+<% elsif @large_ensemble_option == :chorus %>
+<table>
+<tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<tr><td>Chorus </td><td><%= form.radio_button :large_ensemble_choice, 3 %></td></tr>
+</table>
+<% elsif @large_ensemble_option == :none %>
+<table>
+<tr><td>I understand that I will not be assigned a Morning Large Ensemble</td><td><%= form.check_box :ack_no_morning_ensemble %></td></tr>
+<tr><td>I would like to sing in the Chorus</td><td><%= form.check_box :want_sing_in_chorus %></td></tr>
+<tr><td>I would like to talk to a faculty member about playing percussion in Symphonic Band</td><td><%= form.check_box :want_percussion_in_band %></td></tr>
+<% else %>
+<h1> I don't know what to render for large ensemble choice.  Help!!</h1>
 <% end %>
+
+<% end %>  <!- End form ->
