@@ -18,6 +18,7 @@ class EnsemblesController < ApplicationController
       redirect_to :controller => :registration, :action => "index"
     end
     @instrument_name = Instrument.find(@registration.instrument_id).display_name
+    @ensemble_primary = EnsemblePrimary.new
   end
 
 end
