@@ -17,9 +17,25 @@ class EnsemblesController < ApplicationController
       Event.log("#{user.email} tried to choose ensembles but no registration")
       redirect_to :controller => :registration, :action => "index"
     end
-    @instrument_name = Instrument.find(@registration.instrument_id).display_name
-    @ensemble_primary = EnsemblePrimary.new
+    @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
+  end
+  
+  def create_ensemble_primary
   end
 
+  private
+
+  def post_params
+    params.require(:ensemble_primary).permit(
+                                             :registration_id,
+                                             :primary_instrument_id,
+                                             :large_ensemble_choice,
+                                             :chamber_ensemble_choice,
+                                             :ack_no_morning_ensemble,
+                                             :want_sing_in_chorus,
+                                             :want_percussion_in_band,
+                                             )
+
+  end
 end
 

@@ -5,7 +5,7 @@
 <p>Your large ensemble option is <%= @large_ensemble_option %></p>
 
 <%= form_for(@ensemble_primary, :url => {:controller => :ensembles, :action => :create_ensemble_primary}) do |form| %>
-
+<%= form.hidden_field :registration_id %>
 <hrule/>
 <h2> Morning Large Ensemble Choice</h2>
 <% if @large_ensemble_option == :band_or_orchestra %>
