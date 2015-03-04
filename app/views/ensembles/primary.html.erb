@@ -6,35 +6,66 @@
 
 <%= form_for(@ensemble_primary, :url => {:controller => :ensembles, :action => :create_ensemble_primary}) do |form| %>
 
+<hrule/>
+<h2> Morning Large Ensemble Choice</h2>
 <% if @large_ensemble_option == :band_or_orchestra %>
 <table>
-<tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Either Band or Orchestra</td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
-<tr><td>Prefer Band </td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
-<tr><td>Prefer Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
+<tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<tr><td>Either Symphonic Band or Festival Orchestra</td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
+<tr><td>Prefer Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
+<tr><td>Prefer Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
 </table>
 <% elsif @large_ensemble_option == :band %>
 <table>
-<tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Band </td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
+<tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<tr><td>Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
 </table>
 <% elsif @large_ensemble_option == :orchestra %>
 <table>
-<tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
+<tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<tr><td>Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
 </table>
 <% elsif @large_ensemble_option == :chorus %>
 <table>
 <tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Chorus </td><td><%= form.radio_button :large_ensemble_choice, 3 %></td></tr>
+<tr><td>Festival Chorus </td><td><%= form.radio_button :large_ensemble_choice, 3 %></td></tr>
 </table>
 <% elsif @large_ensemble_option == :none %>
 <table>
 <tr><td>I understand that I will not be assigned a Morning Large Ensemble</td><td><%= form.check_box :ack_no_morning_ensemble %></td></tr>
-<tr><td>I would like to sing in the Chorus</td><td><%= form.check_box :want_sing_in_chorus %></td></tr>
+<tr><td>I would like to sing in the Festival Chorus</td><td><%= form.check_box :want_sing_in_chorus %></td></tr>
 <tr><td>I would like to talk to a faculty member about playing percussion in Symphonic Band</td><td><%= form.check_box :want_percussion_in_band %></td></tr>
 <% else %>
 <h1> I don't know what to render for large ensemble choice.  Help!!</h1>
 <% end %>
+<hrule/>
+<h2>Chamber Music Choice</h2>
+<table>
+<tr>
+  <td>I do not want to play or sing in a chamber ensemble</td>
+  <td><%= form.radio_button :chamber_ensemble_choice, 0%></td>
+</tr>
+<tr>
+  <td>Please assign me one ensemble that will meet one session per day<td></td>
+  <td><%= form.radio_button :chamber_ensemble_choice, 1%></td>
+</tr>
+<tr>
+  <td>Please assign me two ensembles, each one session per day</td>
+  <td><%= form.radio_button :chamber_ensemble_choice, 2%></td>
+</tr>
+<tr>
+  <td>I am coming with one pre-arranged ensemble for one coached session; I do not want a second ensemble</td>
+  <td><%= form.radio_button :chamber_ensemble_choice, 3%></td>
+</tr>
+<tr>
+  <td>I am coming with one pre-arranged ensemble for one coached session; please assign me a second ensemble</td>
+  <td><%= form.radio_button :chamber_ensemble_choice, 4%></td>
+</tr>
+<tr>
+  <td>I am coming with one pre-arranged ensemble and would like two coached sessions per day</td>
+  <td><%= form.radio_button :chamber_ensemble_choice, 5%></td>
+</tr>
+</table>
 
+<%= submit_tag "Submit" %>
 <% end %>  <!- End form ->
