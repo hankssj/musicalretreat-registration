@@ -43,6 +43,9 @@ class EnsemblesController < ApplicationController
     @num_prearranged = 0 if [0,1,3].include? chamber_choice
     @num_prearranged = 1 if [2,4].include? chamber_choice
     @num_prearranged = 2 if [6].include? chamber_choice
+    Rails.logger.info("Ensemble ID #{@ensemble_primary.id}")
+    Rails.logger.info("Primary inst ID #{@primary_instrument_id}")
+    Rails.logger.info("Chamber choice #{chamber_choice}")
     raise "Problem with chamber count" unless @num_mmr && @num_prearranged
   end
 
