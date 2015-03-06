@@ -37,11 +37,11 @@ class EnsemblesController < ApplicationController
     @primary_instrument_id = @ensemble_primary.registration.instrument_id
     chamber_choice = @ensemble_primary.chamber_ensemble_choice
     @num_mmr = @num_prearranged = nil
-    @num_mmr = 0 if [0, 2, 5,6].include? chamber_choice
-    @num_mmr = 1 if [1,4].include? chamber_choice
+    @num_mmr = 0 if [0, 2, 5, 6].include? chamber_choice
+    @num_mmr = 1 if [1, 4].include? chamber_choice
     @num_mmr = 2 if [3].include? chamber_choice
-    @num_prearranged = 0 if [0,1,3].include? chamber_choice
-    @num_prearranged = 1 if [2,4].include? chamber_choice
+    @num_prearranged = 0 if [0, 1, 3].include? chamber_choice
+    @num_prearranged = 1 if [2, 4, 5].include? chamber_choice
     @num_prearranged = 2 if [6].include? chamber_choice
     Rails.logger.info("Ensemble ID #{@ensemble_primary.id}")
     Rails.logger.info("Primary inst ID #{@primary_instrument_id}")
