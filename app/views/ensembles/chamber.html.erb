@@ -1,5 +1,12 @@
 <h1>Chamber Music Choices</h1>
 
+<ul>
+<li>Ensemble primary id <%= @ensemble_primary.id %>
+<li>Primary instrument id <%= @primary_instrument_id %>
+<li>Num mmr <%= @num_mmr %>
+<li>Num pre <%= @num_prearranged %>
+</li>
+
 <%= form_tag({:action => :create_chamber}) do %>
 <% if @num_mmr >= 1 %>
 <%= render "mmr_chamber", :index => 1 %>

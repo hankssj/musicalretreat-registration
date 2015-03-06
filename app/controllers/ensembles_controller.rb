@@ -25,7 +25,7 @@ class EnsemblesController < ApplicationController
     if @ensemble_primary.save!
       flash[:notice] = "Primary ensemble saved OK"
       flash[:ensemble_primary_id] = @ensemble_primary.id
-      redirect_to :action => chamber, :id => @ensemble_primary.id 
+      redirect_to :action => chamber
     else
       flash[:notice] = "Primary ensemble saved FAILED"
       redirect_to :controller => :registration, :action => :index
