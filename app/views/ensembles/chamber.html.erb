@@ -1,0 +1,19 @@
+<h1>Chamber Music Choices</h1>
+
+<%= form_tag({:action => :create_chamber}) do %>
+<% if @num_mmr >= 1 %>
+<%= render "mmr_chamber", :index => 1 %>
+<% end %>
+<% if @num_mmr = 2 %>
+<%= render "mmr_chamber", :index => 2 %>
+<% end %>
+
+<% if @num_prearranged >= 1 %>
+<%= render :partial => "prearranged_chamber" %>
+<% end %>
+<% if @num_prearranged = 2 %>
+<%= render :partial => "prearranged_chamber" %>
+<% end %>
+
+<%= submit_tag 'Submit' %>
+<%= form_tag({:action => :create_chamber}) do %>

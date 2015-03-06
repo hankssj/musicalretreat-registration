@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  registration_id: 
+  large_ensemble_choice: 
+  chamber_ensemble_choice: 
+  ack_no_morning_ensemble: false
+  want_sing_in_chorus: false
+  want_percussion_in_band: false
+
+two:
+  registration_id: 
+  large_ensemble_choice: 
+  chamber_ensemble_choice: 
+  ack_no_morning_ensemble: false
+  want_sing_in_chorus: false
+  want_percussion_in_band: false

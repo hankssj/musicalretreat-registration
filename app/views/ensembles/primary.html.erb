@@ -12,23 +12,23 @@
 <table>
 <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
 <tr><td>Either Symphonic Band or Festival Orchestra</td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
-<tr><td>Prefer Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
-<tr><td>Prefer Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
+<tr><td>Prefer Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
+<tr><td>Prefer Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 3 %></td></tr>
 </table>
 <% elsif @large_ensemble_option == :band %>
 <table>
 <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
+<tr><td>Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
 </table>
 <% elsif @large_ensemble_option == :orchestra %>
 <table>
 <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
+<tr><td>Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 3 %></td></tr>
 </table>
 <% elsif @large_ensemble_option == :chorus %>
 <table>
 <tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Festival Chorus </td><td><%= form.radio_button :large_ensemble_choice, 3 %></td></tr>
+<tr><td>Festival Chorus </td><td><%= form.radio_button :large_ensemble_choice, 4 %></td></tr>
 </table>
 <% elsif @large_ensemble_option == :none %>
 <table>
@@ -50,11 +50,11 @@
   <td><%= form.radio_button :chamber_ensemble_choice, 1%></td>
 </tr>
 <tr>
-  <td>Please assign me two ensembles, each one session per day</td>
+  <td>I am coming with one pre-arranged ensemble for one coached session; I do not want a second ensemble</td>
   <td><%= form.radio_button :chamber_ensemble_choice, 2%></td>
 </tr>
 <tr>
-  <td>I am coming with one pre-arranged ensemble for one coached session; I do not want a second ensemble</td>
+  <td>Please assign me two ensembles, each one session per day</td>
   <td><%= form.radio_button :chamber_ensemble_choice, 3%></td>
 </tr>
 <tr>
@@ -63,6 +63,10 @@
 </tr>
 <tr>
   <td>I am coming with one pre-arranged ensemble and would like two coached sessions per day</td>
+  <td><%= form.radio_button :chamber_ensemble_choice, 5%></td>
+</tr>
+<tr>
+  <td>I am coming with two pre-arranged ensembles and would like one coached sessions per day for each</td>
   <td><%= form.radio_button :chamber_ensemble_choice, 5%></td>
 </tr>
 </table>
