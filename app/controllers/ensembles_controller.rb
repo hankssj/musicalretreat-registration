@@ -34,7 +34,7 @@ class EnsemblesController < ApplicationController
 
   def chamber
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id].to_i)
-    @primary_instrument_id = @ensemble_primary.registration.primary_instrument_id
+    @primary_instrument_id = @ensemble_primary.registration.instrument_id
     chamber_choice = @ensemble_primary.chamber_ensemble_choice
     @num_mmr = @num_prearranged = nil
     @num_mmr = 0 if [0, 2, 5,6].include? chamber_choice
