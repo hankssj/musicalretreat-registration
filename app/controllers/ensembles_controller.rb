@@ -22,8 +22,9 @@ class EnsemblesController < ApplicationController
   
   def create_ensemble_primary
     @ensemble_primary = EnsemblePrimary.new(post_params)
-    if @ensemble_primary.save
+    if @ensemble_primary.save!
       flash[:notice] = "Primary ensemble saved OK"
+      flash[:ensemble_primary_id] = @ensemble_primary.id
       redirect_to :action => chamber, :id => @ensemble_primary.id 
     else
       flash[:notice] = "Primary ensemble saved FAILED"
