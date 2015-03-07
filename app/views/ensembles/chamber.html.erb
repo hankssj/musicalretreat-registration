@@ -6,8 +6,7 @@
 <li>Num mmr <%= @num_mmr %>
 <li>Num pre <%= @num_prearranged %>
 </li>
-
-<%= form_for (:ensemble_primary, url => {:action => :create_chamber}) do |form| %>
+<%= form_for (@ensemble_primary, url => {:action => :create_chamber}) do |form| %>
    <%= form.fields_for :mmr_chambers do |mmr| %>
       <%= render :partial => :mmr_chamber %>
    <% end %>

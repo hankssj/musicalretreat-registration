@@ -4,7 +4,7 @@
 <% @large_ensemble_option = Instrument.find(@registration.instrument_id).large_ensemble %>
 <p>Your large ensemble option is <%= @large_ensemble_option %></p>
 
-<%= form_for(@ensemble_primary, :url => {:controller => :ensembles, :action => :chamber}) do |form| %>
+<%= form_for(@ensemble_primary, :url => {:action => :chamber}) do |form| %>
 <%= form.hidden_field :registration_id %>
 <hrule/>
 <h2> Morning Large Ensemble Choice</h2>
