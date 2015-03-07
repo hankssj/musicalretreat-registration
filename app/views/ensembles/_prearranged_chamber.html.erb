@@ -1,3 +1,4 @@
 <h2>Prearranged Chamber</h2>
+<%= prearranged_chamber.text :name_1, :size => 20 %>
 <%= prearranged_chamber.select :instrument_id, Instrument.menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
 
