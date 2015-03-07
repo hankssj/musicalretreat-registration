@@ -46,8 +46,8 @@ class EnsemblesController < ApplicationController
       num_mmr = 0; num_prearranged = 2
     end
     Rails.logger.error("#{num_mmr} #{num_prearranged}")
-    [1..num_mmr].each{|i| Rails.logger.error("Create in MMR"); MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
-    [1..num_prearranged].each{|i| Rails.logger.error("Create in prearranged");PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
+    [0..num_mmr].each{|i| Rails.logger.error("Create in MMR"); MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
+    [0..num_prearranged].each{|i| Rails.logger.error("Create in prearranged");PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
     Rails.logger.error("#{@ensemble_primary.mmr_chambers.length} #{@ensemble_primary.prearranged_chambers.length}")
   end
 
