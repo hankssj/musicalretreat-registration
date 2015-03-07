@@ -91,7 +91,7 @@ e = Elective.create(
 :instructor => "Matt Drumm",
 :description => "An ensemble.  Of percussion.  Loud!"
 )
-link_elective_to_instruments(e, [28,29,30,31])
+link_elective_to_instruments(e, [28,30,31])
 
 e = Elective.create(
 :name => "Drum Circle",
