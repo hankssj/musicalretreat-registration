@@ -9,17 +9,17 @@
 
 <%= form_tag({:action => :create_chamber}) do %>
 <% if @num_mmr >= 1 %>
-<%= render :partial => "mmr_chamber", :locals => {:mi => 1} %>
+<%= render :partial => "mmr_chamber", :locals => {:index => 1} %>
 <% end %>
-<% if @num_mmr = 2 %>
-<%= render :partial => "mmr_chamber", :locals => {:mi => 2} %>
+<% if @num_mmr == 2 %>
+<%= render :partial => "mmr_chamber", :locals => {:index => 2} %>
 <% end %>
 
 <% if @num_prearranged >= 1 %>
-<%= render :partial => "prearranged_chamber", :locals => {:pi => 1} %>
+<%= render :partial => "prearranged_chamber", :locals => {:index => 1} %>
 <% end %>
 <% if @num_prearranged == 2 %>
-<%= render :partial => "prearranged_chamber", :locals => {:pi => 2} %>
+<%= render :partial => "prearranged_chamber", :locals => {:index => 2} %>
 <% end %>
 
 <%= submit_tag 'Submit' %>

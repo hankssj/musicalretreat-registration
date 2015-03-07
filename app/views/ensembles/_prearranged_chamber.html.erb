@@ -1,2 +1,6 @@
 <h2>Prearranged Chamber</h2>
-My index is <%= pi %>
+<%= form_for :prearranged_chamber do |form| %>
+  <%= form.hidden_field :ensemble_primary_id, :value => @ensemble_primary.id %>
+  <%= form.select :instrument_id_1, Instrument.menu_selection, :default => @ensemble_primary.registration.instrument_id %>
+<% end %>
+
