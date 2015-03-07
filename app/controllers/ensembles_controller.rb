@@ -46,7 +46,7 @@ class EnsemblesController < ApplicationController
       num_mmr = 0; num_prearranged = 2
     end
     @ensemble_primary.mmr_chambers = [1..num_mmr].map{|i| MmrChamber.create}
-    @ensemble_primary.prearranged_chambers = [1..num_presele].map{|i| PreselectChamber.create}
+    @ensemble_primary.prearranged_chambers = [1..num_prearranged].map{|i| PreselectChamber.create}
   end
 
   private
