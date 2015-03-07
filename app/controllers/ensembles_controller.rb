@@ -58,8 +58,6 @@ class EnsemblesController < ApplicationController
       
   def electives
   end
-    
-  end
 
   private
 
