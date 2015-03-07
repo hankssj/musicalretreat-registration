@@ -91,7 +91,7 @@ e = Elective.create(
 :instructor => "Matt Drumm",
 :description => "An ensemble.  Of percussion.  Loud!"
 )
-link_elective_to_instruments(e, [28,30,31])
+link_elective_to_instruments(e, [28,31])
 
 e = Elective.create(
 :name => "Drum Circle",
@@ -105,7 +105,7 @@ e = Elective.create(
 :instructor => "Roger Nelson",
 :description => "An afternoon ensemble for strings and classical brass and winds. Repertoire drawn from all eras. Lots of sight reading; low key performance. Very fun!"
 )
-link_elective_to_instruments(e, [6,7,8,9,10,11,12,13,14,15,16,3722,23,24,25,27,28,29,30,31,32])
+link_elective_to_instruments(e, [6,7,8,9,10,11,12,14,15,16,22,23,24,25,27,28,31,32])
 
 e = Elective.create(
 :name => "Brass Ensemble",
@@ -119,7 +119,7 @@ e = Elective.create(
 :instructor => "Greg Yasinitsky",
 :description => "The Jazz Big Band features traditional big band instrumentation: saxophones, trumpets, trombones and rhythm section players -- piano, bass and drums. Repertoire is drawn from a mix of unique arrangements of  jazz standards and originals. The band performs at Skit Night."
 )
-link_elective_to_instruments(e, [17,18,19,20,21,22,24,25,28,29,30,31,34])
+link_elective_to_instruments(e, [17,18,19,20,21,22,24,25,28,31,34])
 
 e = Elective.create(
 :name => "Jazz Improvisation",
