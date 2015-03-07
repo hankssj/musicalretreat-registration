@@ -26,9 +26,9 @@ class EnsemblesController < ApplicationController
       Rails.logger.error("Save on primary failed -- #{@ensemble_primary.error.full_messages}")
       raise e
     end
-    chamber_choice = @ensemble_primary.chamber_ensemble_choice
     num_mmr = num_prearranged = 0
-    case chamber_choice
+    Rails.logger.error("Ensemble choice #{@ensemble_primary.chamber_ensemble_choice}")
+    case @ensemble_primary.chamber_ensemble_choice
       when 0
       num_mmr = 0; num_prearranged = 0
       when 1
@@ -36,6 +36,7 @@ class EnsemblesController < ApplicationController
       when 2
       num_mmr = 0; num_prearranged = 1
       when 3
+      Rails.logger.error("Choice 3")
       num_mmr = 2; num_prearranged = 0
       when 4
       num_mmr = 1; num_prearranged = 1
@@ -44,12 +45,13 @@ class EnsemblesController < ApplicationController
       when 6
       num_mmr = 0; num_prearranged = 2
     end
+    Rails.logger.error("#{num_mmr} #{num_prearranged}")
     @ensemble_primary.mmr_chambers = [1..num_mmr].map{|i| MmrChamber.create}
     @ensemble_primary.prearranged_chambers = [1..num_prearranged].map{|i| PrearrangedChamber.create}
   end
 
   def create_chamber
-    @ensemble_primary = EnsemblePrimary.new(params[:ensemble_primary])
+    @ensemble_primary = EnsemblePrimary.find(params[:ensemble_primary])
     unless @ensemble_primary.update_attributes(post_params)
       railse "Problem with save"
     end
