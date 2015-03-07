@@ -16,10 +16,10 @@
 <% end %>
 
 <% if @num_prearranged >= 1 %>
-<%= render :partial => "prearranged_chamber" %>
+<%= render :partial => "prearranged_chamber", :index => 1 %>
 <% end %>
 <% if @num_prearranged == 2 %>
-<%= render :partial => "prearranged_chamber" %>
+<%= render :partial => "prearranged_chamber", :index => 2 %>
 <% end %>
 
 <%= submit_tag 'Submit' %>
