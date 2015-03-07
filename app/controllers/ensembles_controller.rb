@@ -22,13 +22,13 @@ class EnsemblesController < ApplicationController
   
   def create_ensemble_primary
     @ensemble_primary = EnsemblePrimary.new(post_params)
-    if @ensemble_primary.save!
+    if @ensemble_primary.save
       flash[:notice] = "Primary ensemble saved OK"
       flash[:ensemble_primary_id] = @ensemble_primary.id
       redirect_to :action => chamber
     else
-      flash[:notice] = "Primary ensemble saved FAILED"
-      redirect_to :controller => :registration, :action => :index
+      Rails.logger.error("Save on primary failed -- #{@ensemble_primary.error.full_messages}")
+      raise e
     end
   end
 
