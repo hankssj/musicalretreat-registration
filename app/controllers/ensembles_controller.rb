@@ -20,20 +20,12 @@ class EnsemblesController < ApplicationController
     @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
   end
   
-  def create_ensemble_primary
+  def chamber
     @ensemble_primary = EnsemblePrimary.new(post_params)
-    if @ensemble_primary.save
-      flash[:notice] = "Primary ensemble saved OK"
-      flash[:ensemble_primary_id] = @ensemble_primary.id
-      #redirect_to :action => chamber
-    else
+    unless @ensemble_primary.save
       Rails.logger.error("Save on primary failed -- #{@ensemble_primary.error.full_messages}")
       raise e
     end
-  end
-
-  def chamber
-    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id].to_i)
     @primary_instrument_id = @ensemble_primary.registration.instrument_id
     chamber_choice = @ensemble_primary.chamber_ensemble_choice
     @num_mmr = @num_prearranged = nil
