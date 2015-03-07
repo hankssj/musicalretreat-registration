@@ -25,7 +25,7 @@ class EnsemblesController < ApplicationController
     if @ensemble_primary.save
       flash[:notice] = "Primary ensemble saved OK"
       flash[:ensemble_primary_id] = @ensemble_primary.id
-      redirect_to :action => chamber
+      #redirect_to :action => chamber
     else
       Rails.logger.error("Save on primary failed -- #{@ensemble_primary.error.full_messages}")
       raise e
