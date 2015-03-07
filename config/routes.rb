@@ -44,6 +44,7 @@ RegistrationDevelopment::Application.routes.draw do
   get "admin", to: "admin#index"
 
   get "ensembles/primary"
+  get "ensembles/chamber"
 
   get ":controller/:action"
   post ":controller/:action"
