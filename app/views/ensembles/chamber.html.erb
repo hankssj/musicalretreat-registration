@@ -7,6 +7,8 @@
 <li>Num pre <%= @ensemble_primary.prearranged_chambers.length %>
 </li>
 <%= form_for @ensemble_primary, url: {action: "create_chamber", method: "post"} do |form| %>
+   <%= form.hidden_field :id %>
+
    <%= form.fields_for :mmr_chambers do |mmr_chamber| %>
       <%= render :partial => "mmr_chamber", :object => mmr_chamber %>
    <% end %>
