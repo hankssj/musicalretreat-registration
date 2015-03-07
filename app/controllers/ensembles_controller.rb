@@ -51,8 +51,11 @@ class EnsemblesController < ApplicationController
   def create_chamber
     @ensemble_primary = EnsemblePrimary.find(params[:ensemble_primary][:id])
     
+    params[:ensemble_primary][:mmr_chambers_attributes].values.each{|h| raise "upate error" unless MmrChamber.find(h["id"].to_i).update_attributes(h)}
+    params[:ensemble_primary][:prearranged_chambers_attributes].values.each{|h| raise "upate error" unless PrearrangedChamber.find(h["id"].to_i).update_attributes(h)}
+
     unless @ensemble_primary.update_attributes(post_params)
-      railse "Problem with save"
+      raise "Problem with save"
     end
     #redirect_to :action => :electives
     @params = params
