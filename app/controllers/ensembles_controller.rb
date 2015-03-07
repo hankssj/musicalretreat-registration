@@ -27,7 +27,6 @@ class EnsemblesController < ApplicationController
       raise e
     end
     num_mmr = num_prearranged = 0
-    Rails.logger.error("Ensemble choice #{@ensemble_primary.chamber_ensemble_choice}")
     case @ensemble_primary.chamber_ensemble_choice
       when 0
       num_mmr = 0; num_prearranged = 0
@@ -45,14 +44,13 @@ class EnsemblesController < ApplicationController
       when 6
       num_mmr = 0; num_prearranged = 2
     end
-    Rails.logger.error("#{num_mmr} #{num_prearranged}")
     num_mmr.times.each{|i| Rails.logger.error("Create in MMR"); MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
     num_prearranged.times.each{|i| Rails.logger.error("Create in prearranged");PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
-    Rails.logger.error("#{@ensemble_primary.mmr_chambers.length} #{@ensemble_primary.prearranged_chambers.length}")
   end
 
   def create_chamber
-    @ensemble_primary = EnsemblePrimary.find(params[:ensemble_primary])
+    @ensemble_primary = EnsemblePrimary.find(params[:ensemble_primary][:id])
+    
     unless @ensemble_primary.update_attributes(post_params)
       railse "Problem with save"
     end
