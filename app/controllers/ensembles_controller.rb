@@ -26,7 +26,6 @@ class EnsemblesController < ApplicationController
       Rails.logger.error("Save on primary failed -- #{@ensemble_primary.error.full_messages}")
       raise e
     end
-    @primary_instrument_id = @ensemble_primary.registration.instrument_id
     chamber_choice = @ensemble_primary.chamber_ensemble_choice
     num_mmr = num_prearranged = 0
     case chamber_choice
@@ -46,7 +45,7 @@ class EnsemblesController < ApplicationController
       num_mmr = 0; num_prearranged = 2
     end
     @ensemble_primary.mmr_chambers = [1..num_mmr].map{|i| MmrChamber.create}
-    @ensemble_primary.prearranged_chambers = [1..num_prearranged].map{|i| PreselectChamber.create}
+    @ensemble_primary.prearranged_chambers = [1..num_prearranged].map{|i| PrearrangedChamber.create}
   end
 
   private
