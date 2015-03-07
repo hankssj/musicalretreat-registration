@@ -24,7 +24,7 @@
 #   end
 # end
 
-class CreatePreselectChambers < ActiveRecord::Migration
+class CreatePrearrangedChambers < ActiveRecord::Migration
   def change
     create_table :preselect_chambers do |t|
       t.column :ensemble_primary_id, :int
