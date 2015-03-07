@@ -45,7 +45,7 @@ RegistrationDevelopment::Application.routes.draw do
 
   get "ensembles/primary"
   get "ensembles/chamber"
-  post "ensembles/create_chamber"
+  patch "ensembles/create_chamber"
 
   get ":controller/:action"
   post ":controller/:action"
