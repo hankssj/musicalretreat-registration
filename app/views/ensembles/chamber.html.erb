@@ -18,9 +18,9 @@
 <% if @num_prearranged >= 1 %>
 <%= render :partial => "prearranged_chamber" %>
 <% end %>
-<% if @num_prearranged = 2 %>
+<% if @num_prearranged == 2 %>
 <%= render :partial => "prearranged_chamber" %>
 <% end %>
 
 <%= submit_tag 'Submit' %>
-<%= form_tag({:action => :create_chamber}) do %>
+<% end %>
