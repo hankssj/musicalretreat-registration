@@ -28,17 +28,25 @@ class EnsemblesController < ApplicationController
     end
     @primary_instrument_id = @ensemble_primary.registration.instrument_id
     chamber_choice = @ensemble_primary.chamber_ensemble_choice
-    @num_mmr = @num_prearranged = nil
-    @num_mmr = 0 if [0, 2, 5, 6].include? chamber_choice
-    @num_mmr = 1 if [1, 4].include? chamber_choice
-    @num_mmr = 2 if [3].include? chamber_choice
-    @num_prearranged = 0 if [0, 1, 3].include? chamber_choice
-    @num_prearranged = 1 if [2, 4, 5].include? chamber_choice
-    @num_prearranged = 2 if [6].include? chamber_choice
-    Rails.logger.info("Ensemble ID #{@ensemble_primary.id}")
-    Rails.logger.info("Primary inst ID #{@primary_instrument_id}")
-    Rails.logger.info("Chamber choice #{chamber_choice}")
-    raise "Problem with chamber count" unless @num_mmr && @num_prearranged
+    num_mmr = num_prearranged = 0
+    case chamber_choice
+      when 0
+      num_mmr = 0; num_prearranged = 0
+      when 1
+      num_mmr = 1; num_prearranged = 0
+      when 2
+      num_mmr = 0; num_prearranged = 1
+      when 3
+      num_mmr = 2; num_prearranged = 0
+      when 4
+      num_mmr = 1; num_prearranged = 1
+      when 5
+      num_mmr = 0; num_prearranged = 1
+      when 6
+      num_mmr = 0; num_prearranged = 2
+    end
+    @ensemble_primary.mmr_chambers = [1..num_mmr].map{|i| MmrChamber.create}
+    @ensemble_primary.prearranged_chambers = [1..num_presele].map{|i| PreselectChamber.create}
   end
 
   private

@@ -1,7 +1,2 @@
 <h2>MMR Chamber</h2>
-<%= form_for :mmr_chamber do |form| %>
-  <%= form.hidden_field :ensemble_primary_id, :value => @ensemble_primary.id %>
-  <%= form.select :instrument_id, Instrument.menu_selection, :default => @ensemble_primary.registration.instrument_id %>
-		</td>
-
-<% end %>
+<%= mmr.select :instrument_id, Instrument.menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
