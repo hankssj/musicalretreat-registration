@@ -48,6 +48,19 @@ class EnsemblesController < ApplicationController
     @ensemble_primary.prearranged_chambers = [1..num_prearranged].map{|i| PrearrangedChamber.create}
   end
 
+  def create_chamber
+    @ensemble_primary = EnsemblePrimary.find(params[:id])
+    unless @ensemble_primary.update_attributes(post_params)
+      railse "Problem with save"
+    end
+    redirect_to :action => :electives
+  end
+      
+  def electives
+  end
+    
+  end
+
   private
 
   def post_params
@@ -59,6 +72,8 @@ class EnsemblesController < ApplicationController
                                              :ack_no_morning_ensemble,
                                              :want_sing_in_chorus,
                                              :want_percussion_in_band,
+                                             :mmr_chambers,
+                                             :prearranged_chambers
                                              )
 
   end

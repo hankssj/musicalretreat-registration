@@ -3,8 +3,8 @@
 <ul>
 <li>Ensemble primary id <%= @ensemble_primary.id %>
 <li>Primary instrument id <%= @primary_instrument_id %>
-<li>Num mmr <%= @num_mmr %>
-<li>Num pre <%= @num_prearranged %>
+<li>Num mmr <%= @ensemble_primary.mmr_chambers.length %>
+<li>Num pre <%= @ensemble_primary.prearranged_chambers.length %>
 </li>
 <%= form_for @ensemble_primary, url: {action: "create_chamber", method: "post"} do |form| %>
    <%= form.fields_for :mmr_chambers do |mmr_chamber| %>
