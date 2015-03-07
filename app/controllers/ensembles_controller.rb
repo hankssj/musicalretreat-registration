@@ -54,7 +54,8 @@ class EnsemblesController < ApplicationController
     unless @ensemble_primary.update_attributes(post_params)
       railse "Problem with save"
     end
-    redirect_to :action => :electives
+    #redirect_to :action => :electives
+    @params = params
   end
       
   def electives
