@@ -1,6 +1,3 @@
 <h2>Prearranged Chamber</h2>
-<%= form_for :prearranged_chamber do |form| %>
-  <%= form.hidden_field :ensemble_primary_id, :value => @ensemble_primary.id %>
-  <%= form.select :instrument_id_1, Instrument.menu_selection, :default => @ensemble_primary.registration.instrument_id %>
-<% end %>
+<%= prearranged_chamber.select :instrument_id, Instrument.menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
 
