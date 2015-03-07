@@ -3,7 +3,7 @@ class CreateElectives < ActiveRecord::Migration
     create_table :electives do |t|
       t.string :name
       t.string :instructor
-      t.string :description
+      t.text :description
 
       t.timestamps
     end
