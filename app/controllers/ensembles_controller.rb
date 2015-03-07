@@ -57,11 +57,14 @@ class EnsemblesController < ApplicationController
     unless @ensemble_primary.update_attributes(post_params)
       raise "Problem with save"
     end
-    #redirect_to :action => :electives
+    flash[:ensemble_primary_id] = @ensemble_primary.id
+    redirect_to :action => :electives
     @params = params
   end
       
   def electives
+    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
+    @electives = Elective.all
   end
 
   private
