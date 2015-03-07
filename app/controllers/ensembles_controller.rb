@@ -49,7 +49,7 @@ class EnsemblesController < ApplicationController
   end
 
   def create_chamber
-    @ensemble_primary = EnsemblePrimary.find(params[:ensemble_primary])
+    @ensemble_primary = EnsemblePrimary.new(params[:ensemble_primary])
     unless @ensemble_primary.update_attributes(post_params)
       railse "Problem with save"
     end
