@@ -46,8 +46,10 @@ class EnsemblesController < ApplicationController
       num_mmr = 0; num_prearranged = 2
     end
     Rails.logger.error("#{num_mmr} #{num_prearranged}")
-    @ensemble_primary.mmr_chambers = [1..num_mmr].map{|i| MmrChamber.create}
-    @ensemble_primary.prearranged_chambers = [1..num_prearranged].map{|i| PrearrangedChamber.create}
+    @ensemble_primary.mmr_chambers = [1..num_mmr].map{|i| MmrChamber.create!}
+    @ensemble_primary.prearranged_chambers = [1..num_prearranged].map{|i| PrearrangedChamber.create!}
+    Rails.logger.error("#{@ensemble_primary.mmr_chambers.length} #{@ensemble_primary.prearranged_chambers.length}")
+    
   end
 
   def create_chamber
