@@ -7,12 +7,12 @@
 <li>Num pre <%= @num_prearranged %>
 </li>
 
-<%= form_for :ensemble_primary ({:action => :create_chamber}) do |form| %>
+<%= form_for (:ensemble_primary, url => {:action => :create_chamber}) do |form| %>
    <%= form.fields_for :mmr_chambers do |mmr| %>
       <%= render :partial => :mmr_chamber %>
    <% end %>
    <%= form.fields_for :preselect_chambers do |preselect| %>
-      <%= render :partial => :preselect_chamber %>
+      <%= render :partial => :prearranged_chamber %>
    <% end %>
 <%= form.submit 'Submit' %>
 <% end %>
