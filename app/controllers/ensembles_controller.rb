@@ -74,7 +74,7 @@ class EnsemblesController < ApplicationController
     id_keys.each do |id_key|
       elective_id = id_key.split("_")[1].to_i
       if (elective_id == 0)
-        Rails.logger.fatal("Choking on param #{params[id_key]} gives 0 id")
+        Rails.logger.fatal("Choking on key#{id_key} gives 0 id")
         Rails.logger.fatal(params)
         raise "No zero ID for me"
       end
