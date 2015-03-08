@@ -9,7 +9,7 @@
 <% else %>
     <%= select_tag("instrument_id_#{elective_choice.id}", 
                    options_for_select(Instrument.menu_selection_for_elective(elective_choice)),
-	           {:prompt => 'Instrument'}) %>
+	           {:prompt => '- Instrument -'}) %>
 <% end %>
 <% end %>
 </td>
