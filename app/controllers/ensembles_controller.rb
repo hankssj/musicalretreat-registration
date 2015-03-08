@@ -32,8 +32,8 @@ class EnsemblesController < ApplicationController
     num_mmr, num_prearranged = parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)
     num_mmr.times.each{|i| MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
     num_prearranged.times.each{|i| PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
-    unless prearranged_ensembles.empty?
-      pe = prearranged_ensembles.first
+    unless @ensemble_primary.prearranged_ensembles.empty?
+      pe = @ensemble_primary.prearranged_ensembles.first
       pe.name_1 = @ensemble_primary.registration.display_name 
       pe.instrument_id_1 = @ensemble_primary.registration.instrument_id
       pe.save!
