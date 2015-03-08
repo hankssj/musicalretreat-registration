@@ -29,6 +29,7 @@ class EnsemblesController < ApplicationController
       raise e
     end
     num_mmr, num_prearranged = parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)
+    Rails.logger.error("XX #{num_mmr} #{num_prearranged}")
     num_mmr.times.each{|i| Rails.logger.error("Create in MMR"); MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
     num_prearranged.times.each{|i| Rails.logger.error("Create in prearranged");PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
   end
