@@ -4,7 +4,8 @@
 <td>
 <% unless elective_choice.instruments.empty? %>
 <%= select_tag("instrument_id_#{elective_choice.id}", 
-    options_for_select(Instrument.menu_selection_for_elective(elective_choice)))
+    options_for_select(Instrument.menu_selection_for_elective(elective_choice)),
+    {:prompt => true})
  %>
 <% end %>
 
