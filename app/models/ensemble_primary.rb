@@ -11,4 +11,9 @@ class EnsemblePrimary < ActiveRecord::Base
   def default_instrument_id
     registration.instrument_id
   end
+
+  def need_eval_for
+    xx = prearranged_chambers.map{|x| x.instrument_id} + ensemble_primary_elective_ranks.map{|x| x.instrument_id} + [default_instrument_id]
+    xx.compact.uniq
+  end
 end

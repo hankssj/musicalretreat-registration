@@ -8,6 +8,7 @@
   <ul>
      <%= render :partial => "ensemble_primary_elective_rank", :collection => @ensemble_primary.ensemble_primary_elective_ranks %>
   </ul>
+<li>You need evals for: <%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(id).display_name}.join(",") %>
 </ul>
 
 
