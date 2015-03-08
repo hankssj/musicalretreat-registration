@@ -2,6 +2,7 @@ class EnsemblePrimary < ActiveRecord::Base
   belongs_to :registration
   has_many :mmr_chambers
   has_many :prearranged_chambers
+  has_many :ensemble_primary_elective_ranks
   has_many :evaluations
   has_and_belongs_to_many :electives
 
