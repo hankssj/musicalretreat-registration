@@ -1,5 +1,6 @@
 <h2>Elective Selection</h2>
-You are <%= @ensemble_primary.id %>
+<p>Hover over elective name for more information</p>
+<%= form_tag {:action => :create_elective_selection} do %>
 <table>
 <%= render partial: "elective_choice", collection: @electives %>
 </table>
