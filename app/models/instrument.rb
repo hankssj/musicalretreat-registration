@@ -2,7 +2,7 @@ class Instrument < ActiveRecord::Base
   has_and_belongs_to_many :electives
 
   def self.menu_selection
-    menu_helper(Intrument.all.reject{|i| i.closed})
+    menu_helper(Instrument.all.reject{|i| i.closed})
   end
 
   # Include only the selections linked to the elective_id
