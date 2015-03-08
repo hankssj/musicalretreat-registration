@@ -73,6 +73,11 @@ class EnsemblesController < ApplicationController
     @ensemble_primary.ensemble_primary_elective_ranks.each{|x|x.destroy}
     id_keys.each do |id_key|
       elective_id = id_key.split("_")[1].to_i
+      if (elective_id == 0)
+        Rails.logger.fatal("Choking on param #{params[id_key]} gives 0 id")
+        Rails.logger.fatal(params)
+        raise "No zero ID for me"
+      end
       rank = params[id_key].to_i
       instrument_id = params["instrument_id_#{elective_id}"].to_i
       EnsemblePrimaryElectiveRank.create(:ensemble_primary_id => @ensemble_primary.id, 
