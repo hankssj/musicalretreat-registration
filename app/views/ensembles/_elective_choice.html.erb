@@ -3,9 +3,9 @@
 <td><a title="<%= elective_choice.description %>"><%= elective_choice.name %></a></td>
 <td>
 <% unless elective_choice.instruments.empty? %>
-<%= if elective_choice.instruments.include?(Instrument.find(@ensemble_primary.default_instrument_id)) %>
+<% if elective_choice.instruments.include?(Instrument.find(@ensemble_primary.default_instrument_id)) %>
    <%= select_tag("instrument_id_#{elective_choice.id}", 
-                  options_for_select(Instrument.menu_selection_for_elective(elective_choice))) %>
+                  options_for_select(Instrument.menu_selection_for_elective(elective_choice), @ensemble_primary.default_instrument_id)) %>
 <% else %>
     <%= select_tag("instrument_id_#{elective_choice.id}", 
                    options_for_select(Instrument.menu_selection_for_elective(elective_choice)),
