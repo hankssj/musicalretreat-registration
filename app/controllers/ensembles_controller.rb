@@ -43,11 +43,16 @@ class EnsemblesController < ApplicationController
   def create_chamber
     @ensemble_primary = EnsemblePrimary.find(params[:ensemble_primary][:id])
     
-    params[:ensemble_primary][:mmr_chambers_attributes].values.each do |h| 
-      raise "upate error" unless MmrChamber.find(h["id"].to_i).update_attributes(h)
+    if params[:ensemble_primary][:mmr_chambers_attributes]
+      params[:ensemble_primary][:mmr_chambers_attributes].values.each do |h| 
+        raise "upate error" unless MmrChamber.find(h["id"].to_i).update_attributes(h)
+      end
     end
-    params[:ensemble_primary][:prearranged_chambers_attributes].values.each do |h| 
-      raise "upate error" unless PrearrangedChamber.find(h["id"].to_i).update_attributes(h)
+
+    if params[:ensemble_primary][:prearranged_chambers_attributes]
+      params[:ensemble_primary][:prearranged_chambers_attributes].values.each do |h| 
+        raise "upate error" unless PrearrangedChamber.find(h["id"].to_i).update_attributes(h)
+      end
     end
 
     raise "Problem with save" unless @ensemble_primary.update_attributes(post_params)
