@@ -91,6 +91,10 @@ class EnsemblesController < ApplicationController
 
   def evaluation
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
+    @ensemble_primary.need_eval_for.each do |iid| 
+      Evaluation.create!(:ensemble_primary_id => @ensemble_primary.id,
+                         :instrument_id => iid,
+                         :type => Instrument.evalution_class_for(iid))
   end
 
   private

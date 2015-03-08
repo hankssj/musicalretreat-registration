@@ -11,7 +11,10 @@ end
 class WindEvaluation < Evaluation
 end
 
-classVocalEvaluation < Evaluation
+class VocalEvaluation < Evaluation
+end
+
+class PercussionEvaluation < Evaluation
 end
 
 class PianoEvaluation < Evaluation
