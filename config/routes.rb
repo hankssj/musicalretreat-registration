@@ -45,6 +45,7 @@ RegistrationDevelopment::Application.routes.draw do
 
   get "ensembles/primary"
   get "ensembles/chamber"
+  post "ensembles/evaluation"
   post "ensembles/create_electives"
   patch "ensembles/create_chamber"
 
