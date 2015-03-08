@@ -66,6 +66,10 @@ class EnsemblesController < ApplicationController
     @electives = Elective.all
   end
 
+  def create_electives
+    @params = params
+  end
+
   private
 
   def post_params
