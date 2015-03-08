@@ -1,4 +1,13 @@
 <h2>Create Electives</h2>
-<p/>
-<%= @params %>
+<ul>
+<li>Your ensemble ID is <%= @ensemble_primary.id %>
+<li>Your name is <%= @ensemble_primary.registration.display_name %>
+<li>Your primary instrument is <%= Instrument.find(@ensemble_primary.default_instrument_id).display_name
+<li>Your electives are:
+  <ul>
+     <%= render :partial => "ensemble_primary_elective_rank", :collection => @ensemble_primary.ensemble_primary_elective_ranks %>
+  </ul>
+</ul>
+
+
 

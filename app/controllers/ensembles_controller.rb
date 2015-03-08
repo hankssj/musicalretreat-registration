@@ -75,7 +75,10 @@ class EnsemblesController < ApplicationController
       elective_id = id_key.split("_")[1].to_i
       rank = params[id_key].to_i
       instrument_id = params["instrument_id_#{elective_id}"].to_i
-      EnsemblePrimaryElectiveRank.create(:ensemble_primary_id => @ensemble_primary.id, :elective_id => elective_id, :rank => rank)
+      EnsemblePrimaryElectiveRank.create(:ensemble_primary_id => @ensemble_primary.id, 
+                                         :elective_id => elective_id, 
+                                         :instrument_id => instrument_id,
+                                         :rank => rank)
     end
   end
 
