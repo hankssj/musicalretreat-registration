@@ -69,7 +69,7 @@ class EnsemblesController < ApplicationController
 
   def create_electives
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
-    id_keys = params.keys.select{|k| k =~ /id_\d+/}.reject{|k| params[k].empty?}
+    id_keys = params.keys.select{|k| k =~ /^id_\d+$/}.reject{|k| params[k].empty?}
     @ensemble_primary.ensemble_primary_elective_ranks.each{|x|x.destroy}
     id_keys.each do |id_key|
       elective_id = id_key.split("_")[1].to_i
