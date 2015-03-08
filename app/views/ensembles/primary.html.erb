@@ -8,7 +8,7 @@
 <%= form.hidden_field :registration_id %>
 <hrule/>
 <h2> Morning Large Ensemble Choice</h2>
-<% if @large_ensemble_option == :band_or_orchestra %>
+<% if @large_ensemble_option == "band_or_orchestra" %>
 <table>
 <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
 <tr><td>Either Symphonic Band or Festival Orchestra</td><td><%= form.radio_button :large_ensemble_choice, 1 %></td></tr>
