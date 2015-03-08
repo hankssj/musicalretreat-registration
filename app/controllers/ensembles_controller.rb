@@ -64,10 +64,19 @@ class EnsemblesController < ApplicationController
   def electives
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
     @electives = Elective.all
+    flash[:ensemble_primary_id] = @ensemble_primary.id
   end
 
   def create_electives
-    @params = params
+    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
+    id_keys = params.keys.select{|k| k =~ /id_\d+/}.reject{|k| params[k].empty?}
+    @ensemble_primary.ensemble_primary_elective_ranks.each{|x|x.destroy}
+    id_keys.each do |id_key|
+      elective_id = id_key.split("_")[1].to_i
+      rank = params[id_key].to_i
+      instrument_id = params["instrument_id_#{elective_id}"].to_i
+      EnsemblePrimaryElectiveRank.create(:ensemble_primary_id => @ensemble_primary.id, :elective_id => elective_id, :rank => rank)
+    end
   end
 
   private
