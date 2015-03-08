@@ -11,7 +11,7 @@
 <li>You need evals for: <%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(id).display_name}.join(",") %>
 </ul>
 
-<%= form_tag "/ensembles/evaluation do %>
+<%= form_tag "/ensembles/evaluation" do %>
 <%= submit_tag 'Next' %>
 <% end %>
 
