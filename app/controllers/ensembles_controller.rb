@@ -4,6 +4,7 @@ class EnsemblesController < ApplicationController
 
   before_filter :authorize, :only => [:primary]
 
+  # Entry to the system, and presents the ensemble_primary form form with large ensemble choice that
   def primary
     user = User.find(session[:user_id])
     if user && user.has_current_registration
@@ -19,31 +20,15 @@ class EnsemblesController < ApplicationController
     end
     @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
   end
-  
+
+  # Called when ensemble_primary form is submitted.  Presents chamber options
   def chamber
     @ensemble_primary = EnsemblePrimary.new(post_params)
     unless @ensemble_primary.save
       Rails.logger.error("Save on primary failed -- #{@ensemble_primary.error.full_messages}")
       raise e
     end
-    num_mmr = num_prearranged = 0
-    case @ensemble_primary.chamber_ensemble_choice
-      when 0
-      num_mmr = 0; num_prearranged = 0
-      when 1
-      num_mmr = 1; num_prearranged = 0
-      when 2
-      num_mmr = 0; num_prearranged = 1
-      when 3
-      Rails.logger.error("Choice 3")
-      num_mmr = 2; num_prearranged = 0
-      when 4
-      num_mmr = 1; num_prearranged = 1
-      when 5
-      num_mmr = 0; num_prearranged = 1
-      when 6
-      num_mmr = 0; num_prearranged = 2
-    end
+    num_mmr, num_prearranged = parse_chamber_musi_choice(@ensemble_primary.chamber_ensemble_choice)
     num_mmr.times.each{|i| Rails.logger.error("Create in MMR"); MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
     num_prearranged.times.each{|i| Rails.logger.error("Create in prearranged");PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
   end
@@ -51,15 +36,17 @@ class EnsemblesController < ApplicationController
   def create_chamber
     @ensemble_primary = EnsemblePrimary.find(params[:ensemble_primary][:id])
     
-    params[:ensemble_primary][:mmr_chambers_attributes].values.each{|h| raise "upate error" unless MmrChamber.find(h["id"].to_i).update_attributes(h)}
-    params[:ensemble_primary][:prearranged_chambers_attributes].values.each{|h| raise "upate error" unless PrearrangedChamber.find(h["id"].to_i).update_attributes(h)}
-
-    unless @ensemble_primary.update_attributes(post_params)
-      raise "Problem with save"
+    params[:ensemble_primary][:mmr_chambers_attributes].values.each do |h| 
+      raise "upate error" unless MmrChamber.find(h["id"].to_i).update_attributes(h)
     end
+    params[:ensemble_primary][:prearranged_chambers_attributes].values.each do |h| 
+      raise "upate error" unless PrearrangedChamber.find(h["id"].to_i).update_attributes(h)
+    end
+
+    raise "Problem with save" unless @ensemble_primary.update_attributes(post_params)
+
     flash[:ensemble_primary_id] = @ensemble_primary.id
     redirect_to :action => :electives
-    @params = params
   end
       
   def electives

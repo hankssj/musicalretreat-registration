@@ -8,37 +8,37 @@
 
 ################# Instruments ############################
 
-Instrument.create(:id => 1,  :display_name => "Voice-Soprano",      :closed => false)
-Instrument.create(:id => 2,  :display_name => "Voice-Alto",         :closed => false)
-Instrument.create(:id => 3,  :display_name => "Voice-Tenor",        :closed => false)
-Instrument.create(:id => 4,  :display_name => "Voice-Baritone",     :closed => false)
-Instrument.create(:id => 5,  :display_name => "Voice-Bass",         :closed => false)
-Instrument.create(:id => 6,  :display_name => "Violin",             :closed => false)
-Instrument.create(:id => 7,  :display_name => "Viola",              :closed => false)
-Instrument.create(:id => 8,  :display_name => "Cello",              :closed => false)
-Instrument.create(:id => 9,  :display_name => "Double Bass",        :closed => false)
-Instrument.create(:id => 10, :display_name => "Piccolo",            :closed => false)
-Instrument.create(:id => 11, :display_name => "Flute",              :closed => false)
-Instrument.create(:id => 12, :display_name => "Oboe",               :closed => false)
-Instrument.create(:id => 14, :display_name => "Bassoon",            :closed => false)
-Instrument.create(:id => 15, :display_name => "Clarinet",           :closed => false)
-Instrument.create(:id => 16, :display_name => "Clarinet-Bass",      :closed => false)
-Instrument.create(:id => 17, :display_name => "Saxophone",          :closed => false)
-Instrument.create(:id => 18, :display_name => "Saxophone-Soprano",  :closed => false)
-Instrument.create(:id => 19, :display_name => "Saxophone-Alto",     :closed => false)
-Instrument.create(:id => 20, :display_name => "Saxophone-Tenor",    :closed => false)
-Instrument.create(:id => 21, :display_name => "Saxophone-Baritone", :closed => false)
-Instrument.create(:id => 22, :display_name => "Trumpet",            :closed => false)
-Instrument.create(:id => 23, :display_name => "Horn",               :closed => false)
-Instrument.create(:id => 24, :display_name => "Trombone",           :closed => false)
-Instrument.create(:id => 25, :display_name => "Trombone-Bass",      :closed => false)
-Instrument.create(:id => 26, :display_name => "Euphonium",          :closed => false)
-Instrument.create(:id => 27, :display_name => "Tuba",               :closed => false)
-Instrument.create(:id => 28, :display_name => "Percussion",         :closed => false)
-Instrument.create(:id => 31, :display_name => "Timpani",            :closed => false)
-Instrument.create(:id => 32, :display_name => "Harp",               :closed => false)
-Instrument.create(:id => 34, :display_name => "Piano",              :closed => false)
-Instrument.create(:id => 37, :display_name => "Clarinet-Alto",      :closed => false)
+Instrument.create(:id => 1,  :display_name => "Voice-Soprano",  :large_ensemble => "chorus")
+Instrument.create(:id => 2,  :display_name => "Voice-Alto",  :large_ensemble => "chorus")
+Instrument.create(:id => 3,  :display_name => "Voice-Tenor",  :large_ensemble => "chorus")
+Instrument.create(:id => 4,  :display_name => "Voice-Baritone",  :large_ensemble => "chorus")
+Instrument.create(:id => 5,  :display_name => "Voice-Bass",  :large_ensemble => "chorus")
+Instrument.create(:id => 6,  :display_name => "Violin", :large_ensemble => "orchestra")
+Instrument.create(:id => 7,  :display_name => "Viola", :large_ensemble => "orchestra")
+Instrument.create(:id => 8,  :display_name => "Cello", :large_ensemble => "orchestra")
+Instrument.create(:id => 9,  :display_name => "Double Bass", :large_ensemble => "orchestra")
+Instrument.create(:id => 10, :display_name => "Piccolo",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 11, :display_name => "Flute",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 12, :display_name => "Oboe",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 14, :display_name => "Bassoon",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 15, :display_name => "Clarinet",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 16, :display_name => "Clarinet-Bass",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 17, :display_name => "Saxophone", :large_ensemble => "band")
+Instrument.create(:id => 18, :display_name => "Saxophone-Soprano", :large_ensemble => "band")
+Instrument.create(:id => 19, :display_name => "Saxophone-Alto", :large_ensemble => "band")
+Instrument.create(:id => 20, :display_name => "Saxophone-Tenor", :large_ensemble => "band")
+Instrument.create(:id => 21, :display_name => "Saxophone-Baritone", :large_ensemble => "band")
+Instrument.create(:id => 22, :display_name => "Trumpet",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 23, :display_name => "Horn",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 24, :display_name => "Trombone",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 25, :display_name => "Trombone-Bass",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 26, :display_name => "Euphonium",  :large_ensemble => "band")
+Instrument.create(:id => 27, :display_name => "Tuba",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 28, :display_name => "Percussion",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 31, :display_name => "Timpani",  :large_ensemble => "band_or_orchestra")
+Instrument.create(:id => 32, :display_name => "Harp",  :large_ensemble => "orchestra")
+Instrument.create(:id => 34, :display_name => "Piano",  :large_ensemble => "none")
+Instrument.create(:id => 37, :display_name => "Clarinet-Alto",  :large_ensemble => "band_or_orchestra")
 
 ####################### Electives ############################
 
@@ -82,7 +82,7 @@ link_elective_to_instruments(e, [6,7,8,9])
 e = Elective.create(
 :name => "Flute Choir",
 :instructor => "Faculty",
-:description => "A choir.  Of Flutes.  Lots of flutes."
+:description => "A choir!  Of Flutes!!  Lots of flutes.  The more the better!!"
 )
 link_elective_to_instruments(e, [11,10])
 
@@ -225,6 +225,13 @@ e = Elective.create(
 :description => "Before Melody and Harmony came Rhythm. Immerse yourself in the  fundamental tool of the singer or instrumentalist."
 )
 link_elective_to_instruments(e, [])
+
+e = Elective.create(
+:name => "Clarinet Choir",
+:instructor => "Faculty",
+:description => "A Choir!  Of Clarinets!! What could be more heavenly?"
+)
+link_elective_to_instruments(e, [15,16,37])
 
 
 
