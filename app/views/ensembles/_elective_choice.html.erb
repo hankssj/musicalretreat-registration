@@ -3,8 +3,8 @@
 <td><a title="<%= elective_choice.description %>"><%= elective_choice.name %></a></td>
 <td>
 <% unless elective_choice.instruments.empty? %>
-<%= select_tag ("instrument_id_#{elective_choice.id}", 
-                options_for_select(Instrument.menu_selection_for_elective(elective_choice), @ensemble_primary.default_instrument_id))
+<%= select_tag(:x,
+    options_for_select(Instrument.menu_selection_for_elective(elective_choice), @ensemble_primary.default_instrument_id))
  %>
 <% end %>
 
