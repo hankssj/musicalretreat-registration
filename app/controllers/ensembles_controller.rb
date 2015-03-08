@@ -28,7 +28,7 @@ class EnsemblesController < ApplicationController
       Rails.logger.error("Save on primary failed -- #{@ensemble_primary.error.full_messages}")
       raise e
     end
-    num_mmr, num_prearranged = parse_chamber_musi_choice(@ensemble_primary.chamber_ensemble_choice)
+    num_mmr, num_prearranged = parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)
     num_mmr.times.each{|i| Rails.logger.error("Create in MMR"); MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
     num_prearranged.times.each{|i| Rails.logger.error("Create in prearranged");PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
   end
