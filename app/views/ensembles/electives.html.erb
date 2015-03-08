@@ -1,6 +1,6 @@
 <h2>Elective Selection</h2>
 <p>Hover over elective name for more information</p>
-<%= form_tag {:action => :create_elective_selection} do %>
+<%= form_tag "/create_electives" do %>
 <table>
 <%= render partial: "elective_choice", collection: @electives %>
 </table>
