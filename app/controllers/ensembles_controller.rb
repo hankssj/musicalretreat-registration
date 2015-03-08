@@ -80,6 +80,8 @@ class EnsemblesController < ApplicationController
                                          :instrument_id => instrument_id,
                                          :rank => rank)
     end
+    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
+    Rails.logger.error("Creating with #{@ensemble_primary.ensemble_primary_elective_ranks.size}")
   end
 
   private
