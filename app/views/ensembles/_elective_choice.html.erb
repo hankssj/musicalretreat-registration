@@ -3,6 +3,6 @@
 <td><a title="<%= elective_choice.description %>"><%= elective_choice.name %></a></td>
 <td><%= select_tag "instrument_id_#{elective_choice.id}", 
 	Instrument.menu_selection_for_elective(elective_choice), 
-	:selected => @ensemble_primary.instrument_id %>
+	:selected => @ensemble_primary.default_instrument_id %>
    </td>
 </tr>
