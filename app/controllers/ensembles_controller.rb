@@ -24,13 +24,20 @@ class EnsemblesController < ApplicationController
   # Called when ensemble_primary form is submitted.  Presents chamber options
   def chamber
     @ensemble_primary = EnsemblePrimary.new(post_params)
+    @instrument_menu_selection = Instrument.menu_selection
     unless @ensemble_primary.save
       Rails.logger.error("Save on primary failed -- #{@ensemble_primary.error.full_messages}")
       raise e
     end
     num_mmr, num_prearranged = parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)
-    num_mmr.times.each{|i| Rails.logger.error("Create in MMR"); MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
-    num_prearranged.times.each{|i| Rails.logger.error("Create in prearranged");PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
+    num_mmr.times.each{|i| MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
+    num_prearranged.times.each{|i| PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
+    unless prearranged_ensembles.empty?
+      pe = prearranged_ensembles.first
+      pe.name_1 = @ensemble_primary.registration.display_name 
+      pe.instrument_id_1 = @ensemble_primary.registration.instrument_id
+      pe.save!
+    end
   end
 
   def create_chamber
