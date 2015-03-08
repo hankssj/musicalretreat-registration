@@ -1,6 +1,8 @@
 class EnsemblePrimary < ActiveRecord::Base
   belongs_to :registration
-  has_many :mmr_chambers, :prearranged_chambers, :evaluations
+  has_many :mmr_chambers
+  has_many :prearranged_chambers
+  has_many :evaluations
   has_and_belongs_to_many :electives
 
   accepts_nested_attributes_for :mmr_chambers
