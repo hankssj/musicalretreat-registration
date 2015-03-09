@@ -3,7 +3,7 @@ class Evaluation < ActiveRecord::Base
   belongs_to :instrument
 
   def partial_name
-    type.to_underscore
+    type.underscore
   end
 end
 
