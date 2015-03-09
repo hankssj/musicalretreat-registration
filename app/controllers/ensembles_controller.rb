@@ -91,6 +91,10 @@ class EnsemblesController < ApplicationController
 
   def evaluation
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
+
+    # NOTE -- this gets rid of all evaluations then creates new empty ones.
+    # Not appropriate for edit situations!
+    @ensemble_primary.evaluations.each{|e|e.destroy}
     @ensemble_primary.need_eval_for.each do |iid| 
       Evaluation.create!(:ensemble_primary_id => @ensemble_primary.id,
                          :instrument_id => iid,
