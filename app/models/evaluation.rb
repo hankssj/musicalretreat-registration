@@ -1,23 +1,15 @@
 class Evaluation < ActiveRecord::Base
   belongs_to :ensemble_primary
+
+  def partial_name
+    type.to_underscore
+  end
 end
 
-class StringEvaluation < Evaluation
-end
-
-class BrassEvaluation < Evaluation
-end
-
-class WindEvaluation < Evaluation
+class InstrumentalEvaluation < Evaluation
 end
 
 class VocalEvaluation < Evaluation
-end
-
-class PercussionEvaluation < Evaluation
-end
-
-class PianoEvaluation < Evaluation
 end
 
 

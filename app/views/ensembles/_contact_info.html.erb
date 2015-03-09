@@ -1,0 +1,7 @@
+<% if Instrument.find(evaluation.instrument_id).instrument_type == "string" %>
+Contact Eileen
+<% elsif Instrument.find(evaluation.instrument_id).instrument_type == "vocal" %>
+Contact Jason
+<% else %>
+Contact Dan
+<% end %>

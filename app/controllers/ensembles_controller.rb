@@ -94,7 +94,8 @@ class EnsemblesController < ApplicationController
     @ensemble_primary.need_eval_for.each do |iid| 
       Evaluation.create!(:ensemble_primary_id => @ensemble_primary.id,
                          :instrument_id => iid,
-                         :type => Instrument.evalution_class_for(iid))
+                         :type => Instrument.find(iid).evaluation_class)
+end
   end
 
   private

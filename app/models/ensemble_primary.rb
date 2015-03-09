@@ -8,6 +8,7 @@ class EnsemblePrimary < ActiveRecord::Base
 
   accepts_nested_attributes_for :mmr_chambers
   accepts_nested_attributes_for :prearranged_chambers
+  accepts_nested_attributes_for :evaluations
 
   def default_instrument_id
     registration.instrument_id
