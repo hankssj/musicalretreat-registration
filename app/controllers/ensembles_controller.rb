@@ -101,7 +101,8 @@ class EnsemblesController < ApplicationController
                          :instrument_id => iid,
                          :type => Instrument.find(iid).instrumental? ? "InstrumentalEvaluation" : "VocalEvaluation")
     end
-    Rails.logger.warn("Have: #{@ensemble_primary.evaluations.length}")
+    # So new evaluations are visible
+    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
   end
 
   private
