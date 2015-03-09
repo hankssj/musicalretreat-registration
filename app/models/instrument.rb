@@ -15,7 +15,7 @@ class Instrument < ActiveRecord::Base
   end
 
   def instrumental?
-    !vocal
+    !vocal?
   end
   
   private
