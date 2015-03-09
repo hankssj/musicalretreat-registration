@@ -95,11 +95,13 @@ class EnsemblesController < ApplicationController
     # NOTE -- this gets rid of all evaluations then creates new empty ones.
     # Not appropriate for edit situations!
     @ensemble_primary.evaluations.each{|e|e.destroy}
+    Rails.logger.warn("Needed: #{@ensemble_primary.need_eval_for.length}")
     @ensemble_primary.need_eval_for.each do |iid| 
       Evaluation.create!(:ensemble_primary_id => @ensemble_primary.id,
                          :instrument_id => iid,
                          :type => Instrument.find(iid).instrumental? ? "InstrumentalEvaluation" : "VocalEvaluation")
-end
+    end
+    Rails.logger.warn("Have: #{@ensemble_primary.evaluations.length}")
   end
 
   private
