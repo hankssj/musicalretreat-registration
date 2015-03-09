@@ -5,7 +5,7 @@ You need evals for: <%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(
    <%= form.hidden_field :id %>
 
    <%= form.fields_for :evaluations do |evaluation| %>
-      <%= render :partial => Evaluation.find(evaluation.id).partial_name, :object => evaluation %>
+      <%= render :partial => Evaluation.find(evaluation.object_id).partial_name, :object => evaluation %>
    <% end %>
 <p/>
 <%= submit_tag "Submit" %>
