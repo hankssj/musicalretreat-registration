@@ -4,7 +4,6 @@ class EnsemblesController < ApplicationController
 
   before_filter :authorize, :only => [:primary]
 
-  # Entry to the system, and presents the ensemble_primary form form with large ensemble choice that
   def primary
     user = User.find(session[:user_id])
     if user && user.has_current_registration
@@ -21,15 +20,14 @@ class EnsemblesController < ApplicationController
     @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
   end
 
-  # Called when ensemble_primary form is submitted.  Presents chamber options
-  def chamber
+  def primary_chamber
     @ensemble_primary = EnsemblePrimary.new(post_params)
     @instrument_menu_selection = Instrument.menu_selection
     unless @ensemble_primary.save
       Rails.logger.error("Save on primary failed -- #{@ensemble_primary.error.full_messages}")
       raise e
     end
-    num_mmr, num_prearranged = parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)
+    num_mmr, num_prearranged = EnsemblePrimary.parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)
     num_mmr.times.each{|i| MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
     num_prearranged.times.each{|i| PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
     unless @ensemble_primary.prearranged_chambers.empty?
@@ -40,7 +38,7 @@ class EnsemblesController < ApplicationController
     end
   end
 
-  def create_chamber
+  def chamber_elective
     @ensemble_primary = EnsemblePrimary.find(params[:ensemble_primary][:id])
     
     if params[:ensemble_primary][:mmr_chambers_attributes]
@@ -57,25 +55,18 @@ class EnsemblesController < ApplicationController
 
     raise "Problem with save" unless @ensemble_primary.update_attributes(post_params)
 
+    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
     flash[:ensemble_primary_id] = @ensemble_primary.id
-    redirect_to :action => :electives
+    flash[:ensemble_primary_id] = @ensemble_primary.id
   end
       
-  def electives
-    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
-    @electives = Elective.all
-    flash[:ensemble_primary_id] = @ensemble_primary.id
-  end
-
-  def create_electives
+  def elective_evaluation
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
     id_keys = params.keys.select{|k| k =~ /^id_\d+$/}.reject{|k| params[k].empty?}
     @ensemble_primary.ensemble_primary_elective_ranks.each{|x|x.destroy}
     id_keys.each do |id_key|
       elective_id = id_key.split("_")[1].to_i
       if (elective_id == 0)
-        Rails.logger.fatal("Choking on key#{id_key} gives 0 id")
-        Rails.logger.fatal(params)
         raise "No zero ID for me"
       end
       rank = params[id_key].to_i
@@ -85,11 +76,6 @@ class EnsemblesController < ApplicationController
                                          :instrument_id => instrument_id,
                                          :rank => rank)
     end
-    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
-    flash[:ensemble_primary_id] = @ensemble_primary.id
-  end
-
-  def evaluation
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
 
     # NOTE -- this gets rid of all evaluations then creates new empty ones.
@@ -106,7 +92,7 @@ class EnsemblesController < ApplicationController
     flash[:ensemble_primary_id] = @ensemble_primary.id
   end
 
-  def create_evaluations
+  def evaluation_summary
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
     @params = params
     if params[:ensemble_primary][:evaluations_attributes]
@@ -114,6 +100,7 @@ class EnsemblesController < ApplicationController
         raise "upate error" unless Evaluation.find(h["id"].to_i).update_attributes(h)
       end
     end
+    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
   end
 
   private
@@ -132,27 +119,5 @@ class EnsemblesController < ApplicationController
                                              )
 
   end
-
-  def parse_chamber_music_choice(cmc)
-    num_mmr = num_prearranged = 0
-    case cmc
-    when 0
-      num_mmr = 0; num_prearranged = 0
-    when 1
-      num_mmr = 1; num_prearranged = 0
-    when 2
-      num_mmr = 0; num_prearranged = 1
-    when 3
-      num_mmr = 2; num_prearranged = 0
-    when 4
-      num_mmr = 1; num_prearranged = 1
-    when 5
-      num_mmr = 0; num_prearranged = 1
-    when 6
-      num_mmr = 0; num_prearranged = 2
-    end
-    [num_mmr, num_prearranged]
-  end
-
 end
 
