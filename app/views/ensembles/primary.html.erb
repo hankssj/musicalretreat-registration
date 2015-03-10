@@ -1,6 +1,6 @@
 <h1>Ensemble Choosing First Page:  Intro material and large ensemble</h1>
 <p>Choosing ensembles for <%= @registration.display_name %></p>
-<p>Your primary instrument is <%= @instrument_name %></p>
+<p>Your primary instrument is <%= @registration.instrument.display_name %></p>
 <% @large_ensemble_option = Instrument.find(@registration.instrument_id).large_ensemble %>
 <p>Your large ensemble option is <%= @large_ensemble_option %></p>
 
@@ -46,7 +46,7 @@
   <td><%= form.radio_button :chamber_ensemble_choice, 0%></td>
 </tr>
 <tr>
-  <td>Please assign me one ensemble that will meet one session per day<td></td>
+  <td>Please assign me one ensemble that will meet one session per day</td>
   <td><%= form.radio_button :chamber_ensemble_choice, 1, {:checked => true} %></td>
 </tr>
 <tr>
