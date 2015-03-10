@@ -23,7 +23,7 @@ class EnsemblePrimary < ActiveRecord::Base
   end
 
   def need_eval_for
-    instrument_ids = (mmr_chambers + prearranged_chambers + ensemble_primary_elective_ranks).map(&:instrument_id) + [default_instrument]
+    instrument_ids = (mmr_chambers + prearranged_chambers + ensemble_primary_elective_ranks).map(&:instrument_id) + [default_instrument_id]
     instrument_ids.compact.uniq.reject{|x| x <= 0}
   end
 
