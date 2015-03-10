@@ -1,4 +1,18 @@
 <h2>Prearranged Chamber</h2>
 <%= prearranged_chamber.text_field :name_1, :size => 20 %>
-<%= prearranged_chamber.select :instrument_id_1, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
+<ul>
+<li>I am the contact person for this ensemble &nbsp;&nbsp;
+    <%= prearranged_chamber.radio_button, :i_am_contact, false, {:checked => true} %> &nbsp;&nbsp; No &nbsp;&nbsp;
+    <%= prearranged_chamber.radio_button, :i_am_contact, true} %> &nbsp;&nbsp; Yes &nbsp;&nbsp;
+<li> I am playing this instrument in the ensemble: &nbsp;&nbsp
+    <%= prearranged_chamber.select :instrument_id, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
+<li> The next item should be visible only if the user checks NO to "I am contact"
+<li> Contact person name: &nbsp;&nbsp <%= prearranged_chamber.text_field :contact_name, :size => 20 %>
+<li> The rest of the fields should be visible only if the user checks YES to "I am contact"
+<li> Names and instruments of other participants: <br> <%= prearranged_chamber.text_area :participant_names, :rows => 5, :columns => 40 %>
+<li> Are you bringing your own music? <%= prearranged_chamber.check_box :bring_own_music  %>
+<li> The following field should be visible only if the previous check box is checked
+<li> Composer and name of piece: &nbsp;&nbsp <%= prearranged_chamber.text_field :music_composer_and_name, :size => 20 %>
+</ul>
+
 
