@@ -1,4 +1,4 @@
-<h2>This is a vocal evaluation</h2>
+<h2>This is a vocal evaluation for <%= vocal_evaluation.object.instrument.display_name %></h2>
 <%= render :partial => "contact_info", :object => vocal_evaluation %>
 <p/>
 Most difficult piece: <%= vocal_evaluation.text_field :most_difficult_piece, :size => 20 %>
