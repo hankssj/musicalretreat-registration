@@ -9,7 +9,7 @@
 <ul>
 <%= render :partial => "elective_summary_line", :collection => @ensemble_primary.elective_ranks.sort{|er1, er2| er1.rank <=> er2.rank} %>
 </ul>
-<li>You filled out evaluations for: <%= @ensemble_primary.evaluations.map{|e|e.instrument.name}.join(",") %>
+<li>You filled out evaluations for: <%= @ensemble_primary.evaluations.map{|e|e.instrument.display_name}.join(",") %>
 </li>
 
 
