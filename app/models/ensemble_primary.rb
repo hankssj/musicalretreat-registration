@@ -25,6 +25,11 @@ class EnsemblePrimary < ActiveRecord::Base
   end
 
   #  Enums
-  enum :large_ensemble_choice => [:none, :either_band_or_orchestra, :band, :orchestra, :chorus]
-  enum :chamber_ensemble_choice => [:none, :one_assigned, :one_prearranged_one_session, :two_assigned, :one_assigned_one_prearranged, :one_prearranged_two_sessions, :two_prearranged]
+  def self.enum_name(enum_name, value)
+    names = {
+      :large_ensemble_choice => [:none, :either_band_or_orchestra, :band, :orchestra, :chorus], 
+      :chamber_ensemble_choice => [:none, :one_assigned, :one_prearranged_one_session, :two_assigned, :one_assigned_one_prearranged, :one_prearranged_two_sessions, :two_prearranged]
+    }
+    names[enum_name][value]
+  end
 end
