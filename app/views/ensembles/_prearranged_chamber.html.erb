@@ -3,7 +3,7 @@
 <ul>
 <li>I am the contact person for this ensemble &nbsp;&nbsp;
     <%= prearranged_chamber.radio_button :i_am_contact, false, {:checked => true} %> &nbsp;&nbsp; No &nbsp;&nbsp;
-    <%= prearranged_chamber.radio_button :i_am_contact, true} %> &nbsp;&nbsp; Yes &nbsp;&nbsp;
+    <%= prearranged_chamber.radio_button :i_am_contact, true %> &nbsp;&nbsp; Yes &nbsp;&nbsp;
 <li> I am playing this instrument in the ensemble: &nbsp;&nbsp
     <%= prearranged_chamber.select :instrument_id, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
 <li> The next item should be visible only if the user checks NO to "I am contact"
