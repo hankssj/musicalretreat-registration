@@ -103,6 +103,12 @@ class EnsemblesController < ApplicationController
     end
     # So new evaluations are visible
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
+    flash[:ensemble_primary_id] = @ensemble_primary.id
+  end
+
+  def create_evaluations
+    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
+    @params = params
   end
 
   private
