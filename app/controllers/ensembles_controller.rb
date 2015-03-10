@@ -37,7 +37,7 @@ class EnsemblesController < ApplicationController
       pc.instrument_id_1 = @ensemble_primary.registration.instrument_id
       pc.save!
     end
-    @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
+    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
     flash[:ensemble_primary_id] = @ensemble_primary.id
   end
 
