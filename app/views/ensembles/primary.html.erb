@@ -11,24 +11,24 @@
 <% if @large_ensemble_option == "band_or_orchestra" %>
 <table>
 <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Either Symphonic Band or Festival Orchestra</td><td><%= form.radio_button :large_ensemble_choice, 1,true %></td></tr>
+<tr><td>Either Symphonic Band or Festival Orchestra</td><td><%= form.radio_button :large_ensemble_choice, 1, {:checked => true} %></td></tr>
 <tr><td>Prefer Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
 <tr><td>Prefer Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 3 %></td></tr>
 </table>
 <% elsif @large_ensemble_option == "band" %>
 <table>
 <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 2, true %></td></tr>
+<tr><td>Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 2, {:checked => true} %></td></tr>
 </table>
 <% elsif @large_ensemble_option == "orchestra" %>
 <table>
 <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 3,true %></td></tr>
+<tr><td>Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 3, {:checked => true} %></td></tr>
 </table>
 <% elsif @large_ensemble_option == "chorus" %>
 <table>
 <tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
-<tr><td>Festival Chorus </td><td><%= form.radio_button :large_ensemble_choice, 4, true %></td></tr>
+<tr><td>Festival Chorus </td><td><%= form.radio_button :large_ensemble_choice, 4, {:checked => true} %></td></tr>
 </table>
 <% elsif @large_ensemble_option == "none" %>
 <table>
