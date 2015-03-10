@@ -33,8 +33,7 @@ class EnsemblesController < ApplicationController
     num_prearranged.times.each{|i| PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
     unless @ensemble_primary.prearranged_chambers.empty?
       pc = @ensemble_primary.prearranged_chambers.first
-      pc.name_1 = @ensemble_primary.registration.display_name 
-      pc.instrument_id_1 = @ensemble_primary.registration.instrument_id
+      pc.instrument_id = @ensemble_primary.registration.instrument_id
       pc.save!
     end
     flash[:ensemble_primary_id] = @ensemble_primary.id
