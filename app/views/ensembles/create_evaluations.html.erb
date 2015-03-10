@@ -2,7 +2,7 @@
 
 <ul>
 <li>Your name is <%= @ensemble_primary.registration.display_name %>
-<li>Your primary instrument is <%= @ensemble_primary.instrument.name %>
+<li>Your primary instrument is <%= @ensemble_primary.primary_instrument.name %>
 <li>Your large ensemble choice is <%= EnsemblePrimary.enum_name(:large_ensemble_choice, @ensemble_primary.large_ensemble_choice) %>
 <li>Your chamber music choice is <%= EnsemblePrimary.enum_name(:chamber_ensemble_choice, @ensemble_primary.chamber_ensemble_choice) %>
 <li>Your elective choices in order are: 
