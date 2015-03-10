@@ -43,16 +43,7 @@ RegistrationDevelopment::Application.routes.draw do
 
   get "admin", to: "admin#index"
 
-  get "ensembles/primary"
-
-  get "ensembles/chamber"
-  patch "ensembles/create_chamber"
-
-  post "ensembles/evaluation"
-  patch "ensembles/create_evaluations"
-  
-  post "ensembles/create_electives"
-
   get ":controller/:action"
   post ":controller/:action"
+  patch ":controller/:action"
 end
