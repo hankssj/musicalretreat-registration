@@ -1,10 +1,11 @@
 <h2>Evaluations</h2>
 You need evals for: <%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(id).display_name}.join(",") %>
 
-<%= form_for @ensemble_primary, url: {action: "create_evaluations", method: "post"} do |form| %>
+<%= form_for @ensemble_primary, url: {action: "evaluation_summary", method: "post"} do |form| %>
    <%= form.hidden_field :id %>
 
    <%= form.fields_for :evaluations do |evaluation| %>
+      <%= Rails.logger.warn("
       <%= render :partial => Evaluation.find(evaluation.object.id).partial_name, :object => evaluation %>
    <% end %>
 <p/>
