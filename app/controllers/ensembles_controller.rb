@@ -58,7 +58,7 @@ class EnsemblesController < ApplicationController
     raise "Problem with save" unless @ensemble_primary.update_attributes(post_params)
 
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
-    @electives = Electives.all
+    @electives = Elective.all
     flash[:ensemble_primary_id] = @ensemble_primary.id
   end
       
