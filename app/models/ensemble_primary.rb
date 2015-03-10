@@ -10,6 +10,10 @@ class EnsemblePrimary < ActiveRecord::Base
   accepts_nested_attributes_for :prearranged_chambers
   accepts_nested_attributes_for :evaluations
 
+  def elective_ranks
+    ensemble_primary_elective_ranks
+  end
+
   def default_instrument_id
     registration.instrument_id
   end
