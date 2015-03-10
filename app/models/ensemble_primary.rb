@@ -14,9 +14,17 @@ class EnsemblePrimary < ActiveRecord::Base
     registration.instrument_id
   end
 
+  def primary_instument
+    Instrument.find(default_instrument_id)
+  end
+
   def need_eval_for
     instrument_ids = 
       prearranged_chambers.map{|x| x.instrument_id} + ensemble_primary_elective_ranks.map{|x| x.instrument_id} + [default_instrument_id]
     instrument_ids.compact.uniq.reject{|x| x <= 0}
   end
+
+  #  Enums
+  enum large_ensemble_choice => [:none, :either_band_or_orchestra, :band, :orchestra, :chorus]
+  enum chamber_ensemble_choice => [:none, :one_assigned, :one_prearranged_one_session, :two_assigned, :one_assigned_one_prearranged, :one_prearranged_two_sessions, :two_prearranged]
 end
