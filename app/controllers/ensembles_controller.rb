@@ -102,7 +102,7 @@ class EnsemblesController < ApplicationController
         raise "upate error" unless Evaluation.find(h["id"].to_i).update_attributes(h)
       end
     end
-    @ensemble_primary = EnsemblePrimary.new(flash[:ensemble_primary_id])
+    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
     flash[:ensemble_primary_id] = @ensemble_primary.id
   end
 
