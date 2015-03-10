@@ -14,7 +14,7 @@ class EnsemblePrimary < ActiveRecord::Base
     registration.instrument_id
   end
 
-  def primary_instument
+  def primary_instrument
     Instrument.find(default_instrument_id)
   end
 
