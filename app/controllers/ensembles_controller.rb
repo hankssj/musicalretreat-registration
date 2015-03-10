@@ -109,6 +109,11 @@ class EnsemblesController < ApplicationController
   def create_evaluations
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
     @params = params
+    if params[:ensemble_primary][:evaluations_attributes]
+      params[:ensemble_primary][:evaluations_attributes].values.each do |h| 
+        raise "upate error" unless Evaluation.find(h["id"].to_i).update_attributes(h)
+      end
+    end
   end
 
   private
