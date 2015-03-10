@@ -18,6 +18,7 @@ class EnsemblesController < ApplicationController
       redirect_to :controller => :registration, :action => "index"
     end
     @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
+    flash[:ensemble_primary_id] = @ensemble_primary.id
   end
 
   def primary_chamber
@@ -36,6 +37,8 @@ class EnsemblesController < ApplicationController
       pc.instrument_id_1 = @ensemble_primary.registration.instrument_id
       pc.save!
     end
+    @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
+    flash[:ensemble_primary_id] = @ensemble_primary.id
   end
 
   def chamber_elective
@@ -56,7 +59,6 @@ class EnsemblesController < ApplicationController
     raise "Problem with save" unless @ensemble_primary.update_attributes(post_params)
 
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
-    flash[:ensemble_primary_id] = @ensemble_primary.id
     flash[:ensemble_primary_id] = @ensemble_primary.id
   end
       
@@ -87,7 +89,7 @@ class EnsemblesController < ApplicationController
                          :instrument_id => iid,
                          :type => Instrument.find(iid).instrumental? ? "InstrumentalEvaluation" : "VocalEvaluation")
     end
-    # So new evaluations are visible
+
     @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
     flash[:ensemble_primary_id] = @ensemble_primary.id
   end
@@ -100,7 +102,8 @@ class EnsemblesController < ApplicationController
         raise "upate error" unless Evaluation.find(h["id"].to_i).update_attributes(h)
       end
     end
-    @ensemble_primary = EnsemblePrimary.find(flash[:ensemble_primary_id])
+    @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
+    flash[:ensemble_primary_id] = @ensemble_primary.id
   end
 
   private
