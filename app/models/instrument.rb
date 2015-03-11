@@ -14,6 +14,14 @@ class Instrument < ActiveRecord::Base
   def cello?; id == 8; end
   def bass?; id == 9; end
 
+  def flute?; id == 10 || id == 11; end
+  def clarinet?; id == 15 || id == 16 || id == 37; end
+  def oboe?; id == 12; end
+  def trumpet?; id == 22; end
+  def trombone?; id == 24 || id == 25; end
+  def saxophone?; id >= 17 && id <= 21; end
+  def saxophone_nonspecific?; id == 17; end
+
   def self.menu_selection
     menu_helper(Instrument.all.reject{|i| i.closed})
   end

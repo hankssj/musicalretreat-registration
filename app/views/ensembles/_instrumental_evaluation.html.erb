@@ -4,10 +4,8 @@
 
 <% if instrument.string? %>
 <%= render :partial => "string_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
-<% elsif instrument.brass? %>
-<%= render :partial => "brass_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
-<% elsif instrument.woodwind? %>
-<%= render :partial => "woodwind_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
+<% elsif instrument.brass? || instrument.woodwind? %>
+<%= render :partial => "wind_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
 <% else %>
 <%= render :partial => "percussion_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
 <% end %>

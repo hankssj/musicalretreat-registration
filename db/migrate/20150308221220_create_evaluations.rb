@@ -5,13 +5,47 @@ class CreateEvaluations < ActiveRecord::Migration
       t.integer :instrument_id
       t.string :type
 
-      t.integer :large_ensemble_part   # first or second, 0 or 1
-      t.integer :chamber_ensemble_part   # first or second, 0 or 1
+      t.integer :large_ensemble_part     # first second or third, 0,1,2, 10 is reserved for piccolo, 100 - 103 reserved for soprano...sax
+      t.integer :chamber_ensemble_part   # 
 
+      # Other instruments grouped by primary
+      t.boolean :other_instrument_oboe
       t.boolean :other_instrument_english_horn
+      t.boolean :other_instrument_oboe_other
+
+      t.boolean :other_instrument_trombone
+      t.boolean :other_instrument_bass_trombone
+
+
+      t.boolean :other_instrument_bb_trumpet
       t.boolean :other_instrument_c_trumpet
+      t.boolean :other_instrument_piccolo_trumpet
+
+      t.boolean :other_instrument_saxophone_soprano
+      t.boolean :other_instrument_saxophone_soprano
+      t.boolean :other_instrument_saxophone_soprano
+      t.boolean :other_instrument_saxophone_soprano
+
+      t.boolean :other_instrument_bb_clarinet
       t.boolean :other_instrument_a_clarinet
+      t.boolean :other_instrument_eb_clarinet
+      t.boolean :other_instrument_alto_clarinet
+      t.boolean :other_instrument_bass_clarinet
+
+      t.boolean :other_instrument_c_flute
+      t.boolean :other_instrument_piccolo
+      t.boolean :other_instrument_alto_flute
+      t.boolean :other_instrument_bass_flute
+
+      t.boolean :other_instrument_trombone
+      t.boolean :other_instrument_bass_trombone
+
       t.boolean :other_instrument_drum_set
+      t.boolean :other_instrument_mallets
+
+      t.text :other_instruments_you_tell_us
+
+      #####################
 
       t.boolean :percussion_snare
       t.boolean :percussion_timpani
