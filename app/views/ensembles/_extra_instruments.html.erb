@@ -31,6 +31,7 @@
 <% end %>
 
 <% if instrument.trumpet? %>
+<table>
 <tr><td>B&#9837; Trumpet</td><td>C Trumpet</td><td>Piccolo Trumpet</td>
 </tr>
 <tr>
@@ -38,15 +39,18 @@
 <td><%= form.check_box :other_instrument_c_trumpet %></td>
 <td><%= form.check_box :other_instrument_piccolo_trumpet %></td>
 </tr>
+</table>
 <% end %>
 
 <% if instrument.trombone? %>
+<table>
 <tr><td>Tenor Trombone</td><td>Bass Trombone</td>
 </tr>
 <tr>
 <td><%= form.check_box :other_instrument_trombone %></td>
 <td><%= form.check_box :other_instrument_bass_trombone %></td>
 </tr>
+</table>
 <% end %>
 
 <% if instrument.oboe? %>

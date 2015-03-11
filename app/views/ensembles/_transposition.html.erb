@@ -1,14 +1,14 @@
 What keys can you transpose to?
 
-# Applies just to trumpet and horn, and max three
-#    trumpet -- C, B, Eb   horn E, Eb, D
+<!-- Applies just to trumpet and horn, and max three -->
+<!-- trumpet -- C, B, Eb   horn E, Eb, D -->
 
 <% if instrument.trumpet? || instrument.horn? %>
 <table>
 <tr>
   <td><%= instrument.trumpet? ? "C" : "E"%></td>
-  <td><%= instrument.trumpet? ? "B" : "E&#9837;"%></td>
-  <td><%= instrument.trumpet? ? "E&#9837;" : "D"%></td>
+  <td><%= instrument.trumpet? ? "B" : "E"&#9837;%></td>
+  <td><%= instrument.trumpet? ? "E"&#9837; : "D"%></td>
 </tr>
 <tr>
   <td><%= form.check_box :transposition_0 %></td>
