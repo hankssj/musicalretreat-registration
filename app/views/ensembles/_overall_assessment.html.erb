@@ -5,7 +5,8 @@
 <% advanced_text = "You have been actively playing your instrument for many years and have performed with advanced groups (e.g. college groups, audition-only groups).  You know much of the standard repertoire.  If your partners make a mistake, you can often bring them back in without stopping.  You consistently sound excellent on your instrument and aim for cohesive musical expressiveness with attention to fine detail on a first reading." %>
 
 <b>Rate your overall ability in these areas:</b>
-
+<p/>
+<unless %instrument.vocal? %>
 Chamber Music:
 <table>
 <tr>
@@ -23,8 +24,9 @@ Chamber Music:
 <td><%= form.radio_button :overall_rating_chamber, 4 %></td>
 </tr>
 </table>
+<% end %>
 
-<% unless instrument.piano? %>
+<% unless instrument.piano? || instrument.vocal? %>
 <p/>
 Large Ensemble (Band, Orchestra, Chorus):
 <table>
@@ -50,18 +52,16 @@ Large Ensemble (Band, Orchestra, Chorus):
 Sightreading:
 <table>
 <tr>
-   <td><a title=<%= beginner_text %>>Beginner</a></td>
-   <td><a title=<%= novice_text %>>Novice</a></td>
-   <td><a title=<%= intermediate_text %>>Intermediate</a></td>
-   <td><a title=<%= experienced_text %>>Experienced</a></td>
-   <td><a title=<%= advanced_text %>>Advanced</a></td>
+   <td>Poor</td>
+   <td>Average</td>
+   <td>Good</td>
+   <td>Excellent</td>
 </tr>
 <tr>
 <td><%= form.radio_button :overall_rating_sightreading, 0 %></td>
 <td><%= form.radio_button :overall_rating_sightreading, 1 %></td>
 <td><%= form.radio_button :overall_rating_sightreading, 2 %></td>
 <td><%= form.radio_button :overall_rating_sightreading, 3 %></td>
-<td><%= form.radio_button :overall_rating_sightreading, 4 %></td>
 </tr>
 </table>
 

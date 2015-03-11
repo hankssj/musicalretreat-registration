@@ -33,11 +33,24 @@ class CreateEvaluations < ActiveRecord::Migration
       t.boolean :jazz_big_band
 
       # Vocal
-      t.string :most_difficult_piece
+      t.integer :vocal_low_high  # For soprano and alto, 0 is low, 1 is high
+      t.string :vocal_overall_ability  # 0 to 3
+      t.integer :vocal_how_learn # 0 reading music, 1, by ear
+      t.string :vocal_most_difficult_piece
+      t.boolean :vocal_music_theory
+      t.string :vocal_music_theory_year
+      t.boolean :vocal_voice_class
+      t.string :vocal_voice_class_year
+      t.boolean :vocal_voice_lessons
+      t.string :vocal_voice_lessons_year
+      t.string :vocal_small_ensemble_skills # 0,1,2
 
+      
+
+      # Overall assessment
       t.integer :overall_rating_large_ensemble  # should be 0 through 4
       t.integer :overall_rating_chamber
-      t.integer :overall_rating_sightreading
+      t.integer :overall_rating_sightreading  # 0 to 3, poor, average, good, excellent
 
       t.timestamps
     end
