@@ -1,7 +1,7 @@
-<p><%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
+<p><%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %>
 <hr>
 
-<% if (instrument.clarinet? || instrument.flute? || instrument.saxophone?) %>
+<% if instrument.clarinet? || instrument.flute? || instrument.saxophone? %>
 <%= render :partial => "part", :locals => {:form => form, :instrument => instrument} %>
 <hr>
 <% end %>
@@ -12,6 +12,7 @@
 <% if instrument.trumpet? || instrument.horn? %>
 <%= render :partial => "transposition", :locals => {:form => form, :instrument => instrument} %>
 <hr>
+<% end %>
 
 <%= render :partial => "practice_frequency",:locals => {:form => form, :instrument => instrument} %>
 <hr>
