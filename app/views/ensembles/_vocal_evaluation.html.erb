@@ -8,7 +8,8 @@
 
 <!-- Voice part -->
 Rate your overall ability as a singer
-
+</p>
+<table>
 <tr>
 <td><a text="You love to sing but do not sing regularly with a chorus and have had no formal vocal training.">Beginner</a></td>
 <td><a text="You have difficulty reading music at sight, prefer to sing with accompaniment, have sung or are currently singing with a chorus, and have had little to no formal vocal training.">Intermediate</a></td>
@@ -21,6 +22,7 @@ Rate your overall ability as a singer
 <td> <%= form.radio_button :vocal_overall_ability, 2 %></td>
 <td> <%= form.radio_button :vocal_overall_ability, 3 %></td>
 </td>
+</able>
 
 <hr>
 
@@ -28,7 +30,7 @@ Rate your overall ability as a singer
 <hr>
 
 <p>
-<bHow best do you learn a new piece?</b>
+<b>How best do you learn a new piece?</b>
 <%= form.radio_button :vocal_how_learn, 0 %> &nbsp;&nbsp; Reading the Music
 <br>
 <%= form.radio_button :vocal_how_learn, 1 %> &nbsp;&nbsp; By ear, with repetition
@@ -62,7 +64,7 @@ What year? &nbsp; &nbsp; <%= form.text_field :vocal_voice_lessons_year, :size =>
 <hr>
 
 <p>
-<b>Small Ensemble Skills<b>
+<b>Small Ensemble Skills</b>
 <p>
 When singing with a small ensemble, you 
 <ul>
