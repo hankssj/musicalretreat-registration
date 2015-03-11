@@ -9,7 +9,7 @@
 <%= render :partial => "groups", :locals => {:form => form, :instrument => instrument} %>
 <hr>
 
-<% if instrument.trumpet? || instrument.horn?? %>
+<% if instrument.trumpet? || instrument.horn? %>
 <%= render :partial => "transposition", :locals => {:form => form, :instrument => instrument} %>
 <hr>
 
