@@ -48,12 +48,12 @@ class CreateEvaluations < ActiveRecord::Migration
       t.string :vocal_small_ensemble_skills # 0,1,2
 
       # String
-      t.boolean third_position
-      t.boolean fourth_position
-      t.boolean fifth_position
-      t.boolean sixth_position
-      t.boolean seventh_position
-      t.boolean thumb_position
+      t.boolean :third_position
+      t.boolean :fourth_position
+      t.boolean :fifth_position
+      t.boolean :sixth_position
+      t.boolean :seventh_position
+      t.boolean :thumb_position
       
 
       # Overall assessment
