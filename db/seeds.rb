@@ -13,10 +13,10 @@ Instrument.create(:id => 2,  :display_name => "Voice-Alto",  :large_ensemble => 
 Instrument.create(:id => 3,  :display_name => "Voice-Tenor",  :large_ensemble => "chorus", :instrument_type => "vocal")
 Instrument.create(:id => 4,  :display_name => "Voice-Baritone",  :large_ensemble => "chorus", :instrument_type => "vocal")
 Instrument.create(:id => 5,  :display_name => "Voice-Bass",  :large_ensemble => "chorus", :instrument_type => "vocal")
-Instrument.create(:id => 6,  :display_name => "Violin", :large_ensemble => "orchestra", :instrument_type => "string")
-Instrument.create(:id => 7,  :display_name => "Viola", :large_ensemble => "orchestra", :instrument_type => "string")
-Instrument.create(:id => 8,  :display_name => "Cello", :large_ensemble => "orchestra", :instrument_type => "string")
-Instrument.create(:id => 9,  :display_name => "Double Bass", :large_ensemble => "orchestra", :instrument_type => "string")
+Instrument.create(:id => 6,  :display_name => "Violin", :large_ensemble => "festival_or_string_orchestra", :instrument_type => "string")
+Instrument.create(:id => 7,  :display_name => "Viola", :large_ensemble => "festival_or_string_orchestra", :instrument_type => "string")
+Instrument.create(:id => 8,  :display_name => "Cello", :large_ensemble => "festival_or_string_orchestra", :instrument_type => "string")
+Instrument.create(:id => 9,  :display_name => "Double Bass", :large_ensemble => "festival_or_string_orchestra", :instrument_type => "string")
 Instrument.create(:id => 10, :display_name => "Piccolo",  :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
 Instrument.create(:id => 11, :display_name => "Flute",  :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
 Instrument.create(:id => 12, :display_name => "Oboe",  :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
@@ -37,7 +37,7 @@ Instrument.create(:id => 26, :display_name => "Euphonium",  :large_ensemble => "
 Instrument.create(:id => 27, :display_name => "Tuba",  :large_ensemble => "band_or_orchestra", :instrument_type => "brass")
 Instrument.create(:id => 28, :display_name => "Percussion",  :large_ensemble => "band_or_orchestra", :instrument_type => "percussion")
 Instrument.create(:id => 31, :display_name => "Timpani",  :large_ensemble => "band_or_orchestra", :instrument_type => "percussion")
-Instrument.create(:id => 32, :display_name => "Harp",  :large_ensemble => "orchestra", :instrument_type => "string")
+Instrument.create(:id => 32, :display_name => "Harp",  :large_ensemble => "festival_or_string_orchestra", :instrument_type => "string")
 Instrument.create(:id => 34, :display_name => "Piano",  :large_ensemble => "none", :instrument_type => "string")
 
 ####################### Electives ############################

@@ -5,7 +5,8 @@ class CreateEvaluations < ActiveRecord::Migration
       t.integer :instrument_id
       t.string :type
 
-      t.integer :large_ensemble_part   # first or second
+      t.integer :large_ensemble_part   # first or second, 0 or 1
+      t.integer :chamber_ensemble_part   # first or second, 0 or 1
 
       t.boolean :other_instrument_english_horn
       t.boolean :other_instrument_c_trumpet
@@ -29,6 +30,7 @@ class CreateEvaluations < ActiveRecord::Migration
       t.string :composers
 
       # Jazz
+      t.boolean :jazz_want_ensemble
       t.boolean :jazz_small_ensemble
       t.boolean :jazz_big_band
 
@@ -45,6 +47,13 @@ class CreateEvaluations < ActiveRecord::Migration
       t.string :vocal_voice_lessons_year
       t.string :vocal_small_ensemble_skills # 0,1,2
 
+      # String
+      t.boolean third_position
+      t.boolean fourth_position
+      t.boolean fifth_position
+      t.boolean sixth_position
+      t.boolean seventh_position
+      t.boolean thumb_position
       
 
       # Overall assessment
