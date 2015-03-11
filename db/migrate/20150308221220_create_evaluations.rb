@@ -26,7 +26,7 @@ class CreateEvaluations < ActiveRecord::Migration
       t.integer :practicing_how_much       #should be 0 through 2
 
       # Piano
-      b.string :composers
+      t.string :composers
 
       # Jazz
       t.boolean :jazz_small_ensemble
