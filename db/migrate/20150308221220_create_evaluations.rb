@@ -27,9 +27,9 @@ class CreateEvaluations < ActiveRecord::Migration
       t.boolean :other_instrument_piccolo_trumpet
 
       t.boolean :other_instrument_saxophone_soprano
-      t.boolean :other_instrument_saxophone_soprano
-      t.boolean :other_instrument_saxophone_soprano
-      t.boolean :other_instrument_saxophone_soprano
+      t.boolean :other_instrument_saxophone_alto
+      t.boolean :other_instrument_saxophone_tenor
+      t.boolean :other_instrument_saxophone_baritone
 
       t.boolean :other_instrument_bb_clarinet
       t.boolean :other_instrument_a_clarinet
