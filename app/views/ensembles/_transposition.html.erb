@@ -6,9 +6,9 @@ What keys can you transpose to?
 <% if instrument.trumpet? || instrument.horn? %>
 <table>
 <tr>
-  <td><%= if instrument.trumpet? ? "C" : "E"%></td>
-  <td><%= if instrument.trumpet? ? "B" : "E&#9837;"%></td>
-  <td><%= if instrument.trumpet? ? "E&#9837;" : "D"%></td>
+  <td><%= instrument.trumpet? ? "C" : "E"%></td>
+  <td><%= instrument.trumpet? ? "B" : "E&#9837;"%></td>
+  <td><%= instrument.trumpet? ? "E&#9837;" : "D"%></td>
 </tr>
 <tr>
   <td><%= form.check_box :transposition_0 %></td>
