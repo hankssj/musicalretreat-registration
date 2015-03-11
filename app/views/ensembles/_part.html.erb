@@ -11,8 +11,10 @@ What part would you prefer to play?
 Please indicate your seating preference for Symphonic Band
 <table>
 <tr><td>First</td><td>Second</td><td>Piccolo</td></tr>
-<tr><%= form.radio_button :large_ensemble_part, 0 %></td><td><%= form.radio_button :large_ensemble_part,  1%></td><td><%= form.radio_button :large_ensemble_part, 10 %>
-</td></tr>
+<tr><td><%= form.radio_button :large_ensemble_part, 0 %></td>
+    <td><%= form.radio_button :large_ensemble_part, 1%></td>
+    <td><%= form.radio_button :large_ensemble_part, 10 %></td>
+</tr>
 </table>
 
 <% elsif  instrument.clarinet? %>
