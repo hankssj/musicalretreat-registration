@@ -6,24 +6,3 @@
 
 <b>Rate your overall ability in these areas:</b>
 <p/>
-<unless instrument.vocal? %>
-Chamber Music:
-<table>
-<tr>
-   <td><a title=<%= beginner_text %>>Beginner</a></td>
-   <td><a title=<%= novice_text %>>Novice</a></td>
-   <td><a title=<%= intermediate_text %>>Intermediate</a></td>
-   <td><a title=<%= experienced_text %>>Experienced</a></td>
-   <td><a title=<%= advanced_text %>>Advanced</a></td>
-</tr>
-<tr>
-<td><%= form.radio_button :overall_rating_chamber, 0 %></td>
-<td><%= form.radio_button :overall_rating_chamber, 1 %></td>
-<td><%= form.radio_button :overall_rating_chamber, 2 %></td>
-<td><%= form.radio_button :overall_rating_chamber, 3 %></td>
-<td><%= form.radio_button :overall_rating_chamber, 4 %></td>
-</tr>
-</table>
-<% end %>
-
-
