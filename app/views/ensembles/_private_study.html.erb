@@ -1,1 +1,5 @@
-<p>Do you study privately? For how long?</p>
+<p>Do you study privately?</p>
+<table>
+<tr><td>Do you study privately?</td><td><%= form.check_box :studying_privately %></td></tr>
+<tr><td>For how many years?</td><td><%= form.text_field :studying_privately_how_long, :size => 20 %></tr>
+</table>

@@ -1,11 +1,31 @@
-<%= render :partial => "contact_info", :locals => {:instrument => instrument} %>
+<%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %>
 
-<%= render :partial => "groups" %>
-<%= render :partial => "practice_frequency" %>
-<%= render :partial => "sightreading_ability" %>
-<%= render :partial => "private_study" %>
-<%= render :partial => "overall_assessment", :locals => {:form => form} %>
-<%= render :partial => "jazz_experience" %>
+<%= render :partial => "groups", :locals => {:instrument => instrument, :form => form} %>
+<%= render :partial => "practice_frequency", :locals => {:instrument => instrument, :form => form} %>
+<%= render :partial => "private_study", :locals => {:instrument => instrument, :form => form} %>
+<%= render :partial => "jazz_experience", :locals => {:instrument => instrument, :form => form} %>
 
-<%= render :partial => "extra_instruments" %>
+<!-- percussion instruments -->
+<table>
+<tr><td>Snare</td><td>Timpani</td><td>Mallets</td><td>Small Instruments</td><td>Drumset</td></tr>
+<tr>
+    <td><%= form.check_box :percussion_snare %></td>
+    <td><%= form.check_box :percussion_timpani %></td>
+    <td><%= form.check_box :percussion_mallets %></td>
+    <td><%= form.check_box :percussion_small_instruments %></td>
+    <td><%= form.check_box :percussion_drum_set %></td>
+</tr>
+</p>
+<p>
+Please bring Mallets listed <a href="http://musicalretreat.org/mallet-list-percussion-players">here</a>
+</p>
+
+<p>
+<%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %>
+</p>
+
+<p>
+<%= render :partial => "extra_instruments", :locals => {:instrument => instrument, :form => form} %>
+</p>
+
 
