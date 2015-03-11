@@ -9,6 +9,11 @@ class Instrument < ActiveRecord::Base
   def percussion?; instrument_type == "percussion"; end
   def piano?; id == 34; end
 
+  def violin?; id == 6; end
+  def viola?; id == 7; end
+  def cello?; id == 8; end
+  def bass?; id == 9; end
+
   def self.menu_selection
     menu_helper(Instrument.all.reject{|i| i.closed})
   end
