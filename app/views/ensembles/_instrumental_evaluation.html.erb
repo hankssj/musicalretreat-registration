@@ -1,14 +1,18 @@
 <% @instrument = instrumental_evaluation.object.instrument %>
 <h2>Evaluation for <%= @instrument.display_name %></h2>
-<h2> <%= @instrument.instrument_type %>
+<h2> <%= @instrument.instrument_type %></h2>
 
 <% if @instrument.string? %>
+String partial
 <% render :partial => "string_evaluation", :locals => {:instrument => @instrument, :form => instrumental_evaluation} %>
 <% elsif @instrument.brass? %>
+Brass partial
 <% render :partial => "brass_evaluation", :locals => {:instrument => @instrument, :form => instrumental_evaluation} %>
 <% elseif @instrument.woodwind? %>
+Woodwind partial
 <% render :partial => "woodwind_evaluation", :locals => {:instrument => @instrument, :form => instrumental_evaluation} %>
 <% else %>
+Percussion partial
 <% render :partial => "percussion_evaluation", :locals => {:instrument => @instrument, :form => instrumental_evaluation} %>
 <% end %>
 <hr>
