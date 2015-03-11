@@ -1,10 +1,10 @@
-<%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %>
+<p><%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
+<p><%= render :partial => "groups", :locals => {:instrument => instrument, :form => form} %></p>
+<p><%= render :partial => "practice_frequency", :locals => {:instrument => instrument, :form => form} %></p>
+<p><%= render :partial => "private_study", :locals => {:instrument => instrument, :form => form} %></p>
+<p><%= render :partial => "jazz_experience", :locals => {:instrument => instrument, :form => form} %></p>
 
-<%= render :partial => "groups", :locals => {:instrument => instrument, :form => form} %>
-<%= render :partial => "practice_frequency", :locals => {:instrument => instrument, :form => form} %>
-<%= render :partial => "private_study", :locals => {:instrument => instrument, :form => form} %>
-<%= render :partial => "jazz_experience", :locals => {:instrument => instrument, :form => form} %>
-
+<p>
 <!-- percussion instruments -->
 <table>
 <tr><td>Snare</td><td>Timpani</td><td>Mallets</td><td>Small Instruments</td><td>Drumset</td></tr>
@@ -15,17 +15,12 @@
     <td><%= form.check_box :percussion_small_instruments %></td>
     <td><%= form.check_box :percussion_drum_set %></td>
 </tr>
-</p>
-<p>
+</table>
 Please bring Mallets listed <a href="http://musicalretreat.org/mallet-list-percussion-players">here</a>
 </p>
 
-<p>
-<%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %>
-</p>
+<p><%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %></p>
 
-<p>
-<%= render :partial => "extra_instruments", :locals => {:instrument => instrument, :form => form} %>
-</p>
+<p><%= render :partial => "extra_instruments", :locals => {:instrument => instrument, :form => form} %></p>
 
 
