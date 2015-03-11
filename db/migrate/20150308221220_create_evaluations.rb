@@ -8,6 +8,11 @@ class CreateEvaluations < ActiveRecord::Migration
       t.integer :large_ensemble_part     # first second or third, 0,1,2, 10 is reserved for piccolo, 100 - 103 reserved for soprano...sax
       t.integer :chamber_ensemble_part   # 
 
+      # Transpositions for trumpet and horn -- horn E, Eb, D;  trumpet -- C, B, Eb
+      t.boolean :transposition_0
+      t.boolean :transposition_1
+      t.boolean :transposition_2
+
       # Other instruments grouped by primary
       t.boolean :other_instrument_oboe
       t.boolean :other_instrument_english_horn
