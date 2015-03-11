@@ -1,0 +1,17 @@
+<% @instrument = instrumental_evaluation.object.instrument %>
+<h2>Evaluation for <%= instrument.display_name %></h2>
+
+<% if instrument.string? %>
+<% render :partial => "string_evaluation" %>
+<% elsif instrument.brass? %>
+<% render :partial => "brass_evaluation" %>
+<% elseif instrument.woodwind? %>
+<% render :partial => "woodwind_evaluation" %>
+<% else %>
+<% render :partial => "percussion_evaluation" %>
+<% end %>
+
+<%= render :partial => "contact_info", :object => instrumental_evaluation %>
+<%= render :partial => "overall_assessment", :object => instrumental_evaluation %>
+<hr>
+
