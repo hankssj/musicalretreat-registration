@@ -1,0 +1,18 @@
+<p><%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
+<hr>
+<p><%= render :partial => "practice_frequency", :locals => {:instrument => instrument, :form => form} %></p>
+<hr>
+<p><%= render :partial => "private_study", :locals => {:instrument => instrument, :form => form} %></p>
+<hr>
+<p><%= render :partial => "jazz_experience", :locals => {:instrument => instrument, :form => form} %></p>
+<hr>
+<p><%= render :partial => "chamber_frequency", :locals => {:instrument => instrument, :form => form} %></p>
+<hr>
+<p>
+List composers whose works you have recently enjoyed practicing
+<br>
+<%= form.text_field :composers, :size => 20 %>
+</p>
+<hr>
+<p><%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %></p>
+

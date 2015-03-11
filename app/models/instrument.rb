@@ -7,6 +7,7 @@ class Instrument < ActiveRecord::Base
   def brass?; instrument_type == "brass"; end
   def woodwind?; instrument_type == "woodwind"; end
   def percussion?; instrument_type == "percussion"; end
+  def piano?; id == 34; end
 
   def self.menu_selection
     menu_helper(Instrument.all.reject{|i| i.closed})

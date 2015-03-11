@@ -25,6 +25,10 @@ class CreateEvaluations < ActiveRecord::Migration
       t.integer :chamber_music_how_often   #should be 0 through 2
       t.integer :practicing_how_much       #should be 0 through 2
 
+      # Piano
+      b.string :composers
+
+      # Jazz
       t.boolean :jazz_small_ensemble
       t.boolean :jazz_big_band
 
