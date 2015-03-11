@@ -8,7 +8,7 @@ String partial
 <% elsif @instrument.brass? %>
 Brass partial
 <% render :partial => "brass_evaluation", :locals => {:instrument => @instrument, :form => instrumental_evaluation} %>
-<% elseif @instrument.woodwind? %>
+<% elsif @instrument.woodwind? %>
 Woodwind partial
 <% render :partial => "woodwind_evaluation", :locals => {:instrument => @instrument, :form => instrumental_evaluation} %>
 <% else %>
