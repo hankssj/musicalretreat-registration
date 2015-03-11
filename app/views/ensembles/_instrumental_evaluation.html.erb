@@ -1,6 +1,5 @@
 <% @instrument = instrumental_evaluation.object.instrument %>
 <h2>Evaluation for <%= @instrument.display_name %></h2>
-<h2> <%= @instrument.instrument_type %></h2>
 
 <% if @instrument.string? %>
 <%= render :partial => "string_evaluation", :locals => {:instrument => @instrument, :form => instrumental_evaluation} %>
