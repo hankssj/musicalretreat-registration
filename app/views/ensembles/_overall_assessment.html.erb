@@ -25,3 +25,45 @@ Chamber Music:
 </tr>
 </table>
 <% end %>
+
+<!------------------------------------>
+
+<% unless (instrument.piano? || instrument.vocal?) %>
+<p/>
+Large Ensemble (Band, Orchestra, Chorus):
+<table>
+<tr>
+   <td><a title=<%= beginner_text %>>Beginner</a></td>
+   <td><a title=<%= novice_text %>>Novice</a></td>
+   <td><a title=<%= intermediate_text %>>Intermediate</a></td>
+   <td><a title=<%= experienced_text %>>Experienced</a></td>
+   <td><a title=<%= advanced_text %>>Advanced</a></td>
+</tr>
+<tr>
+<td><%= form.radio_button :overall_rating_large_ensemble, 0 %></td>
+<td><%= form.radio_button :overall_rating_large_ensemble, 1 %></td>
+<td><%= form.radio_button :overall_rating_large_ensemble, 2 %></td>
+<td><%= form.radio_button :overall_rating_large_ensemble, 3 %></td>
+<td><%= form.radio_button :overall_rating_large_ensemble, 4 %></td>
+</tr>
+</table>
+<% end %>
+
+<!------------------------------------>
+
+Sightreading:
+<table>
+<tr>
+   <td>Poor</td>
+   <td>Average</td>
+   <td>Good</td>
+   <td>Excellent</td>
+</tr>
+<tr>
+<td><%= form.radio_button :overall_rating_sightreading, 0 %></td>
+<td><%= form.radio_button :overall_rating_sightreading, 1 %></td>
+<td><%= form.radio_button :overall_rating_sightreading, 2 %></td>
+<td><%= form.radio_button :overall_rating_sightreading, 3 %></td>
+</tr>
+</table>
+
