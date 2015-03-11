@@ -1,4 +1,4 @@
-<%= render :partial => "contact_info" %>
+<%= render :partial => "contact_info", :locals => {:instrument => instrument} %>
 
 <%= render :partial => "groups" %>
 <%= render :partial => "practice_frequency" %>
@@ -6,5 +6,5 @@
 <%= render :partial => "private_study" %>
 <%= render :partial => "overall_assessment" %>
 <%= render :partial => "jazz_experience" %>
-<%= render :partial => "extra_instruments" %>
+<%= render :partial => "extra_instruments", :locals => {:instrument => instrument} %>
 
