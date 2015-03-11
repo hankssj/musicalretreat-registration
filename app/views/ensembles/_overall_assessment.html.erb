@@ -4,14 +4,16 @@
 <% experienced_text = "You are familiar with portions of the standard repertoire.  You play in tune and at tempo after a reading or two.  You generally sound good on your instrument, and sight reading is not a problem.  You are attentive to all markings in the score.  You pay attention to blend, balance, dynamics, style, and basic phrasing on a first reading.  If you make a mistake, you can usually get back in without stopping." %>
 <% advanced_text = "You have been actively playing your instrument for many years and have performed with advanced groups (e.g. college groups, audition-only groups).  You know much of the standard repertoire.  If your partners make a mistake, you can often bring them back in without stopping.  You consistently sound excellent on your instrument and aim for cohesive musical expressiveness with attention to fine detail on a first reading." %>
 
+<h2>Rate your overall ability in these areas:</h2>
+
 Chamber Music:
 <table>
 <tr>
-   <td><a href=<%= beginner_text %>>Beginner</a></td>
-   <td><a href=<%= novice_text %>>Novice</a></td>
-   <td><a href=<%= intermediate_text %>>Intermediate</a></td>
-   <td><a href=<%= experienced_text %>>Experienced</a></td>
-   <td><a href=<%= advanced_text %>>Advanced</a></td>
+   <td><a title=<%= beginner_text %>>Beginner</a></td>
+   <td><a title=<%= novice_text %>>Novice</a></td>
+   <td><a title=<%= intermediate_text %>>Intermediate</a></td>
+   <td><a title=<%= experienced_text %>>Experienced</a></td>
+   <td><a title=<%= advanced_text %>>Advanced</a></td>
 </tr>
 <tr>
 <td><%= form.radio_button :overall_rating_chamber, 0 %></td>
@@ -22,14 +24,15 @@ Chamber Music:
 </tr>
 </table>
 
+<p/>
 Large Ensemble (Band, Orchestra, Chorus):
 <table>
 <tr>
-   <td><a href=<%= beginner_text %>>Beginner</a></td>
-   <td><a href=<%= novice_text %>>Novice</a></td>
-   <td><a href=<%= intermediate_text %>>Intermediate</a></td>
-   <td><a href=<%= experienced_text %>>Experienced</a></td>
-   <td><a href=<%= advanced_text %>>Advanced</a></td>
+   <td><a title=<%= beginner_text %>>Beginner</a></td>
+   <td><a title=<%= novice_text %>>Novice</a></td>
+   <td><a title=<%= intermediate_text %>>Intermediate</a></td>
+   <td><a title=<%= experienced_text %>>Experienced</a></td>
+   <td><a title=<%= advanced_text %>>Advanced</a></td>
 </tr>
 <tr>
 <td><%= form.radio_button :overall_rating_large_ensemble, 0 %></td>
@@ -39,14 +42,15 @@ Large Ensemble (Band, Orchestra, Chorus):
 <td><%= form.radio_button :overall_rating_large_ensemble, 4 %></td>
 </tr>
 </table>
+<p/>
 
 Sightreading:
 <tr>
-   <td><a href=<%= beginner_text %>>Beginner</a></td>
-   <td><a href=<%= novice_text %>>Novice</a></td>
-   <td><a href=<%= intermediate_text %>>Intermediate</a></td>
-   <td><a href=<%= experienced_text %>>Experienced</a></td>
-   <td><a href=<%= advanced_text %>>Advanced</a></td>
+   <td><a title=<%= beginner_text %>>Beginner</a></td>
+   <td><a title=<%= novice_text %>>Novice</a></td>
+   <td><a title=<%= intermediate_text %>>Intermediate</a></td>
+   <td><a title=<%= experienced_text %>>Experienced</a></td>
+   <td><a title=<%= advanced_text %>>Advanced</a></td>
 </tr>
 <tr>
 <td><%= form.radio_button :overall_rating_sightreading, 0 %></td>
