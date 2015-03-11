@@ -1,1 +1,7 @@
-<h2>Woodwind evaluation</h2>
+<p><%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
+<hr>
+
+<% if (instrument.violin? || instrument.viola?) %>
+<%= render :partial => "part", :locals => {:form => form, :instrument => instrument} %>
+<hr>
+<% end %>
