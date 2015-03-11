@@ -17,6 +17,7 @@ class Instrument < ActiveRecord::Base
   def flute?; id == 10 || id == 11; end
   def clarinet?; id == 15 || id == 16 || id == 37; end
   def oboe?; id == 12; end
+  def horn?; id == 23; end
   def trumpet?; id == 22; end
   def trombone?; id == 24 || id == 25; end
   def saxophone?; id >= 17 && id <= 21; end
