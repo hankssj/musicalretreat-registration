@@ -1,9 +1,9 @@
-<% @instrument = vocal_evaluation.object.instrument %>
-<% @form = vocal_evaluation %>
+<% instrument = vocal_evaluation.object.instrument %>
+<% form = vocal_evaluation %>
 <hr>                       
-<b>Evaluation for <%= @instrument.display_name %></b>
+<b>Evaluation for <%= instrument.display_name %></b>
 
-<p><%= render :partial => "contact_info", :locals => {:instrument => @instrument, :form => @form} %></p>
+<p><%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
 <hr>
 
 <!-- Voice part -->
