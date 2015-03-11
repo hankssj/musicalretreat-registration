@@ -1,3 +1,6 @@
+<% if instrument.piano? %>
+<%= render :partial => "piano_evaluation", :locals => {:form => form, :instrument => instrument} %>
+<% else %>
 <%= render :partial => "contact_info", :locals => {:instrument => instrument} %>
 
 <%= render :partial => "groups" %>
@@ -7,4 +10,4 @@
 <%= render :partial => "overall_assessment", :locals => {:form => form} %>
 <%= render :partial => "jazz_experience" %>
 <%= render :partial => "extra_instruments", :locals => {:instrument => instrument} %>
-
+<% end %>
