@@ -1,6 +1,6 @@
-<% if Instrument.find(Evaluation.find(contact_info.object.id).instrument_id).instrument_type == "string" %>
+<% if @instrument.instrument_type == "string" %>
 Contact Eileen
-<% elsif Instrument.find(Evaluation.find(contact_info.object.id).instrument_id).instrument_type == "vocal" %>
+<% elsif @instrument.instrument_type == "vocal" %>
 Contact Jason
 <% else %>
 Contact Dan
