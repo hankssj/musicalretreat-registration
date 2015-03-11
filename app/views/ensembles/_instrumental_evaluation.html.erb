@@ -2,11 +2,11 @@
 <hr>                       
 <b>Evaluation for <%= instrument.display_name %></b>
 
-<% if @instrument.string? %>
+<% if instrument.string? %>
 <%= render :partial => "string_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
-<% elsif @instrument.brass? %>
+<% elsif instrument.brass? %>
 <%= render :partial => "brass_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
-<% elsif @instrument.woodwind? %>
+<% elsif instrument.woodwind? %>
 <%= render :partial => "woodwind_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
 <% else %>
 <%= render :partial => "percussion_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
