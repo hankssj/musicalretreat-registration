@@ -66,13 +66,6 @@ class CreateDatabase < ActiveRecord::Migration
         t.datetime "updated_at"
       end
 
-      create_table "instruments", force: true do |t|
-        t.string   "display_name",                 null: false
-        t.boolean  "closed",       default: false
-        t.datetime "created_at"
-        t.datetime "updated_at"
-      end
-
       create_table "invitees", force: true do |t|
         t.string   "email",      null: false
         t.datetime "created_at"
