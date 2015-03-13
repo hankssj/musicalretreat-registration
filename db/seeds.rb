@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+################# Users ############################
+User.create!(:email => "test@test.com", :password => "123456")
+
 ################# Instruments ############################
 
 Instrument.create(:id => 1,  :display_name => "Voice-Soprano",  :large_ensemble => "chorus", :instrument_type => "vocal")
@@ -238,7 +241,4 @@ e = Elective.create(
 :description => "A Choir!  Of Clarinets!! What could be more heavenly?"
 )
 link_elective_to_instruments(e, [15,16,37])
-
-
-
 
