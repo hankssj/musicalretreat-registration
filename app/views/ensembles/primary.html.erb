@@ -8,12 +8,11 @@ so if problems arise please contact us  (800)471-2419   or
 <a href="mailto:midsummer@musicalretreat.org">midsummer@musicalretreat.org</a>.
 You will be asked to review  and confirm your choices at the end.
 </p>
+<p>
+Your Primary Instrument or Voice is <%= @registration.instrument_name %>;  this will be used
+for choice of morning large ensemble.
+</p>
 
-<ul>
-<li>Name: <%= @registration.display_name %>
-<li>Phone: <%= @registration.phone %>
-<li>Email: <%= @registration.email %>
-<li>Primary Instrument or Voice: <%= @registration.instrument_name %>
 </ul>
 
 <%= form_for(@ensemble_primary, :url => {:action => :primary_chamber}) do |form| %>
