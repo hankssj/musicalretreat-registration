@@ -48,6 +48,12 @@ def link_elective_to_instruments(elective, list_of_instrument_ids)
 end
 
 e = Elective.create(
+:name => "Free Time",
+:instructor => "You!",
+:description => "You're not being lazy.  You deserve it!"
+)
+
+e = Elective.create(
 :name => "Composition",
 :instructor => "Roupen Shakarian",
 :description => "The composition class is a workshop for those who are already working on a piece or would like to have input on their completed work(s). Prior experience and knowledge of intermediate theory is required."
@@ -82,7 +88,7 @@ link_elective_to_instruments(e, [6,7,8,9])
 e = Elective.create(
 :name => "Flute Choir",
 :instructor => "Faculty",
-:description => "A choir!  Of Flutes!!  Lots of flutes.  The more the better!!"
+:description => "A choir!  Of Flutes!!  Lots of flutes!!!  The more flutes the better!!!!"
 )
 link_elective_to_instruments(e, [11,10])
 

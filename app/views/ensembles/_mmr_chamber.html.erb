@@ -1,2 +1,37 @@
-<h2>MMR Chamber</h2>
+<b>MMR-Arranged Chamber Group</b>
+<p>
+What instrument will you be playing in this group?<br>
 <%= mmr_chamber.select :instrument_id, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
+</p>
+
+<!---------------------------------->
+<p>
+<i>The following should only appear if the instrument selection above is 
+a jazz instrument as defined by anInstrument.jazz? </i>
+</p>
+
+<p>
+MMR now has a collection of Jazz scores for various ensembles including some with non-standard instrumentation. We also have two outstanding Jazz performers and teachers on the faculty.
+</p>
+
+<p>
+I am interested in a small Jazz Ensemble or Combo&nbsp
+<br>
+<%= mmr_chamber.check_box :jazz_ensemble %>
+</p>
+<!---------------------------------->
+<p>
+<i>The following should only appear if the instrument selection above is 
+a string instrument as defined by anInstrument.string? </i>
+</p>
+
+<p>
+I am a Beginner or Novice with string chamber music and would like to be 
+assigned to a Chamber Ensemble with more than one player on a part. 
+<br>
+<%= mmr_chamber.check_box :string_novice %>
+
+<!---------------------------------->
+
+<hr>
+
