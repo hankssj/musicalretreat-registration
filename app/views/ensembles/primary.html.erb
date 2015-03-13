@@ -1,8 +1,20 @@
-<h1>Ensemble Choosing First Page:  Intro material and large ensemble</h1>
-<p>Choosing ensembles for <%= @registration.display_name %></p>
-<p>Your primary instrument is <%= @registration.instrument.display_name %></p>
-<% @large_ensemble_option = Instrument.find(@registration.instrument_id).large_ensemble %>
-<p>Your large ensemble option is <%= @large_ensemble_option %></p>
+<h1>Midsummer Musical Retreat Ensemble and Elective Choices</h1>
+
+<p>
+Welcome to MMR <%= Year.this_year %>. This web form will lead you through requesting 
+the Elective and Ensemble program you prefer. You will also complete the self-evaluations 
+needed by the Faculty to plan the best possible program for you.  This is a new format 
+so if problems arise please contact us  (800)471-2419   or  
+<a href="mailto:midsummer@musicalretreat.org">midsummer@musicalretreat.org</a>.
+You will be asked to review  and confirm your choices at the end.
+</p>
+
+<ul>
+<li>Name: <%= @registration.full_name %>
+<li>Phone: <%= @registration.phone %>
+<li>Email: <%= @registration.email %>
+<li>Primary Instrument or Voice: <%= @registration.instrument.display_name %>
+</ul>
 
 <%= form_for(@ensemble_primary, :url => {:action => :primary_chamber}) do |form| %>
 <%= form.hidden_field :registration_id %>

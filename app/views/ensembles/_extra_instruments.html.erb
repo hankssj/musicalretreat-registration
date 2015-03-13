@@ -8,6 +8,7 @@
 <% end %>
 
 <% if instrument.flute? %>
+<table>
 <tr><td>C Flute</td><td>Piccolo</td><td>Alto Flute</td><td>Bass Flute</td>
 </tr>
 <tf>
@@ -16,6 +17,7 @@
 <td><%= form.check_box :other_instrument_alto_flute %></td>
 <td><%= form.check_box :other_instrument_bass_flute %></td>
 </tr>
+</table>
 <% end %>
 
 <% if instrument.flute? %>

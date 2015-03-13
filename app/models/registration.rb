@@ -31,6 +31,10 @@ class Registration < ActiveRecord::Base
     first_name + " " + last_name
   end
 
+  def phone
+    home_phone || cell_phone || work_phone
+  end
+
   ## for sorting
   def sort_name
     return last_name + " " + first_name

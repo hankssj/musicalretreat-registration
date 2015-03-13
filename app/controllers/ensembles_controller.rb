@@ -18,6 +18,7 @@ class EnsemblesController < ApplicationController
       redirect_to :controller => :registration, :action => "index"
     end
     @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
+    @large_ensemble_option = Instrument.find(@registration.instrument_id).large_ensemble
     flash[:ensemble_primary_id] = @ensemble_primary.id
   end
 
