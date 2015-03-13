@@ -37,6 +37,8 @@ class EnsemblesController < ApplicationController
       pc.instrument_id = @ensemble_primary.registration.instrument_id
       pc.save!
     end
+    @num_mmr = num_mmr
+    @num_prearranged = num_prearranged
     flash[:ensemble_primary_id] = @ensemble_primary.id
   end
 
