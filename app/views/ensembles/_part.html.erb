@@ -21,8 +21,10 @@ Please indicate your seating preference for Symphonic Band
 Please indicate your seating preference for Symphonic Band:
 <table>
 <tr><td>First</td><td>Second</td><td>Third</td></tr>
-<tr><%= form.radio_button :large_ensemble_part, 0 %></td><td><%= form.radio_button :large_ensemble_part,  1%></td><td><%= form.radio_button :large_ensemble_part, 2 %>
-</td></tr>
+<tr><td><%= form.radio_button :large_ensemble_part, 0 %></td>
+  <td><%= form.radio_button :large_ensemble_part,  1%></td>
+  <td><%= form.radio_button :large_ensemble_part, 2 %></td>
+</tr>
 </table>
 
 <% elsif  instrument.saxophone_nonspecific? %>
