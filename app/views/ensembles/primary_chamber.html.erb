@@ -1,8 +1,8 @@
 <h1>Chamber Music Choices</h1>
 
 Now give us some information about your chamber music choices.  You have asked to 
-be assigned to <%= @num_mmr %> <%= group.pluralize(@num_mmr) %> put together by 
-MMR and <%= @num_prearranged %> <%= group.pluralize(@num_prearranged) %> you will pre-arrange.
+be assigned to <%= @num_mmr %> <%= "group".pluralize(@num_mmr) %> put together by 
+MMR and <%= @num_prearranged %> <%= "group".pluralize(@num_prearranged) %> you will pre-arrange.
 
 <%= form_for @ensemble_primary, url: {action: "chamber_elective", method: "post"} do |form| %>
    <%= form.hidden_field :id %>
