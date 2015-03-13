@@ -10,10 +10,10 @@ You will be asked to review  and confirm your choices at the end.
 </p>
 
 <ul>
-<li>Name: <%= @registration.full_name %>
+<li>Name: <%= @registration.display_name %>
 <li>Phone: <%= @registration.phone %>
 <li>Email: <%= @registration.email %>
-<li>Primary Instrument or Voice: <%= @registration.instrument.display_name %>
+<li>Primary Instrument or Voice: <%= @registration.instrument_name %>
 </ul>
 
 <%= form_for(@ensemble_primary, :url => {:action => :primary_chamber}) do |form| %>
