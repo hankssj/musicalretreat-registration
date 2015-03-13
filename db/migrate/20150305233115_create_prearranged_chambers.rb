@@ -8,6 +8,7 @@ class CreatePrearrangedChambers < ActiveRecord::Migration
       t.text    :participant_names
       t.boolean :bring_own_music
       t.string  :music_composer_and_name
+      t.string  :notes
       t.timestamps
     end
   end
