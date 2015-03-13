@@ -1,5 +1,12 @@
 <h2>Evaluations</h2>
-You need evals for: <%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(id).display_name}.join(",") %>
+<p>
+In order to place you appropriately, the faculty 
+needs an assessment of your level of experience in the instruments you will be playing
+in large ensemble, chamber groups, and electives.  
+</p>
+<p>
+You will now fill out evaluations for: 
+<%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(id).display_name}.join(",") %>
 
 <%= form_for @ensemble_primary, url: {action: "evaluation_summary", method: "post"} do |form| %>
    <%= form.hidden_field :id %>
