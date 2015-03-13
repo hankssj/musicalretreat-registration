@@ -69,9 +69,11 @@ class FileMakerContact
 
   def self.newContactID
     min_contact_id = 5000
-    1 + [User.find(:all).map{|u|u.contact_id}.compact.sort.reverse.first, min_contact_id].max
+    contact_ids = User.all.map(&:contact_id).compact
+    return min_contact_id if contact_ids.empty?
+    1 + [contact_ids.sort.reverse.first, min_contact_id].max
   end
-  
+
   def self.setContactID(registration)
     load unless @@records
     user = registration.user
