@@ -5,7 +5,7 @@ class CreateMmrChambers < ActiveRecord::Migration
       t.column :instrument_id, :int
       t.column :string_novice, :boolean
       t.column :jazz_ensemble, :boolean
-
+      t.column :notes, :text
       t.timestamps
     end
   end
