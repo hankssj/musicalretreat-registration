@@ -52,6 +52,8 @@ for choice of morning large ensemble.
 <h1> I don't know what to render for large ensemble choice <%= @large_option_ensemble %>  Help!!</h1>
 <% end %>
 
+<p><i>This partial should be suppressed if the @large_ensemble_choice above is 0 </i></p>
+
 <%= render :partial => "part_large_ensemble", :locals => {:form => form, :instrument => @instrument} %>
 
 <hr/>
