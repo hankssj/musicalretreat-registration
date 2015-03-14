@@ -176,7 +176,6 @@ class CreateDatabase < ActiveRecord::Migration
     drop_table "cancelled_payments";
     drop_table "downloads";
     drop_table "events";
-    drop_table "instruments";
     drop_table "invitees";
     drop_table "payments";
     drop_table "registrations";

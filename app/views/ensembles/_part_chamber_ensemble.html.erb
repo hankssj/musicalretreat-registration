@@ -1,0 +1,10 @@
+<% if instrument.string? %>
+What part would you prefer to play in Chamber Ensembles?
+<table>
+<tr><td>First</td><td>Second</td></tr>
+<tr><td><%= form.radio_button :chamber_ensemble_part, 0 %></td>
+    <td><%= form.radio_button :chamber_ensemble_part, 1 %></td>
+</tr>
+</table>
+<% end %>
+

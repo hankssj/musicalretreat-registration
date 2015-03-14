@@ -51,6 +51,9 @@ for choice of morning large ensemble.
 <% else %>
 <h1> I don't know what to render for large ensemble choice <%= @large_option_ensemble %>  Help!!</h1>
 <% end %>
+
+<%= render :partial => "part_large_ensemble", :locals => {:form => form} %>
+
 <hr/>
 <h2>Chamber Ensembles</h2>
 
