@@ -1,4 +1,5 @@
 <% if instrument.string? %>
+
 <p>
 What part would you prefer to play in the orchestra?
 </p>
@@ -7,9 +8,13 @@ What part would you prefer to play in the orchestra?
 <tr><td><%= form.radio_button :large_ensemble_part, 0 %></td>
     <td><%= form.radio_button :large_ensemble_part, 1 %></td>
 </tr>
-
+</table>
 <% elsif  instrument.flute? %>
-Please indicate your seating preference for Symphonic Band
+
+<p>
+Please indicate your seating preference for Symphonic Band<
+/p>
+
 <table>
 <tr><td>First</td><td>Second</td><td>Piccolo</td></tr>
 <tr><td><%= form.radio_button :large_ensemble_part, 0 %></td>
@@ -19,7 +24,10 @@ Please indicate your seating preference for Symphonic Band
 </table>
 
 <% elsif  instrument.clarinet? %>
+<p>
 Please indicate your seating preference for Symphonic Band:
+</p>
+
 <table>
 <tr><td>First</td><td>Second</td><td>Third</td></tr>
 <tr><td><%= form.radio_button :large_ensemble_part, 0 %></td>
@@ -29,7 +37,10 @@ Please indicate your seating preference for Symphonic Band:
 </table>
 
 <% elsif  instrument.saxophone_nonspecific? %>
+<p>
 Please indicate your preferred saxophone voice for Symphonic Band:
+</p>
+
 <table>
 <tr><td>Soprano</td><td>Alto</td><td>Tenor</td><td>Baritone</td></tr>
 <tr>
