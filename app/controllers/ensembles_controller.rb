@@ -18,7 +18,7 @@ class EnsemblesController < ApplicationController
       redirect_to :controller => :registration, :action => "index"
     end
     @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
-    @registration = @ensemble_primary
+    @registration = @ensemble_primary.registration
     @instrument = @registration.instrument
     @large_ensemble_option = @instrument.large_ensemble
     flash[:ensemble_primary_id] = @ensemble_primary.id
