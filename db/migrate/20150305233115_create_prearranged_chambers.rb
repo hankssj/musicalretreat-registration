@@ -4,6 +4,7 @@ class CreatePrearrangedChambers < ActiveRecord::Migration
       t.integer :ensemble_primary_id
       t.boolean :i_am_contact
       t.string  :contact_name
+      t.string  :contact_email
       t.integer :instrument_id
       t.text    :participant_names
       t.boolean :bring_own_music

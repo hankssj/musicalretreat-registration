@@ -222,13 +222,6 @@ e = Elective.create(
 link_elective_to_instruments(e, [6,7,8,9])
 
 e = Elective.create(
-:name => "Vocal Chamber Music Ensemble",
-:instructor => "Faculty",
-:description => "Join coached vocal ensembles. Vocal skills self-evaluation is required. You will be assigned to a chamber ensemble by the vocal coordinator."
-)
-link_elective_to_instruments(e, [1,2,3,4,5])
-
-e = Elective.create(
 :name => "And the Beat Goes On... ",
 :instructor => "Michael Burch-Pesses",
 :description => "Before Melody and Harmony came Rhythm. Immerse yourself in the  fundamental tool of the singer or instrumentalist."

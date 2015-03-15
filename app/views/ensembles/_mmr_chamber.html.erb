@@ -6,14 +6,15 @@ What instrument will you be playing in this group?<br>
 
 <!---------------------------------->
 <p>
-<i>The following should only appear if the instrument selection above is 
-a jazz instrument as defined by anInstrument.jazz? </i>
+<i>The following text and check box should only appear if the instrument selection above is 
+a jazz instrument as defined by anInstrument.jazz? and should change as the value for @instrument_menu_selection changes</i>
 </p>
 
 <p>
 MMR now has a collection of Jazz scores for various ensembles including some with non-standard instrumentation. We also have two outstanding Jazz performers and teachers on the faculty.
 </p>
 
+<if
 <p>
 I am interested in a small Jazz Ensemble or Combo&nbsp
 <br>
@@ -22,7 +23,7 @@ I am interested in a small Jazz Ensemble or Combo&nbsp
 <!---------------------------------->
 <p>
 <i>The following should only appear if the instrument selection above is 
-a string instrument as defined by anInstrument.string? </i>
+a string instrument as defined by anInstrument.string? and should change as the value for @instrument_menu_selection changes</i>
 </p>
 
 <p>
@@ -35,7 +36,7 @@ assigned to a Chamber Ensemble with more than one player on a part.
 <p>
 Other comments, questions, or requests:
 <br>
-<%= mmr_chamber.text_area :notes, :rows => 5, :columns => 50 %>
+<%= mmr_chamber.text_area :notes, :rows => 5, :columns => 80 %>
 
 <!---------------------------------->
 

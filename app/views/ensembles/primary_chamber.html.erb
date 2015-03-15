@@ -1,8 +1,12 @@
-<h1>Chamber Music Choices</h1>
+<h1>Chamber Ensemble Choices</h1>
+
+<i>This page should be skipped if the selection on the previous page is 0 (no chamber ensembles)</i>
 
 Now give us some information about your chamber music choices.  You have asked to 
 be assigned to <%= @num_mmr %> <%= "group".pluralize(@num_mmr) %> put together by 
 MMR and <%= @num_prearranged %> <%= "group".pluralize(@num_prearranged) %> you will pre-arrange.
+
+<hr>
 
 <%= form_for @ensemble_primary, url: {action: "chamber_elective", method: "post"} do |form| %>
    <%= form.hidden_field :id %>
