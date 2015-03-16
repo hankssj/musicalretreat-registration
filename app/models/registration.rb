@@ -366,7 +366,7 @@ class Registration < ActiveRecord::Base
   end
 
   def self.default_filename
-    dir = "/home/deploy/Dropbox/FileMakerDownloads/#{Time.now.strftime('%Y')}"
+    dir = "/home/deploy/Dropbox/FilemakerDownloads/#{Time.now.strftime('%Y')}"
     type = "registrations"
     timestring = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
     Time.now.strftime("#{dir}/#{type}-#{timestring}.txt")
