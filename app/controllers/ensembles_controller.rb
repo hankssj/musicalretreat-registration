@@ -5,23 +5,31 @@ class EnsemblesController < ApplicationController
   before_filter :authorize, :only => [:primary]
 
   def primary
-    user = User.find(session[:user_id])
-    if user && user.has_current_registration
-      @registration = user.most_recent_registration
-      unless @registration.instrument_id
-        flash[:notice] = "You registered as a non-particpant -- no ensemble choice for you"
-        redirect_to :controller => :registration, :action => :index
-      end
+    if !session[:user_id]
+      flash[:notice] = "Please log in first"
+      redirect_to :controller => :registration, :action => :index
     else
-      flash[:notice] = "You do not have a current registration"
-      Event.log("#{user.email} tried to choose ensembles but no registration")
-      redirect_to :controller => :registration, :action => "index"
+      user = User.find(session[:user_id])
+      if user.nil?
+        flash[:notice] = "Please log in first"
+        redirect_to :controller => :registration, :action => :index
+      elsif !user.has_current_registration
+        flash[:notice] = "You need to register first"
+        redirect_to :controller => :registration, :action => :index
+      else
+        @registration = user.most_recent_registration
+        unless @registration.instrument_id
+          flash[:notice] = "You registered as a non-particpant -- no ensemble choice for you"
+          redirect_to :controller => :registration, :action => :index
+        else
+          @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
+          @registration = @ensemble_primary.registration
+          @instrument = @registration.instrument
+          @large_ensemble_option = @instrument.large_ensemble
+          flash[:ensemble_primary_id] = @ensemble_primary.id
+        end
+      end
     end
-    @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
-    @registration = @ensemble_primary.registration
-    @instrument = @registration.instrument
-    @large_ensemble_option = @instrument.large_ensemble
-    flash[:ensemble_primary_id] = @ensemble_primary.id
   end
 
   def primary_chamber
