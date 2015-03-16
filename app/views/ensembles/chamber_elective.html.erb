@@ -1,5 +1,12 @@
-<h2>Elective Selection</h2>
+<h2>Elective Preferences</h2>
+<p>
+In this section you will rank your elective choices from 1 to 5.  This is a ranking
+for electives only.  Your chamber selections will be prioritized higher than electives
+unless you tell us otherwise (use the comments box on the Summary page to do so).
+</p>
+
 <p>Hover over elective name for more information</p>
+
 <%= form_tag "/ensembles/elective_evaluation" do %>
 <table>
 <%= render partial: "elective_choice", collection: @electives %>

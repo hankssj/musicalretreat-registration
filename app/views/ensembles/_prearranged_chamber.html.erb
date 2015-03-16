@@ -10,7 +10,13 @@
 <li> Contact person email: &nbsp;&nbsp <%= prearranged_chamber.text_field :contact_email, :size => 20 %>
 <li> <i>The rest of the fields should be visible only if the user checks YES to "I am contact"</i>
 <li> Names and instruments of other participants: <br> <%= prearranged_chamber.text_area :participant_names, :rows => 5, :columns => 40 %>
-<li> Are you bringing your own music? <%= prearranged_chamber.check_box :bring_own_music  %>
+<li> Are you bringing your own music? 
+<table>
+<tr><td>No</td><td>Yes</td></tr>
+<tr><td><%= prearranged_chamber.radio_button :bring_own_music, false, {:checked => true}  %></td>
+    <td><%= prearranged_chamber.radio_button :bring_own_music, true, {:checked => true}  %></td>
+</tr>
+
 <li> <i>The following field should be visible only if the previous check box is checked</i>
 <li> Composer and name of piece: &nbsp;&nbsp <%= prearranged_chamber.text_field :music_composer_and_name, :size => 80 %>
 <li><i>The following field (notes) should be visible to everybody</i>
