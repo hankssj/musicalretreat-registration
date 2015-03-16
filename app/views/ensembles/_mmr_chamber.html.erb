@@ -16,9 +16,14 @@ MMR now has a collection of Jazz scores for various ensembles including some wit
 
 <if
 <p>
-I am interested in a small Jazz Ensemble or Combo&nbsp
-<br>
-<%= mmr_chamber.check_box :jazz_ensemble %>
+I am interested in a small Jazz Ensemble or Combo
+<table>
+<tr><td>No</td><td>Yes</td></tr>
+<tr><td><%= mmr_chamber.radio_button :jazz_ensemble, false, {:checked => true} %></td>
+    <td><%= mmr_chamber.radio_button :jazz_ensemble, true %></td>
+</tr>
+</table>
+
 </p>
 <!---------------------------------->
 <p>
@@ -29,8 +34,12 @@ a string instrument as defined by anInstrument.string? and should change as the 
 <p>
 I am a Beginner or Novice with string chamber music and would like to be 
 assigned to a Chamber Ensemble with more than one player on a part. 
-<br>
-<%= mmr_chamber.check_box :string_novice %>
+<table>
+<tr><td>No</td><td>Yes</td></tr>
+<tr><td><%= mmr_chamber.radio_button :string_novice, false, {:checked => true} %></td>
+    <td><%= mmr_chamber.radio_button :string_novice, true %></td>
+</tr>
+</table>
 
 <!---------------------------------->
 <p>
