@@ -79,7 +79,7 @@ class Payment < ActiveRecord::Base
   end
 
   def self.default_filename
-    dir = "/home1/musical9/Dropbox/MMR/FileMakerRegistration/OnlineRegistrationUploads"
+    dir = "/home/deploy/Dropbox/FileMakerDownloads/#{Time.now.strftime('%Y')}"
     type = "payments"
     timestring = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
     Time.now.strftime("#{dir}/#{type}-#{timestring}.txt")
