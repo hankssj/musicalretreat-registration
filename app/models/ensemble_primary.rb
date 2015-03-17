@@ -11,10 +11,10 @@ class EnsemblePrimary < ActiveRecord::Base
 
   validates :large_ensemble_part, 
      presence: { message: "You must provide additional informations about your morning large ensemble choice", on: :create }, 
-     unless: => lambda{|e| e.large_ensemble_choice == -1}
+     unless: lambda{|e| e.large_ensemble_choice == -1}
 
   validates :chamber_ensemble_choice, presence: { message: "You must specify yours chamber ensemble preferences" }, 
-     if: => lambda{|e| e.step == :afternoon_ensembles_and_electives }
+     if: lambda{|e| e.step == :afternoon_ensembles_and_electives }
       
   accepts_nested_attributes_for :mmr_chambers
   accepts_nested_attributes_for :prearranged_chambers
