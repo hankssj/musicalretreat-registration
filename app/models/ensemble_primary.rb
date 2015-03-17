@@ -7,11 +7,11 @@ class EnsemblePrimary < ActiveRecord::Base
   has_and_belongs_to_many :electives
 
   validates :large_ensemble_choice,
-      presence: { message: "Morning large assemble choice is required", on: :create }
+      presence: { message: "Morning large ensemble choice is required", on: :create }
 
-  validates :large_ensemble_part, 
-     presence: { message: "You must provide additional informations about your morning large ensemble choice", on: :create }, 
-     unless: lambda{|e| e.large_ensemble_choice == -1}
+  #validates :large_ensemble_part, 
+  #   presence: { message: "You must provide additional informations about your morning large ensemble choice", on: :create }, 
+  #   unless: lambda{|e| e.large_ensemble_choice == -1}
 
   validates :chamber_ensemble_choice, presence: { message: "You must specify yours chamber ensemble preferences" }, 
      if: lambda{|e| e.step == :afternoon_ensembles_and_electives }
