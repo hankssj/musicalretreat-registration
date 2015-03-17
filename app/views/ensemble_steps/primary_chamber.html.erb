@@ -8,7 +8,7 @@ MMR and <%= @num_prearranged %> <%= "group".pluralize(@num_prearranged) %> you w
 
 <hr>
 
-<%= form_for @ensemble_primary, url: {action: "chamber_elective", method: "post"} do |form| %>
+<%= form_for @ensemble_primary, url: wizard_path, method: :put do |form| %>
    <%= form.hidden_field :id %>
 
    <%= form.fields_for :mmr_chambers do |mmr_chamber| %>

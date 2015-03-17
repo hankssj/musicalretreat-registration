@@ -8,7 +8,7 @@ in large ensemble, chamber groups, and electives.
 You will now fill out evaluations for: 
 <%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(id).display_name}.join(",") %>
 
-<%= form_for @ensemble_primary, url: {action: "evaluation_summary", method: "post"} do |form| %>
+<%= form_for @ensemble_primary, url: wizard_path, method: :put do |form| %>
    <%= form.hidden_field :id %>
 
    <%= form.fields_for :evaluations do |evaluation| %>
