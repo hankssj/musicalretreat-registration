@@ -32,6 +32,8 @@ RegistrationDevelopment::Application.routes.draw do
   get  "registration/confirm_registration"
   get  "registration/done"
 
+  resources :ensembles, only: [:new, :create]
+  resources :ensemble_steps, only: [:index, :show, :update]
   resources :registration
 
   get "login/change_password"

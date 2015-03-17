@@ -6,9 +6,15 @@ class EnsemblePrimary < ActiveRecord::Base
   has_many :evaluations
   has_and_belongs_to_many :electives
 
+  validates :large_ensemble_choice,
+    presence: { message: "Morning large assemble choice is required", on: :create }
+  validates :large_ensemble_part, presence: { message: "You must provide additional informations about your morning large ensemble choice", on: :create }, unless: -> (e) { e.large_ensemble_choice == -1 }
+  validates :chamber_ensemble_choice, presence: { message: "You must specify yours chamber ensemble preferences" }, if: -> (e) { e.step == :afternoon_ensembles_and_electives }
   accepts_nested_attributes_for :mmr_chambers
   accepts_nested_attributes_for :prearranged_chambers
   accepts_nested_attributes_for :evaluations
+
+  attr_accessor :step
 
   def elective_ranks
     ensemble_primary_elective_ranks

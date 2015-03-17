@@ -7,7 +7,7 @@ unless you tell us otherwise (use the comments box on the Summary page to do so)
 
 <p>Hover over elective name for more information</p>
 
-<%= form_tag "/ensembles/elective_evaluation" do %>
+<%= form_tag wizard_path, method: :put do %>
 <table>
 <%= render partial: "elective_choice", collection: @electives %>
 </table>

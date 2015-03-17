@@ -1,4 +1,4 @@
 <% @submit_text = 'Register'; @action = 'create'; @disabled = false; @show_payments = false; %>
 <!-- ----------------------------------------------------------------- -->
-<%= render :partial => 'errors' %>
+<%= render :partial => 'shared/errors', locals: { subject: @registration } %>
 <%= render :partial => 'reg_form' %>
