@@ -1,53 +1,52 @@
-<b>MMR-Arranged Chamber Group</b>
-<p>
-What instrument will you be playing in this group?<br>
-<%= mmr_chamber.select :instrument_id, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
-</p>
+<tr class="reg-form-section-title">
+  <td>
+    MMR-Arranged Chamber Group
+  </td>
+</tr>
 
-<!---------------------------------->
-<p>
-<i>The following text and check box should only appear if the instrument selection above is 
-a jazz instrument as defined by anInstrument.jazz? and should change as the value for @instrument_menu_selection changes</i>
-</p>
+<tr>
+  <td class="reg-form-column chamber-group-partial">
+    <p>
+      What instrument will you be playing in this group?<br>
+      <%= mmr_chamber.select :instrument_id, options_for_select(Instrument.unclosed.map{ |i| [i.display_name, i.id, {'data-type'=>i.instrument_type}]}, @ensemble_primary.registration.instrument_id), {}, { class: 'arranged-chamber-group-instrument' } %>
+    </p>
 
+<div class='only-for-jazz'>
 <p>
 MMR now has a collection of Jazz scores for various ensembles including some with non-standard instrumentation. We also have two outstanding Jazz performers and teachers on the faculty.
 </p>
 
-<if
 <p>
 I am interested in a small Jazz Ensemble or Combo
+</p>
 <table>
 <tr><td>No</td><td>Yes</td></tr>
 <tr><td><%= mmr_chamber.radio_button :jazz_ensemble, false, {:checked => true} %></td>
     <td><%= mmr_chamber.radio_button :jazz_ensemble, true %></td>
 </tr>
 </table>
+</div>
 
-</p>
-<!---------------------------------->
-<p>
-<i>The following should only appear if the instrument selection above is 
-a string instrument as defined by anInstrument.string? and should change as the value for @instrument_menu_selection changes</i>
-</p>
-
+<div class='only-for-string'>
 <p>
 I am a Beginner or Novice with string chamber music and would like to be 
 assigned to a Chamber Ensemble with more than one player on a part. 
+</p>
 <table>
 <tr><td>No</td><td>Yes</td></tr>
 <tr><td><%= mmr_chamber.radio_button :string_novice, false, {:checked => true} %></td>
     <td><%= mmr_chamber.radio_button :string_novice, true %></td>
 </tr>
 </table>
+</div>
 
 <!---------------------------------->
 <p>
 Other comments, questions, or requests:
 <br>
-<%= mmr_chamber.text_area :notes, :rows => 5, :columns => 80 %>
+<%= mmr_chamber.text_area :notes, :rows => 5, :cols => 40 %>
 
 <!---------------------------------->
-
-<hr>
+  </td>
+</tr>
 

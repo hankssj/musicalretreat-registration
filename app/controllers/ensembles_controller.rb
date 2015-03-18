@@ -11,13 +11,13 @@ class EnsemblesController < ApplicationController
       flash[:notice] = "You registered as a non-particpant -- no ensemble choice for you"
       redirect_to :controller => :registration, :action => :index
     else
-      @ensemble_primary = EnsemblePrimary.new(:registration_id => @registration.id)
+      @ensemble_primary = @registration.ensemble_primaries.build
     end
   end
 
   def create
-    @registration = @user.most_recent_registration
-    @ensemble_primary = EnsemblePrimary.new(post_params)
+    @ensemble_primary = @user.most_recent_registration
+      .ensemble_primaries.build(post_params)
     if @ensemble_primary.save
       session[:ensemble_primary_id] = @ensemble_primary.id
       redirect_to ensemble_steps_path

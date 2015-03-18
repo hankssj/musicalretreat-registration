@@ -4,23 +4,27 @@ class EnsemblePrimary < ActiveRecord::Base
   has_many :prearranged_chambers
   has_many :ensemble_primary_elective_ranks
   has_many :evaluations
-  has_and_belongs_to_many :electives
 
+  validates :registration, presence: true
   validates :large_ensemble_choice,
       presence: { message: "Morning large ensemble choice is required", on: :create }
 
-  #validates :large_ensemble_part, 
-  #   presence: { message: "You must provide additional informations about your morning large ensemble choice", on: :create }, 
-  #   unless: lambda{|e| e.large_ensemble_choice == -1}
+  validates :large_ensemble_part,
+     presence: { message: "You must provide additional informations about your morning large ensemble choice", on: :create },
+     if: lambda{|e| e.large_ensemble_choice != 0 && (e.instrument.string? || e.instrument.flute? || e.instrument.clarinet? || e.instrument.saxophone_nonspecific?) }
 
   validates :chamber_ensemble_choice, presence: { message: "You must specify yours chamber ensemble preferences" }, 
-     if: lambda{|e| e.step == :afternoon_ensembles_and_electives }
+    if: lambda{|e| e.step === :afternoon_ensembles_and_electives }
+
+  validates_associated :mmr_chambers, message: 'Arranged Chamber Group is invalid'
+  validates_associated :prearranged_chambers, message: 'Prearranged Chamber is invalid'
       
   accepts_nested_attributes_for :mmr_chambers
   accepts_nested_attributes_for :prearranged_chambers
   accepts_nested_attributes_for :evaluations
 
   attr_accessor :step
+  delegate :instrument, to: :registration
 
   def elective_ranks
     ensemble_primary_elective_ranks
@@ -34,6 +38,9 @@ class EnsemblePrimary < ActiveRecord::Base
     Instrument.find(default_instrument_id)
   end
 
+  def no_chamber_ensembles?
+    chamber_ensemble_choice == 0
+  end
   def need_eval_for
     instrument_ids = (mmr_chambers + prearranged_chambers + ensemble_primary_elective_ranks).map(&:instrument_id) + [default_instrument_id]
     instrument_ids.compact.uniq.reject{|x| x <= 0}

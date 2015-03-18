@@ -11,7 +11,7 @@
   <tr  width="100%" class="reg-form-section-title"><td>Payments</td></tr>
   <tr><td class="reg-form-column" height="100%">
       <table>
-	<% if @registration.payments && @registration.payments.size > 0%>
+	<% if @registration.payments && @registration.payments.length > 0%>
         <% for payment in @registration.payments %>
         <%= render :partial => "payment", :object => payment %>
         <% end %>

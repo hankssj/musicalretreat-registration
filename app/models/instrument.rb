@@ -1,6 +1,8 @@
 class Instrument < ActiveRecord::Base
   has_and_belongs_to_many :electives
+  has_many :mmr_chambers
 
+  scope :unclosed, lambda { where(closed: false) }
   def vocal?; instrument_type == "vocal"; end
   def instrumental?; !vocal?; end
   def string?; instrument_type == "string"; end

@@ -6,17 +6,11 @@ class EnsembleStepsController < ApplicationController
     @ensemble_primary = EnsemblePrimary.find(session[:ensemble_primary_id])
     case step
     when :primary_chamber
+      skip_step if @ensemble_primary.no_chamber_ensembles?
       @instrument_menu_selection = Instrument.menu_selection
       num_mmr, num_prearranged = EnsemblePrimary.parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)
-      num_mmr.times.each{|i| MmrChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
-      num_prearranged.times.each{|i| PrearrangedChamber.create!(:ensemble_primary_id => @ensemble_primary.id)}
-      unless @ensemble_primary.prearranged_chambers.empty?
-        pc = @ensemble_primary.prearranged_chambers.first
-        pc.instrument_id = @ensemble_primary.registration.instrument_id
-        pc.save!
-      end
-      @num_mmr = num_mmr
-      @num_prearranged = num_prearranged
+      num_mmr.times.each{|i| @ensemble_primary.mmr_chambers.build }
+      num_prearranged.times.each{|i| @ensemble_primary.prearranged_chambers.build(instrument: @ensemble_primary.registration.instrument) }
       flash[:ensemble_primary_id] = @ensemble_primary.id
     when :chamber_elective
       @electives = Elective.all
@@ -96,7 +90,7 @@ class EnsembleStepsController < ApplicationController
     @ensemble_primary = EnsemblePrimary.find(session[:ensemble_primary_id])
     case step
     when :primary_chamber, :afternoon_ensembles_and_electives, :elective_evaluation
-      @ensemble_primary.update_attributes(post_params.merge(step: step))
+      @ensemble_primary.update_attributes(post_params)
       @instrument_menu_selection = Instrument.menu_selection
     when :chamber_elective
       id_keys = params.keys.select{|k| k =~ /^id_\d+$/}.reject{|k| params[k].empty?}
@@ -114,7 +108,6 @@ class EnsembleStepsController < ApplicationController
                                            :rank => rank)
       end
     end
-    @ensemble_primary = EnsemblePrimary.find(session[:ensemble_primary_id])
 
     # NOTE -- this gets rid of all evaluations then creates new empty ones.
     # Not appropriate for edit situations!
@@ -125,6 +118,8 @@ class EnsembleStepsController < ApplicationController
                          :instrument_id => iid,
                          :type => Instrument.find(iid).instrumental? ? "InstrumentalEvaluation" : "VocalEvaluation")
     end
+
+    @ensemble_primary.step = step
     render_wizard @ensemble_primary
   end
 
@@ -132,16 +127,29 @@ class EnsembleStepsController < ApplicationController
 
   def post_params
     params.require(:ensemble_primary).permit(
-                                             :registration_id,
-                                             :primary_instrument_id,
-                                             :large_ensemble_choice,
-                                             :chamber_ensemble_choice,
-                                             :ack_no_morning_ensemble,
-                                             :want_sing_in_chorus,
-                                             :want_percussion_in_band,
-                                             :mmr_chambers,
-                                             :prearranged_chambers
-                                             )
-
+      :registration_id,
+      :primary_instrument_id,
+      :large_ensemble_choice,
+      :chamber_ensemble_choice,
+      :ack_no_morning_ensemble,
+      :want_sing_in_chorus,
+      :want_percussion_in_band,
+      mmr_chambers_attributes: [
+        :instrument_id,
+        :jazz_ensamble,
+        :string_novice,
+        :notes
+      ],
+      prearranged_chambers_attributes: [
+        :instrument_id,
+        :i_am_contact,
+        :contact_name,
+        :contact_email,
+        :participant_names,
+        :bring_own_music,
+        :music_composer_and_name,
+        :notes
+      ]
+    )
   end
 end

@@ -1,31 +1,89 @@
-<b>Prearranged Chamber</b>
-<ul>
-<li>I am the contact person for this ensemble &nbsp;&nbsp;
-    <%= prearranged_chamber.radio_button :i_am_contact, false, {:checked => true} %> &nbsp;&nbsp; No &nbsp;&nbsp;
-    <%= prearranged_chamber.radio_button :i_am_contact, true %> &nbsp;&nbsp; Yes &nbsp;&nbsp;
-<li> I am playing this instrument in the ensemble: &nbsp;&nbsp
-    <%= prearranged_chamber.select :instrument_id, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
-<li> <i>The next item should be visible only if the user checks NO to "I am contact"</i>
-<li> Contact person name: &nbsp;&nbsp <%= prearranged_chamber.text_field :contact_name, :size => 20 %>
-<li> Contact person email: &nbsp;&nbsp <%= prearranged_chamber.text_field :contact_email, :size => 20 %>
-<li> <i>The rest of the fields should be visible only if the user checks YES to "I am contact"</i>
-<li> Names and instruments of other participants: <br> <%= prearranged_chamber.text_area :participant_names, :rows => 5, :columns => 40 %>
-<li> Are you bringing your own music? 
-<table>
-<tr><td>No</td><td>Yes</td></tr>
-<tr><td><%= prearranged_chamber.radio_button :bring_own_music, false, {:checked => true}  %></td>
-    <td><%= prearranged_chamber.radio_button :bring_own_music, true, {:checked => true}  %></td>
+<tr class="reg-form-section-title">
+  <td>
+    Prearranged Chamber
+  </td>
 </tr>
+<tr>
+  <td class="reg-form-column chamber-group-partial">
 
-<li> <i>The following field should be visible only if the previous check box is checked</i>
-<li> Composer and name of piece: &nbsp;&nbsp <%= prearranged_chamber.text_field :music_composer_and_name, :size => 80 %>
-<li><i>The following field (notes) should be visible to everybody</i>
-</ul>
-
-<!---------------------------------->
-<p>
-Other comments, questions, or requests:
-<br>
-<%= prearranged_chamber.text_area :notes, :rows => 5, :columns => 80 %>
-</p>
-
+    <table width='70%'>
+      <tr>
+        <td>
+          I am playing this instrument in the ensemble:
+        </td>
+        <td colspan='2'>
+          <%= prearranged_chamber.select :instrument_id, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          I am the contact person for this ensemble
+        </td>
+        <td>
+          <%= prearranged_chamber.radio_button :i_am_contact, false, {checked: true, class: 'is-contact'} %> No
+        </td>
+        <td>
+          <%= prearranged_chamber.radio_button :i_am_contact, true, {class: 'is-contact'} %> Yes
+        </td>
+      </tr>
+      
+          <tr class='non-contact-person-form'>
+            <td>
+              Contact person name:
+            </td>
+            <td colspan='2'>
+              <%= prearranged_chamber.text_field :contact_name, :size => 20 %>
+            </td>
+          </tr>
+          <tr class='non-contact-person-form'>
+            <td>
+              Contact person email:
+            </td>
+            <td colspan='2'>
+              <%= prearranged_chamber.text_field :contact_email, :size => 20 %>
+            </td>
+          </tr>
+            <tr class='contact-person-form'>
+              <td colspan='3'>
+                Names and instruments of other participants:
+              </td>
+            </tr>
+            <tr class='contact-person-form'>
+              <td colspan='3'>
+                <%= prearranged_chamber.text_area :participant_names, :rows => 5, :cols => 40 %>
+              </td>
+            </tr>
+            <tr class='contact-person-form'>
+              <td>
+                Are you bringing your own music? 
+              </td>
+              <td>
+                <%= prearranged_chamber.radio_button :bring_own_music, false, {:checked => true, class: 'own-music'}  %> No
+              </td>
+              <td>
+                <%= prearranged_chamber.radio_button :bring_own_music, true, {class: 'own-music'} %> Yes
+              </td>
+            </tr>
+                <tr class='contact-person-form own-music-form'>
+                  <td colspan='3'>
+                    Composer and name of piece:
+                  </td>
+                </tr>
+                <tr class='contact-person-form own-music-form'>
+                  <td colspan='3'>
+                    <%= prearranged_chamber.text_field :music_composer_and_name, :size => 80 %>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan='3'>
+                    Other comments, questions, or requests:
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan='3'>
+                    <%= prearranged_chamber.text_area :notes, :rows => 5, :cols => 40 %>
+                  </td>
+                </tr>
+              </table>
+  </td>
+</tr>

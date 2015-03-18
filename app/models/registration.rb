@@ -3,6 +3,7 @@ class Registration < ActiveRecord::Base
   belongs_to :user
   has_many :payments
   belongs_to :instrument
+  has_many :ensemble_primaries
 
   # Validation:  first and last name not empty; first line of street address, city, state, zip not empty
   # Phone numbers validate

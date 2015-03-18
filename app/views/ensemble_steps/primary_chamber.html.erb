@@ -1,16 +1,23 @@
-<h1>Chamber Ensemble Choices</h1>
-
-<i>This page should be skipped if the selection on the previous page is 0 (no chamber ensembles)</i>
-
-Now give us some information about your chamber music choices.  You have asked to 
-be assigned to <%= @num_mmr %> <%= "group".pluralize(@num_mmr) %> put together by 
-MMR and <%= @num_prearranged %> <%= "group".pluralize(@num_prearranged) %> you will pre-arrange.
-
-<hr>
-
+<div id="main">
+<%= render :partial => 'shared/errors', locals: { subject: @ensemble_primary } %>
+<div id="reg-form-main">
 <%= form_for @ensemble_primary, url: wizard_path, method: :put do |form| %>
-   <%= form.hidden_field :id %>
+<table width="100%">
+  <tr class="reg-form-section-title">
+    <td>
+      Chamber Ensemble Choices
+    </td>
+  </tr>
 
+  <tr>
+    <td class="reg-form-column">
+      <p>
+        Now give us some information about your chamber music choices.  You have asked to 
+        be assigned to <%= @num_mmr %> <%= "group".pluralize(@num_mmr) %> put together by 
+        MMR and <%= @num_prearranged %> <%= "group".pluralize(@num_prearranged) %> you will pre-arrange.
+      </p>
+    </td>
+  </tr>
    <%= form.fields_for :mmr_chambers do |mmr_chamber| %>
       <%= render :partial => "mmr_chamber", :object => mmr_chamber %>
    <% end %>
@@ -18,5 +25,10 @@ MMR and <%= @num_prearranged %> <%= "group".pluralize(@num_prearranged) %> you w
       <%= render :partial => "prearranged_chamber", :object => prearranged_chamber %>
    <% end %>
 <p/>
-<%= submit_tag "Submit" %>
+<tr>
+  <td class="reg-form-column">
+<%= submit_tag "Next" %>
+  </td>
+</tr>
+</table>
 <% end %>
