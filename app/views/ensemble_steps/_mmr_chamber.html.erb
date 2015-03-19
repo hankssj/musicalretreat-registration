@@ -8,7 +8,7 @@
   <td class="reg-form-column chamber-group-partial">
     <p>
       What instrument will you be playing in this group?<br>
-      <%= mmr_chamber.select :instrument_id, options_for_select(Instrument.unclosed.map{ |i| [i.display_name, i.id, {'data-type'=>i.instrument_type}]}, @ensemble_primary.registration.instrument_id), {}, { class: 'arranged-chamber-group-instrument' } %>
+      <%= mmr_chamber.select :instrument_id, options_for_select(Instrument.unclosed.map{ |i| [i.display_name, i.id, {'data-jazz'=>i.jazz?, 'data-string'=>i.string?}]}, @ensemble_primary.registration.instrument_id), {}, { class: 'arranged-chamber-group-instrument' } %>
     </p>
 
 <div class='only-for-jazz'>

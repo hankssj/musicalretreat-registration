@@ -23,7 +23,7 @@ class EnsemblePrimary < ActiveRecord::Base
   accepts_nested_attributes_for :prearranged_chambers
   accepts_nested_attributes_for :evaluations
 
-  attr_accessor :step
+  attr_accessor :step, :choosed_prearranged_ensembles, :choosed_assigned_ensembles
   delegate :instrument, to: :registration
 
   def elective_ranks
@@ -75,5 +75,4 @@ class EnsemblePrimary < ActiveRecord::Base
     end
     [num_mmr, num_prearranged]
   end
-
 end

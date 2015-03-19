@@ -42,37 +42,9 @@ Please Keep in Mind:
 
 <tr>
   <td class="reg-form-column">
-<table>
-<tr>
-  <td>I do not want to play or sing in a chamber ensemble</td>
-  <td><%= form.radio_button :chamber_ensemble_choice, 0%></td>
-</tr>
-<tr>
-  <td>Please assign me one ensemble that will meet one session per day</td>
-  <td><%= form.radio_button :chamber_ensemble_choice, 1, {:checked => true} %></td>
-</tr>
-<tr>
-  <td>I am coming with one pre-arranged ensemble for one coached session; I do not want a second ensemble</td>
-  <td><%= form.radio_button :chamber_ensemble_choice, 2%></td>
-</tr>
-<tr>
-  <td>Please assign me two ensembles, each one session per day</td>
-  <td><%= form.radio_button :chamber_ensemble_choice, 3%></td>
-</tr>
-<tr>
-  <td>I am coming with one pre-arranged ensemble for one coached session; please assign me a second ensemble</td>
-  <td><%= form.radio_button :chamber_ensemble_choice, 4%></td>
-</tr>
-<tr>
-  <td>I am coming with one pre-arranged ensemble and would like two coached sessions per day</td>
-  <td><%= form.radio_button :chamber_ensemble_choice, 5%></td>
-</tr>
-<tr>
-  <td>I am coming with two pre-arranged ensembles and would like one coached sessions per day for each</td>
-  <td><%= form.radio_button :chamber_ensemble_choice, 6%></td>
-</tr>
-</table>
-<p/>
+  <%= form.hidden_field :chamber_ensemble_choice, value: 0 %>
+  <%= form.select :choosed_prearranged_ensembles, PrearrangedChamber.ensemble_options, {}, { class: 'ensembles_select' } %>
+  <%= form.select :choosed_assigned_ensembles, MmrChamber.ensemble_options, {}, { class: 'ensembles_select' } %>
 <%= submit_tag "Next" %>
 </td>
 </tr>
