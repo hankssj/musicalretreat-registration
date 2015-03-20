@@ -5,7 +5,7 @@
 <table width="100%">
   <tr class="reg-form-section-title">
     <td>
-      Chamber Ensemble Choices
+      Chamber Ensemble Preferences
     </td>
   </tr>
 
@@ -13,16 +13,16 @@
     <td class="reg-form-column">
       <p>
         Now give us some information about your chamber music choices.  You have asked to 
-        be assigned to <%= @num_mmr %> <%= "group".pluralize(@num_mmr) %> put together by 
+        be assigned to <%= @num_assigned %> <%= "group".pluralize(@num_assigned) %> assigned by
         MMR and <%= @num_prearranged %> <%= "group".pluralize(@num_prearranged) %> you will pre-arrange.
       </p>
     </td>
   </tr>
-   <%= form.fields_for :mmr_chambers do |mmr_chamber| %>
-      <%= render :partial => "mmr_chamber", :object => mmr_chamber %>
-   <% end %>
    <%= form.fields_for :prearranged_chambers do |prearranged_chamber| %>
       <%= render :partial => "prearranged_chamber", :object => prearranged_chamber %>
+   <% end %>
+   <%= form.fields_for :mmr_chambers do |mmr_chamber| %>
+      <%= render :partial => "mmr_chamber", :object => mmr_chamber %>
    <% end %>
 <p/>
 <tr>

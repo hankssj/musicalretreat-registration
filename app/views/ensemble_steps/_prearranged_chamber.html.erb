@@ -1,6 +1,6 @@
 <tr class="reg-form-section-title">
   <td>
-    Prearranged Chamber
+    Prearranged Chamber Group
   </td>
 </tr>
 <tr>
@@ -9,24 +9,20 @@
     <table width='70%'>
       <tr>
         <td>
-          I am playing this instrument in the ensemble:
-        </td>
-        <td colspan='2'>
+          What instrument are you playing this instrument in the ensemble? &nbsp;&nbsp;&nbsp;
           <%= prearranged_chamber.select :instrument_id, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
         </td>
       </tr>
       <tr>
-        <td>
-          I am the contact person for this ensemble
-        </td>
-        <td>
-          <%= prearranged_chamber.radio_button :i_am_contact, false, {checked: true, class: 'is-contact'} %> No
-        </td>
-        <td>
-          <%= prearranged_chamber.radio_button :i_am_contact, true, {class: 'is-contact'} %> Yes
+	<td>Each prearranged group must have a designated contact person, who will provide additional information about the group.</td>
+      </tr>
+      <tr>
+        <td>Are you the contact person for this ensemble? &nbsp;&nbsp;&nbsp;
+          <%= prearranged_chamber.radio_button :i_am_contact, false, {checked: true, class: 'is-contact'} %> &nbsp;&nbsp;No
+          &nbsp;&nbsp;&nbsp;
+          <%= prearranged_chamber.radio_button :i_am_contact, true, {class: 'is-contact'} %> &nbsp;&nbsp;Yes
         </td>
       </tr>
-      
           <tr class='non-contact-person-form'>
             <td>
               Contact person name:
@@ -55,13 +51,9 @@
             </tr>
             <tr class='contact-person-form'>
               <td>
-                Are you bringing your own music? 
-              </td>
-              <td>
-                <%= prearranged_chamber.radio_button :bring_own_music, false, {:checked => true, class: 'own-music'}  %> No
-              </td>
-              <td>
-                <%= prearranged_chamber.radio_button :bring_own_music, true, {class: 'own-music'} %> Yes
+                Are you bringing your own music? &nbsp;&nbsp;&nbsp;
+                 <%= prearranged_chamber.radio_button :bring_own_music, false, {:checked => true, class: 'own-music'}  %> &nbsp;&nbsp;No
+                 &nbsp;&nbsp;&nbsp;<%= prearranged_chamber.radio_button :bring_own_music, true, {class: 'own-music'} %>&nbsp;&nbsp; Yes
               </td>
             </tr>
                 <tr class='contact-person-form own-music-form'>
@@ -81,7 +73,7 @@
                 </tr>
                 <tr>
                   <td colspan='3'>
-                    <%= prearranged_chamber.text_area :notes, :rows => 5, :cols => 40 %>
+                    <%= prearranged_chamber.text_area :notes, :rows => 5, :cols => 80 %>
                   </td>
                 </tr>
               </table>

@@ -8,9 +8,9 @@ class EnsembleStepsController < ApplicationController
     when :primary_chamber
       skip_step if @ensemble_primary.no_chamber_ensembles?
       @instrument_menu_selection = Instrument.menu_selection
-      num_mmr, num_prearranged = EnsemblePrimary.parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)
-      num_mmr.times.each{|i| @ensemble_primary.mmr_chambers.build }
-      num_prearranged.times.each{|i| @ensemble_primary.prearranged_chambers.build(instrument: @ensemble_primary.registration.instrument) }
+      @num_assigned, @num_prearranged = EnsemblePrimary.parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)
+      @num_assigned.times.each{|i| @ensemble_primary.mmr_chambers.build }
+      @num_prearranged.times.each{|i| @ensemble_primary.prearranged_chambers.build(instrument: @ensemble_primary.registration.instrument) }
       flash[:ensemble_primary_id] = @ensemble_primary.id
     when :chamber_elective
       @electives = Elective.all
