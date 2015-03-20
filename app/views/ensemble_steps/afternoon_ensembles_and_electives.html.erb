@@ -42,7 +42,7 @@ Please Keep in Mind:
   <tr>
     <table>
       <tr>
-	<td class="reg-form-column">Prearranged Groups</td><td><td class="reg-form-column">Assigned Groups</td></tr>
+	<td>Prearranged Groups</td><td>Assigned Groups</td></tr>
       <tr>
 	<td><%= form.select :choosed_prearranged_ensembles, PrearrangedChamber.ensemble_options, {}, { class: 'ensembles_select' } %></td>
 	<td><%= form.select :choosed_assigned_ensembles, MmrChamber.ensemble_options, {}, { class: 'ensembles_select' } %></td>
@@ -51,7 +51,7 @@ Please Keep in Mind:
   </tr>
 </table>
 
-<%= submit_tag "Next" %>
+<p><%= submit_tag "Next" %></p>
 <% end %>
 </div>
 </div>
