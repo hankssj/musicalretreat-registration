@@ -6,10 +6,10 @@
 <tr>
   <td class="reg-form-column chamber-group-partial">
 
-    <table width='70%'>
+    <table width='80%'>
       <tr>
         <td>
-          What instrument are you playing this instrument in the ensemble? &nbsp;&nbsp;&nbsp;
+          What instrument are you playing in this ensemble? &nbsp;&nbsp;
           <%= prearranged_chamber.select :instrument_id, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
         </td>
       </tr>
@@ -17,9 +17,9 @@
 	<td>Each prearranged group must have a designated contact person, who will provide additional information about the group.</td>
       </tr>
       <tr>
-        <td>Are you the contact person for this ensemble? &nbsp;&nbsp;&nbsp;
+        <td>Are you the contact person for this ensemble? &nbsp;&nbsp;
           <%= prearranged_chamber.radio_button :i_am_contact, false, {checked: true, class: 'is-contact'} %> &nbsp;&nbsp;No
-          &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;
           <%= prearranged_chamber.radio_button :i_am_contact, true, {class: 'is-contact'} %> &nbsp;&nbsp;Yes
         </td>
       </tr>

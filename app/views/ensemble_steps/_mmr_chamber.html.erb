@@ -1,13 +1,13 @@
 <tr class="reg-form-section-title">
   <td>
-    MMR-Arranged Chamber Group
+    Assigned Chamber Group
   </td>
 </tr>
 
 <tr>
   <td class="reg-form-column chamber-group-partial">
     <p>
-      What instrument will you be playing in this group?<br>
+      What instrument are you playing in this group?&nbsp;&nbsp;
       <%= mmr_chamber.select :instrument_id, options_for_select(Instrument.unclosed.map{ |i| [i.display_name, i.id, {'data-jazz'=>i.jazz?, 'data-string'=>i.string?}]}, @ensemble_primary.registration.instrument_id), {}, { class: 'arranged-chamber-group-instrument' } %>
     </p>
 
@@ -17,34 +17,35 @@ MMR now has a collection of Jazz scores for various ensembles including some wit
 </p>
 
 <p>
-I am interested in a small Jazz Ensemble or Combo
-</p>
-<table>
-<tr><td>No</td><td>Yes</td></tr>
-<tr><td><%= mmr_chamber.radio_button :jazz_ensemble, false, {:checked => true} %></td>
-    <td><%= mmr_chamber.radio_button :jazz_ensemble, true %></td>
-</tr>
-</table>
+Would you like to be assigned to a small Jazz Ensemble or Combo?
+&nbsp;&nbsp;
+<%= mmr_chamber.radio_button :jazz_ensemble, false, {:checked => true} %>
+&nbsp;&nbsp;
+No
+&nbsp;&nbsp;
+<%= mmr_chamber.radio_button :jazz_ensemble, true %>
+&nbsp;&nbsp;
+Yes
 </div>
 
 <div class='only-for-string'>
 <p>
-I am a Beginner or Novice with string chamber music and would like to be 
-assigned to a Chamber Ensemble with more than one player on a part. 
-</p>
-<table>
-<tr><td>No</td><td>Yes</td></tr>
-<tr><td><%= mmr_chamber.radio_button :string_novice, false, {:checked => true} %></td>
-    <td><%= mmr_chamber.radio_button :string_novice, true %></td>
-</tr>
-</table>
+(Beginners and Novices): Would like to be assigned to a Chamber Ensemble with more than one player on a part?
+&nbsp;&nbsp; 
+<%= mmr_chamber.radio_button :string_novice, false, {:checked => true} %>
+&nbsp;&nbsp;
+No
+&nbsp;&nbsp;
+<%= mmr_chamber.radio_button :string_novice, true %>
+&nbsp;&nbsp;
+Yes
 </div>
 
 <!---------------------------------->
 <p>
 Other comments, questions, or requests:
 <br>
-<%= mmr_chamber.text_area :notes, :rows => 5, :cols => 40 %>
+<%= mmr_chamber.text_area :notes, :rows => 5, :cols => 80 %>
 
 <!---------------------------------->
   </td>
