@@ -9,10 +9,11 @@
     <table width='80%'>
       <tr>
         <td>
-          What instrument are you playing in this ensemble? &nbsp;&nbsp;
+          What instrument are you playing in this group? &nbsp;&nbsp;&nbsp;
           <%= prearranged_chamber.select :instrument_id, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
         </td>
       </tr>
+      <tr height="20"><td/></tr>
       <tr>
 	<td>Each prearranged group must have a designated contact person, who will provide additional information about the group.</td>
       </tr>
@@ -25,18 +26,12 @@
       </tr>
           <tr class='non-contact-person-form'>
             <td>
-              Contact person name:
-            </td>
-            <td colspan='2'>
-              <%= prearranged_chamber.text_field :contact_name, :size => 20 %>
+              Contact person name:  &nbsp;&nbsp;&nbsp;<%= prearranged_chamber.text_field :contact_name, :size => 20 %>
             </td>
           </tr>
           <tr class='non-contact-person-form'>
             <td>
-              Contact person email:
-            </td>
-            <td colspan='2'>
-              <%= prearranged_chamber.text_field :contact_email, :size => 20 %>
+              Contact person email: &nbsp;&nbsp;&nbsp;<%= prearranged_chamber.text_field :contact_email, :size => 20 %>
             </td>
           </tr>
             <tr class='contact-person-form'>
