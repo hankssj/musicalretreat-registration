@@ -6,9 +6,9 @@ class MmrChamber < ActiveRecord::Base
 
   def self.ensemble_options
     [
-      ['No assigned groups', 0],
-      ['One assigned group', 1],
-      ['Two assigned groups', 2]
+      ['No assigned groups                     ', 0],
+      ['One assigned group                     ', 1],
+      ['Two assigned groups                    ', 2]
     ]
   end
 end
