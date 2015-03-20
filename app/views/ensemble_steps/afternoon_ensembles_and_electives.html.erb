@@ -39,10 +39,12 @@ Please Keep in Mind:
       Chamber Ensemble Preferences
     </td>
   </tr>
+  <tr><td height="20"></td></tr>
   <tr>
     <table>
       <tr>
-	<td>Prearranged Groups</td><td>Assigned Groups</td></tr>
+	<td style="text-align:center"><b>Prearranged Groups</b></td>
+        <td style="text-align:center">Assigned Groups</td></tr>
       <tr>
 	<td><%= form.select :choosed_prearranged_ensembles, PrearrangedChamber.ensemble_options, {}, { class: 'ensembles_select' } %></td>
 	<td><%= form.select :choosed_assigned_ensembles, MmrChamber.ensemble_options, {}, { class: 'ensembles_select' } %></td>
@@ -51,7 +53,7 @@ Please Keep in Mind:
   </tr>
 </table>
 
-<p><%= submit_tag "Next" %></p>
+<%= submit_tag "Next" :class => "reg-form-button" %></p>
 <% end %>
 </div>
 </div>
