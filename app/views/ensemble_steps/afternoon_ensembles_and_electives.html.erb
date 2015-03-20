@@ -32,23 +32,26 @@ Please Keep in Mind:
 </ul>
   </td>
 </tr>
+  <%= form.hidden_field :chamber_ensemble_choice, value: 0 %>
 
   <tr class="reg-form-section-title">
     <td>
       Chamber Ensemble Preferences
     </td>
   </tr>
+  <tr>
+    <table>
+      <tr>
+	<td class="reg-form-column">Prearranged Groups</td><td><td class="reg-form-column">Assigned Groups</td></tr>
+      <tr>
+	<td><%= form.select :choosed_prearranged_ensembles, PrearrangedChamber.ensemble_options, {}, { class: 'ensembles_select' } %></td>
+	<td><%= form.select :choosed_assigned_ensembles, MmrChamber.ensemble_options, {}, { class: 'ensembles_select' } %></td>
+      </tr>
+    </table>
+  </tr>
+</table>
 
-
-<tr>
-  <td class="reg-form-column">
-  <%= form.hidden_field :chamber_ensemble_choice, value: 0 %>
-  <%= form.select :choosed_prearranged_ensembles, PrearrangedChamber.ensemble_options, {}, { class: 'ensembles_select' } %>
-  <%= form.select :choosed_assigned_ensembles, MmrChamber.ensemble_options, {}, { class: 'ensembles_select' } %>
 <%= submit_tag "Next" %>
-</td>
-</tr>
-  </table>
 <% end %>
 </div>
 </div>
