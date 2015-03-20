@@ -16,6 +16,8 @@ class Instrument < ActiveRecord::Base
   def cello?; id == 8; end
   def bass?; id == 9; end
 
+  def doubled_parts?;  violin? || viola? || cello?; end
+
   def flute?; id == 10 || id == 11; end
   def clarinet?; id == 15 || id == 16 || id == 37; end
   def oboe?; id == 12; end
