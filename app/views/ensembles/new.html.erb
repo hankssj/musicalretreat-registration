@@ -62,6 +62,7 @@
 <tr><td>I understand that I will not be assigned a Morning Large Ensemble</td><td><%= form.check_box :ack_no_morning_ensemble %></td></tr>
 <tr><td>I would like to sing in the Festival Chorus</td><td><%= form.check_box :want_sing_in_chorus %></td></tr>
 <tr><td>I would like to talk to a faculty member about playing percussion in Symphonic Band</td><td><%= form.check_box :want_percussion_in_band %></td></tr>
+</table>
 <% else %>
 <h1> I don't know what to render for large ensemble choice <%= @large_option_ensemble %>  Help!!</h1>
 <% end %>
