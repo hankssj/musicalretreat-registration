@@ -7,7 +7,8 @@ class CreateEnsemblePrimaries < ActiveRecord::Migration
       t.integer :large_ensemble_part       # Same as chamber_ensemble_part in Evaluation.
                                            # 0,1,2 for first second or third. 10 is reserved for piccolo, 
                                            # 100 - 103 reserved for soprano,alto,tenor,baritone sax
-      t.boolean :ack_no_morning_ensemble
+
+      # These are for instruments w/o a large ensemble (currently only piano)
       t.boolean :want_sing_in_chorus
       t.boolean :want_percussion_in_band
 
