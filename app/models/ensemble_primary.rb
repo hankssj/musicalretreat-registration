@@ -66,7 +66,7 @@ class EnsemblePrimary < ActiveRecord::Base
      "Two prearranged chamber groups"][chamber_ensemble_choice]
   end
 
-  def text_for_morning_enemble_choice
+  def text_for_morning_ensemble_choice
     if large_ensemble_choice < 1 
       "You will not be assigned a large ensemble."
     else
