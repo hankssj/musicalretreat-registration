@@ -1,5 +1,6 @@
 <ul>
-<li>Your afternoon chamber group preference is <%= ensemble_primary.text_for_chamber_music_choice %>
+<li>Your afternoon chamber group preference
+  <ul><li><%= ensemble_primary.text_for_chamber_music_choice %></li></ul></li>
 <%= render :partial => "summary_mmr_chamber_line", :collection => ensemble_primary.mmr_chambers %>
 <%= render :partial => "summary_prearranged_chamber_line", :collection => ensemble_primary.prearranged_chambers %>
 </ul>
