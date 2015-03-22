@@ -1,17 +1,28 @@
-<h2>Summary</h2>
+<h2>Ensemble Preferences Summary</h2>
 
+Thank you;  your ensemble preferences are complete
 <ul>
-<li>Your name is <%= @ensemble_primary.registration.display_name %>
-<li>Your primary instrument is <%= @ensemble_primary.primary_instrument.display_name %>
-<li>Your large ensemble choice is <%= EnsemblePrimary.enum_name(:large_ensemble_choice, @ensemble_primary.large_ensemble_choice) %>
-<li>Your chamber music choice is <%= EnsemblePrimary.enum_name(:chamber_ensemble_choice, @ensemble_primary.chamber_ensemble_choice) %>
-<li>Your elective choices in order are: 
-<ul>
-<%= render :partial => "elective_summary_line", :collection => @ensemble_primary.elective_ranks.sort{|er1, er2| er1.rank <=> er2.rank} %>
+<li>Contact Information
+    <ul>
+      <li>Name:  <%= @ensemble_primary.registration.display_name %></li>
+      <li>Email: <%= @ensemble_primary.registration.email %>
+    </ul>
+<li>Morning Ensemble
+  <%= render :partial => "summary_morning_ensemble", :locals => {:ensemble_primary => @ensemble_primary} %>
+<li>Chamber Groups
+  <%= render :partial => "summary_chamber_groups", :locals => {:ensemble_primary => @ensemble_primary} %>
+<li>Electives
+  <%= render :partial => "summary_electives", :locals => {:ensemble_primary => @ensemble_primary} %>
+<li>Evaluations
+  <%= render :partial => "summary_evaluations", :locals => {:ensemble_primary => @ensemble_primary} %>
 </ul>
-<li>You filled out evaluations for: <%= @ensemble_primary.evaluations.map{|e|e.instrument.display_name}.join(",") %>
-</li>
 
-
+<center>
+<table width="75%">
+  <tr><td width="50%"> <%= button_to "DONE", {:controller => :registration, :action => :index} %></td>
+      <td width="50%"> <%= button_to "CANCEL", {:action => :cancel} %></td>
+  </tr>
+</table>
+</center>
 
 

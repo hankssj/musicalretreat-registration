@@ -47,14 +47,54 @@ class EnsemblePrimary < ActiveRecord::Base
   end
 
   #  Enums
-  def self.enum_name(enum_name, value)
-    names = {
-      :large_ensemble_choice => [:none, :either_band_or_festival_orchestra, :band, :festival_orchestra, :chorus, :string_orchestra, :either_festival_or_string_orchestra], 
-      :chamber_ensemble_choice => [:none, :one_assigned, :one_prearranged_one_session, :two_assigned, :one_assigned_one_prearranged, :one_prearranged_two_sessions, :two_prearranged]
-    }
-    names[enum_name][value]
+
+  # def self.enum_name(enum_name, value)
+  #   names = {
+  #     :large_ensemble_choice => [:none, :either_band_or_festival_orchestra, :band, :festival_orchestra, :chorus, :string_orchestra, :either_festival_or_string_orchestra], 
+  #     :chamber_ensemble_choice => [:none, :one_assigned, :one_prearranged_one_session, :two_assigned, :one_assigned_one_prearranged, :one_prearranged_two_sessions, :two_prearranged]
+  #   }
+  #   names[enum_name][value]
+  # end
+
+  def text_for_chamber_music_choice
+    ["No afternoon chamber groups",
+     "One assigned chamber group",
+     "One prearranged chamber group, one coached hour",
+     "Two assigned chamber groups",
+     "One assigned and one prearranged chamber group",
+     "One prearranged chamber group, two coached hours",
+     "Two prearranged chamber groups"][chamber_ensemble_choice]
   end
 
+  def text_for_morning_enemble_choice
+    if large_ensemble_choice < 1 
+      "You will not be assigned a large ensemble."
+    else
+      ["You do not want to be assigned a large ensemble",
+       "Either Symphonic Band or Festival Orchesta",
+       "Symphonic Band",
+       "Festival Orchestra",
+       "Festival Chorus",
+       "String Orchestra",
+       "Either Festival or String Orchestra"][large_ensemble_choice]
+    end
+  end
+
+  def text_for_morning_ensemble_part
+    return "" unless large_ensemble_part
+    if instrument.string?
+      ["No preference", "First #{instrument.display_name}", "Second #{instrument.display_name}"][large_ensemble_part]
+    elsif instrument.flute?
+      ["No Preference", "First Flute", "Second Flute", "","","","","","","", "Piccolo"][large_ensemble_part]
+    elsif instrument.clarinet?
+      ["No Preference", "First Clarinet", "Second Clarinet", "Third Clarinet"][large_ensemble_part]
+    elsif instrument.saxophone_nonspecfic? 
+      ["Soprano Sax", "Alto Sax", "Tenor Sax", "Baritone Sax"][large_ensemble_part]
+    else
+      raise "Unexpected large ensemble part #{large_ensemble_part}"
+    end
+  end
+    
   def self.parse_chamber_music_choice(cmc)
     num_mmr = num_prearranged = 0
     case cmc

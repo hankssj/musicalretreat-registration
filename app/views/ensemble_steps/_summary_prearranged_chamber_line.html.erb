@@ -1,0 +1,6 @@
+<li>Prearranged chamber ensemble;  you will be playing #{summary_prearranged_chamber_line.instrument.display_name}.
+<% if summary_mmr_chamber_line.i_am_contact} %> You are the contact person for this ensemble. 
+<% else %>
+The contact for this ensemble is <%= summary_prearranged_chamber_line.contact_name %>
+<% end %>
+</li>

@@ -22,10 +22,12 @@ Please indicate your seating preference for Symphonic Band:
 </p>
 
 <table>
-<tr><td>First</td><td>Second</td><td>Third</td></tr>
-<tr><td><%= form.radio_button :large_ensemble_part, 0 %></td>
-  <td><%= form.radio_button :large_ensemble_part,  1%></td>
+<tr><td>No Preference</td><td>First</td><td>Second</td><td>Third</td></tr>
+<tr>
+  <td><%= form.radio_button :large_ensemble_part, 0 %></td>
+  <td><%= form.radio_button :large_ensemble_part, 1 %></td>
   <td><%= form.radio_button :large_ensemble_part, 2 %></td>
+  <td><%= form.radio_button :large_ensemble_part, 3 %></td>
 </tr>
 </table>
 
