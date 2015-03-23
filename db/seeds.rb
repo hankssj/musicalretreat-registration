@@ -10,6 +10,8 @@
 User.create!(:email => "test@test.com", :password => "123456")
 Registration.create!(year: "2015", user_id: 1, first_name: "Test", last_name: "Registration", street1: "123 Test Street", street2: "", city: "Test", state: "TX", zip: "12345", primaryphone: nil, secondaryphone: nil, emergency_contact_name: "", emergency_contact_phone: "", firsttime: true, mailinglist: true, donotpublish: false, dorm: true, dorm_selection: "d", share_housing_with: "", meals: true, meals_lunch_and_dinner_only: false, vegetarian: false, meals_selection: "f", gender: "F", participant: true, instrument_id: 22, monday: false, tshirtm: 0, tshirtl: 0, tshirtxl: 0, tshirtxxl: 0, discount: false, donation: 0, comments: "", aircond: false, payment_mode: "deposit_check", created_at: "2015-03-17 02:34:02", updated_at: "2015-03-17 02:34:02", country: "US", home_phone: "1235551212", cell_phone: "", work_phone: "", handicapped_access: false, airport_pickup: false, fan: false, sunday: false, wine_glasses: 0, tshirts: 0, tshirtxxxl: 0, occupation: "", single_room: false)
 
+User.create!(:email => "midsummer@musicalretreat.org", :password = "walla2", :admin => true)
+
 ################# Instruments ############################
 
 Instrument.create(:id => 1,  :display_name => "Voice-Soprano",  :large_ensemble => "chorus", :instrument_type => "vocal")
