@@ -16,7 +16,10 @@ class EnsemblesForm
       @handlePrearrangedChamberMusic(show_bring_own_music_input, partial)
 
     $('.morning-ensemble-choices input').on 'click', (e) =>
-      @handleMorningEnsemble($(e.target).val())
+      @handleMorningEnsembleChoice($(e.target).val())
+
+    $('.ensembles_select').each (i, select) =>
+      @blockProperEnsemblePreferencesChoices(select)
 
     $('.arranged-chamber-group-instrument').on 'change', (e) =>
       isJazz = $(e.target).find('option:selected').data('jazz')
@@ -40,20 +43,12 @@ class EnsemblesForm
       @handlePrearrangedChamberMusic($(e.target).val(), container)
 
     $('.ensembles_select').on 'change', (e) =>
-      selected_val = $(e.target).val()
       choosed_prearranged_ensembles = $('#ensemble_primary_choosed_prearranged_ensembles').val()
       choosed_assigned_ensembles = $('#ensemble_primary_choosed_assigned_ensembles').val()
 
       @handleChamberEnsemblePreferencesChoice(choosed_prearranged_ensembles, choosed_assigned_ensembles)
-      $('.ensembles_select').each (i, select) =>
-        if e.target != select
-          $(select).find('option').each (j, o)->
-            if selected_val > 1 && $(o).val() > 0
-              $(o).prop('disabled', true)
-            if selected_val == '1' && $(o).val() > 1
-              $(o).prop('disabled', true)
-            if selected_val == '0'
-              $(o).prop('disabled', false)
+
+      @blockProperEnsemblePreferencesChoices(e.target)
 
   handleMorningEnsembleChoice: (value)->
     if value == '0'
@@ -99,6 +94,17 @@ class EnsemblesForm
       chamber_ensemble_choice.val('5')
     else if(choosed_prearranged_ensembles == '3' && choosed_assigned_ensembles == '0')
       chamber_ensemble_choice.val('6')
+
+  blockProperEnsemblePreferencesChoices: (element) =>
+    selected_val = $(element).val()
+    $('.ensembles_select option').prop('disabled', false)
+    $('.ensembles_select').each (i, select) =>
+      if element != select
+        $(select).find('option').each (j, o)->
+          if selected_val > 1 && $(o).val() > 0
+            $(o).prop('disabled', true)
+          if selected_val == '1' && $(o).val() > 1
+            $(o).prop('disabled', true)
 
 $(document).on 'ready page:load', ->
   ensemblesForm = new EnsemblesForm

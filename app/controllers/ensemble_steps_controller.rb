@@ -6,6 +6,14 @@ class EnsembleStepsController < ApplicationController
     @ensemble_primary = EnsemblePrimary.find(session[:ensemble_primary_id])
     case step
     when :primary_chamber
+      @ensemble_primary.prearranged_chambers.each do |pc|
+        pc.destroy
+      end
+      @ensemble_primary.mmr_chambers.each do |ec|
+        ec.destroy
+      end
+      @ensemble_primary.mmr_chambers.reload
+      @ensemble_primary.prearranged_chambers.reload
       skip_step if @ensemble_primary.no_chamber_ensembles?
       @instrument_menu_selection = Instrument.menu_selection
       @num_assigned, @num_prearranged = EnsemblePrimary.parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)

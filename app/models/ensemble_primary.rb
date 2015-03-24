@@ -1,4 +1,5 @@
 class EnsemblePrimary < ActiveRecord::Base
+  after_validation :skip_is_invalid_messages
   belongs_to :registration
   has_many :mmr_chambers
   has_many :prearranged_chambers
@@ -16,8 +17,8 @@ class EnsemblePrimary < ActiveRecord::Base
   validates :chamber_ensemble_choice, presence: { message: "You must specify yours chamber ensemble preferences" }, 
     if: lambda{|e| e.step === :afternoon_ensembles_and_electives }
 
-  validates_associated :mmr_chambers, message: 'Arranged Chamber Group is invalid'
-  validates_associated :prearranged_chambers, message: 'Prearranged Chamber is invalid'
+  validates_associated :mmr_chambers
+  validates_associated :prearranged_chambers
       
   accepts_nested_attributes_for :mmr_chambers
   accepts_nested_attributes_for :prearranged_chambers
@@ -114,5 +115,19 @@ class EnsemblePrimary < ActiveRecord::Base
       num_mmr = 0; num_prearranged = 2
     end
     [num_mmr, num_prearranged]
+  end
+
+  def skip_is_invalid_messages
+    filtered_errors = self.errors.reject{ |err| [:prearranged_chambers, :mmr_chambers].include?(err.first) }
+
+    filtered_errors.collect{ |err|
+      if err[0] =~ /(.+\.)?(.+)$/
+        err[0] = $2.titleize
+      end
+      err
+    }
+
+    self.errors.clear
+    filtered_errors.each { |err| self.errors.add(*err) }
   end
 end
