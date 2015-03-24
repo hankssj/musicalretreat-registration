@@ -21,6 +21,29 @@ class EnsemblesForm
     $('.ensembles_select').each (i, select) =>
       @blockProperEnsemblePreferencesChoices(select)
 
+    $('#choosen-electives').sortable
+      connectWith: '#aviliable-electives'
+      items: "li:not(.placeholder)"
+      remove: (event, ui)->
+        if($(this).children().length < 1)
+          $(this).sortable('cancel')
+      receive: (event, ui)->
+        $('#choosen-electives .placeholder').remove()
+        if($(this).children().length > 5)
+          $(ui.sender).sortable('cancel')
+      update: ->
+        $(this).children().each (i, item)->
+          $(item).find('.rank').val(i)
+      
+
+    $('#aviliable-electives').sortable
+      connectWith: '#choosen-electives'
+
+    $('.sortable-electives li:not(.placeholder)').on 'mouseenter', (e) ->
+      $('#info-box').removeClass('hidden')
+      $('#info-box .description').text($(this).find('.descritpion').text())
+      $('#info-box .name').text($(this).find('.name').text())
+
     $('.arranged-chamber-group-instrument').on 'change', (e) =>
       isJazz = $(e.target).find('option:selected').data('jazz')
       isString = $(e.target).find('option:selected').data('string')

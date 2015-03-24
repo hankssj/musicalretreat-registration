@@ -1,4 +1,15 @@
-<h2>Elective Preferences</h2>
+<div id="main">
+<%= render :partial => 'shared/errors', locals: { subject: @ensemble_primary } %>
+<div id="reg-form-main">
+<table width="100%">
+  <tr class="reg-form-section-title">
+    <td>
+      Elective Preferences
+    </td>
+  </tr>
+
+  <tr>
+    <td class="reg-form-column">
 <p>
 In this section you will rank your elective choices from 1 to 5.  This is a ranking
 for electives only.  Your chamber selections will be prioritized higher than electives
@@ -6,10 +17,44 @@ unless you tell us otherwise (use the comments box on the Summary page to do so)
 </p>
 
 <p>Hover over elective name for more information</p>
+</td>
+</tr>
+<tr>
+<td>
 
-<%= form_tag wizard_path, method: :put do %>
-<table>
-<%= render partial: "elective_choice", collection: @electives %>
+<div class='float-left two-third-column indented-top'>
+  <div class='reg-form-section-title'>
+    Choosen Electives
+  </div>
+  <%= form_for @ensemble_primary, url: wizard_path, method: :put, html: { class: 'with-background' } do |f|%>
+    <ul id='choosen-electives' class='sortable-electives'>
+      <% if @ensemble_primary.ensemble_primary_elective_ranks.empty? %>
+      <li class='placeholder'>Drop here</li>
+    <% else %>
+    <% f.object.ensemble_primary_elective_ranks.each do |elective_choice| %>
+      <%= render partial: 'ensemble_primary_elective_rank', locals: { f: f, elective_choice: elective_choice } %>
+    <% end %>
+  <% end %>
+    </ul>
+    <%= submit_tag 'Submit' %>
+  <% end %>
+  <div id='info-box' class='indented-top hidden'>
+    <div class='name reg-form-section-title'></div>
+    <div class='with-background description'></div>
+  </div>
+</div>
+<div class='float-left one-third-column indented-top'>
+<div class='reg-form-section-title'>Aviliable Electives</div>
+<%= form_for @ensemble_primary, url: wizard_path, method: :put, html: { class: 'with-background' } do |f|%>
+  <ul id='aviliable-electives' class='sortable-electives'>
+    <% f.object.build_ensemble_primary_elective_ranks.each do |elective_choice| %>
+      <%= render partial: 'ensemble_primary_elective_rank', locals: { f: f, elective_choice: elective_choice } %>
+    <% end %>
+    </ul>
+  <% end %>
+</div>
+</td>
+</tr>
 </table>
-<%= submit_tag 'Submit' %>
-<% end %>
+</div>
+</div>

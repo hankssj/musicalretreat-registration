@@ -3,7 +3,8 @@ class EnsemblePrimary < ActiveRecord::Base
   belongs_to :registration
   has_many :mmr_chambers
   has_many :prearranged_chambers
-  has_many :ensemble_primary_elective_ranks
+  has_many :ensemble_primary_elective_ranks, inverse_of: :ensemble_primary
+  has_many :electives, through: :ensemble_primary_elective_ranks
   has_many :evaluations
 
   validates :registration, presence: true
@@ -17,12 +18,12 @@ class EnsemblePrimary < ActiveRecord::Base
   validates :chamber_ensemble_choice, presence: { message: "You must specify yours chamber ensemble preferences" }, 
     if: lambda{|e| e.step === :afternoon_ensembles_and_electives }
 
-  validates_associated :mmr_chambers
-  validates_associated :prearranged_chambers
+  validates :ensemble_primary_elective_ranks, length: { within: 1..5, message: 'You have to choose from 1 to 5 electives' }, if: lambda{|e| e.step === :chamber_elective }
       
   accepts_nested_attributes_for :mmr_chambers
   accepts_nested_attributes_for :prearranged_chambers
   accepts_nested_attributes_for :evaluations
+  accepts_nested_attributes_for :ensemble_primary_elective_ranks
 
   attr_accessor :step, :choosed_prearranged_ensembles, :choosed_assigned_ensembles
   delegate :instrument, to: :registration
@@ -118,7 +119,7 @@ class EnsemblePrimary < ActiveRecord::Base
   end
 
   def skip_is_invalid_messages
-    filtered_errors = self.errors.reject{ |err| [:prearranged_chambers, :mmr_chambers].include?(err.first) }
+    filtered_errors = self.errors.reject{ |err| [:ensemble_primary_elective_ranks, :prearranged_chambers, :mmr_chambers].include?(err.first) }
 
     filtered_errors.collect{ |err|
       if err[0] =~ /(.+\.)?(.+)$/
@@ -129,5 +130,11 @@ class EnsemblePrimary < ActiveRecord::Base
 
     self.errors.clear
     filtered_errors.each { |err| self.errors.add(*err) }
+  end
+
+  def build_ensemble_primary_elective_ranks
+    Elective.where.not(id: self.ensemble_primary_elective_ranks.map(&:elective_id)).map do |elective|
+      self.ensemble_primary_elective_ranks.build(elective: elective)
+    end
   end
 end

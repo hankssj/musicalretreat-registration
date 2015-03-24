@@ -21,7 +21,6 @@ class EnsembleStepsController < ApplicationController
       @num_prearranged.times.each{|i| @ensemble_primary.prearranged_chambers.build(instrument: @ensemble_primary.registration.instrument) }
       flash[:ensemble_primary_id] = @ensemble_primary.id
     when :chamber_elective
-      @electives = Elective.all
     when :elective_evaluation
     end
 
@@ -101,20 +100,11 @@ class EnsembleStepsController < ApplicationController
       @ensemble_primary.update_attributes(post_params)
       @instrument_menu_selection = Instrument.menu_selection
     when :chamber_elective
-      id_keys = params.keys.select{|k| k =~ /^id_\d+$/}.reject{|k| params[k].empty?}
-      @ensemble_primary.ensemble_primary_elective_ranks.each{|x|x.destroy}
-      id_keys.each do |id_key|
-        elective_id = id_key.split("_")[1].to_i
-        if (elective_id == 0)
-          raise "No zero ID for me"
-        end
-        rank = params[id_key].to_i
-        instrument_id = params["instrument_id_#{elective_id}"].to_i
-        EnsemblePrimaryElectiveRank.create(:ensemble_primary_id => @ensemble_primary.id,
-                                           :elective_id => elective_id,
-                                           :instrument_id => instrument_id,
-                                           :rank => rank)
+      @ensemble_primary.ensemble_primary_elective_ranks.each do |elective_rank|
+        elective_rank.destroy
       end
+      @ensemble_primary.ensemble_primary_elective_ranks.reload
+      @ensemble_primary.update_attributes(post_params)
     end
 
     # NOTE -- this gets rid of all evaluations then creates new empty ones.
@@ -134,7 +124,7 @@ class EnsembleStepsController < ApplicationController
   private
 
   def post_params
-    params.require(:ensemble_primary).permit(
+    params.fetch(:ensemble_primary, {}).permit(
       :registration_id,
       :primary_instrument_id,
       :large_ensemble_choice,
@@ -157,6 +147,11 @@ class EnsembleStepsController < ApplicationController
         :bring_own_music,
         :music_composer_and_name,
         :notes
+      ],
+      ensemble_primary_elective_ranks_attributes: [
+        :rank,
+        :elective_id,
+        :instrument_id
       ]
     )
   end
