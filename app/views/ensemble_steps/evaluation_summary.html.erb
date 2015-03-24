@@ -17,6 +17,14 @@ Thank you;  your ensemble preferences are complete
   <%= render :partial => "summary_evaluations", :locals => {:ensemble_primary => @ensemble_primary} %>
 </ul>
 
+<p>
+To finish the process, please read and acknowledge the <a href="doclink">MMR Waiver and Release</a>
+</p>
+<p>
+I have read and acknowlege the Waiver and Release &nbsp;&nbsp;&nbsp
+<%= check_box_tag 'accept' %>
+</p>
+
 <center>
 <table width="75%">
   <tr><td width="50%"> <%= button_to "DONE", {:controller => :registration, :action => :index} %></td>
