@@ -25,19 +25,39 @@ class EnsemblesForm
       connectWith: '#aviliable-electives'
       items: "li:not(.placeholder)"
       remove: (event, ui)->
-        if($(this).children().length < 1)
-          $(this).sortable('cancel')
+      axis: 'y'
       receive: (event, ui)->
+        $(this).sortable('refresh')
+        $(ui.sender).draggable('disable')
+        $(ui.sender).find('input, select').prop('disabled', false)
         $('#choosen-electives .placeholder').remove()
-        if($(this).children().length > 5)
-          $(ui.sender).sortable('cancel')
+        if($(this).children().length >= 5)
+          $('#aviliable-electives li').draggable('disable')
       update: ->
         $(this).children().each (i, item)->
           $(item).find('.rank').val(i)
-      
+    .disableSelection()
 
-    $('#aviliable-electives').sortable
-      connectWith: '#choosen-electives'
+    $('#choosen-electives').on 'click', 'li .remove', ->
+      if ($('#choosen-electives').children().length > 1)
+        $li = $(this).closest('li')
+        $li.removeAttr('style')
+        $li.css('position', 'relative')
+        $li.prependTo('#aviliable-electives')
+        $li.fadeIn(100).fadeOut(100).fadeIn(100)
+        $li.find('input, select').prop('disabled', true)
+        $('#aviliable-electives li').draggable('enable')
+
+    $('.sortable-electives li').draggable
+      connectToSortable: '#choosen-electives'
+      revert: 'invalid'
+      revertDuration: 1
+    .disableSelection()
+
+    $('#choosen-electives li').draggable('disable')
+    if($('#choosen-electives').children().length >= 5)
+      $('#aviliable-electives li').draggable('disable')
+
 
     $('.sortable-electives li:not(.placeholder)').on 'mouseenter', (e) ->
       $('#info-box').removeClass('hidden')

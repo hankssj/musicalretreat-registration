@@ -7,6 +7,5 @@ class EnsemblePrimaryElectiveRank < ActiveRecord::Base
   validates :ensemble_primary, presence: true
   validates :elective, presence: true
 
-  #scope :by_rank, -> (){ order(:rank) }
-  scope :by_rank, -> { order(:rank) }
+  scope :by_rank, lambda{ order(:rank) }
 end

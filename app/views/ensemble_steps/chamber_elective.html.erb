@@ -22,22 +22,23 @@ unless you tell us otherwise (use the comments box on the Summary page to do so)
 <tr>
 <td>
 
-<div class='float-left two-third-column indented-top'>
+<%= form_for @ensemble_primary, url: wizard_path, method: :put do |f|%>
+<div class='float-right two-third-column indented-top'>
   <div class='reg-form-section-title'>
     Choosen Electives
   </div>
-  <%= form_for @ensemble_primary, url: wizard_path, method: :put, html: { class: 'with-background' } do |f|%>
+  <div class='with-background'>
     <ul id='choosen-electives' class='sortable-electives'>
       <% if @ensemble_primary.ensemble_primary_elective_ranks.empty? %>
       <li class='placeholder'>Drop here</li>
     <% else %>
     <% f.object.ensemble_primary_elective_ranks.each do |elective_choice| %>
-      <%= render partial: 'ensemble_primary_elective_rank', locals: { f: f, elective_choice: elective_choice } %>
+      <%= render partial: 'ensemble_primary_elective_rank', locals: { f: f, elective_choice: elective_choice, disabled: false } %>
     <% end %>
   <% end %>
     </ul>
     <%= submit_tag 'Submit' %>
-  <% end %>
+  </div>
   <div id='info-box' class='indented-top hidden'>
     <div class='name reg-form-section-title'></div>
     <div class='with-background description'></div>
@@ -45,14 +46,15 @@ unless you tell us otherwise (use the comments box on the Summary page to do so)
 </div>
 <div class='float-left one-third-column indented-top'>
 <div class='reg-form-section-title'>Aviliable Electives</div>
-<%= form_for @ensemble_primary, url: wizard_path, method: :put, html: { class: 'with-background' } do |f|%>
+<div class='with-background'>
   <ul id='aviliable-electives' class='sortable-electives'>
     <% f.object.build_ensemble_primary_elective_ranks.each do |elective_choice| %>
-      <%= render partial: 'ensemble_primary_elective_rank', locals: { f: f, elective_choice: elective_choice } %>
+      <%= render partial: 'ensemble_primary_elective_rank', locals: { f: f, elective_choice: elective_choice, disabled: true } %>
     <% end %>
     </ul>
-  <% end %>
+  </div>
 </div>
+  <% end %>
 </td>
 </tr>
 </table>
