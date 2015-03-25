@@ -1,96 +1,102 @@
-<p>What other instruments are you bringing to camp?</p>
+<div class='indented-top'>
+  <%= form.label :other_instrument_drum_set, 'What other instruments are you bringing to camp?' %>
 
-<% if instrument.percussion? %>
-<tr><td>Drum Set</td><td>Mallets</td>
-<td><%= form.check_box :other_instrument_drum_set %></td>
-<td><%= form.check_box :other_instrument_mallets %></td>
-</tr>
-<% end %>
+  <% if instrument.percussion? %>
+  <table width='30%'>
+    <tr><td>Drum Set</td><td>Mallets</td></tr>
+    <tr>
+      <td><%= form.check_box :other_instrument_drum_set %></td>
+      <td><%= form.check_box :other_instrument_mallets %></td>
+    </tr>
+  </table>
+  <% end %>
 
-<% if instrument.flute? %>
-<table>
-<tr><td>C Flute</td><td>Piccolo</td><td>Alto Flute</td><td>Bass Flute</td>
-</tr>
-<tf>
-<td><%= form.check_box :other_instrument_c_flute %></td>
-<td><%= form.check_box :other_instrument_piccolo %></td>
-<td><%= form.check_box :other_instrument_alto_flute %></td>
-<td><%= form.check_box :other_instrument_bass_flute %></td>
-</tr>
-</table>
-<% end %>
+  <% if instrument.flute? %>
+  <table>
+    <tr><td>C Flute</td><td>Piccolo</td><td>Alto Flute</td><td>Bass Flute</td>
+    </tr>
+    <tf>
+    <td><%= form.check_box :other_instrument_c_flute %></td>
+    <td><%= form.check_box :other_instrument_piccolo %></td>
+    <td><%= form.check_box :other_instrument_alto_flute %></td>
+    <td><%= form.check_box :other_instrument_bass_flute %></td>
+    </tr>
+  </table>
+  <% end %>
 
-<% if instrument.flute? %>
-<tr><td>B&#9837; Clarinet</td><td>A Clarinet</td><td>E&#9837; Clarinet</td><td>Alto Clarinet</td><td>Bass Clarinet</td>
-</tr>
-<tr>
-<td><%= form.check_box :other_instrument_bb_clarinet %></td>
-<td><%= form.check_box :other_instrument_a_clarinet %></td>
-<td><%= form.check_box :other_instrument_eb_clarinet %></td>
-<td><%= form.check_box :other_instrument_alto_clarinet %></td>
-<td><%= form.check_box :other_instrument_bass_clarinet %></td>
-</tr>
-<% end %>
+  <% if instrument.flute? %>
+  <table>
+  <tr><td>B&#9837; Clarinet</td><td>A Clarinet</td><td>E&#9837; Clarinet</td><td>Alto Clarinet</td><td>Bass Clarinet</td>
+  </tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_bb_clarinet %></td>
+  <td><%= form.check_box :other_instrument_a_clarinet %></td>
+  <td><%= form.check_box :other_instrument_eb_clarinet %></td>
+  <td><%= form.check_box :other_instrument_alto_clarinet %></td>
+  <td><%= form.check_box :other_instrument_bass_clarinet %></td>
+  </tr>
+  </table>
+  <% end %>
 
-<% if instrument.trumpet? %>
-<table>
-<tr><td>B&#9837; Trumpet</td><td>C Trumpet</td><td>Piccolo Trumpet</td>
-</tr>
-<tr>
-<td><%= form.check_box :other_instrument_bb_trumpet %></td>
-<td><%= form.check_box :other_instrument_c_trumpet %></td>
-<td><%= form.check_box :other_instrument_piccolo_trumpet %></td>
-</tr>
-</table>
-<% end %>
+  <% if instrument.trumpet? %>
+  <table>
+  <tr><td>B&#9837; Trumpet</td><td>C Trumpet</td><td>Piccolo Trumpet</td>
+  </tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_bb_trumpet %></td>
+  <td><%= form.check_box :other_instrument_c_trumpet %></td>
+  <td><%= form.check_box :other_instrument_piccolo_trumpet %></td>
+  </tr>
+  </table>
+  <% end %>
 
-<% if instrument.trombone? %>
-<table>
-<tr><td>Tenor Trombone</td><td>Bass Trombone</td>
-</tr>
-<tr>
-<td><%= form.check_box :other_instrument_trombone %></td>
-<td><%= form.check_box :other_instrument_bass_trombone %></td>
-</tr>
-</table>
-<% end %>
+  <% if instrument.trombone? %>
+  <table>
+  <tr><td>Tenor Trombone</td><td>Bass Trombone</td>
+  </tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_trombone %></td>
+  <td><%= form.check_box :other_instrument_bass_trombone %></td>
+  </tr>
+  </table>
+  <% end %>
 
-<% if instrument.oboe? %>
-<table>
-<tr><td>Oboe</td><td>English Horn</td><td>Oboe D'Amore</td><td>Bass Oboe</td><td>Taille</td><td>Oboe da Caccia</td><td>Heckelphone</td><td>Oboe Musette</td>
-<td>Contrabass Oboe</td><td>Piston Oboe</td><td>Piffaro</td><td>Ciaramella</td><td></td>
-</tr>
-<tr>
-<td><%= form.check_box :other_instrument_oboe %></td>
-<td><%= form.check_box :other_instrument_english_horn %></td>
-<td><%= form.check_box :other_instrument_oboe_other %></td>
-<td><%= form.check_box :other_instrument_oboe_other %></td>
-<td><%= form.check_box :other_instrument_oboe_other %></td>
-<td><%= form.check_box :other_instrument_oboe_other %></td>
-<td><%= form.check_box :other_instrument_oboe_other %></td>
-<td><%= form.check_box :other_instrument_oboe_other %></td>
-<td><%= form.check_box :other_instrument_oboe_other %></td>
-<td><%= form.check_box :other_instrument_oboe_other %></td>
-<td><%= form.check_box :other_instrument_oboe_other %></td>
-<td><%= form.check_box :other_instrument_oboe_other %></td>
-</tr>
-</table>
-<% end %>
+  <% if instrument.oboe? %>
+  <table>
+  <tr><td>Oboe</td><td>English Horn</td><td>Oboe D'Amore</td><td>Bass Oboe</td><td>Taille</td><td>Oboe da Caccia</td><td>Heckelphone</td><td>Oboe Musette</td>
+  <td>Contrabass Oboe</td><td>Piston Oboe</td><td>Piffaro</td><td>Ciaramella</td><td></td>
+  </tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_oboe %></td>
+  <td><%= form.check_box :other_instrument_english_horn %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  </tr>
+  </table>
+  <% end %>
 
-<% if instrument.saxophone? %>
-<table>
-<tr><td>Soprano Saxophone</td><td>Alto Saxophone</td><td>Tenor Saxophone</td><td>Baritone Saxophone</td>
-</tr>
-<tr>
-<td><%= form.check_box :other_instrument_saxophone_soprano %></td>
-<td><%= form.check_box :other_instrument_saxophone_alto %></td>
-<td><%= form.check_box :other_instrument_saxophone_tenor %></td>
-<td><%= form.check_box :other_instrument_saxophone_baritone %></td>
-</tr>
-</table>
-<% end %>
-
-<p>
-Any other instruments you want us to know about? 
-<br>
-<%= form.text_area :other_instruments_you_tell_us, :rows => 5, :columns => 40 %>
+  <% if instrument.saxophone? %>
+  <table>
+  <tr><td>Soprano Saxophone</td><td>Alto Saxophone</td><td>Tenor Saxophone</td><td>Baritone Saxophone</td>
+  </tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_saxophone_soprano %></td>
+  <td><%= form.check_box :other_instrument_saxophone_alto %></td>
+  <td><%= form.check_box :other_instrument_saxophone_tenor %></td>
+  <td><%= form.check_box :other_instrument_saxophone_baritone %></td>
+  </tr>
+  </table>
+  <% end %>
+  </div>
+  <div class='indented-top'>
+  <%= form.label :other_instruments_you_tell_us, 'Any other instruments you want us to know about?' %> 
+  <%= form.text_area :other_instruments_you_tell_us, :rows => 5, :cols => 60 %>
+</div>

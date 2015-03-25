@@ -1,6 +1,9 @@
-Groups I play with during the year:
-<br>
-<%= form.text_area :groups, :rows => 5, :columns => 40 %>
-<p/>
-Do any of these groups require an audition? <br>
-<%= form.check_box :require_audition %></td></tr>
+<div>
+<%= form.label :groups, 'Groups I play with during the year:' %>
+</br>
+<%= form.text_area :groups, :rows => 5, :cols => 60 %>
+</div>
+<div>
+<%= form.label :require_audition, 'Do any of these groups require an audition?' %>
+<%= form.check_box :require_audition %>
+</div>

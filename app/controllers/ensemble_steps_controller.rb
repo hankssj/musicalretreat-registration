@@ -22,6 +22,7 @@ class EnsembleStepsController < ApplicationController
       flash[:ensemble_primary_id] = @ensemble_primary.id
     when :chamber_elective
     when :elective_evaluation
+      @ensemble_primary.build_evaluations
     end
 
     render_wizard
@@ -96,7 +97,7 @@ class EnsembleStepsController < ApplicationController
   def update
     @ensemble_primary = EnsemblePrimary.find(session[:ensemble_primary_id])
     case step
-    when :primary_chamber, :afternoon_ensembles_and_electives, :elective_evaluation
+    when :primary_chamber, :afternoon_ensembles_and_electives
       @ensemble_primary.update_attributes(post_params)
       @instrument_menu_selection = Instrument.menu_selection
     when :chamber_elective
@@ -105,16 +106,10 @@ class EnsembleStepsController < ApplicationController
       end
       @ensemble_primary.ensemble_primary_elective_ranks.reload
       @ensemble_primary.update_attributes(post_params)
-    end
-
-    # NOTE -- this gets rid of all evaluations then creates new empty ones.
-    # Not appropriate for edit situations!
-    @ensemble_primary.evaluations.each{|e|e.destroy}
-    Rails.logger.warn("Needed: #{@ensemble_primary.need_eval_for.length}")
-    @ensemble_primary.need_eval_for.each do |iid|
-      Evaluation.create!(:ensemble_primary_id => @ensemble_primary.id,
-                         :instrument_id => iid,
-                         :type => Instrument.find(iid).instrumental? ? "InstrumentalEvaluation" : "VocalEvaluation")
+    when :elective_evaluation
+      @ensemble_primary.evaluations.each{ |e| e.destroy }
+      @ensemble_primary.evaluations.reload
+      @ensemble_primary.update_attributes(post_params)
     end
 
     @ensemble_primary.step = step
@@ -152,6 +147,74 @@ class EnsembleStepsController < ApplicationController
         :rank,
         :elective_id,
         :instrument_id
+      ],
+      evaluations_attributes: [
+        :ensemble_primary_id,
+        :instrument_id,
+        :type,
+        :chamber_ensemble_part,
+        :transposition_0,
+        :transposition_1,
+        :transposition_2,
+        :other_instrument_oboe,
+        :other_instrument_english_horn,
+        :other_instrument_oboe_other,
+        :other_instrument_trombone,
+        :other_instrument_bass_trombone,
+        :other_instrument_bb_trumpet,
+        :other_instrument_c_trumpet,
+        :other_instrument_piccolo_trumpet,
+        :other_instrument_saxophone_soprano,
+        :other_instrument_saxophone_alto,
+        :other_instrument_saxophone_tenor,
+        :other_instrument_saxophone_baritone,
+        :other_instrument_bb_clarinet,
+        :other_instrument_a_clarinet,
+        :other_instrument_eb_clarinet,
+        :other_instrument_alto_clarinet,
+        :other_instrument_bass_clarinet,
+        :other_instrument_c_flute,
+        :other_instrument_piccolo,
+        :other_instrument_alto_flute,
+        :other_instrument_bass_flute,
+        :other_instrument_drum_set,
+        :other_instrument_mallets,
+        :other_instruments_you_tell_us,
+        :percussion_snare,
+        :percussion_timpani,
+        :percussion_mallets,
+        :percussion_small_instruments,
+        :percussion_drum_set,
+        :groups,
+        :require_audition,
+        :studying_privately,
+        :studying_privately_how_long,
+        :chamber_music_how_often,
+        :practicing_how_much,
+        :composers,
+        :jazz_want_ensemble,
+        :jazz_small_ensemble,
+        :jazz_big_band,
+        :vocal_low_high,
+        :vocal_overall_ability,
+        :vocal_how_learn,
+        :vocal_most_difficult_piece,
+        :vocal_music_theory,
+        :vocal_music_theory_year,
+        :vocal_voice_class,
+        :vocal_voice_class_year,
+        :vocal_voice_lessons,
+        :vocal_voice_lessons_year,
+        :vocal_small_ensemble_skills,
+        :third_position,
+        :fourth_position,
+        :fifth_position,
+        :sixth_position,
+        :seventh_position,
+        :thumb_position,
+        :overall_rating_large_ensemble,
+        :overall_rating_chamber,
+        :overall_rating_sightreading
       ]
     )
   end

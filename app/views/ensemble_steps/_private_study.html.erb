@@ -1,4 +1,9 @@
+<div class='indented-top private-study'>
 <table>
-<tr><td>Do you study privately?</td><td><%= form.check_box :studying_privately %></td></tr>
-<tr><td>For how many years?</td><td><%= form.text_field :studying_privately_how_long, :size => 5 %></tr>
+  <tr><td><%= form.label :studying_privately, 'Do you study privately?' %></td><td><%= form.check_box :studying_privately %></td></tr>
+  <tr class="private-study-duration <%= 'hidden' unless form.object.studying_privately %>">
+    <td><%= form.label :studying_privately_how_long, 'For how many years?' %></td>
+    <td><%= form.text_field :studying_privately_how_long, :size => 5 %>
+  </tr>
 </table>
+</div>

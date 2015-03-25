@@ -93,6 +93,27 @@ class EnsemblesForm
 
       @blockProperEnsemblePreferencesChoices(e.target)
 
+    $('.overall-rating .beginner, .overall-rating .novice, .overall-rating .intermediate, .overall-rating .experienced, .overall-rating .advanced').on 'mouseenter', (e)->
+      level = $(e.target).attr('class')
+      $(".skill-description p").addClass('hidden')
+      $(e.target).closest('.overall-rating').find(".#{level}-text").removeClass('hidden')
+
+    $('.beginner, .novice, .intermediate, .experienced, .advanced').on 'mouseleave', (e)->
+      level = $(e.target).attr('class')
+      $(".skill-description p").addClass('hidden')
+
+    $('.private-study input[type=checkbox]').on 'change', (e)->
+      if $(e.target).is(':checked')
+        $(e.target).closest('.private-study').find('.private-study-duration').removeClass('hidden')
+      else
+        $(e.target).closest('.private-study').find('.private-study-duration').addClass('hidden')
+
+    $('#terms').on 'change', (e)->
+      if $(e.target).is(':checked')
+        $('.submit-ensemble').prop('disabled', false)
+      else
+        $('.submit-ensemble').prop('disabled', true)
+
   handleMorningEnsembleChoice: (value)->
     if value == '0'
       $('.toggled-morning-ensemble-options').hide()

@@ -1,5 +1,4 @@
 <p><%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
-<hr>
 
 <% if instrument.piano? %>
 <%= render :partial => "piano_evaluation", :locals => {:form => form, :instrument => instrument} %>
@@ -7,23 +6,20 @@
 
 <% if (instrument.violin? || instrument.viola?) %>
 <%= render :partial => "part_chamber_ensemble", :locals => {:form => form, :instrument => instrument} %>
-<hr>
 <% end %>
 
 <%= render :partial => "groups", :locals => {:form => form, :instrument => instrument} %>
-<hr>
 
 <%= render :partial => "practice_frequency",:locals => {:form => form, :instrument => instrument} %>
-<hr>
 
 <%= render :partial => "private_study", :locals => {:form => form, :instrument => instrument} %>
-<hr>
 
 <%= render :partial => "chamber_frequency", :locals => {:form => form, :instrument => instrument} %>
-<hr>
 
-<!-- String position stuff -->
-I can read well in:
+<div class='indented-top'>
+  <label>
+    I can read well in:
+  </label>
 <table>
 <tr>
 <td>3rd Position</td><td>4th Position</td><td>5th Position</td><td>6th Position</td><td>7th Position<td> 
@@ -35,12 +31,10 @@ I can read well in:
         <% if instrument.cello? || instrument.bass? %> <td><%= form.check_box :thumb_position %></td> <% end %>
     </tr>
 </table>
-
-<hr>
+</div>
 
 <% if instrument.bass? %>
 <%= render :partial => "jazz_experience", :locals => {:form => form, :instrument => instrument} %>
-<hr>
 <% end %>
    
 <%= render :partial => "overall_assessment", :locals => {:form => form, :instrument => instrument} %>

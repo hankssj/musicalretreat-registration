@@ -1,21 +1,40 @@
-<h2>Evaluations</h2>
-<p>
-In order to place you appropriately, the faculty 
-needs an assessment of your level of experience in the instruments you will be playing
-in large ensemble, chamber groups, and electives.  
-</p>
-<p>
-You will now fill out evaluations for: 
-<%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(id).display_name}.join(",") %>
+<div id="main">
+  <%= render :partial => 'shared/errors', locals: { subject: @ensemble_primary } %>
+  <div id="reg-form-main" class='elective-evaluations'>
+    <table width="100%">
+      <tr class="reg-form-section-title">
+        <td>
+          Evaluations
+        </td>
+      </tr>
+      <tr>
+        <td class="reg-form-column">
+          <p>
+            In order to place you appropriately, the faculty 
+            needs an assessment of your level of experience in the instruments you will be playing
+            in large ensemble, chamber groups, and electives.  
+          </p>
+          <p>
+            You will now fill out evaluations for: 
+          </p>
+          <%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(id).display_name}.join(",") %>
+        </td>
+      </tr>
+    </table>
 
-<%= form_for @ensemble_primary, url: wizard_path, method: :put do |form| %>
-   <%= form.hidden_field :id %>
-
-   <%= form.fields_for :evaluations do |evaluation| %>
-      <%= render :partial => Evaluation.find(evaluation.object.id).partial_name, :object => evaluation %>
-      <hrule/>
-   <% end %>
-<p/>
-<%= submit_tag "Submit" %>
-<% end %>
-
+    <%= form_for @ensemble_primary, url: wizard_path, method: :put do |form| %>
+      <%= form.fields_for :evaluations do |form| %>
+        <%= form.hidden_field :instrument_id %>
+        <%= form.hidden_field :type %>
+        <%= render partial: form.object.partial_name, locals: { form: form, instrument: form.object.instrument } %>
+      <% end %>
+      <table width="100%">
+        <tr>
+          <td class="reg-form-column">
+            <%= submit_tag "Next" %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>

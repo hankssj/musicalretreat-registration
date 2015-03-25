@@ -43,11 +43,19 @@ class EnsemblePrimary < ActiveRecord::Base
   def no_chamber_ensembles?
     chamber_ensemble_choice == 0
   end
+
   def need_eval_for
     instrument_ids = (mmr_chambers + prearranged_chambers + ensemble_primary_elective_ranks).map(&:instrument_id) + [default_instrument_id]
     instrument_ids.compact.uniq.reject{|x| x <= 0}
   end
 
+  def build_evaluations
+    self.need_eval_for.each do |iid|
+      self.evaluations.build(
+        :instrument_id => iid,
+        :type => Instrument.find(iid).instrumental? ? "InstrumentalEvaluation" : "VocalEvaluation")
+    end
+  end
   #  Enums
 
   # def self.enum_name(enum_name, value)
@@ -90,7 +98,7 @@ class EnsemblePrimary < ActiveRecord::Base
       ["No Preference", "First Flute", "Second Flute", "","","","","","","", "Piccolo"][large_ensemble_part]
     elsif instrument.clarinet?
       ["No Preference", "First Clarinet", "Second Clarinet", "Third Clarinet"][large_ensemble_part]
-    elsif instrument.saxophone_nonspecfic? 
+    elsif instrument.saxophone_nonspecific? 
       ["Soprano Sax", "Alto Sax", "Tenor Sax", "Baritone Sax"][large_ensemble_part]
     else
       raise "Unexpected large ensemble part #{large_ensemble_part}"

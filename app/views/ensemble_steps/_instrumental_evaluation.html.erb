@@ -1,13 +1,19 @@
-<% instrument = instrumental_evaluation.object.instrument %>
-<hr>                       
-<b>Evaluation for <%= instrument.display_name %></b>
-
-<% if instrument.string? %>
-<%= render :partial => "string_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
-<% elsif instrument.brass? || instrument.woodwind? %>
-<%= render :partial => "wind_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
-<% else %>
-<%= render :partial => "percussion_evaluation", :locals => {:instrument => instrument, :form => instrumental_evaluation} %>
-<% end %>
-<hr>
+<table width="100%">
+  <tr class="reg-form-section-title">
+    <td>
+      Evaluation for <%= instrument.display_name %>
+    </td>
+  </tr>
+  <tr>
+    <td class="reg-form-column">
+      <% if instrument.string? %>
+        <%= render partial: "string_evaluation", locals: {instrument: instrument, form: form} %>
+      <% elsif instrument.brass? || instrument.woodwind? %>
+        <%= render partial: "wind_evaluation", locals: {instrument: instrument, form: form} %>
+      <% else %>
+        <%= render partial: "percussion_evaluation", locals: {instrument: instrument, form: form} %>
+      <% end %>
+    </td>
+  </tr>
+</table>
 

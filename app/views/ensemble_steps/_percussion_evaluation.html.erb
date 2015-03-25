@@ -1,16 +1,17 @@
-<p><%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
-<hr>
-<p><%= render :partial => "groups", :locals => {:instrument => instrument, :form => form} %></p>
-<hr>
-<p><%= render :partial => "practice_frequency", :locals => {:instrument => instrument, :form => form} %></p>
-<hr>
-<p><%= render :partial => "private_study", :locals => {:instrument => instrument, :form => form} %></p>
-<hr>
-<p><%= render :partial => "jazz_experience", :locals => {:instrument => instrument, :form => form} %></p>
+<%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %>
 
-<p>
-<!-- percussion instruments -->
-What Percussion instruments do you play?
+<%= render :partial => "groups", :locals => {:instrument => instrument, :form => form} %></p>
+
+<%= render :partial => "practice_frequency", :locals => {:instrument => instrument, :form => form} %>
+
+<%= render :partial => "private_study", :locals => {:instrument => instrument, :form => form} %>
+
+<%= render :partial => "jazz_experience", :locals => {:instrument => instrument, :form => form} %>
+
+<div class='indented-top'>
+<label>
+  What Percussion instruments do you play?
+</label>
 <table>
 <tr><td>Snare</td><td>Timpani</td><td>Mallets</td><td>Small Instruments</td><td>Drumset</td></tr>
 <tr>
@@ -22,12 +23,10 @@ What Percussion instruments do you play?
 </tr>
 </table>
 Please bring Mallets listed <a href="http://musicalretreat.org/mallet-list-percussion-players">here</a>
-</p>
-<hr>
+</div>
 
-<p><%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %></p>
-<hr>
+<%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %>
 
-<p><%= render :partial => "extra_instruments", :locals => {:instrument => instrument, :form => form} %></p>
+<%= render :partial => "extra_instruments", :locals => {:instrument => instrument, :form => form} %>
 
 

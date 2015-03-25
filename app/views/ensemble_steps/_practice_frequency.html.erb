@@ -1,6 +1,8 @@
-<p>Do you practice alone regularly?</p>
+<div class='indented-top'>
+<%= form.label :practicing_how_much, 'Do you practice alone regularly?' %>
 <table>
 <tr><td>Rarely</td><td><%= form.radio_button :practicing_how_much, 0 %></td></tr>
 <tr><td>2 or 3 times a week</td><td><%= form.radio_button :practicing_how_much, 1 %></tr>
 <tr><td>4 or more times a week</td><td><%= form.radio_button :practicing_how_much, 2 %></tr>
 </table>
+</div>

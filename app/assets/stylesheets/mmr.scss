@@ -543,3 +543,21 @@ ul.sortable-electives {
     display: none;
   }
 }
+.elective-evaluations {
+  label, .label {
+    font-weight: bold;
+  }
+
+  .label {
+    margin-bottom: 5px;
+    font-size: 1.1em
+  }
+
+  .indented-top {
+    margin-top: 15px;
+  }
+
+  .skill-description {
+    padding: 12px 15px;
+  }
+}

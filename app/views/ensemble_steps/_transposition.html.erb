@@ -1,14 +1,16 @@
-What keys can you transpose to?
-
-<!-- Applies just to trumpet and horn, and max three -->
-<!-- trumpet -- C, B, Eb   horn E, Eb, D -->
-
-<% if instrument.trumpet? || instrument.horn? %>
+<div class='indented-top'>
+<%= form.label :transposition, 'What keys can you transpose to?' %>
 <table>
 <tr>
-  <td><%if instrument.trumpet? %>C<% else %>E<% end %></td>
-  <td><%if instrument.trumpet? %>B<% else %>E&#9837;<% end %></td>
-  <td><%if instrument.trumpet? %>E&#9837;<% else %>D<% end %></td>
+  <% if instrument.trumpet? %>
+    <td>C</td>
+    <td>B</td>
+    <td>E&#9837;</td>
+  <% else %>
+    <td>E</td>
+    <td>E&#9837;</td>
+    <td>D</td>
+  <% end %>
 </tr>
 <tr>
   <td><%= form.check_box :transposition_0 %></td>
@@ -16,4 +18,4 @@ What keys can you transpose to?
   <td><%= form.check_box :transposition_2 %></td>
 </tr>
 </table>
-<% end %>
+</div>

@@ -1,36 +1,57 @@
-<h2>Ensemble Preferences Summary</h2>
+<div id="main">
+  <%= render :partial => 'shared/errors', locals: { subject: @ensemble_primary } %>
+  <div id="reg-form-main" class='elective-evaluations'>
+    <table width="100%">
+      <tr class="reg-form-section-title">
+        <td>
+          Ensemble Preferences Summary
+        </td>
+      </tr>
+      <tr>
+        <td class="reg-form-column">
+          <p>Thank you;  your ensemble preferences are complete</p>
+          <ul>
+          <li>Contact Information
+              <ul>
+                <li>Name:  <%= @ensemble_primary.registration.display_name %></li>
+                <li>Email: <%= @ensemble_primary.registration.email %></li>
+              </ul>
+              <li>
+                Morning Ensemble
+                <%= render :partial => "summary_morning_ensemble", :locals => {:ensemble_primary => @ensemble_primary} %>
+              </li>
+              <li>
+                Chamber Groups
+                <%= render :partial => "summary_chamber_groups", :locals => {:ensemble_primary => @ensemble_primary} %>
+              </li>
+              <li>
+                You selected the following electives
+                <%= render :partial => "summary_electives", :locals => {:ensemble_primary => @ensemble_primary} %>
+              </li>
+              <li>
+                You completed evaluations for the following instruments/voices
+                <%= render :partial => "summary_evaluations", :locals => {:ensemble_primary => @ensemble_primary} %>
+              </li>
+          </ul>
 
-Thank you;  your ensemble preferences are complete
-<ul>
-<li>Contact Information
-    <ul>
-      <li>Name:  <%= @ensemble_primary.registration.display_name %></li>
-      <li>Email: <%= @ensemble_primary.registration.email %>
-    </ul>
-<li>Morning Ensemble
-  <%= render :partial => "summary_morning_ensemble", :locals => {:ensemble_primary => @ensemble_primary} %>
-<li>Chamber Groups
-  <%= render :partial => "summary_chamber_groups", :locals => {:ensemble_primary => @ensemble_primary} %>
-<li>You selected the following electives
-  <%= render :partial => "summary_electives", :locals => {:ensemble_primary => @ensemble_primary} %>
-<li>You completed evaluations for the following instruments/voices
-  <%= render :partial => "summary_evaluations", :locals => {:ensemble_primary => @ensemble_primary} %>
-</ul>
+          <p>
+          To finish the process, please read and acknowledge the
+          <%= link_to 'MMR Waiver and Release', '/terms/Release2015.pdf', target: :blank %>
+          </p>
 
-<p>
-To finish the process, please read and acknowledge the <a href="doclink">MMR Waiver and Release</a>
-</p>
-<p>
-I have read and acknowlege the Waiver and Release &nbsp;&nbsp;&nbsp
-<%= check_box_tag 'accept' %>
-</p>
+          <p>
+          I have read and acknowlege the Waiver and Release &nbsp;&nbsp;&nbsp
+          <%= check_box_tag :terms %>
+          </p>
 
-<center>
-<table width="75%">
-  <tr><td width="50%"> <%= button_to "DONE", {:controller => :registration, :action => :index} %></td>
-      <td width="50%"> <%= button_to "CANCEL", {:action => :cancel} %></td>
-  </tr>
-</table>
-</center>
-
-
+          <table width="75%">
+            <tr>
+              <td width="50%"><%= button_to "DONE", {:controller => :registration, :action => :index}, { class: 'submit-ensemble', disabled: true } %></td>
+              <td width="50%"><%= button_to "CANCEL", {:action => :cancel} %></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
