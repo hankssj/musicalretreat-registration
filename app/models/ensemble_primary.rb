@@ -1,5 +1,5 @@
 class EnsemblePrimary < ActiveRecord::Base
-  after_validation :skip_is_invalid_messages
+  after_validation :skip_invalid_messages
   belongs_to :registration
   has_many :mmr_chambers
   has_many :prearranged_chambers
@@ -126,7 +126,7 @@ class EnsemblePrimary < ActiveRecord::Base
     [num_mmr, num_prearranged]
   end
 
-  def skip_is_invalid_messages
+  def skip_invalid_messages
     filtered_errors = self.errors.reject{ |err| [:ensemble_primary_elective_ranks, :prearranged_chambers, :mmr_chambers].include?(err.first) }
 
     filtered_errors.collect{ |err|

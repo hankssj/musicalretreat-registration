@@ -1,5 +1,5 @@
 <div id="main">
-  <%= render :partial => 'shared/errors', locals: { subject: @ensemble_primary } %>
+  <%= render partial: 'shared/errors', locals: { subject: @ensemble_primary } %>
   <div id="reg-form-main" class='elective-evaluations'>
     <table width="100%">
       <tr class="reg-form-section-title">
@@ -18,21 +18,25 @@
               </ul>
               <li>
                 Morning Ensemble
-                <%= render :partial => "summary_morning_ensemble", :locals => {:ensemble_primary => @ensemble_primary} %>
+                <%= render partial: "summary_morning_ensemble", locals: {ensemble_primary: @ensemble_primary} %>
               </li>
               <li>
                 Chamber Groups
-                <%= render :partial => "summary_chamber_groups", :locals => {:ensemble_primary => @ensemble_primary} %>
+                <%= render partial: "summary_chamber_groups", locals: {ensemble_primary: @ensemble_primary} %>
               </li>
               <li>
                 You selected the following electives
-                <%= render :partial => "summary_electives", :locals => {:ensemble_primary => @ensemble_primary} %>
+                <%= render partial: "summary_electives", locals: {ensemble_primary: @ensemble_primary} %>
               </li>
               <li>
                 You completed evaluations for the following instruments/voices
-                <%= render :partial => "summary_evaluations", :locals => {:ensemble_primary => @ensemble_primary} %>
+                <%= render partial: "summary_evaluations", locals: {ensemble_primary: @ensemble_primary} %>
               </li>
           </ul>
+          <%= form_for @ensemble_primary, url: wizard_path, method: :put do |form| %>
+            <%= form.label :comments, 'Tell us anything else you want to say:' %>
+            <br />
+            <%= form.text_area :comments, cols: 60, rows: 5 %>
 
           <p>
           To finish the process, please read and acknowledge the
@@ -43,11 +47,12 @@
           I have read and acknowlege the Waiver and Release &nbsp;&nbsp;&nbsp
           <%= check_box_tag :terms %>
           </p>
+          <% end %>
 
           <table width="75%">
             <tr>
-              <td width="50%"><%= button_to "DONE", {:controller => :registration, :action => :index}, { class: 'submit-ensemble', disabled: true } %></td>
-              <td width="50%"><%= button_to "CANCEL", {:action => :cancel} %></td>
+              <td width="50%"><button class='submit-ensemble' disabled>DONE</button></td>
+              <td width="50%"><%= button_to "CANCEL", ensemble_path(@ensemble_primary), method: :delete %></td>
             </tr>
           </table>
         </td>

@@ -35,7 +35,8 @@ class EnsemblesForm
           $('#aviliable-electives li').draggable('disable')
       update: ->
         $(this).children().each (i, item)->
-          $(item).find('.rank').val(i)
+          console.log(i+1)
+          $(item).find('.rank').val(i+1)
     .disableSelection()
 
     $('#choosen-electives').on 'click', 'li .remove', ->
@@ -102,17 +103,20 @@ class EnsemblesForm
       level = $(e.target).attr('class')
       $(".skill-description p").addClass('hidden')
 
-    $('.private-study input[type=checkbox]').on 'change', (e)->
+    $('.checkbox-with-relative input[type=checkbox]').on 'change', (e)->
       if $(e.target).is(':checked')
-        $(e.target).closest('.private-study').find('.private-study-duration').removeClass('hidden')
+        $(e.target).closest('.checkbox-with-relative').find('.relative-input').removeClass('hidden')
       else
-        $(e.target).closest('.private-study').find('.private-study-duration').addClass('hidden')
+        $(e.target).closest('.checkbox-with-relative').find('.relative-input').addClass('hidden')
 
     $('#terms').on 'change', (e)->
       if $(e.target).is(':checked')
         $('.submit-ensemble').prop('disabled', false)
       else
         $('.submit-ensemble').prop('disabled', true)
+
+    $('.submit-ensemble').on 'click', ->
+      $('.edit_ensemble_primary').submit()
 
   handleMorningEnsembleChoice: (value)->
     if value == '0'

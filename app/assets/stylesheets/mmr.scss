@@ -558,6 +558,21 @@ ul.sortable-electives {
   }
 
   .skill-description {
-    padding: 12px 15px;
+    padding: 0px 12px 0px 12px;
+    height: 70px;
+
+    p {
+      margin: 0px;
+    }
+  }
+
+  ul.checkboxes-list {
+    margin: 0px;
+    padding-left: 0px;
+
+    li {
+      list-style-type: none;
+      margin: 2px 0;
+    }
   }
 }

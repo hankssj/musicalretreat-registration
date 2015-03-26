@@ -1,4 +1,4 @@
-<p><%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
+<%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %>
 
 <% if instrument.piano? %>
 <%= render :partial => "piano_evaluation", :locals => {:form => form, :instrument => instrument} %>

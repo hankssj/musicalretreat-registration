@@ -6,6 +6,7 @@
   </tr>
   <tr>
     <td class="reg-form-column">
+
       <% if instrument.string? %>
         <%= render partial: "string_evaluation", locals: {instrument: instrument, form: form} %>
       <% elsif instrument.brass? || instrument.woodwind? %>

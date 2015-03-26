@@ -26,6 +26,12 @@ class EnsemblesController < ApplicationController
     end
   end
 
+  def destroy
+    @user.most_recent_registration
+      .ensemble_primaries.find(params[:id]).destroy
+    redirect_to registration_index_path
+  end
+
   private
 
   def post_params
@@ -61,4 +67,3 @@ class EnsemblesController < ApplicationController
     end
   end
 end
-
