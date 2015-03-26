@@ -32,6 +32,7 @@ unless you tell us otherwise (use the comments box on the Summary page to do so)
       <% if @ensemble_primary.ensemble_primary_elective_ranks.empty? %>
       <li class='placeholder'>Drop here</li>
     <% else %>
+      <li class='placeholder hidden'>Drop here</li>
     <% f.object.ensemble_primary_elective_ranks.each do |elective_choice| %>
       <%= render partial: 'ensemble_primary_elective_rank', locals: { f: f, elective_choice: elective_choice, disabled: false } %>
     <% end %>

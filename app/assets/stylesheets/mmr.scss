@@ -501,11 +501,6 @@ ul.sortable-electives {
       color: red;
 
     }
-    &:first-child:last-child, &.placeholder ~ li {
-      .remove {
-        display: none;
-      }
-    }
   }
   li {
     cursor: row-resize;
@@ -516,6 +511,7 @@ ul.sortable-electives {
     text-align: center;
     height: 30px;
     border: 1px dashed #666;
+    cursor: inherit;
   }
 }
 #choosen-electives {

@@ -30,7 +30,7 @@ class EnsemblesForm
         $(this).sortable('refresh')
         $(ui.sender).draggable('disable')
         $(ui.sender).find('input, select').prop('disabled', false)
-        $('#choosen-electives .placeholder').remove()
+        $('#choosen-electives .placeholder').addClass('hidden')
         if($(this).children().length >= 5)
           $('#aviliable-electives li').draggable('disable')
       update: ->
@@ -40,14 +40,15 @@ class EnsemblesForm
     .disableSelection()
 
     $('#choosen-electives').on 'click', 'li .remove', ->
-      if ($('#choosen-electives').children().length > 1)
-        $li = $(this).closest('li')
-        $li.removeAttr('style')
-        $li.css('position', 'relative')
-        $li.prependTo('#aviliable-electives')
-        $li.fadeIn(100).fadeOut(100).fadeIn(100)
-        $li.find('input, select').prop('disabled', true)
-        $('#aviliable-electives li').draggable('enable')
+      if ($('#choosen-electives').children().not('.placeholder').length <= 1)
+        $('#choosen-electives .placeholder').removeClass('hidden')
+      $li = $(this).closest('li')
+      $li.removeAttr('style')
+      $li.css('position', 'relative')
+      $li.prependTo('#aviliable-electives')
+      $li.fadeIn(100).fadeOut(100).fadeIn(100)
+      $li.find('input, select').prop('disabled', true)
+      $('#aviliable-electives li').draggable('enable')
 
     $('.sortable-electives li').draggable
       connectToSortable: '#choosen-electives'

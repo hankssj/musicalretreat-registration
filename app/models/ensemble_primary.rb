@@ -18,7 +18,9 @@ class EnsemblePrimary < ActiveRecord::Base
   validates :chamber_ensemble_choice, presence: { message: "You must specify yours chamber ensemble preferences" }, 
     if: lambda{|e| e.step === :afternoon_ensembles_and_electives }
 
-  validates :ensemble_primary_elective_ranks, length: { within: 1..5, message: 'You have to choose from 1 to 5 electives' }, if: lambda{|e| e.step === :chamber_elective }
+  validates :ensemble_primary_elective_ranks,
+    length: { within: 1..5, message: 'You have to choose from 1 to 5 electives' },
+    if: lambda{|e| e.step === :chamber_elective }
       
   accepts_nested_attributes_for :mmr_chambers
   accepts_nested_attributes_for :prearranged_chambers
@@ -127,7 +129,7 @@ class EnsemblePrimary < ActiveRecord::Base
   end
 
   def skip_invalid_messages
-    filtered_errors = self.errors.reject{ |err| [:ensemble_primary_elective_ranks, :prearranged_chambers, :mmr_chambers].include?(err.first) }
+    filtered_errors = self.errors.reject{ |err| [:prearranged_chambers, :mmr_chambers].include?(err.first) }
 
     filtered_errors.collect{ |err|
       if err[0] =~ /(.+\.)?(.+)$/
