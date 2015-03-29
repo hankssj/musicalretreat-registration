@@ -4,11 +4,13 @@
   <% else %>
     <%= render :partial => "reg_index_button", :locals => { :text => "Log In", :action => :login } %>
   <% end %>
-  <td/>
+
+  <%= render :partial => "reg_index_button", :locals => { :text => nil, :action => nil} %>
+
 </tr>
 
 <tr>
   <%= render :partial => "reg_index_button", :locals => { :text => "Create New Account", :action => :new_password} %>
-  <%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password &emdash; Send New Password By Email", :action => :new_password } %>
+  <%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password -- Send New Password By Email", :action => :new_password } %>
 </tr>
 

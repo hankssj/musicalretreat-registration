@@ -16,7 +16,9 @@
 	   <% if @email %>(You are logged in as <%= @email %>)<% else %>(You are not logged in)<% end %>
 	</td>
 </tr>
+</table>
 
+<table id="reg-index-table">
 <% if @status != :open %>
 <%= render :partial => "index_closed" %>
 <% elsif !@logged_in %>
@@ -26,9 +28,10 @@
 <% else %>
 <%= render :partial => "index_registered" %>
 <% end %>
+</table>
 
 <!--  Footer -->
-
+<table id="reg-index-table">
 <tr>
   <td class="bordered" colspan="2">
   Please read information about 
