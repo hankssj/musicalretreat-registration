@@ -1,21 +1,22 @@
 <% if @logged_in %>
    <tr>
-    <%= render :partial => "reg_index_button", :locals => { :text => "Change Password", :action => :change_password } %>
+    <%= render :partial => "reg_index_button", :locals => {:text => "Change Password", :options => {:action => :change_password}, :html_options => {}} %>
    </tr>
    <tr>
-    <%= render :partial => "reg_index_button", :locals => { :text => "Log Out", :action => :logout } %>
+    <%= render :partial => "reg_index_button", :locals => {:text => "Log Out", :options => {:action => :logout}, :html_options => {} %>
    </tr>
 <% else %>
 
 <% end %>
 </tr>
 <tr>
-  <%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password -- Send New Password By Email", :action => :new_password } %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Forgot Password -- Send New Password By Email", 
+                                                         :options => {:action => :new_password}, :html_options => {} %>
 </tr>
 <tr>
-  <%= render :partial => "reg_index_button", :locals => { :text => "Create New Account", :action => :new_password} %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Create New Account", :options => {:action => :new_password}, :html_options => {}} %>
 </tr>
 <tr>
-  <%= render :partial => "reg_index_button", :locals => { :text => nil, :action => nil} %>
+  <%= render :partial => "reg_index_button_filler" %>
 </tr>
 
