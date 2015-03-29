@@ -1,13 +1,14 @@
 <tr>
   <% if @logged_in %>
-    <%= render :partial => "reg_index_button", :locals => { :text => "Log In", :action => :login } %>
-  <% else %>
     <%= render :partial => "reg_index_button", :locals => { :text => "Log Out", :action => :logout } %>
+  <% else %>
+    <%= render :partial => "reg_index_button", :locals => { :text => "Log In", :action => :login } %>
   <% end %>
+  <td/>
 </tr>
 
 <tr>
   <%= render :partial => "reg_index_button", :locals => { :text => "Create New Account", :action => :new_password} %>
-  <%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password, Please Send Me New Password By Email", :action => :new_password } %>
+  <%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password &emdash; Send New Password By Email", :action => :new_password } %>
 </tr>
 
