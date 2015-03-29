@@ -3,23 +3,27 @@
 <!--  Banner -->
 <table id="reg-index-table">
 <tr>
-     <% if @status == :open %>
-      	<td width="60%" id="reg-index-banner">Welcome to MMR <%= Year.this_year %> Registration</td>
-      <% elsif @status == :premature %>
-      	<td width="60%" id="reg-index-banner">Registration for <%= Year.this_year %> Opens on January 1</td>
-      <% else %>
-      	 <td width="60%" id="reg-index-banner">
-	   Registration for MMR <%= Year.this_year %> Registration is Closed! <br/>
-	   Call 1-800-471-2419 for wait list or cancellation information.</td>
-      <% end %>
-	<td class="reg-index-email">
-	   <% if @email %>(You are logged in as <%= @email %>)<% else %>(You are not logged in)<% end %>
-	</td>
+<% if @status == :open %>
+   <td width="60%" id="reg-index-banner">Welcome to MMR <%= Year.this_year %> Registration</td>
+<% elsif @status == :premature %>
+   <td width="60%" id="reg-index-banner">
+         Registration opens on <%= RegDates.registration_opens.strftime("%A %B %e, %Y") %>
+   </td>
+<% else %>
+  <td width="60%" id="reg-index-banner">
+     Registration for MMR <%= Year.this_year %> Registration is Closed <br/>
+     Call 1-800-471-2419 for wait list or cancellation information</td>
+<% end %>
+<td class="reg-index-email">
+   <% if @email %>(You are logged in as <%= @email %>)<% else %>(You are not logged in)<% end %>
+</td>
 </tr>
 </table>
 
 <table id="reg-index-table">
-<% if @status != :open %>
+<% if @status == :premature %>
+<%= render :partial => "index_premature" %>
+<% elsif @status -= :closed %>
 <%= render :partial => "index_closed" %>
 <% elsif !@logged_in %>
 <%= render :partial => "index_not_logged_in" %>
