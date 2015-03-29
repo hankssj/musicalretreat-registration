@@ -3,14 +3,15 @@
     <%= render :partial => "reg_index_button", :locals => { :text => "Log Out", :action => :logout } %>
   <% else %>
     <%= render :partial => "reg_index_button", :locals => { :text => "Log In", :action => :login } %>
-  <%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password -- Send New Password By Email", :action => :new_password } %>
- <% end %>
-
-
+  <% end %>
 </tr>
-
+<tr>
+  <%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password -- Send New Password By Email", :action => :new_password } %>
+</tr>
 <tr>
   <%= render :partial => "reg_index_button", :locals => { :text => "Create New Account", :action => :new_password} %>
+</tr>
+<tr>
   <%= render :partial => "reg_index_button", :locals => { :text => nil, :action => nil} %>
 </tr>
 
