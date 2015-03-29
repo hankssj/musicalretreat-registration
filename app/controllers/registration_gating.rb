@@ -53,7 +53,7 @@ module RegistrationGating
   end
 
   #  Controls messaging on the index page banner, also used do define can_register and can_pay
-  def status
+  def registration_system_status
     return :closed if @@FORCE_REGISTRATION_CLOSED
     return :open if Time.now > RegDates.registration_opens
     return :premature
