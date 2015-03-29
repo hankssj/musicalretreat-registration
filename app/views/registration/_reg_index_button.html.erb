@@ -2,9 +2,9 @@
   <td class="bordered", width="50%"><%= text %>
   <p/>
   <% if action %>
-    <% if method %>
+    <% if dispatch_method %>
     Text <%= text %> action <%= action %> method <%= method %><p/>
-       <%= button_to "GO", :action => action, :method => method %>
+       <%= button_to "GO", :action => action, :method => dispatch_method %>
     <% else %>
        <%= button_to "GO", :action => action %>
     <% end %>
