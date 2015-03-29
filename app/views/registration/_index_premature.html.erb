@@ -6,16 +6,14 @@
     <%= render :partial => "reg_index_button", :locals => { :text => "Log Out", :action => :logout } %>
    </tr>
 <% else %>
-
-<% end %>
+<tr>  
+<%= render :partial => "reg_index_button", :locals => { :text => "Log In", :action => :login } %>
 </tr>
 <tr>
-  <%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password -- Send New Password By Email", :action => :new_password } %>
+<%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password #{escape_html("&emdash;")Send New Password By Email", :action => :new_password } %>
 </tr>
 <tr>
   <%= render :partial => "reg_index_button", :locals => { :text => "Create New Account", :action => :new_password} %>
 </tr>
-<tr>
-  <%= render :partial => "reg_index_button", :locals => { :text => nil, :action => nil} %>
-</tr>
+<% end %>
 
