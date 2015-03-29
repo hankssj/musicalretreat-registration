@@ -3,8 +3,16 @@
   <%= render :partial => "reg_index_button", :locals => {:text => "Edit Registration", :action => :edit} %>
 </tr>
 <tr>
-  <%= render :partial => "reg_index_button", :locals => {:text => "Pay Online",       :action => (@has_balance ? :payment : nil)} %>
-  <%= render :partial => "reg_index_button", :locals => {:text => "Choose Ensembles", :action => (@needs_evals ? :new_ensemble_path : nil)} %>
+  <% if @has_balance %>
+     <%= render :partial => "reg_index_button", :locals => {:text => "Pay Online", :action => :payment} %>
+  <% else %>
+     <%= render :partial => "reg_index_button_filler", :locals => {:text => "You Are Fully Paid"} %>
+  <% end %>
+  <% if @needs_evals %>
+     <%= render :partial => "reg_index_button", :locals => {:text => "Choose Ensembles", :action => new_ensemble_path} %>
+  <% else %>
+     <%= render :parital => "reg_index_button_filler", :locals => {:text => "You Have Chosen Ensembles"} %>
+  <% end %>
 </tr>
 <tr>
   <%= render :partial => "reg_index_button", :locals => {:text => "Change Password", :action => :change_password} %>
