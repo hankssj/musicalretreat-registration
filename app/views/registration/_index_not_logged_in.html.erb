@@ -1,9 +1,9 @@
 <tr>
-  <%= render :partial => "reg_index_button", :locals => { :text => "Log In", :action => :login } %>
-  <%= render :partial => "reg_index_button", :locals => { :text => "Change Password", :action => :change_password %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Log In", :action => :login} %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Change Password", :action => :change_password} %>
 </tr>
 
 <tr>
-  <%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password, Please Reset<br/><span style=\"font-size: smaller\">(New Password Sent by Email)", :action => :new_password %>
-  <%= render :partial => "reg_index_button", :locals => { :text => "Create New Account", :action => :new_password } %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Forgot Password; Send New Password By Email", :action => :new_password} %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Create New Account", :action => :new_password} %>
 </tr>
