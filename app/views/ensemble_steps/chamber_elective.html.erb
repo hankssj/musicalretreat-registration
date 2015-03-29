@@ -18,7 +18,7 @@ You must make at least one and at most five choices.   In some cases you must al
 voice/instrument you want for the elective.
 </p>
 
-<p>Hover over elective name for more information</p>
+<p>Hover over elective name for more information.  Drag your selection from &quot;Available&quot; to &quote;Chosen&quot</p>
 </td>
 </tr>
 <tr>
@@ -27,7 +27,7 @@ voice/instrument you want for the elective.
 <%= form_for @ensemble_primary, url: wizard_path, method: :put do |f|%>
 <div class='float-right two-third-column indented-top'>
   <div class='reg-form-section-title'>
-    Choosen Electives
+    Elective Choices (Highest to Lowest Priority)
   </div>
   <div class='with-background'>
     <ul id='choosen-electives' class='sortable-electives'>
@@ -48,7 +48,7 @@ voice/instrument you want for the elective.
   </div>
 </div>
 <div class='float-left one-third-column indented-top'>
-<div class='reg-form-section-title'>Aviliable Electives</div>
+<div class='reg-form-section-title'>Available Electives</div>
 <div class='with-background'>
   <ul id='aviliable-electives' class='sortable-electives'>
     <% f.object.build_ensemble_primary_elective_ranks.each do |elective_choice| %>
