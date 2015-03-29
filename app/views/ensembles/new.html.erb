@@ -15,7 +15,7 @@
       Welcome to MMR <%= Year.this_year %>. This web form will lead you through requesting 
       the Elective and Ensemble program you prefer. You will also complete the self-evaluations 
       needed by the faculty to plan the best possible program for you.  This is a new format 
-      so if problems arise please contact us  (800)471-2419   or  
+      so if problems arise please contact us at (800) 471-2419   or  
       <a href="mailto:midsummer@musicalretreat.org">midsummer@musicalretreat.org</a>.
       You will be asked to review  and confirm your choices at the end.
     </p>
@@ -37,26 +37,26 @@
   <td class="reg-form-column">
 <% if @ensemble_primary.registration.instrument.large_ensemble == "band_or_orchestra" %>
 <table class="morning-ensemble-choices">
-<tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<!-- <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr> -->
 <tr><td>Either Symphonic Band or Festival Orchestra</td><td><%= form.radio_button :large_ensemble_choice, 1, {:checked => true} %></td></tr>
 <tr><td>Prefer Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
 <tr><td>Prefer Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 3 %></td></tr>
 </table>
 <% elsif @ensemble_primary.registration.instrument.large_ensemble == "band" %>
 <table class="morning-ensemble-choices">
-<tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<!-- <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr> -->
 <tr><td>Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 2, {:checked => true} %></td></tr>
 </table>
 <% elsif @ensemble_primary.registration.instrument.large_ensemble == "festival_or_string_orchestra" %>
 <table class="morning-ensemble-choices">
-<tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<!-- <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr> -->
 <tr><td>Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 3, {:checked => true} %></td></tr>
 <tr><td>String Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 5, {:checked => true} %></td></tr>
 <tr><td>Either Festival or String Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 6, {:checked => true} %></td></tr>
 </table>
 <% elsif @ensemble_primary.registration.instrument.large_ensemble == "chorus" %>
 <table class="morning-ensemble-choices">
-<tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr>
+<!-- <tr><td>No Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr> -->
 <tr><td>Festival Chorus </td><td><%= form.radio_button :large_ensemble_choice, 4, {:checked => true} %></td></tr>
 </table>
 <% elsif @ensemble_primary.registration.instrument.large_ensemble == "none" %>
