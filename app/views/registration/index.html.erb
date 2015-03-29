@@ -23,7 +23,7 @@
 <table id="reg-index-table">
 <% if @status == :premature %>
 <%= render :partial => "index_premature" %>
-<% elsif @status -= :closed %>
+<% elsif @status == :closed %>
 <%= render :partial => "index_closed" %>
 <% elsif !@logged_in %>
 <%= render :partial => "index_not_logged_in" %>
