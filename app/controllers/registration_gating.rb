@@ -9,8 +9,7 @@
 
 module RegistrationGating
 
-  FORCE_REGISTRATION_CLOSED = true
-  #FORCE_REGISTRATION_CLOSED = false
+  FORCE_REGISTRATION_CLOSED = false
   FORCE_PAYMENT_CLOSED = false
 
   EARLY_INVITEES = %w{
@@ -58,6 +57,7 @@ module RegistrationGating
   #   Closed => disable new registrations and edit registration, but allow everything else
 
   def registration_system_status
+    return :premature
     return :closed if FORCE_REGISTRATION_CLOSED
     return :open if Time.now > RegDates.registration_opens
     return :premature
