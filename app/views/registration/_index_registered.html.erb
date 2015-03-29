@@ -9,7 +9,7 @@
      <%= render :partial => "reg_index_button_filler", :locals => {:text => "You Are Fully Paid"} %>
   <% end %>
   <% if @needs_evals %>
-     <%= render :partial => "reg_index_button", :locals => {:text => "Choose Ensembles", :action => new_ensemble_path} %>
+     <%= render :partial => "reg_index_button", :locals => {:text => "Choose Ensembles", :action => new_ensemble_path, :dispatch_method => :get} %>
   <% else %>
      <%= render :parital => "reg_index_button_filler", :locals => {:text => "You Have Chosen Ensembles"} %>
   <% end %>
