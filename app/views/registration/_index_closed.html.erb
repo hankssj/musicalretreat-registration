@@ -1,0 +1,13 @@
+<tr>
+  <% if @logged_in %>
+    <%= render :partial => "reg_index_button", :locals => { :text => "Log In", :action => :login } %>
+  <% else %>
+    <%= render :partial => "reg_index_button", :locals => { :text => "Log Out", :action => :logout } %>
+  <% end %>
+</tr>
+
+<tr>
+  <%= render :partial => "reg_index_button", :locals => { :text => "Create New Account", :action => :new_password} %>
+  <%= render :partial => "reg_index_button", :locals => { :text => "Forgot Password, Please Reset<br/><span style=\"font-size: smaller\">(New Password Sent by Email)</span>", :action => :new_password } %>
+</tr>
+

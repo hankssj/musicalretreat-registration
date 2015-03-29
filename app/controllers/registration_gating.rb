@@ -9,7 +9,8 @@
 
 module RegistrationGating
 
-  @@FORCE_REGISTRATION_CLOSED = false
+  @@FORCE_REGISTRATION_CLOSED = true
+  #@@FORCE_REGISTRATION_CLOSED = false
   @@FORCE_PAYMENT_CLOSED = false
 
   @@EARLY_INVITEES = %w{

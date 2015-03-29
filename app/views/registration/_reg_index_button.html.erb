@@ -1,0 +1,8 @@
+<td class="bordered"><%= text %></td>
+<p/>
+<% if action %>
+  <%= button_to "GO", :action => action %>
+<% else %>
+  <%= button_tag "NO" %>
+<% end %>
+</td>   
