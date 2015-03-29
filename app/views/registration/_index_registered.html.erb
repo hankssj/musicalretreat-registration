@@ -1,3 +1,13 @@
+<ul>
+<li> <%= @logged_in %>
+<li> <%= @email %>
+<li> <%= @registration %>
+<li> <%= @registered %>
+<li> <%= @registration.balance %>
+<li> <%= @registration.balance %>
+<li> <%= @registration.ensemble_primaries.length %>
+</ul>
+
 <tr>
   <%= render :partial => "reg_index_button", :locals => {:text => "View Registration", :action => :show} %>
   <%= render :partial => "reg_index_button", :locals => {:text => "Edit Registration", :action => :edit} %>

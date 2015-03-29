@@ -18,7 +18,8 @@ class RegistrationController < ApplicationController
     # This user's status
     @logged_in = session_user
     @email = session_email
-    @registered = session_registration
+    @registration = session_registration
+    @registered = !@registration.nil?
     @has_balance = @registration && @registration.balance > 0
     @needs_evals = @registration && @registration.ensemble_primaries.empty?
   end
