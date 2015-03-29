@@ -4,7 +4,7 @@
 </tr>
 <tr>
   <%= render :partial => "reg_index_button", :locals => {:text => "Pay Online",       :action => (@has_balance ? :payment : nil)} %>
-  <%= render :partial => "reg_index_button", :locals => {:text => "Choose Ensembles", :action => (@needs_evals ? :new_ensemble_path : nil} %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Choose Ensembles", :action => (@needs_evals ? :new_ensemble_path : nil)} %>
 </tr>
 <tr>
   <%= render :partial => "reg_index_button", :locals => {:text => "Change Password", :action => :change_password} %>
