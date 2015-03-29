@@ -1,6 +1,7 @@
 <% if text %>
   <td class="bordered", width="50%"><%= text %>
   <p/>
+  <b><%= action %></b>
   <% if action %>
     <% if local_assigns.has_key? :dispatch_method %>
        <%= button_to "GO", :action => action, :method => dispatch_method %>
