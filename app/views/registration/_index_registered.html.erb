@@ -11,7 +11,7 @@
   <% if @needs_evals %>
      <%= render :partial => "reg_index_button", 
      :locals => {:text => "Self Evaluation / Ensembles / Elective Choices", 
-                 :action => {:controller => :ensembles, :action => :new, :method => :get} %>
+                 :action => {:controller => :ensembles, :action => :new, :method => :get}} %>
   <% else %>
      <%= render :partial => "reg_index_button_filler", :locals => {:text => "You Have Chosen Ensembles"} %>
   <% end %>
