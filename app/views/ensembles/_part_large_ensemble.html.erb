@@ -2,29 +2,39 @@
 
 <p>
 What part would you prefer to play in the orchestra? &nbsp;&nbsp;&nbsp;
-First&nbsp;&nbsp;<%= form.radio_button :large_ensemble_part, 1 %>&nbsp;&nbsp;
-Second&nbsp;&nbsp;<%= form.radio_button :large_ensemble_part, 2 %>&nbsp;&nbsp;
-No Preference&nbsp;&nbsp;<%= form.radio_button :large_ensemble_part, 0, {:checked => true} %>&nbsp;&nbsp;
 </p>
+<table>
+<tr><td>No Preference</td><td>First</td><td>Second</td></tr>
+  <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 0, {checked => true} %></td>
+  <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 1 %></td>
+  <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 2 %></td>
+</tr>
+</table>
+
 <% elsif  instrument.flute? %>
 
 <p>
-Please indicate your seating preference for Symphonic Band &nbsp;&nbsp;&nbsp;
-First Flute <%= form.radio_button :large_ensemble_part, 1 %>&nbsp;&nbsp;&nbsp;
-Second Flute <%= form.radio_button :large_ensemble_part, 2 %>&nbsp;&nbsp;&nbsp;
-Piccolo <%= form.radio_button :large_ensemble_part, 10 %>&nbsp;&nbsp;&nbsp;
-No Preference&nbsp;&nbsp;<%= form.radio_button :large_ensemble_part, 0, {:checked => true} %>&nbsp;&nbsp;
+Please indicate your seating preference for Symphonic Band
 </p>
+
+<table>
+<tr><td>No Preference</td><td>First Flute</td><td>Second Flute</td><td>Piccolo</td></tr>
+  <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 0, {:checked => true} %></td>
+  <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 1 %></td>
+  <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 2 %></td>
+  <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 10 %></td>
+</tr>
+</table>
 
 <% elsif  instrument.clarinet? %>
 <p>
-Please indicate your seating preference for Symphonic Band:
+Please indicate your seating preference for Symphonic Band
 </p>
 
 <table>
 <tr><td>No Preference</td><td>First</td><td>Second</td><td>Third</td></tr>
 <tr>
-  <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 0 %></td>
+  <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 0, {checked => true} %></td>
   <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 1 %></td>
   <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 2 %></td>
   <td style="text-align: center;"><%= form.radio_button :large_ensemble_part, 3 %></td>
