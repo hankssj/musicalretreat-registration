@@ -1,19 +1,20 @@
 <% if action %>
-<td class="bordered", width="50%"><%= text %>
-<p/>
-<% if action %>
-  <% if method %>
-     <%= button_to "GO", :action => action, :method => method %>
+  <td class="bordered", width="50%"><%= text %>
+  <p/>
+  <% if action %>
+    <% if method %>
+    Text <%= text %> action <%= action %> method <%= method %><p/>
+       <%= button_to "GO", :action => action, :method => method %>
+    <% else %>
+       <%= button_to "GO", :action => action %>
+    <% end %>
   <% else %>
-     <%= button_to "GO", :action => action %>
+    <%= button_tag "NO" %>
   <% end %>
+  </td>   
 <% else %>
-  <%= button_tag "NO" %>
-<% end %>
-</td>   
-<% else %>
-<td class="bordered", width="50%">
-</td>
+  <td class="bordered", width="50%">
+  </td>
 <% end %>
 
 
