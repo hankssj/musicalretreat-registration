@@ -57,7 +57,6 @@ module RegistrationGating
   #   Closed => disable new registrations and edit registration, but allow everything else
 
   def registration_system_status
-    return :premature
     return :closed if FORCE_REGISTRATION_CLOSED
     return :open if Time.now > RegDates.registration_opens
     return :premature
