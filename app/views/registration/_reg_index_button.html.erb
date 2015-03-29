@@ -3,7 +3,7 @@
   <p/>
   <% if action %>
     <% if local_assigns.has_key? :dispatch_method %>
-       <%= button_to "GO", {:action => action, :method => dispatch_method} %>
+       <%= button_to "GO", {:action => action}, {:method => dispatch_method}} %>
     <% else %>
        <%= button_to "GO", :action => action %>
     <% end %>
