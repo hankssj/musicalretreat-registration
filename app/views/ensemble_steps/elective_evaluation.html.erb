@@ -15,9 +15,11 @@
             in large ensemble, chamber groups, and electives.  
           </p>
           <p>
+	    <center><b>
             You will now fill out evaluations for: 
-          </p>
-          <%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(id).display_name}.join(",") %>
+               <%= @ensemble_primary.need_eval_for.map{|id|Instrument.find(id).display_name}.join(", ") %>
+	    </b></center>
+	  </p>
         </td>
       </tr>
     </table>
