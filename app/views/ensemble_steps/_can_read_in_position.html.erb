@@ -1,6 +1,6 @@
 <div class='indented-top'>
 <table class='eval-table'>
-<tr><th colspan="<%= if instrument.cello? || instrument.bass? %>6<% else %>5<% end %>"> I can read well in</th></tr>
+<tr><th colspan="<%= (instrument.cello? || instrument.bass?) ? '6' : '5' %>"> I can read well in</th></tr>
 <tr>
 <td>3rd Position</td><td>4th Position</td><td>5th Position</td><td>6th Position</td><td>7th Position<td> 
 <% if instrument.cello? || instrument.bass? %> <td>Thumb Position</td> <% end %>
