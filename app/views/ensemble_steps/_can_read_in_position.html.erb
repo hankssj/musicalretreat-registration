@@ -1,0 +1,14 @@
+<div class='indented-top'>
+<table class='eval-table'>
+<tr><th colspan="<% if  <% if instrument.cello? || instrument.bass? %> 6 <% else %>5<% end %>"> I can read well in:</th></tr>
+<tr>
+<td>3rd Position</td><td>4th Position</td><td>5th Position</td><td>6th Position</td><td>7th Position<td> 
+<% if instrument.cello? || instrument.bass? %> <td>Thumb Position</td> <% end %>
+</tr>
+<tr>
+<td><%= form.check_box :third_position %></td><td><%= form.check_box :fourth_position %></td><td><%= form.check_box :fifth_position %></td>
+       <td><%= form.check_box :sixth_position %></td><td><%= form.check_box :seventh_position %><td> 
+        <% if instrument.cello? || instrument.bass? %> <td><%= form.check_box :thumb_position %></td> <% end %>
+</tr>
+</table>
+</div>

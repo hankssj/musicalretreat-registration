@@ -16,22 +16,7 @@
 
 <%= render :partial => "chamber_frequency", :locals => {:form => form, :instrument => instrument} %>
 
-<div class='indented-top'>
-  <label>
-    I can read well in:
-  </label>
-<table>
-<tr>
-<td>3rd Position</td><td>4th Position</td><td>5th Position</td><td>6th Position</td><td>7th Position<td> 
-        <% if instrument.cello? || instrument.bass? %> <td>Thumb Position</td> <% end %>
-    </tr>
-<tr>
-<td><%= form.check_box :third_position %></td><td><%= form.check_box :fourth_position %></td><td><%= form.check_box :fifth_position %></td>
-       <td><%= form.check_box :sixth_position %></td><td><%= form.check_box :seventh_position %><td> 
-        <% if instrument.cello? || instrument.bass? %> <td><%= form.check_box :thumb_position %></td> <% end %>
-    </tr>
-</table>
-</div>
+<%= render :partial => "can_read_in_position", :locals => {:form => form, :instrument => instrument} %>
 
 <% if instrument.bass? %>
 <%= render :partial => "jazz_experience", :locals => {:form => form, :instrument => instrument} %>
