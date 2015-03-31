@@ -1,9 +1,11 @@
 <div class='indented-top checkbox-with-relative'>
-<table>
-  <tr><td><%= form.label :studying_privately, 'Do you study privately?' %></td><td><%= form.check_box :studying_privately %></td></tr>
-  <tr class="relative-input <%= 'hidden' unless form.object.studying_privately %>">
-    <td><%= form.label :studying_privately_how_long, 'For how many years?' %></td>
-    <td><%= form.text_field :studying_privately_how_long, :size => 5 %>
+<table class='eval-table'>
+  <tr><th class='eval-table' colspan="2">'Do you study privately?'</th></tr>
+  <tr><td>Yes</td><td>No</td></tr>
+  <tr>
+  <td><%= form.radio_button :studying_privately, true, %></td>
+  <td><%= form.radio_button :studying_privately, false, {:checked => true} %></td>
   </tr>
+  <tr><td colspan="2">For how many years? &nbsp;&nbsp; <%= form.text_field :studying_privately_how_long, :size => 5 %></td></tr>
 </table>
 </div>
