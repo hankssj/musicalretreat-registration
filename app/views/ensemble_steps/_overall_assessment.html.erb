@@ -2,9 +2,9 @@
   <table>
     <tr>
       <td>
-        <p class='label'>Rate your overall ability in these areas:</p>
+        <p class='label'>Rate Your Ability in These Areas</p>
         <% unless instrument.vocal? %>
-          <%= form.label :overall_rating_chamber, 'Chamber Music:' %>
+          <%= form.label :overall_rating_chamber, 'Chamber Music' %>
           <table width='100%'>
             <tr>
                <td class='beginner'>Beginner</td>
@@ -25,7 +25,7 @@
 
 
         <% unless (instrument.piano? || instrument.vocal?) %>
-          <%= form.label :overall_rating_chamber, 'Large Ensemble (Band, Orchestra, Chorus):' %>
+          <%= form.label :overall_rating_chamber, 'Large Ensemble (Band, Orchestra, Chorus)' %>
           <table width='100%'>
             <tr>
                <td class='beginner'>Beginner</td>
