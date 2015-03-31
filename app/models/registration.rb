@@ -5,6 +5,10 @@ class Registration < ActiveRecord::Base
   belongs_to :instrument
   has_many :ensemble_primaries
 
+  scope :brass, lambda { joins(:instrument).where(instruments: {instrument_type: "brass"}) }
+  scope :woodwind, lambda { joins(:instrument).where(instruments: {instrument_type: "woodwind"}) }
+  scope :voice, lambda { joins(:instrument).where(instruments: {instrument_type: "voice"}) }
+  scope :percussion, lambda { joins(:instrument).where(instruments: {instrument_type: "percussion"}) }
   # Validation:  first and last name not empty; first line of street address, city, state, zip not empty
   # Phone numbers validate
   # Primary instrument must be selected if particpant

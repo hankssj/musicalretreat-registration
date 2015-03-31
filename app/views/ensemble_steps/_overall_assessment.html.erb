@@ -25,7 +25,7 @@
 
 
         <% unless (instrument.piano? || instrument.vocal?) %>
-          <%= form.label :overall_rating_chamber, 'Large Ensemble (Band, Orchestra, Chorus)' %>
+          <%= form.label :overall_rating_large_ensemble, 'Large Ensemble (Band, Orchestra, Chorus)' %>
           <table width='100%'>
             <tr>
                <td class='beginner'>Beginner</td>
@@ -44,7 +44,7 @@
           </table>
         <% end %>
 
-        <%= form.label :overall_rating_chamber, 'Sightreading:' %>
+        <%= form.label :overall_rating_sightreading, 'Sightreading:' %>
         <table>
           <tr>
              <td>Poor</td>

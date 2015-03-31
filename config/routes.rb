@@ -45,6 +45,10 @@ RegistrationDevelopment::Application.routes.draw do
 
   get "admin", to: "admin#index"
 
+  namespace :admin do
+    resources :registrations, only: [:index]
+  end
+
   get ":controller/:action"
   post ":controller/:action"
   patch ":controller/:action"

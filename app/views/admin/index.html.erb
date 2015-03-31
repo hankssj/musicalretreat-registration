@@ -26,6 +26,9 @@
       <td class="bordered">Edit Registration<br/><%= button_tag "GO" %></td>
       <td class="bordered">Log Out<%= button_to "GO", :action => :logout %></td>
     </tr>
+    <tr>
+      <td class="bordered" colspan="2">Generate report<br/><%= button_to "GO", admin_registrations_path(:pdf), method: :get %></td>
+    </tr>
   </table>
 </div>
 

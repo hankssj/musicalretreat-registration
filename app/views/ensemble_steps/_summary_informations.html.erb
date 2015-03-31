@@ -1,0 +1,24 @@
+<ul>
+<li>Contact Information
+    <ul>
+      <li>Name:  <%= ensemble_primary.registration.display_name %></li>
+      <li>Email: <%= ensemble_primary.registration.email %></li>
+    </ul>
+    <li>
+      Morning Ensemble
+      <%= render partial: "ensemble_steps/summary_morning_ensemble.html", locals: {ensemble_primary: ensemble_primary} %>
+    </li>
+    <li>
+      Chamber Groups
+      <%= render partial: "ensemble_steps/summary_chamber_groups.html", locals: {ensemble_primary: ensemble_primary} %>
+    </li>
+    <li>
+      You selected the following electives
+      <%= render partial: "ensemble_steps/summary_electives.html", locals: {ensemble_primary: ensemble_primary} %>
+    </li>
+    <li>
+      You completed evaluations for the following instruments/voices
+      <%= render partial: "ensemble_steps/summary_evaluations.html", locals: {ensemble_primary: ensemble_primary} %>
+    </li>
+</ul>
+

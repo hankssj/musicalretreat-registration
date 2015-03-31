@@ -1,0 +1,390 @@
+<div class="page">
+<h1>Report for <%= instrument_type %></h1>
+<table>
+  <thead>
+    <tr>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>Email Name</th>
+      <th>Instrument</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% registrations.each do |registration| %>
+      <tr>
+      <td><%= registration.first_name %></td>
+      <td><%= registration.last_name %></td>
+      <td><%= registration.email %></td>
+      <td><%= registration.instrument.display_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<% registrations.each do |registration| %>
+    <% unless registration.ensemble_primaries.empty? %>
+      <div class="page">
+        <%= render partial: 'ensemble_steps/summary_informations.html', locals: {ensemble_primary: registration.ensemble_primaries.last} %>
+      </div>
+      <% registration.ensemble_primaries.last.evaluations.each do |evaluation| %>
+        <div class="page">
+          <h2>Evaluation for <%= evaluation.instrument.display_name %></h2>
+          <table>
+            <tr>
+              <td>Groups participant played during the year</td>
+              <td><%= evaluation.groups %></td>
+            </tr>
+            <tr>
+              <td>Do any of these groups require an audition?</td>
+              <td><%= evaluation.require_audition ? 'Yes' : 'No' %></td>
+            </tr>
+            <tr>
+              <td>Does participant practice alone regularly?</td>
+              <td>
+                <% case evaluation.practicing_how_much.to_i %>
+                <% when 0 %>
+                  Rarely <% when 1 %> 2 or 3 times a week
+                <% when 2 %>
+                  4 or more times a week
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>Does participant study privately?</td>
+              <td><%= evaluation.studying_privately ? 'Yes' : 'No' %></td>
+            </tr>
+            <tr>
+              <td>For how many years?</td>
+              <td><%= evaluation.studying_privately_how_long %></td>
+            </tr>
+            <% unless evaluation.instrument.vocal? %>
+              <tr>
+                <td>How often participant plays chamber music?</td>
+                <td>
+                  <% case evaluation.chamber_music_how_often.to_i %>
+                  <% when 0 %>
+                    Less than once a week
+                  <% when 1 %>
+                    Weekly
+                  <% when 2 %>
+                    More than once a weak
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            <% if evaluation.instrument.percussion? || evaluation.instrument.bass? || evaluation.instrument.piano? %>
+              <tr>
+                <td>Does participant want would like to play ina jazz ensemble or big band?</td>
+                <td><%= evaluation.jazz_want_ensemble ? 'Yes' : 'No' %></td>
+              </tr>
+              <tr>
+                <td>Have participant played in small jazz ensemble?</td>
+                <td><%= evaluation.jazz_small_ensemble ? 'Yes' : 'No' %></td>
+              </tr>
+              <tr>
+                <td>Have participant played in Big Band?</td>
+                <td><%= evaluation.jazz_big_band ? 'Yes' : 'No' %></td>
+              </tr>
+            <% end %>
+            <% if evaluation.instrument.piano? %>
+              <tr>
+                <td>Composers whose works participant enjoys practicing</td>
+                <td><%= evaluation.composers %></td>
+              </tr>
+            <% end %>
+            <% if evaluation.instrument.violin? %>
+              <tr>
+                <td>Part which user prefer to play in Chamber Ensembles</td>
+                <td>
+                <% case evaluation.chamber_ensemble_part.to_i %>
+                <% when 0 %>
+                  First
+                <% when 1 %>
+                  Second
+                <% end %>
+                </td>
+              </tr>
+            <% end %>
+            <% if evaluation.instrument.string? %>
+              <tr>
+                <td>Participant can read well in</td>
+                <td>
+                <% if evaluation.third_position %>
+                  3rd Position
+                <% end %>
+                <% if evaluation.fourth_position %>
+                  4th Position
+                <% end %>
+                <% if evaluation.fifth_position %>
+                  5th Position
+                <% end %>
+                <% if evaluation.sixth_position %>
+                  6th Position
+                <% end %>
+                <% if evaluation.seventh_position %>
+                  7th Position
+                <% end %>
+                <% if evaluation.thumb_position %>
+                  Thumb Position
+                <% end %>
+                </td>
+              </tr>
+            <% end %>
+            <% if evaluation.instrument.trumpet? || evaluation.instrument.horn? %>
+              <tr>
+                <td>Keys that participant cat transpose to</td>
+                <td>
+                <% if evaluation.instrument.trumpet? %>
+                  <% if evaluation.transposition_0 %>
+                    C
+                  <% end %>
+                  <% if evaluation.transposition_1 %>
+                    B
+                  <% end %>
+                  <% if evaluation.transposition_2 %>
+                    E&#9837;
+                  <% end %>
+                <% end %>
+                <% if evaluation.instrument.horn? %>
+                  <% if evaluation.transposition_0 %>
+                    E
+                  <% end %>
+                  <% if evaluation.transposition_1 %>
+                    E&#9837;
+                  <% end %>
+                  <% if evaluation.transposition_2 %>
+                    D
+                  <% end %>
+                <% end %>
+                </td>
+              </tr>
+            <% end %>
+            <% if evaluation.instrument.percussion? || evaluation.instrument.woodwind? %>
+              <tr>
+              <td>
+                Other instruments participant is bringing to camp
+              </td>
+              <td>
+              <% if evaluation.other_instrument_drum_set %>
+                Drum Set
+              <% end %>
+              <% if evaluation.other_instrument_mallets %>
+                Mallers
+              <% end %>
+              <% if evaluation.other_instrument_c_flute %>
+                C Flute
+              <% end %>
+              <% if evaluation.other_instrument_piccolo %>
+                Piccolo
+              <% end %>
+              <% if evaluation.other_instrument_alto_flute %>
+                Alto Flute
+              <% end %>
+              <% if evaluation.other_instrument_bass_flute %>
+                Bass Flute
+              <% end %>
+              <% if evaluation.other_instrument_bb_clarinet %>
+                B&#9837; Clarinet
+              <% end %>
+              <% if evaluation.other_instrument_a_clarinet %>
+                A Clarinet
+              <% end %>
+              <% if evaluation.other_instrument_eb_clarinet %>
+                E&#9837; Clarinet
+              <% end %>
+              <% if evaluation.other_instrument_alto_clarinet %>
+                Alto Clarinet
+              <% end %>
+              <% if evaluation.other_instrument_bass_clarinet %>
+                Bass Clarinet
+              <% end %>
+              <% if evaluation.other_instrument_bb_trumpet %>
+                B&#9837; Trumpet
+              <% end %>
+              <% if evaluation.other_instrument_c_trumpet %>
+                C Trumpet
+              <% end %>
+              <% if evaluation.other_instrument_piccolo_trumpet %>
+                Piccolo Trumpet
+              <% end %>
+              <% if evaluation.other_instrument_trombone %>
+                Tenor Trombone
+              <% end %>
+              <% if evaluation.other_instrument_bass_trombone %>
+                Bass Trombone
+              <% end %>
+              <% if evaluation.other_instrument_oboe %>
+                Oboe
+              <% end %>
+              <% if evaluation.other_instrument_english_horn %>
+                English Horn
+              <% end %>
+              <% if evaluation.other_instrument_oboe_other %>
+                Other Oboe
+              <% end %>
+              <% if evaluation.other_instrument_saxophone_soprano %>
+                Soprano Saxophone
+              <% end %>
+              <% if evaluation.other_instrument_saxophone_alto %>
+                Alto Saxophone
+              <% end %>
+              <% if evaluation.other_instrument_saxophone_tenor %>
+                Tenor Saxophone
+              <% end %>
+              <% if evaluation.other_instrument_saxophone_baritone %>
+                Baritone Saxophone
+              <% end %>
+              <%= evaluation.other_instruments_you_tell_us %>
+              </td>
+              </tr>
+            <% end %>
+            <% if evaluation.instrument.percussion? %>
+              <tr>
+                <td>Percusion instruments participant plays</td>
+                <td>
+                  <% if evaluation.percussion_snare %>
+                    Snare
+                  <% end %>
+                  <% if evaluation.percussion_timpani %>
+                    Timpani
+                  <% end %>
+                  <% if evaluation.percussion_mallets %>
+                    Mallets
+                  <% end %>
+                  <% if evaluation.percussion_small_instruments %>
+                    Small Instruments
+                  <% end %>
+                  <% if evaluation.percussion_drum_set %>
+                    Drumset
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            <% if evaluation.instrument.vocal? %>
+              <tr>
+                <td>Best learning method</td>
+                <td>
+                  <% case evaluation.vocal_how_learn.to_i %>
+                  <% when 0 %>
+                    Reading the music
+                  <% when 1 %>
+                    By ear, with repetition
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>Most Difficult piece</td>
+                <td>
+                  <%= evaluation.vocal_most_difficult_piece %>
+                </td>
+              </tr>
+              <tr>
+                <td>Have participant studied music theory?</td>
+                <td>
+                  <%= evaluation.vocal_music_theory ? 'Yes' : 'No'  %>
+                </td>
+              </tr>
+              <tr>
+                <td>Year</td>
+                <td>
+                  <%= evaluation.vocal_music_theory_year %>
+                </td>
+              </tr>
+              <tr>
+                <td>Have participant taken voice class</td>
+                <td>
+                  <%= evaluation.vocal_voice_class ? 'Yes' : 'No'  %>
+                </td>
+              </tr>
+              <tr>
+                <td>Year</td>
+                <td>
+                  <%= evaluation.vocal_voice_class_year %>
+                </td>
+              </tr>
+              <tr>
+                <td>Have participant taken voice lessons</td>
+                <td>
+                  <%= evaluation.vocal_voice_lessons ? 'Yes' : 'No'  %>
+                </td>
+              </tr>
+              <tr>
+                <td>Year</td>
+                <td>
+                  <%= evaluation.vocal_voice_lessons_year %>
+                </td>
+              </tr>
+              <tr>
+                <td>When singing with a small ensemble, participant</td>
+                <td>
+                <% case evaluation.vocal_small_ensemble_skills.to_i %>
+                <% when 0 %>
+                  Prefer to sing wit others, and accompaniament
+                <% when 1 %>
+                  Prefer to sing with others, with or without accompaniament
+                <% when 2 %>
+                  Can handle own part, withot accompaniament
+                <% end %>
+                </td>
+              </tr>
+            <% end %>
+            <% unless evaluation.instrument.vocal? %>
+              <tr>
+              <td>Ability in Chamber Music</td>
+              <td>
+              <% case evaluation.overall_rating_chamber.to_i %>
+              <% when 0 %>
+                Begginer
+              <% when 1 %>
+                Novice
+              <% when 2 %>
+                Intermediate
+              <% when 3 %>
+                Experienced
+              <% when 4 %>
+                Advanced
+              <% end %>
+              </td>
+              </tr>
+              <% unless evaluation.instrument.piano? %>
+                <tr>
+                <td>Ability in Large Ensemble</td>
+                <td>
+                <% case evaluation.overall_rating_large_ensemble.to_i %>
+                <% when 0 %>
+                  Begginer
+                <% when 1 %>
+                  Novice
+                <% when 2 %>
+                  Intermediate
+                <% when 3 %>
+                  Experienced
+                <% when 4 %>
+                  Advanced
+                <% end %>
+                </td>
+                </tr>
+              <% end %>
+            <% end %>
+            <tr>
+            <td>Ability in Large Sightreading</td>
+            <td>
+            <% case evaluation.overall_rating_sightreading.to_i %>
+            <% when 0 %>
+              Poor
+            <% when 1 %>
+              Average
+            <% when 2 %>
+              Good
+            <% when 3 %>
+              Excellent
+            <% end %>
+            </td>
+            </tr>
+            
+          </table>
+        </div>
+      <% end %>
+    <% end %>
+<%end%>
+

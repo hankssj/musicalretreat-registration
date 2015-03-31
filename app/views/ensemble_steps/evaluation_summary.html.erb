@@ -10,29 +10,7 @@
       <tr>
         <td class="reg-form-column">
           <p>Thank you;  your ensemble and elective preferences and self-evaluations are complete</p>
-          <ul>
-          <li>Contact Information
-              <ul>
-                <li>Name:  <%= @ensemble_primary.registration.display_name %></li>
-                <li>Email: <%= @ensemble_primary.registration.email %></li>
-              </ul>
-              <li>
-                Morning Ensemble
-                <%= render partial: "summary_morning_ensemble", locals: {ensemble_primary: @ensemble_primary} %>
-              </li>
-              <li>
-                Chamber Groups
-                <%= render partial: "summary_chamber_groups", locals: {ensemble_primary: @ensemble_primary} %>
-              </li>
-              <li>
-                You selected the following electives
-                <%= render partial: "summary_electives", locals: {ensemble_primary: @ensemble_primary} %>
-              </li>
-              <li>
-                You completed evaluations for the following instruments/voices
-                <%= render partial: "summary_evaluations", locals: {ensemble_primary: @ensemble_primary} %>
-              </li>
-          </ul>
+          <%= render partial: 'summary_informations', locals: {ensemble_primary: @ensemble_primary} %>
           <%= form_for @ensemble_primary, url: wizard_path, method: :put do |form| %>
             <%= form.label :comments, 'Tell us anything else you want to say:' %>
             <br />
