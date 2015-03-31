@@ -68,10 +68,11 @@
 <% else %>
 <h1> I don't know what to render for large ensemble choice <%= @large_option_ensemble %>  Help!!</h1>
 <% end %>
+
     <div class="toggled-morning-ensemble-options">
-
+      <p>
     <%= render :partial => "part_large_ensemble", :locals => {:form => form, :instrument => @ensemble_primary.registration.instrument} %>
-
+      </p>
     </div>
     <p/>
     <%= submit_tag "Next" %>
