@@ -7,8 +7,8 @@
 
 <tr>
   <td class="reg-form-column">
-<p><%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
 
+<%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
 
 <div class='indented-top overall-rating'>
 <table>
@@ -43,26 +43,25 @@
 <%= render :partial => "groups", :locals => {:instrument => instrument, :form => form} %>
 
 <div class='indented-top'>
-<%= form.label :vocal_how_learn, "How best do you learn a new piece?" %>
-<ul class='checkboxes-list'>
-  <li>
-    <%= form.radio_button :vocal_how_learn, 0 %>
-    Reading the Music
-  </li>
-  <li>
-    <%= form.radio_button :vocal_how_learn, 1 %>
-    By ear, with repetition
-  </li>
-</ul>
+<table class="eval-table'>
+<tr><th colspan="2"><%= form.label :vocal_how_learn, "How best do you learn a new piece?" %></th></tr>
+<tr><td>Reading the music</td><td>By ear, with repetition</td></tr>
+<tr><td><%= form.radio_button :vocal_how_learn, 0, {:checked => true} %></td>
+    <td><%= form.radio_button :vocal_how_learn, 1 %></td>
+</td>
+</table>
 </div>
 
 <div class='indented-top'>
-  <%= form.label :vocal_most_difficult_piece, 'Most difficult piece: ' %>
-  <%= form.text_field :vocal_most_difficult_piece, :size => 20 %>
+<table class='eval-table'>
+  <tr><th colspan="1"><%= form.label :vocal_most_difficult_piece, 'Most difficult piece you have learned' %></th></td>
+  <tr><td style="padding-bottom: 5px"><%= form.text_field :vocal_most_difficult_piece, :size => 60 %></td></tr>
+</table>
 </div>
 
 <div class='indented-top'>
-<%= form.label :vocal_music_theory, "Training" %>
+<table class='eval-table'>
+<tr><th colspan="1"><%= form.label :vocal_music_theory, "Musical Training" %></th></tr>
 <ul class='checkboxes-list'>
 <li class='checkbox-with-relative'>
 Have you studied music theory? &nbsp; &nbsp; 
@@ -86,21 +85,23 @@ What year? &nbsp; &nbsp; <%= form.text_field :vocal_voice_lessons_year, :size =>
 </span>
 </li>
 </ul>
+</td></tr></table>
 </div>
 
 <div class='indented-top'>
-<%= form.label :vocal_small_ensemble_skills, 'Small Ensemble Skills' %>
-<br>
-When singing with a small ensemble, you 
-<ul class='checkboxes-list'>
-<li> <%= form.radio_button :vocal_small_ensemble_skills, 0 %> &nbsp;&nbsp; Prefer to sing with others, and accompaniment </li>
-<li> <%= form.radio_button :vocal_small_ensemble_skills, 1 %> &nbsp;&nbsp; Prefer to sing with others, with or without accompaniment </li>
-<li> <%= form.radio_button :vocal_small_ensemble_skills, 2 %> &nbsp;&nbsp; Can handle your own part, without accompaniment </li>
-</ul>
+<table class='eval-table'>
+<tr><th colspan="3">When singing with a small ensemble, you</th></tr>
+<tr><td>Prefer to sing with others, accompanied</td><td>Prefer to sing with others, with or without accompaniment</td></td>Can handle your own part, without accompaniment</td>
+</tr>
+<tr><td><%= form.radio_button :vocal_small_ensemble_skills, 0, {:checked => true} %></td>
+    <td><%= form.radio_button :vocal_small_ensemble_skills, 1 %></td>
+    <td><%= form.radio_button :vocal_small_ensemble_skills, 2 %></td>
+</tr>
+</table>
 </div>
 
-
 <%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %>
+
 </td>
 </tr>
 </table>
