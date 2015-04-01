@@ -2,7 +2,7 @@
 
   <% if instrument.percussion? %>
   <table class='eval-table'>
-    <tr><th colspan="2">What other instruments are you bringing to camp?</th></tr>
+    <tr><th colspan="2">What  instruments are you bringing to camp?</th></tr>
     <tr><td>Drum Set</td><td>Mallets</td></tr>
     <tr>
       <td><%= form.check_box :other_instrument_drum_set %></td>
@@ -13,7 +13,7 @@
 
   <% if instrument.flute? %>
   <table class='eval-table'>
-    <tr><th colspan="4">What other instruments are you bringing to camp?</th></tr>
+    <tr><th colspan="4">What  instruments are you bringing to camp?</th></tr>
     <tr><td>C Flute</td><td>Piccolo</td><td>Alto Flute</td><td>Bass Flute</td></tr>
     <tr>
     <td><%= form.check_box :other_instrument_c_flute %></td>
@@ -26,7 +26,7 @@
 
   <% if instrument.clarinet? %>
   <table class='eval-table'>
-    <tr><th colspan="5">What other instruments are you bringing to camp?</th></tr>
+    <tr><th colspan="5">What  instruments are you bringing to camp?</th></tr>
   <tr><td>B&#9837; Clarinet</td><td>A Clarinet</td><td>E&#9837; Clarinet</td><td>Alto Clarinet</td><td>Bass Clarinet</td>
   </tr>
   <tr>
@@ -41,7 +41,7 @@
 
   <% if instrument.trumpet? %>
   <table class='eval-table'>
-    <tr><th colspan="3">What other instruments are you bringing to camp?</th></tr>
+    <tr><th colspan="3">What  instruments are you bringing to camp?</th></tr>
   <tr><td>B&#9837; Trumpet</td><td>C Trumpet</td><td>Piccolo Trumpet</td>
   </tr>
   <tr>
@@ -54,7 +54,7 @@
 
   <% if instrument.trombone? %>
   <table class='eval-table'>
-    <tr><th colspan="2">What other instruments are you bringing to camp?</th></tr>
+    <tr><th colspan="2">What  instruments are you bringing to camp?</th></tr>
   <tr><td>Tenor Trombone</td><td>Bass Trombone</td>
   </tr>
   <tr>
@@ -66,7 +66,7 @@
 
   <% if instrument.oboe? %>
   <table class='eval-table'>
-    <tr><th colspan="7">What other instruments are you bringing to camp?</th></tr>
+    <tr><th colspan="7">What  instruments are you bringing to camp?</th></tr>
   <tr><td>Oboe</td><td>English Horn</td><td>Oboe D'Amore</td><td>Bass Oboe</td><td>Taille</td><td>Piffaro</td><td>Ciaramella</td><td></td>
   </tr>
   <tr>
@@ -83,7 +83,7 @@
 
   <% if instrument.saxophone? %>
   <table class='eval-table'>
-    <tr><th colspan="4">What other instruments are you bringing to camp?</th></tr>
+    <tr><th colspan="4">What  instruments are you bringing to camp?</th></tr>
   <tr><td>Soprano Saxophone</td><td>Alto Saxophone</td><td>Tenor Saxophone</td><td>Baritone Saxophone</td>
   </tr>
   <tr>
@@ -98,7 +98,7 @@
   <div class='indented-top'>
   <table class='eval-table'>
     <tr><th colspan="1">Any other instruments we should know about?</th></tr>
-    <tr><td style="padding-top: 5px"><%= form.text_area :other_instruments_you_tell_us, :rows => 5, :cols => 60 %></td></tr>
+    <tr><td style="padding-top: 5px"><%= form.text_area :other_instruments_you_tell_us, :rows => 2, :cols => 60 %></td></tr>
   </table>
   </div>
 </div>
