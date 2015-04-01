@@ -9,7 +9,7 @@
 <div class='indented-top'>
 <%= form.label :composers, 'List composers whose works you have recently enjoyed practicing' %>
 <br />
-<%= form.text_area :composers, rows: 5, cols: 60 %>
+<%= form.text_area :composers, rows: 3, cols: 80 %>
 </div>
 
 <%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %>
