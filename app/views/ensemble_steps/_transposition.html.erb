@@ -1,6 +1,7 @@
+<% if instrument.trumpet? || instrument.horn? %>
 <div class='indented-top'>
-<%= form.label :transposition, 'What keys can you transpose to?' %>
-<table>
+<table class='eval-table'>
+<tr><th colspan="3"><%= form.label :transposition, 'What keys can you transpose to?' %></th></tr>
 <tr>
   <% if instrument.trumpet? %>
     <td>C</td>
@@ -19,3 +20,4 @@
 </tr>
 </table>
 </div>
+<% end %>
