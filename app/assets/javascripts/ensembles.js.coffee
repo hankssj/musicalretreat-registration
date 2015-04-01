@@ -31,10 +31,10 @@ class EnsemblesForm
         $(ui.sender).draggable('disable')
         $(ui.sender).find('input, select').prop('disabled', false)
         $('#choosen-electives .placeholder').addClass('hidden')
-        if($(this).children().length >= 5)
+        if($(this).children().not('.placeholder').length >= 5)
           $('#aviliable-electives li').draggable('disable')
       update: ->
-        $(this).children().each (i, item)->
+        $(this).children().not('.placeholder').each (i, item)->
           console.log(i+1)
           $(item).find('.rank').val(i+1)
     .disableSelection()
@@ -57,7 +57,7 @@ class EnsemblesForm
     .disableSelection()
 
     $('#choosen-electives li').draggable('disable')
-    if($('#choosen-electives').children().length >= 5)
+    if($('#choosen-electives').children().not('placeholder').length >= 5)
       $('#aviliable-electives li').draggable('disable')
 
 
