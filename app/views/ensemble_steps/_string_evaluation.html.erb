@@ -6,6 +6,7 @@
 
 <% if (instrument.violin? || instrument.viola?) %>
 <%= render :partial => "part_chamber_ensemble", :locals => {:form => form, :instrument => instrument} %>
+<p/>
 <% end %>
 
 <%= render :partial => "groups", :locals => {:form => form, :instrument => instrument} %>
