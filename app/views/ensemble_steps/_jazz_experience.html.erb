@@ -1,13 +1,13 @@
 <div class='indented-top'>
 <table class='eval-table'>
-<tr><th colspan="3"> <%= form.label :chamber_music_how_often, 'Jazz ensembles' %></th></tr>
-<tr><td><%= form.label :jazz_want_ensemble, 'Would you like to play in a jazz ensemble or big band?' %></td>
-    <td><%= form.label :jazz_small_ensemble, 'Have you played in a small jazz ensemble?' %></td>
+<tr><th colspan="5"> <%= form.label :chamber_music_how_often, 'Jazz ensembles' %></th></tr>
+<tr><td><%= form.label :jazz_want_ensemble, 'Would you like to play in a jazz ensemble or big band?' %></td> <td>&nbsp;&nbsp;</td>
+    <td><%= form.label :jazz_small_ensemble, 'Have you played in a small jazz ensemble?' %></td></td> <td>&nbsp;&nbsp;</td>
 <td><%= form.label :jazz_big_band, 'Have you played in a big band?' %></td>
 </tr>
 <tr>
-<td>  Yes &nbsp;&nbsp <%= form.radio_button :jazz_want_ensemble, true %> <br> No &nbsp;&nbsp <%= form.radio_button :jazz_want_ensemble, false, {:checked => true} %> </td>
-<td>  Yes &nbsp;&nbsp <%= form.radio_button :jazz_small_ensemble, true %> <br> No &nbsp;&nbsp <%= form.radio_button :jazz_small_ensemble, false, {:checked => true} %> </td>
+<td>  Yes &nbsp;&nbsp <%= form.radio_button :jazz_want_ensemble, true %> <br> No &nbsp;&nbsp <%= form.radio_button :jazz_want_ensemble, false, {:checked => true} %> </td> <td/>
+<td>  Yes &nbsp;&nbsp <%= form.radio_button :jazz_small_ensemble, true %> <br> No &nbsp;&nbsp <%= form.radio_button :jazz_small_ensemble, false, {:checked => true} %> </td><td/>
 <td>  Yes &nbsp;&nbsp <%= form.radio_button :jazz_big_band, true %> <br> No &nbsp;&nbsp <%= form.radio_button :jazz_big_band, false, {:checked => true} %> </td>
 </tr>
 </table>
