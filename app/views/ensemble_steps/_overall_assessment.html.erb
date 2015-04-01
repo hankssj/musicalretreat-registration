@@ -43,11 +43,12 @@
         <% end %>
 
         <% unless (instrument.piano? || instrument.vocal?) %>
+	<p/>
 	<div>
 	<table class='eval-table'>
           <tr><th colspan="5">Large ensemble ability (band, orchestra, chorus)</th></tr>
           <tr>
-            <td class='beginner pseudolink'>Beginner</td>
+            <td class='beginner' style="color: blue; text-decoration: underline">Beginner</td>
             <td class='novice pseudolink'>Novice</td>
             <td class='intermediate'>Intermediate</td>
             <td class='experienced'>Experienced</td>
