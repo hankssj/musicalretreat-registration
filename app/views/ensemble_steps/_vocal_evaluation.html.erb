@@ -14,17 +14,17 @@
 <table>
   <tr><td>
      <table class='eval-table'>
-        <tr><th colspan="4"><%= form.label :vocal_overall_ability, "Rate your overall ability as a singer" %></th></tr>
+        <tr><th colspan="7"><%= form.label :vocal_overall_ability, "Rate your overall ability as a singer" %></th></tr>
         <tr>
-           <td class='beginner' style='color:blue;'>Beginner</td>
-           <td class='intermediate' style='color:blue;'>Intermediate</td>
-           <td class='experienced' style='color:blue;'>Experienced</td>
+           <td class='beginner' style='color:blue;'>Beginner</td>                      <td>&nbsp;&nbsp</td>
+           <td class='intermediate' style='color:blue;'>Intermediate</td>              <td>&nbsp;&nbsp</td>
+           <td class='experienced' style='color:blue;'>Experienced</td>                <td>&nbsp;&nbsp</td>
            <td class='advanced' style='color:blue;'>Advanced</td>
         </tr>
         <tr>
-           <td class='beginner'> <%= form.radio_button :vocal_overall_ability, 0, {:checked => true} %></td>
-           <td class='intermediate'> <%= form.radio_button :vocal_overall_ability, 1 %></td>
-           <td class='experienced'> <%= form.radio_button :vocal_overall_ability, 2 %></td>
+           <td class='beginner'> <%= form.radio_button :vocal_overall_ability, 0, {:checked => true} %></td>   <td/>
+           <td class='intermediate'> <%= form.radio_button :vocal_overall_ability, 1 %></td>                   <td/>
+           <td class='experienced'> <%= form.radio_button :vocal_overall_ability, 2 %></td>                    <td/>
            <td class='advanced'> <%= form.radio_button :vocal_overall_ability, 3 %></td>
         </tr>
       </table>
