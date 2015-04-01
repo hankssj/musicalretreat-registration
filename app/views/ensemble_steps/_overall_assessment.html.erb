@@ -21,6 +21,7 @@
     <tr>
       <td>
         <% unless instrument.vocal? %>
+	<div>
 	<table class='eval-table'>
           <tr><th colspan="5">Chamber music ability</th></tr>
             <tr>
@@ -38,14 +39,16 @@
               <td class='advanced'><%= form.radio_button :overall_rating_chamber, 4 %></td>
             </tr>
         </table>
+	</div>
         <% end %>
 
         <% unless (instrument.piano? || instrument.vocal?) %>
+	<div>
 	<table class='eval-table'>
           <tr><th colspan="5">Large ensemble ability (band, orchestra, chorus)</th></tr>
           <tr>
-            <td class='beginner'>Beginner</td>
-            <td class='novice'>Novice</td>
+            <td class='beginner pseudolink'>Beginner</td>
+            <td class='novice pseudolink'>Novice</td>
             <td class='intermediate'>Intermediate</td>
             <td class='experienced'>Experienced</td>
             <td class='advanced'>Advanced</td>
@@ -58,6 +61,7 @@
             <td class='advanced'><%= form.radio_button :overall_rating_large_ensemble, 4 %></td>
           </tr>
           </table>
+	</div>
         <% end %>
       </td>
       <td class='skill-description'>
