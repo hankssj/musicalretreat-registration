@@ -1,3 +1,19 @@
+<table class ='eval-table'>
+  <tr><th colspan="4">Sightreading ability</th></tr>
+  <tr>
+    <td>Poor</td>
+    <td>Average</td>
+    <td>Good</td>
+    <td>Excellent</td>
+  </tr>
+  <tr>
+    <td><%= form.radio_button :overall_rating_sightreading, 0, {:checked => true} %></td>
+    <td><%= form.radio_button :overall_rating_sightreading, 1 %></td>
+    <td><%= form.radio_button :overall_rating_sightreading, 2 %></td>
+    <td><%= form.radio_button :overall_rating_sightreading, 3 %></td>
+  </tr>
+</table>
+
 <div class='indented-top overall-rating'>
   <table>
     <tr>
@@ -41,23 +57,6 @@
             </tr>
           </table>
         <% end %>
-
-        <%= form.label :overall_rating_chamber, 'Sightreading:' %>
-        <table>
-          <tr>
-             <td>Poor</td>
-             <td>Average</td>
-             <td>Good</td>
-             <td>Excellent</td>
-          </tr>
-          <tr>
-            <td><%= form.radio_button :overall_rating_sightreading, 0 %></td>
-            <td><%= form.radio_button :overall_rating_sightreading, 1 %></td>
-            <td><%= form.radio_button :overall_rating_sightreading, 2 %></td>
-            <td><%= form.radio_button :overall_rating_sightreading, 3 %></td>
-          </tr>
-        </table>
-
       </td>
       <td class='skill-description'>
 
