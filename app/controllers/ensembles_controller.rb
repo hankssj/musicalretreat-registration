@@ -28,7 +28,7 @@ class EnsemblesController < ApplicationController
 
   def destroy
     @user.most_recent_registration
-      .ensemble_primaries.find(params[:id]).destroy
+      .ensemble_primaries.each { |e| e.destroy }
     redirect_to registration_index_path
   end
 
