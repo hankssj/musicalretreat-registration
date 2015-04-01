@@ -11,36 +11,33 @@
 
 
 <div class='indented-top'>
-<%= form.label :vocal_overall_ability, "Rate your overall ability as a singer" %>
-<table class='overall-rating'>
-  <tr>
-    <td>
 <table>
-<tr>
-  <td class='beginner'>Beginner</td>
-  <td class='intermediate'>Intermediate</td>
-  <td class='experienced'>Experienced</td>
-  <td class='advanced'>Advanced</td>
-</tr>
-<tr>
-<td class='beginner'> <%= form.radio_button :vocal_overall_ability, 0 %></td>
-<td class='intermediate'> <%= form.radio_button :vocal_overall_ability, 1 %></td>
-<td class='experienced'> <%= form.radio_button :vocal_overall_ability, 2 %></td>
-<td class='advanced'> <%= form.radio_button :vocal_overall_ability, 3 %></td>
-</td>
-</tr>
+  <tr><td>
+     <table class='eval-table'>
+        <tr><th colspan="4"><%= form.label :vocal_overall_ability, "Rate your overall ability as a singer" %></th></tr>
+        <tr>
+           <td class='beginner' style='color:blue;'>Beginner</td>
+           <td class='intermediate' style='color:blue;'>Intermediate</td>
+           <td class='experienced' style='color:blue;'>Experienced</td>
+           <td class='advanced' style='color:blue;'>Advanced</td>
+        </tr>
+        <tr>
+           <td class='beginner'> <%= form.radio_button :vocal_overall_ability, 0, {:checked => true} %></td>
+           <td class='intermediate'> <%= form.radio_button :vocal_overall_ability, 1 %></td>
+           <td class='experienced'> <%= form.radio_button :vocal_overall_ability, 2 %></td>
+           <td class='advanced'> <%= form.radio_button :vocal_overall_ability, 3 %></td>
+        </tr>
+      </table>
+    </td>
+    <td class='skill-description'>
+        <p class='hidden beginner-text'><b>Begginer:</b> You love to sing but do not sing regularly with a chorus and have had no formal vocal training.</p>
+        <p class='hidden intermediate-text'><b>Intermediate:</b> You have difficulty reading music at sight, prefer to sing with accompaniment, have sung or are currently singing with a chorus, and have had little to no formal vocal training.</p>
+        <p class='hidden experienced-text'><b>Experienced:</b> You have no difficulty reading music at sight, are attentive to dynamics and blend, can sing unaccompanied, have sung or are currently singing with a chorus, and have had some formal vocal training.</p>
+        <p class='hidden advanced-text'><b>Advanced:</b> You have excellent sight reading skills, are attentive to all markings in the score, know a wide range of choral and solo vocal repertoire, prefer to sing unaccompanied, have sung or are currently singing with an auditioned chorus, and have had formal vocal training.</p>
+    </td>
+   </tr>
 </table>
 </div>
-</td>
-<td class='skill-description'>
-<p class='hidden beginner-text'><b>Begginer:</b> You love to sing but do not sing regularly with a chorus and have had no formal vocal training.</p>
-<p class='hidden intermediate-text'><b>Intermediate:</b> You have difficulty reading music at sight, prefer to sing with accompaniment, have sung or are currently singing with a chorus, and have had little to no formal vocal training.</p>
-<p class='hidden experienced-text'><b>Experienced:</b> You have no difficulty reading music at sight, are attentive to dynamics and blend, can sing unaccompanied, have sung or are currently singing with a chorus, and have had some formal vocal training.</p>
-<p class='hidden advanced-text'><b>Advanced:</b> You have excellent sight reading skills, are attentive to all markings in the score, know a wide range of choral and solo vocal repertoire, prefer to sing unaccompanied, have sung or are currently singing with an auditioned chorus, and have had formal vocal training.</p>
-</td>
-</tr>
-</table>
-
 
 
 <%= render :partial => "groups", :locals => {:instrument => instrument, :form => form} %>
