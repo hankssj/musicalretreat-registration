@@ -1,3 +1,4 @@
+<div class='indented-top'>
 <table class ='eval-table'>
   <tr><th colspan="4">Sightreading ability</th></tr>
   <tr>
@@ -13,6 +14,7 @@
     <td><%= form.radio_button :overall_rating_sightreading, 3 %></td>
   </tr>
 </table>
+</div>
 
 <div class='indented-top overall-rating'>
   <table>
@@ -20,7 +22,7 @@
       <td>
         <% unless instrument.vocal? %>
 	<table class='eval-table'>
-          <tr><th colspan="5">Rate your ability in chamber music</th></tr>
+          <tr><th colspan="5">Chamber music ability</th></tr>
             <tr>
                <td class='beginner'>Beginner</td>
                <td class='novice'>Novice</td>
@@ -39,22 +41,22 @@
         <% end %>
 
         <% unless (instrument.piano? || instrument.vocal?) %>
-          <%= form.label :overall_rating_chamber, 'Large Ensemble (Band, Orchestra, Chorus)' %>
-          <table width='100%'>
-            <tr>
-               <td class='beginner'>Beginner</td>
-               <td class='novice'>Novice</td>
-               <td class='intermediate'>Intermediate</td>
-               <td class='experienced'>Experienced</td>
-               <td class='advanced'>Advanced</td>
-            </tr>
-            <tr>
-              <td class='beginner'><%= form.radio_button :overall_rating_large_ensemble, 0 %></td>
-              <td class='novice'><%= form.radio_button :overall_rating_large_ensemble, 1 %></td>
-              <td class='intermediate'><%= form.radio_button :overall_rating_large_ensemble, 2 %></td>
-              <td class='experienced'><%= form.radio_button :overall_rating_large_ensemble, 3 %></td>
-              <td class='advanced'><%= form.radio_button :overall_rating_large_ensemble, 4 %></td>
-            </tr>
+	<table class='eval-table'>
+          <tr><th colspan="5">Large ensemble ability (band, orchestra, chorus)</th></tr>
+          <tr>
+            <td class='beginner'>Beginner</td>
+            <td class='novice'>Novice</td>
+            <td class='intermediate'>Intermediate</td>
+            <td class='experienced'>Experienced</td>
+            <td class='advanced'>Advanced</td>
+          </tr>
+          <tr>
+            <td class='beginner'><%= form.radio_button :overall_rating_large_ensemble, 0 %></td>
+            <td class='novice'><%= form.radio_button :overall_rating_large_ensemble, 1 %></td>
+            <td class='intermediate'><%= form.radio_button :overall_rating_large_ensemble, 2 %></td>
+            <td class='experienced'><%= form.radio_button :overall_rating_large_ensemble, 3 %></td>
+            <td class='advanced'><%= form.radio_button :overall_rating_large_ensemble, 4 %></td>
+          </tr>
           </table>
         <% end %>
       </td>
