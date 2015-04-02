@@ -13,7 +13,7 @@ class EnsemblePrimary < ActiveRecord::Base
 
   validates :large_ensemble_part,
      presence: { message: "Please provide a seating preference for your large ensemble", on: :create },
-     if: lambda{|e| e.large_ensemble_choice != 0 && (e.instrument.string? || e.instrument.flute? || e.instrument.clarinet? || e.instrument.saxophone_nonspecific?) }
+     if: lambda{|e| e.large_ensemble_choice > 0 && (e.instrument.string?  || e.instrument.flute? || e.instrument.clarinet? || e.instrument.saxophone_nonspecific?) }
 
   validates :chamber_ensemble_choice, presence: { message: "You must specify yours chamber ensemble preferences" }, 
     if: lambda{|e| e.step === :afternoon_ensembles_and_electives }
