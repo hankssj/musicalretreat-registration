@@ -40,10 +40,15 @@
 
 <table class="eval-table">
   <tr><th colspan="3">Ensemble Choice</th></tr>
-  <tr><td>Either Symphonic Band or Festival Orchestra</td><td>Prefer Symphonic Band </td><td>Prefer Festival Orchestra </td>
-     <td><%= form.radio_button :large_ensemble_choice, 1, {:checked => true} %></td>
-     <td><%= form.radio_button :large_ensemble_choice, 2 %></td>
-     <td><%= form.radio_button :large_ensemble_choice, 3 %></td>
+  <tr>
+    <td>Either Symphonic Band or Festival Orchestra</td>
+    <td>Prefer Symphonic Band</td>
+    <td>Prefer Festival Orchestra</td>
+  </tr>
+  <tr>
+    <td><%= form.radio_button :large_ensemble_choice, 1, {:checked => true} %></td>
+    <td><%= form.radio_button :large_ensemble_choice, 2 %></td>
+    <td><%= form.radio_button :large_ensemble_choice, 3 %></td>
   </tr>
 </table>
 
