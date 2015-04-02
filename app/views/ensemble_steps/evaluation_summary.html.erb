@@ -34,7 +34,7 @@
               </li>
           </ul>
           <%= form_for @ensemble_primary, url: wizard_path, method: :put do |form| %>
-            <%= form.label :comments, 'Tell us anything else you want to say:' %>
+            <%= form.label :comments, 'Any questions or comments to help us with your selections?' %>
             <br />
             <%= form.text_area :comments, cols: 60, rows: 5 %>
 
