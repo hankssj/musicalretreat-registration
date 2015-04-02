@@ -69,21 +69,24 @@
     <li class='checkbox-with-relative'>
       Have you studied music theory? &nbsp; &nbsp; 
       <%= form.check_box :vocal_music_theory %> &nbsp;&nbsp; 
-      <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>">
+      <!-- <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>"> -->
+      <span class="relative-input">
 	What year? &nbsp; &nbsp; <%= form.text_field :vocal_music_theory_year, :size => 8 %>
       </span>
     </li>
     <li class='checkbox-with-relative'>
       Have you taken a voice class? &nbsp; &nbsp; 
       <%= form.check_box :vocal_voice_class %> &nbsp;&nbsp; 
-      <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>">
+      <!-- <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>"> -->
+      <span class="relative-input">
 	What year? &nbsp; &nbsp; <%= form.text_field :vocal_voice_class_year, :size => 8 %>
-	<span>
+      </span>
     </li>
     <li class='checkbox-with-relative'>
       Have you taken voice lessons? &nbsp; &nbsp; 
       <%= form.check_box :vocal_voice_lessons %> &nbsp;&nbsp; 
-      <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>">
+      <!-- <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>"> -->
+      <span class="relative-input">
 	What year? &nbsp; &nbsp; <%= form.text_field :vocal_voice_lessons_year, :size => 8 %>
       </span>
     </li>
