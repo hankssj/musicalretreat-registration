@@ -37,17 +37,22 @@
   <td class="reg-form-column">
 
 <% if @ensemble_primary.registration.instrument.large_ensemble == "band_or_orchestra" %>
-<table class="morning-ensemble-choices">
-<tr><td>Either Symphonic Band or Festival Orchestra</td><td><%= form.radio_button :large_ensemble_choice, 1, {:checked => true} %></td></tr>
-<tr><td>Prefer Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 2 %></td></tr>
-<tr><td>Prefer Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 3 %></td></tr>
+
+<table class="eval-table">
+  <tr><th colspan="3">Ensemble Choice</th></tr>
+  <tr><td>Either Symphonic Band or Festival Orchestra</td><td>Prefer Symphonic Band </td><td>Prefer Festival Orchestra </td>
+     <td><%= form.radio_button :large_ensemble_choice, 1, {:checked => true} %></td>
+     <td><%= form.radio_button :large_ensemble_choice, 2 %></td>
+     <td><%= form.radio_button :large_ensemble_choice, 3 %></td>
+  </tr>
 </table>
 
 <% elsif @ensemble_primary.registration.instrument.large_ensemble == "band" %>
 
-<table class="morning-ensemble-choices">
-<!-- <tr><td>No Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, 0 %></td></tr> -->
-<tr><td>Symphonic Band </td><td><%= form.radio_button :large_ensemble_choice, 2, {:checked => true} %></td></tr>
+<table class="eval-table">
+  <tr><th colspan="1">Ensemble Choice</th></tr>
+  <tr><td>Symphonic Band </td></tr>
+  <tr><td><%= form.radio_button :large_ensemble_choice, 2, {:checked => true} %></td></tr>
 </table>
 
 <% elsif @ensemble_primary.registration.instrument.large_ensemble == "festival_or_string_orchestra" %>
@@ -60,25 +65,40 @@
 </ul>
 </p>
 
-<table class="morning-ensemble-choices">
-<tr><td>Festival Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 3, {:checked => true} %></td></tr>
-<tr><td>String Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 5, {:checked => true} %></td></tr>
-<tr><td>Either Festival or String Orchestra </td><td><%= form.radio_button :large_ensemble_choice, 6, {:checked => true} %></td></tr>
+<table class="eval-table">
+  <tr><th colspan="3">Ensemble Choice</th></tr>
+  <tr>
+    <td>Festival Orchestra </td>
+    <td>String Orchestra </td>
+    <td>Either Festival or String Orchestra </td>
+  <tr>
+    <td><%= form.radio_button :large_ensemble_choice, 3, {:checked => true} %></td>
+    <td><%= form.radio_button :large_ensemble_choice, 5, {:checked => true} %></td>
+    <td><%= form.radio_button :large_ensemble_choice, 6, {:checked => true} %></td>
+  </tr>
 </table>
 
 <% elsif @ensemble_primary.registration.instrument.large_ensemble == "chorus" %>
-
-<table class="morning-ensemble-choices">
-<tr><td>Festival Chorus </td><td><%= form.radio_button :large_ensemble_choice, 4, {:checked => true} %></td></tr>
+<table class="eval-table">
+  <tr><th colspan="1">Ensemble Choice</th></tr>
+  <tr>
+    <td>Festival Chorus </td>
+    <td><%= form.radio_button :large_ensemble_choice, 4, {:checked => true} %></td>
+  </tr>
 </table>
 
 <% elsif @ensemble_primary.registration.instrument.large_ensemble == "none" %>
 
-<table class="morning-ensemble-choices">
+<table class="eval-table">
+<tr><th>Ensemble Options</tr></tr>
+<tr><td>
+<table>
 <tr><td>I understand that I will not be assigned a Morning Large Ensemble</td><td><%= form.radio_button :large_ensemble_choice, -1, {:checked => true} %></td></tr>
 <tr><td>I would like to sing in the Festival Chorus</td><td><%= form.check_box :want_sing_in_chorus %></td></tr>
 <tr><td>I would like to talk to a faculty member about playing percussion in Symphonic Band</td><td><%= form.check_box :want_percussion_in_band %></td></tr>
 </table>
+</table>
+
 <% else %>
 <h1> I don't know what to render for large ensemble choice <%= @large_option_ensemble %>  Help!!</h1>
 <% end %>
