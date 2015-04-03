@@ -70,8 +70,8 @@ class EnsemblesForm
       $('#info-box').addClass('hidden')
 
     $('#more-help').on 'click', (e) -> 
-      $('#short-help').addClass('hidden')
-      $('#long-help').removeClass('hidden')
+      $('#short-help').hide()
+      $('#long-help').show()
 
     $('#less-help').on 'click', (e) -> 
       $('#long-help').addClass('hidden')
