@@ -69,6 +69,16 @@ class EnsemblesForm
     $('.sortable-electives li:not(.placeholder)').on 'mouseleave', (e) ->
       $('#info-box').addClass('hidden')
 
+    $('#more-help').click(function() {
+      $('#short-help').addClass('hidden')
+      $('#long-help').removeClass('hidden')
+    });
+
+    $('#less-help').click(function() {
+      $('#long-help').addClass('hidden')
+      $('#short-help').removeClass('hidden')
+    });
+
     $('.arranged-chamber-group-instrument').on 'change', (e) =>
       isJazz = $(e.target).find('option:selected').data('jazz')
       isString = $(e.target).find('option:selected').data('string')
@@ -181,3 +191,4 @@ class EnsemblesForm
 $(document).on 'ready page:load', ->
   ensemblesForm = new EnsemblesForm
   ensemblesForm.listen()
+
