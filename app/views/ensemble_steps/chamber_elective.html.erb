@@ -10,12 +10,18 @@
 
   <tr>
     <td class="reg-form-column">
+
 <p>
 In this section you will choose and rank up to 5 electives.  This is a ranking
 for electives only.  Your chamber selections will be prioritized higher than electives
 unless you tell us otherwise (use the comments box on the Summary page to do so).
 </p>
-<p>
+<p id="short-help">
+Drag from left column to right to choose an elective.  Drag on the right to re-order.
+Use the drop-down to choose an instrument, if the elective requires a choice.  
+<%= link_to "More help", "#", :id => "more-help" %>
+</p>
+<p id="long-help" hidden>
 How to do it
 <ul>
 <li>All the available electives are on the left
@@ -33,6 +39,8 @@ says "- Instrument -" next to the elective name and make your selection
 choices with a white "Instrument" box next to their names in the Elective Choices area
 <li>When you are finished selecting, ordering, and choosing instruments, push the Submit button to go on to the next page
 </ul>
+<%= link_to "Less help", "#", :id => "less-help" %>
+</p>
 </td>
 </tr>
 <tr>
