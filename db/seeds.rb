@@ -56,7 +56,7 @@ end
 e = Elective.create(
 :name => "Free Time",
 :instructor => "You!",
-:description => "You're not being lazy.  You deserve it!"
+:description => "You're not being lazy.  You deserve it! Don't let anybody tell you otherwise. If they do, punch them!"
 )
 
 e = Elective.create(
@@ -94,14 +94,14 @@ link_elective_to_instruments(e, [6,7,8,9])
 e = Elective.create(
 :name => "Flute Choir",
 :instructor => "Faculty",
-:description => "A choir!  Of Flutes!!  Lots of flutes!!!  The more flutes the better!!!!"
+:description => "A choir!  Of Flutes!!  Lots of flutes!!!  The more flutes the better!!!! I mean how can you have too many flutes?  Impossible!!!!  "
 )
 link_elective_to_instruments(e, [11,10])
 
 e = Elective.create(
 :name => "Percussion Ensemble",
 :instructor => "Matt Drumm",
-:description => "An ensemble.  Of percussion.  Loud!"
+:description => "An ensemble.  Of percussion.  Loud! Not annoying loud, just loud!  As long as you're not living upstairs."
 )
 link_elective_to_instruments(e, [28,31])
 
@@ -122,7 +122,7 @@ link_elective_to_instruments(e, [6,7,8,9,10,11,12,14,15,16,22,23,24,25,27,28,31,
 e = Elective.create(
 :name => "Brass Ensemble",
 :instructor => "William Berry",
-:description => "Open to all brass: uses standard, modern instruments. "
+:description => "Open to all brass. Uses standard, modern instruments. So if you have non-standard non-modern instruments, leave them in your dorm room!"
 )
 link_elective_to_instruments(e, [22,23,24,25,26,27])
 
@@ -143,7 +143,7 @@ link_elective_to_instruments(e, [])
 e = Elective.create(
 :name => "Saxophone Ensemble", 
 :instructor => "Patrick Sheng",
-:description => "An ensemble.  Of saxophones."
+:description => "An ensemble.  Of saxophones. You will all think you are the coolest musicians at MMR!  And who's to say you are wrong about that?"
 )
 link_elective_to_instruments(e, [17,18,19,20,21])
 
@@ -234,7 +234,7 @@ link_elective_to_instruments(e, [])
 e = Elective.create(
 :name => "Clarinet Choir",
 :instructor => "Faculty",
-:description => "A Choir!  Of Clarinets!! What could be more heavenly?"
+:description => "A Choir!  Of Clarinets!! What could be more heavenly than that? I mean let's face it, clarinet is the Rodney Dangerfield of woodwinds.  It gets no respect.  But it should -- it should get lots of respect!! And if you join the Clarinet Choir, you can help prove everybody wrong and stop all those nasty and false things they are saying about clarinets.  So in some sense it is your moral duty to sign up for Clarinet Choir.  Whether or not you are a clarinet player."
 )
 link_elective_to_instruments(e, [15,16,37])
 
