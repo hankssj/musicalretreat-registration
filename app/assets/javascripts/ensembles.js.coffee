@@ -66,7 +66,7 @@ class EnsemblesForm
       $('#info-box .name').text($(this).find('.name').text())
       $('#info-box').removeClass('hidden')
 
-    $('.sortable-electives li:not(.placeholder)').on 'mouse', (e) ->
+    $('.sortable-electives li:not(.placeholder)').on 'mouseleave', (e) ->
       $('#info-box').addClass('hidden')
 
     $('.arranged-chamber-group-instrument').on 'change', (e) =>
