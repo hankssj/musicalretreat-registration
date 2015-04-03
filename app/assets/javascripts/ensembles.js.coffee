@@ -69,15 +69,13 @@ class EnsemblesForm
     $('.sortable-electives li:not(.placeholder)').on 'mouseleave', (e) ->
       $('#info-box').addClass('hidden')
 
-    $('#more-help').click(function() {
-      $('#short-help').hide();
-      $('#long-help').show();
-    });
+    $('#more-help').on 'click', (e) -> 
+      $('#short-help').addClass('hidden')
+      $('#long-help').removeClass('hidden')
 
-    $('#less-help').click(function() {
-      $('#long-help').hide();
-      $('#short-help').show();
-    });
+    $('#less-help').on 'click', (e) -> 
+      $('#long-help').addClass('hidden')
+      $('#short-help').removeClass('hidden')
 
     $('.arranged-chamber-group-instrument').on 'change', (e) =>
       isJazz = $(e.target).find('option:selected').data('jazz')
