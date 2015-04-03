@@ -66,7 +66,8 @@ choices with a white "Instrument" box next to their names in the Elective Choice
 <div class='with-background'>
   <ul id='aviliable-electives' class='sortable-electives'>
     <% f.object.build_ensemble_primary_elective_ranks.each do |elective_choice| %>
-      <%= render partial: 'ensemble_primary_elective_rank', locals: { f: f, elective_choice: elective_choice, disabled: true } %>
+      <%= render partial: 'ensemble_primary_elective_rank', 
+          locals: { f: f, elective_choice: elective_choice, disabled: true } %>
     <% end %>
     </ul>
   </div>

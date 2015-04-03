@@ -8,8 +8,8 @@
     <span class='name'>
       <%= elective_choice.elective.name %>
     </span>
-    <span class='hidden descritpion'>
-      <%= elective_choice.elective.description %>
+    <span class='hidden description'>
+      <b><%= elective_choice.elective.faculty %></b></br><%= elective_choice.elective.description %>
     </span>
     <span class='instrument float-right'>
       <% unless elective_choice.elective.instruments.empty? %>
