@@ -74,8 +74,8 @@ class EnsemblesForm
       $('#long-help').show()
 
     $('#less-help').on 'click', (e) -> 
-      $('#long-help').addClass('hidden')
-      $('#short-help').removeClass('hidden')
+      $('#long-help').hide()
+      $('#short-help').show()
 
     $('.arranged-chamber-group-instrument').on 'change', (e) =>
       isJazz = $(e.target).find('option:selected').data('jazz')
