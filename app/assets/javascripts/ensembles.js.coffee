@@ -70,13 +70,13 @@ class EnsemblesForm
       $('#info-box').addClass('hidden')
 
     $('#more-help').click(function() {
-      $('#short-help').addClass('hidden')
-      $('#long-help').removeClass('hidden')
+      $('#short-help').hide();
+      $('#long-help').show();
     });
 
     $('#less-help').click(function() {
-      $('#long-help').addClass('hidden')
-      $('#short-help').removeClass('hidden')
+      $('#long-help').hide();
+      $('#short-help').show();
     });
 
     $('.arranged-chamber-group-instrument').on 'change', (e) =>
