@@ -62,9 +62,12 @@ class EnsemblesForm
 
 
     $('.sortable-electives li:not(.placeholder)').on 'mouseenter', (e) ->
-      $('#info-box').removeClass('hidden')
       $('#info-box .description').html($(this).find('.description').html())
       $('#info-box .name').text($(this).find('.name').text())
+      $('#info-box').removeClass('hidden')
+
+    $('.sortable-electives li:not(.placeholder)').on 'mouse', (e) ->
+      $('#info-box').addClass('hidden')
 
     $('.arranged-chamber-group-instrument').on 'change', (e) =>
       isJazz = $(e.target).find('option:selected').data('jazz')

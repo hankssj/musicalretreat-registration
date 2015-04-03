@@ -94,7 +94,7 @@ link_elective_to_instruments(e, [6,7,8,9])
 e = Elective.create(
 :name => "Flute Choir",
 :instructor => "Faculty",
-:description => "A choir!  Of Flutes!!  Lots of flutes!!!  The more flutes the better!!!! I mean how can you have too many flutes?  Impossible!!!!  "
+:description => "A choir!  Of Flutes!!  Lots of flutes!!!  The more flutes the better!!!!  Maybe if we all play up an octave we can break a wine glass!!!!"
 )
 link_elective_to_instruments(e, [11,10])
 
