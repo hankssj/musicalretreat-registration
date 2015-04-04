@@ -92,6 +92,7 @@ e = Elective.create(
 :instructor => "Gabriel Gargari",
 :description => "This elective is specifically geared toward those who may be new to singing and will cover the basics of vocal production and singing. Participants will each learn one song for possible solo performance. Open to instrumentalists and vocalists; previous music fundamentals or sight-reading skills study recommended."
 )
+link_elective_to_instruments(e, [1,2,3,4,5])
 
 e = Elective.create(
 :name => "Bowing Techniques",
