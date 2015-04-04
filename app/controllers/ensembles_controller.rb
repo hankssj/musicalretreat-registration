@@ -7,7 +7,7 @@ class EnsemblesController < ApplicationController
 
   def reselect
     @user.most_recent_registration.ensemble_primaries.each(&:destroy)
-    new
+    redirect_to action: :new
   end
 
   def new
