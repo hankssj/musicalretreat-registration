@@ -48,17 +48,19 @@ Instrument.create(:id => 34, :display_name => "Piano",              :large_ensem
 
 ##################### Dummy registrations ###########################
 
-# def create_test_registrations
-#   Instrument.all.each{|i| create_standard_registration(i)}
-# end
+ def create_test_registrations
+   Instrument.all.each{|i| create_standard_registration(i)}
+ end
 
-# def create_test_registration(instrument)
-#   u = User.new(:email => "#{instrument.display_name.gsub(' ', '-').downcase}@mmr.com")
-#   u.password = "mmr"
-#   u.save!
-#   Registration.create(year: "2015", user_id: u.id, first_name: "Test", last_name: instrument.display_name, street1: "Any", city: "Any", state: "WA", zip: "98101",
-#                       primaryphone: "2061111111", instrument_id: instrument.id)
-# end
+ def create_test_registration(instrument)
+   u = User.new(:email => "#{instrument.display_name.gsub(' ', '-').downcase}@mmr.org")
+   u.password = "mmr"
+   u.save!
+   Registration.create(year: "2015", user_id: u.id, first_name: "Test", 
+                       last_name: instrument.display_name, street1: "Any", city: "Any", state: "WA", zip: "98101",
+                       home_phone: "2061111111", work_phone: "2061111111", cell_phone: "2061111111",
+                       instrument_id: instrument.id)
+ end
 
 ####################### Electives ############################
 

@@ -86,10 +86,8 @@
 <% elsif @ensemble_primary.registration.instrument.large_ensemble == "chorus" %>
 <table class="eval-table">
   <tr><th colspan="1">Ensemble Choice</th></tr>
-  <tr>
-    <td>Festival Chorus </td>
-    <td><%= form.radio_button :large_ensemble_choice, 4, {:checked => true} %></td>
-  </tr>
+  <tr><td>Festival Chorus </td></tr>
+  <tr><td><%= form.radio_button :large_ensemble_choice, 4, {:checked => true} %></td></tr>
 </table>
 
 <% elsif @ensemble_primary.registration.instrument.large_ensemble == "none" %>
