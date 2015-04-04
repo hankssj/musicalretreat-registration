@@ -5,7 +5,7 @@ class EnsemblePrimary < ActiveRecord::Base
   has_many :prearranged_chambers, dependent: :destroy
   has_many :ensemble_primary_elective_ranks, dependent: :destroy, inverse_of: :ensemble_primary
   has_many :electives, through: :ensemble_primary_elective_ranks
-  has_many :evaluations, dependent: destroy
+  has_many :evaluations, dependent: :destroy
 
   validates :registration, presence: true
   validates :large_ensemble_choice,
