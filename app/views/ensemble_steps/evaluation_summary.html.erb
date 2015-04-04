@@ -54,7 +54,7 @@
 
           <table width="75%">
             <tr>
-              <td width="50%"><%= button_to "FINISH", ensemble_path(@ensemble_primary), method: :finish %></td>
+              <td width="50%"><%= button_to "FINISH", {controller: :ensemble, action: :finish} %></td>
               <td width="50%"><%= button_to "CANCEL", ensemble_path(@ensemble_primary), method: :delete %></td>
             </tr>
           </table>
