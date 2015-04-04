@@ -70,7 +70,7 @@ end
 e = Elective.create(
 :name => "Free Time",
 :instructor => "You!",
-:description => "You're not being lazy.  You deserve it! Don't let anybody tell you otherwise. If they do, punch them!"
+:description => "You're not being lazy; you deserve it! And don't let anybody tell you otherwise. If they do, punch them!  Then take a nap."
 )
 
 e = Elective.create(
