@@ -41,7 +41,9 @@ class EnsemblesController < ApplicationController
       flash[:notice] = "Error finishing ensemble: no ensemble record"
     else 
       flash[:notice] = "Ensemble and elective choices complete"
-      registration.ensemble_primaries.first.complete = true
+      ep = registration.ensemble_primaries.first
+      ep.complete = true
+      ep.save!
     end
     redirect_to controller: :registration, action: :index
   end
