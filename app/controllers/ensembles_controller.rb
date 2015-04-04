@@ -43,7 +43,7 @@ class EnsemblesController < ApplicationController
       flash[:notice] = "Ensemble and elective choices complete"
       registration.ensemble_primaries.first.complete = true
     end
-    redirect_to controller: registration, action: index
+    redirect_to controller: registration, action: :index
   end
   
   private
