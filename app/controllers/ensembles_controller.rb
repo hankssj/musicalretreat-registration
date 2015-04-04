@@ -5,6 +5,11 @@ class EnsemblesController < ApplicationController
   before_action :authorize
   before_action :set_user_or_handle_unauthorized
 
+  def reselect
+    @user.most_recent_registration.ensemble_primaries.each(&:destroy)
+    new
+  end
+
   def new
     @registration = @user.most_recent_registration
     unless @registration.instrument_id
