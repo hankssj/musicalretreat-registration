@@ -21,7 +21,7 @@ class RegistrationController < ApplicationController
     @registration = session_registration
     @registered = !@registration.nil?
     @has_balance = @registration && @registration.balance > 0
-    @needs_evals = @registration && @registration.ensemble_primaries.empty?
+    @needs_evals = @registration && @registration.ensemble_primaries_incomplete?
   end
 
   ####################################################

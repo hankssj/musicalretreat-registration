@@ -1,11 +1,11 @@
 class EnsemblePrimary < ActiveRecord::Base
   after_validation :skip_invalid_messages
   belongs_to :registration
-  has_many :mmr_chambers
-  has_many :prearranged_chambers
-  has_many :ensemble_primary_elective_ranks, inverse_of: :ensemble_primary
+  has_many :mmr_chambers, dependent: :destroy
+  has_many :prearranged_chambers, dependent: :destroy
+  has_many :ensemble_primary_elective_ranks, dependent: :destroy, inverse_of: :ensemble_primary
   has_many :electives, through: :ensemble_primary_elective_ranks
-  has_many :evaluations
+  has_many :evaluations, dependent: destroy
 
   validates :registration, presence: true
   validates :large_ensemble_choice,

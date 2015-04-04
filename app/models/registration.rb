@@ -3,7 +3,7 @@ class Registration < ActiveRecord::Base
   belongs_to :user
   has_many :payments
   belongs_to :instrument
-  has_many :ensemble_primaries
+  has_many :ensemble_primaries, :dependent: :destroy
 
   # Validation:  first and last name not empty; first line of street address, city, state, zip not empty
   # Phone numbers validate
@@ -23,7 +23,15 @@ class Registration < ActiveRecord::Base
       record.errors.add(attr, 'Please use 10-digit phone numbers, put international numbers in comments')
     end
   end
-                                              
+
+  # Ensemble primaries can be left in an incomplete state if user exits the work flow
+  # Delete all the incomplete ones and 
+  def ensemble_primaries_incomplete?
+    ensemble_primaries.each{|e| e.destroy unless e.complete}
+    ensemble_primaries.reload
+    ensemble_primaries.empty?
+  end
+
   def instrument_name
     instrument_id ? Instrument.find(instrument_id).display_name : "None"
   end

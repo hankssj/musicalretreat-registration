@@ -32,6 +32,20 @@ class EnsemblesController < ApplicationController
     redirect_to registration_index_path
   end
 
+  def finish
+    set_user_or_handle_unauthorized
+    registration = @user.most_recent_registration
+    if registration.nil? 
+      flash[:notice] = "Error finishing ensemble: no registration"
+    elsif !registration.ensemble_primaries || registration.ensemble_primaries.empty?
+      flash[:notice] = "Error finishing ensemble: no ensemble record"
+    else 
+      flash[:notice] = "Ensemble and elective choices complete"
+      registration.ensemble_primaries.first.complete = true
+    end
+    redirect_to controller: registration, action: index
+  end
+  
   private
 
   def post_params
@@ -55,9 +69,7 @@ class EnsemblesController < ApplicationController
       flash[:notice] = "Please log in first"
       redirect_to :controller => :registration, :action => :index
     end
-
     @user = User.find(session[:user_id])
-
     if @user.nil?
       flash[:notice] = "Please log in first"
       redirect_to :controller => :registration, :action => :index
