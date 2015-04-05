@@ -51,7 +51,7 @@ Instrument.create(:id => 34, :display_name => "Piano",              :large_ensem
 ##  and registrations tables.
 
  def create_test_registrations
-   Instrument.all.each{|i| create_standard_registration(i)}
+   Instrument.all.each{|i| create_test_registration(i)}
  end
 
  def create_test_registration(instrument)
