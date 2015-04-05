@@ -102,6 +102,16 @@
   </table>
   <% end %>
 
+  <% if instrument.bassoon? %>
+  <table class='eval-table'>
+    <tr><th colspan="2">What additional instruments are you bringing to camp?</th></tr>
+  <tr><td>Contrabassoon</td></tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_bassoon_contrabassoon %></td>
+  </tr>
+  </table>
+  <% end %>
+
   <div class='indented-top'>
   <table class='eval-table'>
     <tr><th colspan="1">Any other instruments we should know about?</th></tr>

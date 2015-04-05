@@ -111,9 +111,19 @@ link_elective_to_instruments(e, [6,7,8,9])
 e = Elective.create(
 :name => "Flute Choir",
 :instructor => "Faculty",
-:description => "A choir!  Of Flutes!!  Lots of flutes!!!  The more flutes the better!!!!  Maybe if we all play up an octave we can break a wine glass!!!!"
+:description => "A choir!  Of Flutes!!  Lots of flutes!!!  The more flutes the better!!!!  Maybe if we all play up an octave we can break a commemorative wine glass!!!!"
 )
-link_elective_to_instruments(e, [11,10])
+link_elective_to_instruments(e, [])
+
+############ Listen up, because this is a hack!!!  
+#  Having a dropdown for flute choir was deemed confusing, so the easiest fix is
+#  to remove the requirement here so it doesn't show up on the elective page then 
+#  look specifically for this elective (by name) when figuring out which evals 
+#  are required.  EnsemblePrimary.need_eval_for has the code that looks for "Flute Choir" 
+#  by name.  So if you get rid of Flute Choir, or change the instrument ID for flute or piccolo, 
+#  watch out!!!
+
+#link_elective_to_instruments(e, [11])
 
 e = Elective.create(
 :name => "Percussion Ensemble",

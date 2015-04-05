@@ -27,9 +27,13 @@ class Registration < ActiveRecord::Base
   # Ensemble primaries can be left in an incomplete state if user exits the work flow
   # Delete all the incomplete ones and 
   def ensemble_primaries_incomplete?
-    #ensemble_primaries.each{|e| e.destroy unless e.complete}
+    ensemble_primaries.each{|e| e.destroy unless e.complete}
     ensemble_primaries.reload
     ensemble_primaries.empty?
+  end
+
+  def ensemble_primaries_complete?
+    !ensemble_primaries_incomplete?
   end
 
   def instrument_name

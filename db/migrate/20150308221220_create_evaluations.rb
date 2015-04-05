@@ -52,6 +52,8 @@ class CreateEvaluations < ActiveRecord::Migration
       t.boolean :other_instrument_drum_set
       t.boolean :other_instrument_mallets
 
+      t.boolean :other_instrument_bassoon_contrabassoon
+
       t.text :other_instruments_you_tell_us
 
       #####################

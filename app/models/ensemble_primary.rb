@@ -15,7 +15,7 @@ class EnsemblePrimary < ActiveRecord::Base
      presence: { message: "Please provide a seating preference for your large ensemble", on: :create },
      if: lambda{|e| e.large_ensemble_choice > 0 && (e.instrument.violin?  || e.instrument.flute? || e.instrument.clarinet? || e.instrument.saxophone_nonspecific?) }
 
-  validates :chamber_ensemble_choice, presence: { message: "You must specify yours chamber ensemble preferences" }, 
+  validates :chamber_ensemble_choice, presence: { message: "You must specify your chamber ensemble preferences" }, 
     if: lambda{|e| e.step === :afternoon_ensembles_and_electives }
 
   validates :ensemble_primary_elective_ranks,
@@ -48,7 +48,18 @@ class EnsemblePrimary < ActiveRecord::Base
 
   def need_eval_for
     instrument_ids = (mmr_chambers + prearranged_chambers + ensemble_primary_elective_ranks).map(&:instrument_id) + [default_instrument_id]
-    instrument_ids.compact.uniq.reject{|x| x <= 0}
+
+    #  Need to specifically add Flute, if "Flute Choir" is in the chosen electives, need 
+    #  flute evaluation.  Note the disgusting dependency on both the instrument ID and the elective name.
+    if electives.map(&:name).include("Flute Choir")
+      instrument_ids << 11
+    end
+
+    # If somebody says Piccolo and not Flute, we say Flute instead.  So there is only one eval.
+    if instrument_ids.include?(10)
+      instrument_ids << 11
+    end
+    instrument_ids.compact.uniq.reject{|x| x <= 0}.reject{|x| x == 10}
   end
 
   def build_evaluations

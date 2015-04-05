@@ -2,6 +2,7 @@ class CreatePrearrangedChambers < ActiveRecord::Migration
   def change
     create_table :prearranged_chambers do |t|
       t.integer :ensemble_primary_id
+      t.string  :group_name
       t.boolean :i_am_contact
       t.string  :contact_name
       t.string  :contact_email
