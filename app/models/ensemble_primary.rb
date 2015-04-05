@@ -51,7 +51,7 @@ class EnsemblePrimary < ActiveRecord::Base
 
     #  Need to specifically add Flute, if "Flute Choir" is in the chosen electives, need 
     #  flute evaluation.  Note the disgusting dependency on both the instrument ID and the elective name.
-    if electives.map(&:name).include("Flute Choir")
+    if electives.map(&:name).include?("Flute Choir")
       instrument_ids << 11
     end
 
