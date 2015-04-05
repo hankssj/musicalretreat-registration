@@ -47,6 +47,8 @@ Instrument.create(:id => 32, :display_name => "Harp",               :large_ensem
 Instrument.create(:id => 34, :display_name => "Piano",              :large_ensemble => "none", :instrument_type => "string")
 
 ##################### Dummy registrations ###########################
+##  Consider removing these in prod -- or else just overwrite the users 
+##  and registrations tables.
 
  def create_test_registrations
    Instrument.all.each{|i| create_standard_registration(i)}
@@ -61,6 +63,8 @@ Instrument.create(:id => 34, :display_name => "Piano",              :large_ensem
                        home_phone: "2061111111", work_phone: "2061111111", cell_phone: "2061111111",
                        instrument_id: instrument.id)
  end
+
+create_test_registrations
 
 ####################### Electives ############################
 
