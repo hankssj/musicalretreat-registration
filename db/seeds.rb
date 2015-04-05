@@ -148,7 +148,7 @@ e = Elective.create(
 :instructor => "Greg Yasinitsky",
 :description => "The Jazz Big Band features traditional big band instrumentation: saxophones, trumpets, trombones and rhythm section players -- piano, bass and drums. Repertoire is drawn from a mix of unique arrangements of  jazz standards and originals. The band performs at Skit Night."
 )
-link_elective_to_instruments(e, [17,18,19,20,21,22,24,25,28,31,34])
+link_elective_to_instruments(e, [17,18,19,20,21,22,24,25,28,34,9])
 
 e = Elective.create(
 :name => "Jazz Improvisation",

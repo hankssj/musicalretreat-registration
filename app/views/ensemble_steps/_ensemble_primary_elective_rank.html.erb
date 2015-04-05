@@ -16,7 +16,7 @@
         <% if elective_choice.elective.instruments.include?(@ensemble_primary.instrument) %>
           <%= ff.select :instrument_id, options_for_select(elective_choice.elective.instruments_for_selection, @ensemble_primary.default_instrument_id), {}, disabled: disabled %>
         <% else %>
-          <%= ff.select :instrument_id, options_for_select(elective_choice.elective.instruments_for_selection), {prompt: '- Instrument -'}, disabled: disabled %>
+          <%= ff.select :instrument_id, options_for_select(elective_choice.elective.instruments_for_selection), {prompt: '- Voice/Inst -'}, disabled: disabled %>
         <% end %>
       <% end %>
     </span>

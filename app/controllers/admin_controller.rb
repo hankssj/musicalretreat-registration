@@ -256,6 +256,50 @@ class AdminController < ApplicationController
     @sent = early_invitees.size
   end
 
+  def send_self_eval_invitations
+
+    if Invitee.count == 0
+      User.all.reject{|u|u.bounced_at}.each{|u|Invitee.create(:email => u.email)}
+    end
+    
+    limit = 100
+
+    invitees = Invitee.all.reject{|i| i.sent}
+    invitees = invitees[0..limit-1] if invitees.size > limit
+
+    @sent = []
+    @skipped = []
+
+    invitees.each do |invitee|
+      email = invitee.email
+      if invitee.sent?
+        Event.log("Skipped #{email} due to already sent")
+        @skipped << email
+        next
+      end
+      user = User.find_by_email(email)
+      unless user
+        Event.log("PAY ATTENTION!  SKIPPED #{email} ALTOGETHER BECAUSE OF NO ACCOUNT")
+        next
+      end
+
+XXXX       if user.has_current_registration 
+         Event.log("Skipped #{email} due to existing registration")
+         @skipped << email
+       elsif user.bounced_at
+         Event.log("Skipped #{email} due to bounceage")
+         @skipped << email
+       else 
+        RegistrationMailer.invitation(user)
+        Event.log("Bulk invitation to user #{email}")
+        @sent << email
+        invitee.sent = true
+        invitee.save!
+       end
+    end
+    @remaining = Invitee.all.reject{|r|r.sent}.size
+  end
+
   ####################################################################
   ## Drop Registration and Payment records, which are then picked up 
 
