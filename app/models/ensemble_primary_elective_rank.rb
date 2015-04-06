@@ -3,7 +3,7 @@ class EnsemblePrimaryElectiveRank < ActiveRecord::Base
   belongs_to :elective
   belongs_to :instrument
 
-  validates :instrument, presence: { message: 'You have to chose an instrument' }, unless: lambda{|e| e.elective.instruments.empty? }
+  validates :instrument, presence: { message: 'You have to choose an instrument or voice' }, unless: lambda{|e| e.elective.instruments.empty? }
   validates :ensemble_primary, presence: true
   validates :elective, presence: true
 
