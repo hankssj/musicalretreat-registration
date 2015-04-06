@@ -46,7 +46,7 @@ class EnsemblePrimary < ActiveRecord::Base
   #######################################################################################
   # Chamber music choices. AKA afternoon groups.  Driven by chamber_music_choice variable
 
-  def text_for_chamber_music_choice
+  def text_for_chamber_ensemble_choice
     ["No afternoon chamber groups",
      "One assigned chamber group",
      "One prearranged chamber group, one coached hour",
@@ -60,9 +60,9 @@ class EnsemblePrimary < ActiveRecord::Base
     chamber_ensemble_choice == 0
   end
 
-  def parse_chamber_music_choice
+  def parse_chamber_ensemble_choice
     num_mmr = num_prearranged = 0
-    case chamber_music_choice
+    case chamber__choice
     when 0
       num_mmr = 0; num_prearranged = 0
     when 1
@@ -86,7 +86,7 @@ class EnsemblePrimary < ActiveRecord::Base
     mmr_chambers.each(&:destroy!)
     prearranged_chambers.reload
     mmr_chambers.reload
-    num_assigned, num_prearranged = parse_chamber_music_choice
+    num_assigned, num_prearranged = parse_chamber_ensemble_choice
     num_assigned.times.each{|i| mmr_chambers.build}
     num_prearranged.times.each{|i| prearranged_chambers.build(instrument: primary_instrument)}
   end
