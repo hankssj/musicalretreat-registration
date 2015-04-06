@@ -15,7 +15,7 @@ class EnsembleStepsController < ApplicationController
       @ensemble_primary.rebuild_chamber_ensembles
       skip_step if @ensemble_primary.no_chamber_ensembles?
       @instrument_menu_selection = Instrument.menu_selection
-      @num_assigned, @num_prearranged = @ensemble_primary.parse_chamber_music_choice
+      @num_assigned, @num_prearranged = @ensemble_primary.parse_chamber_ensemble_choice
       session[:ensemble_primary_id] = @ensemble_primary.id
     when :chamber_elective
     when :elective_evaluation
