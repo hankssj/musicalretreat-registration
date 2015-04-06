@@ -28,7 +28,7 @@ class Instrument < ActiveRecord::Base
   def saxophone?; id >= 17 && id <= 21; end
   def saxophone_nonspecific?; id == 17; end
 
-  def jazz?; [15, 17, 18, 19, 20, 21, 22, 24, 25, 27, 28, 34].include?(id); end
+  def jazz?; [9, 15, 17, 18, 19, 20, 21, 22, 24, 25, 27, 28, 34].include?(id); end
 
   def self.menu_selection
     menu_helper(Instrument.all.reject{|i| i.closed})
