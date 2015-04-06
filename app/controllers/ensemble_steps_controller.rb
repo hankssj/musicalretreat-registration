@@ -12,23 +12,15 @@ class EnsembleStepsController < ApplicationController
   def show
     case step
     when :primary_chamber
-      @ensemble_primary.prearranged_chambers.each(&:destroy!)
-      @ensemble_primary.mmr_chambers.each(&:destroy!)
-      @ensemble_primary.prearranged_chambers.reload
-      @ensemble_primary.mmr_chambers.reload
+      @ensemble_primary.rebuild_chambers
       skip_step if @ensemble_primary.no_chamber_ensembles?
       @instrument_menu_selection = Instrument.menu_selection
       @num_assigned, @num_prearranged = @ensemble_primary.parse_chamber_music_choice
-      @num_assigned.times.each{|i| @ensemble_primary.mmr_chambers.build }
-      @num_prearranged.times.each{|i| @ensemble_primary.prearranged_chambers.build(instrument: @ensemble_primary.registration.instrument)}
       session[:ensemble_primary_id] = @ensemble_primary.id
     when :chamber_elective
     when :elective_evaluation
-      @ensemble_primary.evaluations.each{ |e| e.destroy }
-      @ensemble_primary.evaluations.reload
-      @ensemble_primary.build_evaluations
+      @ensemble_primary.rebuild_evaluations
     end
-
     render_wizard
   end
 
@@ -38,19 +30,14 @@ class EnsembleStepsController < ApplicationController
       @ensemble_primary.update_attributes(post_params)
       @instrument_menu_selection = Instrument.menu_selection
     when :chamber_elective
-      @ensemble_primary.ensemble_primary_elective_ranks.each do |elective_rank|
-        elective_rank.destroy
-      end
+      @ensemble_primary.ensemble_primary_elective_ranks.each(&:destroy!)
       @ensemble_primary.ensemble_primary_elective_ranks.reload
       @ensemble_primary.update_attributes(post_params)
     when :elective_evaluation
       @ensemble_primary.update_attributes(post_params)
     when :evaluation_summary
-      if @ensemble_primary.update_attributes(post_params)
-        return redirect_to registration_index_path
-      end
+      return redirect_to registration_index_path if @ensemble_primary.update_attributes(post_params)
     end
-
     @ensemble_primary.step = step
     render_wizard @ensemble_primary
   end
