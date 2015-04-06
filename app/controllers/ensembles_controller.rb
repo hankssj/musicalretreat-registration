@@ -21,8 +21,7 @@ class EnsemblesController < ApplicationController
   end
 
   def create
-    @ensemble_primary = @user.most_recent_registration
-      .ensemble_primaries.build(post_params)
+    @ensemble_primary = @user.most_recent_registration.ensemble_primaries.build(post_params)
     if @ensemble_primary.save
       session[:ensemble_primary_id] = @ensemble_primary.id
       redirect_to ensemble_steps_path
@@ -32,8 +31,7 @@ class EnsemblesController < ApplicationController
   end
 
   def destroy
-    @user.most_recent_registration
-      .ensemble_primaries.each { |e| e.destroy }
+    @user.most_recent_registration.ensemble_primaries.each{|e| e.destroy}
     redirect_to registration_index_path
   end
 

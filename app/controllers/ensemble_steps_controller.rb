@@ -1,3 +1,4 @@
+
 class EnsembleStepsController < ApplicationController
   include Wicked::Wizard
   include RegistrationGating
@@ -11,23 +12,15 @@ class EnsembleStepsController < ApplicationController
   def show
     case step
     when :primary_chamber
-      @ensemble_primary.prearranged_chambers.each do |pc|
-        pc.destroy
-      end
-      @ensemble_primary.mmr_chambers.each do |ec|
-        ec.destroy
-      end
-      @ensemble_primary.mmr_chambers.reload
+      @ensemble_primary.prearranged_chambers.each(&:destroy!)
+      @ensemble_primary.mmr_chambers.each(&:destroy!)
       @ensemble_primary.prearranged_chambers.reload
+      @ensemble_primary.mmr_chambers.reload
       skip_step if @ensemble_primary.no_chamber_ensembles?
       @instrument_menu_selection = Instrument.menu_selection
-      @num_assigned, @num_prearranged = EnsemblePrimary
-        .parse_chamber_music_choice(@ensemble_primary.chamber_ensemble_choice)
+      @num_assigned, @num_prearranged = @ensemble_primary.parse_chamber_music_choice
       @num_assigned.times.each{|i| @ensemble_primary.mmr_chambers.build }
-      @num_prearranged.times.each do|i|
-        @ensemble_primary.prearranged_chambers
-          .build(instrument: @ensemble_primary.registration.instrument)
-      end
+      @num_prearranged.times.each{|i| @ensemble_primary.prearranged_chambers.build(instrument: @ensemble_primary.registration.instrument)}
       session[:ensemble_primary_id] = @ensemble_primary.id
     when :chamber_elective
     when :elective_evaluation
