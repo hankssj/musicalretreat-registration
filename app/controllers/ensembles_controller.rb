@@ -45,6 +45,7 @@ class EnsemblesController < ApplicationController
     else 
       flash[:notice] = "Ensemble and elective choices complete"
       ep = registration.ensemble_primaries.first
+      ep.update_attributes(post_params)
       ep.complete = true
       ep.save!
     end
