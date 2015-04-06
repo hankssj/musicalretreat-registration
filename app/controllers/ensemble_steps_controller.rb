@@ -12,7 +12,7 @@ class EnsembleStepsController < ApplicationController
   def show
     case step
     when :primary_chamber
-      @ensemble_primary.rebuild_chambers
+      @ensemble_primary.rebuild_chamber_ensembles
       skip_step if @ensemble_primary.no_chamber_ensembles?
       @instrument_menu_selection = Instrument.menu_selection
       @num_assigned, @num_prearranged = @ensemble_primary.parse_chamber_music_choice
