@@ -62,7 +62,7 @@ class EnsemblePrimary < ActiveRecord::Base
 
   def parse_chamber_ensemble_choice
     num_mmr = num_prearranged = 0
-    case chamber_choice
+    case chamber_ensemble_choice
     when 0
       num_mmr = 0; num_prearranged = 0
     when 1
