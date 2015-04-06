@@ -1,0 +1,84 @@
+<tr class="reg-form-section-title">
+  <td>
+    Prearranged Group
+  </td>
+</tr>
+<tr>
+  <td class="reg-form-column chamber-group-partial">
+
+    <table width='80%'>
+      <tr>
+        <td>
+          What instrument or vocal part are you playing in this group? &nbsp;&nbsp;&nbsp;
+          <%= prearranged_chamber.select :instrument_id, @instrument_menu_selection, :selected => @ensemble_primary.registration.instrument_id %>
+        </td>
+      </tr>
+      <tr height="20"><td/></tr>
+      <tr>
+	<td>Group name (optional): &nbsp;&nbsp;&nbsp; <%= prearranged_chamber.text_field :group_name, :size => 20 %></td>
+      </tr>
+      <tr>
+	<td>Each prearranged group must have a designated contact person, who will provide additional information about the group.</td>
+      </tr>
+      <tr height="20"><td/></tr>
+      <tr>
+        <td>Are you the contact person for this ensemble? &nbsp;&nbsp;
+          <%= prearranged_chamber.radio_button :i_am_contact, false, {checked: true, class: 'is-contact'} %> &nbsp;&nbsp;No
+          &nbsp;&nbsp;
+          <%= prearranged_chamber.radio_button :i_am_contact, true, {class: 'is-contact'} %> &nbsp;&nbsp;Yes
+        </td>
+      </tr>
+          <tr class='non-contact-person-form'>
+            <td>
+              Contact person name (required):  &nbsp;&nbsp;&nbsp;<%= prearranged_chamber.text_field :contact_name, :size => 20 %>
+            </td>
+          </tr>
+          <tr class='non-contact-person-form'>
+            <td>
+              Contact person email (encouraged): &nbsp;&nbsp;&nbsp;<%= prearranged_chamber.text_field :contact_email, :size => 20 %>
+            </td>
+          </tr>
+            <tr class='contact-person-form'>
+              <td colspan='3'>
+                Names and instruments/voices of other participants:
+              </td>
+            </tr>
+            <tr class='contact-person-form'>
+              <td colspan='3'>
+                <%= prearranged_chamber.text_area :participant_names, :rows => 5, :cols => 80 %>
+              </td>
+            </tr>
+            <tr class='contact-person-form'>
+              <td>
+                Are you bringing your own music? &nbsp;&nbsp;&nbsp;
+                 <%= prearranged_chamber.radio_button :bring_own_music, false, {:checked => true, class: 'own-music'}  %> &nbsp;&nbsp;No
+                 &nbsp;&nbsp;&nbsp;<%= prearranged_chamber.radio_button :bring_own_music, true, {class: 'own-music'} %>&nbsp;&nbsp; Yes
+              </td>
+            </tr>
+                <tr class='contact-person-form own-music-form'>
+                  <td colspan='3'>
+                    Composer and name of piece:
+                  </td>
+                </tr>
+                <tr class='contact-person-form own-music-form'>
+                  <td colspan='3'>
+                    <%= prearranged_chamber.text_field :music_composer_and_name, :size => 80 %>
+                  </td>
+                </tr>
+		<tr class='contact-person-form own-music-form'>
+		  <td colspan='3'>Please write measure numbers in all parts.  Bring a score with measure numbers for the coach.</td>
+         	  </tr>
+		<tr height='10px'><td colspan='3'></tr>
+                <tr>
+                  <td colspan='3'>
+                    Other comments, questions, or requests:
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan='3'>
+                    <%= prearranged_chamber.text_area :notes, :rows => 5, :cols => 80 %>
+                  </td>
+                </tr>
+              </table>
+  </td>
+</tr>

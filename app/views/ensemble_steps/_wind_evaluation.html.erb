@@ -1,0 +1,18 @@
+<%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %>
+
+<%= render :partial => "groups", :locals => {:form => form, :instrument => instrument} %>
+
+<% if instrument.trumpet? || instrument.horn? %>
+<%= render :partial => "transposition", :locals => {:form => form, :instrument => instrument} %>
+<% end %>
+
+<%= render :partial => "practice_frequency",:locals => {:form => form, :instrument => instrument} %>
+
+<%= render :partial => "private_study", :locals => {:form => form, :instrument => instrument} %>
+
+<%= render :partial => "chamber_frequency", :locals => {:form => form, :instrument => instrument} %>
+
+<%= render :partial => "extra_instruments", :locals => {:form => form, :instrument => instrument} %>
+
+<%= render :partial => "overall_assessment", :locals => {:form => form, :instrument => instrument} %>
+

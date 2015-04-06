@@ -1,0 +1,11 @@
+<div class='indented-top'>
+<table class='eval-table'>
+<tr><th colspan="3"> <%= form.label :chamber_music_how_often, 'How often to you play chamber music?' %></th></tr>
+<td>Less than once a week</td><td>Weekly</td><td>More than once a week</td></tr>
+<tr>
+<td><%= form.radio_button :chamber_music_how_often, 0, {:checked => 1} %></td>
+<td><%= form.radio_button :chamber_music_how_often, 1 %></td>
+<td><%= form.radio_button :chamber_music_how_often, 2 %></td>
+</tr>
+</table>
+</div>

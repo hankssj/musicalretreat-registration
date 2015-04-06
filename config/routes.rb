@@ -1,4 +1,5 @@
 RegistrationDevelopment::Application.routes.draw do
+  get "ensembles/choose"
   get "static/index"
   root 'static#index'
 
@@ -31,7 +32,10 @@ RegistrationDevelopment::Application.routes.draw do
   get  "registration/confirm_registration"
   get  "registration/done"
 
+  resources :ensembles, only: [:new, :create, :destroy, :finish]
+  resources :ensemble_steps, only: [:index, :show, :update]
   resources :registration
+  post "ensembles/finish"
 
   get "login/change_password"
   post "login/change_password"
@@ -44,4 +48,5 @@ RegistrationDevelopment::Application.routes.draw do
 
   get ":controller/:action"
   post ":controller/:action"
+  patch ":controller/:action"
 end

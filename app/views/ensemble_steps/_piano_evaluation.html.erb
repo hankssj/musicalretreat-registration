@@ -1,0 +1,15 @@
+<%= render :partial => "practice_frequency", :locals => {:instrument => instrument, :form => form} %></p>
+
+<%= render :partial => "private_study", :locals => {:instrument => instrument, :form => form} %></p>
+
+<%= render :partial => "jazz_experience", :locals => {:instrument => instrument, :form => form} %>
+
+<%= render :partial => "chamber_frequency", :locals => {:instrument => instrument, :form => form} %>
+
+<div class='indented-top'>
+<%= form.label :composers, 'List composers whose works you have recently enjoyed practicing' %>
+<br />
+<%= form.text_area :composers, rows: 3, cols: 70 %>
+</div>
+
+<%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %>

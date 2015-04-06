@@ -1,4 +1,4 @@
-<% if @registration.errors.any? %>
+<% if subject.errors.any? %>
 <div id="form-errors">
 <table>
 <tr>
@@ -7,7 +7,7 @@
 <tr>
 <td>
    <ul>
-      <% @registration.errors.each do |attr, msg| %>
+      <% subject.errors.each do |attr, msg| %>
       <li><%= msg %></li>
       <% end %>
     </ul>

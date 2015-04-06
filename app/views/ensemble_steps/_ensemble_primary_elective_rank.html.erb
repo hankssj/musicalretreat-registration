@@ -1,0 +1,25 @@
+<li class='indented-top'>
+  <%= f.fields_for :ensemble_primary_elective_ranks, elective_choice do |ff| %>
+    <%= ff.hidden_field :elective_id, disabled: disabled %>
+    <%= ff.hidden_field :rank, class: 'rank', disabled: disabled %>
+    <span class='remove'>
+      &times;
+    </span>
+    <span class='name'>
+      <%= elective_choice.elective.name %>
+    </span>
+    <span class='hidden description'>
+      <b><%= elective_choice.elective.instructor %></b><br><%= elective_choice.elective.description %>
+    </span>
+    <span class='instrument float-right'>
+      <% unless elective_choice.elective.instruments.empty? %>
+        <% if elective_choice.elective.instruments.include?(@ensemble_primary.instrument) %>
+          <%= ff.select :instrument_id, options_for_select(elective_choice.elective.instruments_for_selection, @ensemble_primary.default_instrument_id), {}, disabled: disabled %>
+        <% else %>
+          <%= ff.select :instrument_id, options_for_select(elective_choice.elective.instruments_for_selection), {prompt: '- Voice/Inst -'}, disabled: disabled %>
+        <% end %>
+      <% end %>
+    </span>
+  <% end %>
+</li>
+

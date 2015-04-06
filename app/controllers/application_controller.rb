@@ -35,11 +35,19 @@ class ApplicationController < ActionController::Base
 	return u && u.admin
     end	
 
+    def session_user
+      return nil unless session[:user_id]
+      User.find_by_id(session[:user_id])
+    end
+
     def session_email
-	return nil unless session[:user_id]
-	u = User.find_by_id(session[:user_id])
-	return nil unless u
-	return u.email
-    end	
+      u = session_user
+      u && u.email
+    end
+
+    def session_registration
+      u = session_user
+      u && u.current_registration
+    end
 
 end

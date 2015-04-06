@@ -1,0 +1,96 @@
+<div id="main">
+<%= render :partial => 'shared/errors', locals: { subject: @ensemble_primary } %>
+<div id="reg-form-main" class="larger-font">
+<table width="100%">
+  <tr class="reg-form-section-title">
+    <td>
+      Elective Preferences
+    </td>
+  </tr>
+
+  <tr>
+    <td class="reg-form-column">
+
+<p>
+In this section you will choose and rank up to 5 electives.  This is a ranking
+for electives only.  Your chamber selections will be prioritized higher than electives
+unless you tell us otherwise (use the comments box on the Summary page to do so).
+</p>
+<div id="short-help">
+Drag from left column to right to choose an elective.  Move a choice up or down in the 
+right list.  Use the drop-down to choose an instrument, if the elective requires a choice.  
+You must choose at least one elective and choose an instrument for all your choices that
+require a choice.
+<br>
+<%= link_to "More help", "#", :id => "more-help" %>
+</div>
+<div id="long-help" hidden>
+<p>
+How to do it
+<ul>
+<li>All the available electives are in the left column
+<li>If you hover your mouse cursor over an elective name, you will see a description of the elective below Elective Choices
+<li>To choose an elective you drag it from the left column to the right column where you see
+"Drop here."  To drag a selection, put the mouse cursor over the item, hold down the right mouse button, then
+move the cursor to the Elective Choices area.  The elective will follow your cursor to the right column
+<li>You can move up to five electives to the Elective Choices area
+<li>The electives in the Elective Choices area are in rank order
+<li>You can re-order your list by dragging a selection up or down in the list
+<li>You can remove a selection from your list by clicking the red X next to an elective in the Elective Choices area
+It will move to the Available Electives column so you can choose it again if you change your mind
+<li>For some electives you need to tell us which instrument or vocal part is for you.  Click on the white area that 
+says "- Instrument -" next to the elective name and make your selection from the list
+<li>To go on to the next step (your self-evaluations) you need to choose at least one 
+elective and supply an Instrument for all of your chosen electives that have a white 
+"Instrument" box next to their names 
+<li>When you are finished selecting, ordering, and choosing instruments, push the Next button to go on to the next page
+<li>You can always push the browser refresh button to start back at the beginning of this step
+</ul>
+<%= link_to "Less help", "#", :id => "less-help" %>
+</p>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+
+<%= form_for @ensemble_primary, url: wizard_path, method: :put do |f|%>
+<div class='float-right two-third-column indented-top'>
+  <div class='reg-form-section-title'>
+    Elective Choices (Highest to Lowest Priority)
+  </div>
+  <div class='with-background'>
+    <ul id='choosen-electives' class='sortable-electives'>
+      <% if @ensemble_primary.ensemble_primary_elective_ranks.empty? %>
+      <li class='placeholder'>Drop here</li>
+    <% else %>
+      <li class='placeholder hidden'>Drop here</li>
+    <% f.object.ensemble_primary_elective_ranks.each do |elective_choice| %>
+      <%= render partial: 'ensemble_primary_elective_rank', locals: { f: f, elective_choice: elective_choice, disabled: false } %>
+    <% end %>
+  <% end %>
+    </ul>
+    <%= submit_tag 'Next' %>
+  </div>
+  <div id='info-box' class='indented-top hidden'>
+    <div class='name reg-form-section-title'></div>
+    <div class='with-background description'></div>
+  </div>
+</div>
+<div class='float-left one-third-column indented-top'>
+<div class='reg-form-section-title'>Available Electives</div>
+<div class='with-background'>
+  <ul id='aviliable-electives' class='sortable-electives'>
+    <% f.object.build_ensemble_primary_elective_ranks.each do |elective_choice| %>
+      <%= render partial: 'ensemble_primary_elective_rank', 
+          locals: { f: f, elective_choice: elective_choice, disabled: true } %>
+    <% end %>
+    </ul>
+  </div>
+</div>
+  <% end %>
+</td>
+</tr>
+</table>
+</div>
+</div>

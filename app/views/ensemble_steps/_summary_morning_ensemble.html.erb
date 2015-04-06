@@ -1,0 +1,16 @@
+<ul>
+   <% if ensemble_primary.large_ensemble_choice < 0 %>
+      <li>You will not be assigned a morning ensemble.  
+         <% if ensemble_primary.want_sing_in_chorus %> You would like to sing in the Festival Chorus. <% end %>
+         <% if ensemble_primary.want_percussion_in_band %> You would like to play percussion in Symphonic Band. <% end %>
+   <% else %>
+       <li>Your morning ensemble preference is <%= ensemble_primary.text_for_morning_ensemble_choice %>
+          <% if ensemble_primary.text_for_morning_ensemble_part && !ensemble_primary.text_for_morning_ensemble_part.empty? %>
+             <ul>
+              <li>Your part preference for morning ensemble is <%= ensemble_primary.text_for_morning_ensemble_part %></li>
+             </ul>
+          <% end %>
+   <% end %>
+</ul>
+
+

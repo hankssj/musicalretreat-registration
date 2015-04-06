@@ -1,0 +1,20 @@
+<% if @logged_in %>
+   <tr>
+    <%= render :partial => "reg_index_button", :locals => {:text => "Change Password", :options => {:action => :change_password}, :html_options => {}} %>
+   </tr>
+   <tr>
+    <%= render :partial => "reg_index_button", :locals => {:text => "Log Out", :options => {:action => :logout}, :html_options => {}} %>
+   </tr>
+<% else %>
+<tr>  
+<%= render :partial => "reg_index_button", :locals => {:text => "Log In", :options => {:action => :login}, :html_options => {}} %>
+</tr>
+<tr>
+<%= render :partial => "reg_index_button", :locals => {:text => "Forgot Password; Send New Password By Email", 
+                                                       :options => {:action => :new_password}, :html_options => {}} %>
+</tr>
+<tr>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Create New Account", :options => {:action => :new_password}, :html_options => {}} %>
+</tr>
+<% end %>
+

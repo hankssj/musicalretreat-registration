@@ -1,0 +1,24 @@
+<tr>
+  <%= render :partial => "reg_index_button", :locals => {:text => "View Registration", :options => {:action => :show}, :html_options => {}} %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Edit Registration", :options => {:action => :edit}, :html_options => {}} %>
+</tr>
+<tr>
+  <% if @has_balance %>
+     <%= render :partial => "reg_index_button", :locals => {:text => "Pay Online", :options => {:action => :payment}, :html_options => {}} %>
+  <% else %>
+     <%= render :partial => "reg_index_button_filler", :locals => {:text => "You Are Fully Paid"} %>
+  <% end %>
+  <% if @needs_evals %>
+     <%= render :partial => "reg_index_button", 
+     :locals => {:text => "Self Evaluation / Ensembles / Elective Choices", 
+                 :options => {:controller => :ensembles, :action => :new}, :html_options => {:method => :get}} %>
+  <% else %>
+     <%= render :partial => "reg_index_button",
+     :locals => {:text => "Reset Evaluation / Ensemble / Elective Choices and Select Again",
+                 :options => {:controller => :ensembles, :action => :reselect}, :html_options => {:method => :get}} %>
+  <% end %>
+</tr>
+<tr>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Change Password", :options => {:action => :change_password}, :html_options => {}} %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Log Out", :options => {:action => :logout}, :html_options => {}} %>
+</tr>

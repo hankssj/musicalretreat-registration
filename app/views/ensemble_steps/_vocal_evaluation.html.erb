@@ -1,0 +1,115 @@
+<table width="100%">
+  <tr class="reg-form-section-title">
+    <td>
+      Evaluation for <%= instrument.display_name %>
+  </td>
+</tr>
+
+<tr>
+  <td class="reg-form-column">
+
+<%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
+
+<div class='indented-top overall-rating'>
+<table>
+  <tr><td>
+     <table class='eval-table'>
+        <tr><th colspan="7"><%= form.label :vocal_overall_ability, "Rate your overall ability as a singer" %></th></tr>
+        <tr>
+           <td class='beginner' style='color:blue;'>Beginner</td>                      <td>&nbsp;&nbsp</td>
+           <td class='intermediate' style='color:blue;'>Intermediate</td>              <td>&nbsp;&nbsp</td>
+           <td class='experienced' style='color:blue;'>Experienced</td>                <td>&nbsp;&nbsp</td>
+           <td class='advanced' style='color:blue;'>Advanced</td>
+        </tr>
+        <tr>
+           <td class='beginner'> <%= form.radio_button :vocal_overall_ability, 0, {:checked => true} %></td>   <td/>
+           <td class='intermediate'> <%= form.radio_button :vocal_overall_ability, 1 %></td>                   <td/>
+           <td class='experienced'> <%= form.radio_button :vocal_overall_ability, 2 %></td>                    <td/>
+           <td class='advanced'> <%= form.radio_button :vocal_overall_ability, 3 %></td>
+        </tr>
+      </table>
+    </td>
+    <td class='skill-description'>
+        <p class='hidden beginner-text'><b>Beginer:</b> You love to sing but do not sing regularly with a chorus and have had no formal vocal training.</p>
+        <p class='hidden intermediate-text'><b>Intermediate:</b> You have difficulty reading music at sight, prefer to sing with accompaniment, have sung or are currently singing with a chorus, and have had little to no formal vocal training.</p>
+        <p class='hidden experienced-text'><b>Experienced:</b> You have no difficulty reading music at sight, are attentive to dynamics and blend, can sing unaccompanied, have sung or are currently singing with a chorus, and have had some formal vocal training.</p>
+        <p class='hidden advanced-text'><b>Advanced:</b> You have excellent sight reading skills, are attentive to all markings in the score, know a wide range of choral and solo vocal repertoire, prefer to sing unaccompanied, have sung or are currently singing with an auditioned chorus, and have had formal vocal training.</p>
+    </td>
+   </tr>
+</table>
+</div>
+
+<p/>
+
+<%= render :partial => "groups", :locals => {:instrument => instrument, :form => form} %>
+
+<div class='indented-top'>
+<table class="eval-table">
+<tr><th colspan="2"><%= form.label :vocal_how_learn, "How best do you learn a new piece?" %></th></tr>
+<tr><td>Reading the music</td><td>By ear, with repetition</td></tr>
+<tr><td><%= form.radio_button :vocal_how_learn, 0, {:checked => true} %></td>
+    <td><%= form.radio_button :vocal_how_learn, 1 %></td>
+</td>
+</table>
+</div>
+
+<div class='indented-top'>
+<table class='eval-table'>
+  <tr><th colspan="1"><%= form.label :vocal_most_difficult_piece, 'Most difficult piece you have learned' %></th></td>
+  <tr><td style="padding-bottom: 5px"><%= form.text_field :vocal_most_difficult_piece, :size => 60 %></td></tr>
+</table>
+</div>
+
+<div class='indented-top'>
+<table class='eval-table'>
+<tr><th colspan="1"><%= form.label :vocal_music_theory, "Musical Training" %></th></tr>
+<tr>
+<td>
+  <ul class='checkboxes-list'>
+    <li class='checkbox-with-relative'>
+      Have you studied music theory? &nbsp; &nbsp; 
+      <%= form.check_box :vocal_music_theory %> &nbsp;&nbsp; 
+      <!-- <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>"> -->
+      <span class="relative-input">
+	What year? &nbsp; &nbsp; <%= form.text_field :vocal_music_theory_year, :size => 8 %>
+      </span>
+    </li>
+    <li class='checkbox-with-relative'>
+      Have you taken a voice class? &nbsp; &nbsp; 
+      <%= form.check_box :vocal_voice_class %> &nbsp;&nbsp; 
+      <!-- <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>"> -->
+      <span class="relative-input">
+	What year? &nbsp; &nbsp; <%= form.text_field :vocal_voice_class_year, :size => 8 %>
+      </span>
+    </li>
+    <li class='checkbox-with-relative'>
+      Have you taken voice lessons? &nbsp; &nbsp; 
+      <%= form.check_box :vocal_voice_lessons %> &nbsp;&nbsp; 
+      <!-- <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>"> -->
+      <span class="relative-input">
+	What year? &nbsp; &nbsp; <%= form.text_field :vocal_voice_lessons_year, :size => 8 %>
+      </span>
+    </li>
+  </ul>
+</td></tr></table>
+</div>
+
+<div class='indented-top'>
+<table class='eval-table'>
+<tr><th colspan="3">When singing with a small ensemble, you</th></tr>
+<tr><td>Prefer to sing with others, accompanied</td>
+<td>Prefer to sing with others, with or without accompaniment</td>
+<td>Can handle your own part, without accompaniment</td>
+</tr>
+<tr><td><%= form.radio_button :vocal_small_ensemble_skills, 0, {:checked => true} %></td>
+    <td><%= form.radio_button :vocal_small_ensemble_skills, 1 %></td>
+    <td><%= form.radio_button :vocal_small_ensemble_skills, 2 %></td>
+</tr>
+</table>
+</div>
+
+<%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %>
+
+</td>
+</tr>
+</table>

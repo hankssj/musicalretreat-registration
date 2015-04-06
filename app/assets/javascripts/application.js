@@ -13,6 +13,12 @@
 //*= require jquery
 //*= require jquery_ujs
 //*= require turbolinks
+//= require jquery-ui/core
+//= require jquery-ui/widget
+//= require jquery-ui/mouse
+//= require jquery-ui/sortable
+//= require jquery-ui/draggable
+//= require jquery-ui/droppable
 //*= require_tree .
 
 function disableForm(formID){

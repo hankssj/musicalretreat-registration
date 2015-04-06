@@ -1,0 +1,54 @@
+<tr class="reg-form-section-title">
+  <td>
+    Assigned Group
+  </td>
+</tr>
+
+<tr>
+  <td class="reg-form-column chamber-group-partial">
+    <p>
+      What instrument or vocal part are you playing in this group?&nbsp;&nbsp;
+      <%= mmr_chamber.select :instrument_id, options_for_select(Instrument.unclosed.map{ |i| [i.display_name, i.id, {'data-jazz'=>i.jazz?, 'data-string'=>i.doubled_parts?}]}, @ensemble_primary.registration.instrument_id), {}, { class: 'arranged-chamber-group-instrument' } %>
+    </p>
+
+<div class='only-for-jazz'>
+<p>
+MMR now has a collection of Jazz scores for various ensembles including some with non-standard instrumentation. We also have two outstanding Jazz performers and teachers on the faculty.
+</p>
+
+<p>
+Would you like to be assigned to a small Jazz Ensemble or Combo?
+&nbsp;&nbsp;
+<%= mmr_chamber.radio_button :jazz_ensemble, false, {:checked => true} %>
+&nbsp;&nbsp;
+No
+&nbsp;&nbsp;
+<%= mmr_chamber.radio_button :jazz_ensemble, true %>
+&nbsp;&nbsp;
+Yes
+</div>
+
+<div class='only-for-string'>
+<p>
+(Beginners and Novices)<br>
+Would like to be assigned to a Chamber Ensemble with more than one player on a part?
+&nbsp;&nbsp; 
+<%= mmr_chamber.radio_button :string_novice, false, {:checked => true} %>
+&nbsp;&nbsp;
+No
+&nbsp;&nbsp;
+<%= mmr_chamber.radio_button :string_novice, true %>
+&nbsp;&nbsp;
+Yes
+</div>
+
+<!---------------------------------->
+<p>
+Other comments, questions, or requests:
+<br>
+<%= mmr_chamber.text_area :notes, :rows => 5, :cols => 80 %>
+
+<!---------------------------------->
+  </td>
+</tr>
+

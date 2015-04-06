@@ -1,0 +1,6 @@
+<% electives = ensemble_primary.ensemble_primary_elective_ranks.sort{|e1,e2|e1.rank <=> e2.rank} %>
+<ul>
+<%= render :partial => "summary_ensemble_primary_elective_line", :collection => electives %>
+</ul>
+
+

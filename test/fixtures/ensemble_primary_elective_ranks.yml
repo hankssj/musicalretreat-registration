@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ensemble_primary_id: 1
+  elective_id: 1
+  rank: 1
+
+two:
+  ensemble_primary_id: 1
+  elective_id: 1
+  rank: 1

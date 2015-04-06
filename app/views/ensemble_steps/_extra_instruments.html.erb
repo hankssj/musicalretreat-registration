@@ -1,0 +1,121 @@
+<div class='indented-top'>
+
+  <% if instrument.percussion? %>
+  <table class='eval-table'>
+    <tr><th colspan="2">What  instruments are you bringing to camp?</th></tr>
+    <tr><td>Drum Set</td><td>Mallets</td></tr>
+    <tr>
+      <td><%= form.check_box :other_instrument_drum_set %></td>
+      <td><%= form.check_box :other_instrument_mallets %></td>
+    </tr>
+  </table>
+  <% end %>
+
+  <% if instrument.flute? %>
+  <table class='eval-table'>
+    <tr><th colspan="4">What  instruments are you bringing to camp?</th></tr>
+    <tr><td>C Flute</td><td>Piccolo</td><td>Alto Flute</td><td>Bass Flute</td></tr>
+    <tr>
+    <td><%= form.check_box :other_instrument_c_flute %></td>
+    <td><%= form.check_box :other_instrument_piccolo %></td>
+    <td><%= form.check_box :other_instrument_alto_flute %></td>
+    <td><%= form.check_box :other_instrument_bass_flute %></td>
+    </tr>
+  </table>
+  <% end %>
+
+  <% if instrument.clarinet? %>
+  <table class='eval-table'>
+    <tr><th colspan="5">What  instruments are you bringing to camp?</th></tr>
+  <tr><td>B&#9837; Clarinet</td><td>A Clarinet</td><td>E&#9837; Clarinet</td><td>Alto Clarinet</td><td>Bass Clarinet</td>
+  </tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_bb_clarinet %></td>
+  <td><%= form.check_box :other_instrument_a_clarinet %></td>
+  <td><%= form.check_box :other_instrument_eb_clarinet %></td>
+  <td><%= form.check_box :other_instrument_alto_clarinet %></td>
+  <td><%= form.check_box :other_instrument_bass_clarinet %></td>
+  </tr>
+  </table>
+  <% end %>
+
+  <% if instrument.trumpet? %>
+  <table class='eval-table'>
+    <tr><th colspan="3">What  instruments are you bringing to camp?</th></tr>
+  <tr><td>B&#9837; Trumpet</td><td>C Trumpet</td><td>Piccolo Trumpet</td>
+  </tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_bb_trumpet %></td>
+  <td><%= form.check_box :other_instrument_c_trumpet %></td>
+  <td><%= form.check_box :other_instrument_piccolo_trumpet %></td>
+  </tr>
+  </table>
+  <% end %>
+
+  <% if instrument.trombone? %>
+  <table class='eval-table'>
+    <tr><th colspan="2">What  instruments are you bringing to camp?</th></tr>
+  <tr><td>Tenor Trombone</td><td>Bass Trombone</td>
+  </tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_trombone %></td>
+  <td><%= form.check_box :other_instrument_bass_trombone %></td>
+  </tr>
+  </table>
+  <% end %>
+
+  <% if instrument.oboe? %>
+  <table class='eval-table'>
+    <tr><th colspan="7">What  instruments are you bringing to camp?</th></tr>
+  <tr>
+    <td>Oboe</td>
+    <td>English Horn</td>
+    <td>Oboe D'Amore</td>
+    <td>Bass Oboe</td>
+    <td>Taille</td>
+    <td>Piffaro</td>
+    <td>Ciaramella</td>
+  </tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_oboe %></td>
+  <td><%= form.check_box :other_instrument_english_horn %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  <td><%= form.check_box :other_instrument_oboe_other %></td>
+  </tr>
+  </table>
+  <% end %>
+
+  <% if instrument.saxophone? %>
+  <table class='eval-table'>
+    <tr><th colspan="4">What  instruments are you bringing to camp?</th></tr>
+  <tr><td>Soprano Saxophone</td><td>Alto Saxophone</td><td>Tenor Saxophone</td><td>Baritone Saxophone</td>
+  </tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_saxophone_soprano %></td>
+  <td><%= form.check_box :other_instrument_saxophone_alto %></td>
+  <td><%= form.check_box :other_instrument_saxophone_tenor %></td>
+  <td><%= form.check_box :other_instrument_saxophone_baritone %></td>
+  </tr>
+  </table>
+  <% end %>
+
+  <% if instrument.bassoon? %>
+  <table class='eval-table'>
+    <tr><th colspan="2">What additional instruments are you bringing to camp?</th></tr>
+  <tr><td>Contrabassoon</td></tr>
+  <tr>
+  <td><%= form.check_box :other_instrument_bassoon_contrabassoon %></td>
+  </tr>
+  </table>
+  <% end %>
+
+  <div class='indented-top'>
+  <table class='eval-table'>
+    <tr><th colspan="1">Any other instruments we should know about?</th></tr>
+    <tr><td style="padding-top: 5px"><%= form.text_area :other_instruments_you_tell_us, :rows => 2, :cols => 60 %></td></tr>
+  </table>
+  </div>
+</div>

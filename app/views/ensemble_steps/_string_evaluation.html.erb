@@ -1,0 +1,29 @@
+<%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %>
+
+<% if instrument.piano? %>
+<%= render :partial => "piano_evaluation", :locals => {:form => form, :instrument => instrument} %>
+<% else %>
+
+<% if (instrument.violin? || instrument.viola?) %>
+<%= render :partial => "part_chamber_ensemble", :locals => {:form => form, :instrument => instrument} %>
+<p/>
+<% end %>
+
+<%= render :partial => "groups", :locals => {:form => form, :instrument => instrument} %>
+
+<%= render :partial => "practice_frequency",:locals => {:form => form, :instrument => instrument} %>
+
+<%= render :partial => "private_study", :locals => {:form => form, :instrument => instrument} %>
+
+<%= render :partial => "chamber_frequency", :locals => {:form => form, :instrument => instrument} %>
+
+<%= render :partial => "can_read_in_position", :locals => {:form => form, :instrument => instrument} %>
+
+<% if instrument.bass? %>
+<%= render :partial => "jazz_experience", :locals => {:form => form, :instrument => instrument} %>
+<% end %>
+   
+<%= render :partial => "overall_assessment", :locals => {:form => form, :instrument => instrument} %>
+<% end %>
+
+

@@ -3,88 +3,49 @@
 <!--  Banner -->
 <table id="reg-index-table">
 <tr>
-     <% if @status == :open %>
-      	<td width="60%" id="reg-index-banner">Welcome to MMR <%= Year.this_year %> Registration</td>
-      <% elsif @status == :premature %>
-      	<td width="60%" id="reg-index-banner">Registration for <%= Year.this_year %> Opens on January 1</td>
-      <% else %>
-      	 <td width="60%" id="reg-index-banner">Registration for MMR <%= Year.this_year %> Registration is Closed! <br/>Call 
-1-800-471-2419 for wait list or cancellation information.</td>
-      <% end %>
-	<td class="reg-index-email">
-	   <% if @email %>(You are logged in as <%= @email %>)<% else %>(You are not logged in)<% end %></td>
+<% if @status == :open %>
+   <td width="60%" id="reg-index-banner">Welcome to MMR <%= Year.this_year %> Registration</td>
+<% elsif @status == :premature %>
+   <td width="60%" id="reg-index-banner">
+         Registration opens on <%= RegDates.registration_opens.strftime("%A %B %e, %Y") %>
+   </td>
+<% else %>
+  <td width="60%" id="reg-index-banner">
+     Registration for MMR <%= Year.this_year %> Registration is Closed <br/>
+     Call 1-800-471-2419 for wait list or cancellation information</td>
+<% end %>
+<td class="reg-index-email">
+   <% if @email %>(You are logged in as <%= @email %>)<% else %>(You are not logged in)<% end %>
+</td>
 </tr>
 </table>
 
-<!-- Row 1 -->
 <table id="reg-index-table">
-  <tr>
-  <td class="bordered">Register Now
-   <p/>
-   <% if @can_register  %>
-	    <%= button_to "GO", new_registration_path, :method => :get %>
-   <% else %>
-            <%= button_tag "NO" %>
-   <% end %>
-  </td>
-  <td class="bordered">View Status
-  <p/>
-   <% if @can_register || @can_pay  %>
-	    <%= button_to "GO", :action => :show %>
-   <% else %>
-            <%= button_tag "NO" %>
-   <% end %>
-  </td>
-  </tr>
+<% if @status == :premature %>
+<%= render :partial => "index_premature" %>
+<% elsif @status == :closed %>
+<%= render :partial => "index_closed" %>
+<% elsif !@logged_in %>
+<%= render :partial => "index_not_logged_in" %>
+<% elsif !@registered %>
+<%= render :partial => "index_not_registered" %>
+<% else %>
+<%= render :partial => "index_registered" %>
+<% end %>
+</table>
 
-<!-- Row 2 -->
-  <tr>
-  <td class="bordered">Edit Your Registration
-    <p/>
-    <%= button_to "GO", :action => :edit %>
-  </td>
-  <td class="bordered">Pay Online
-    <p/>
-   <% if @can_pay  %>
-	    <%= button_to "GO", :action => :payment %>
-   <% else %>
-            <div><p><%= button_tag "NO" %></p></div>
-   <% end %>
-    </span></td>
-   </tr>	
-
-<!-- Row 3 -->
-  <tr>
-  <td class="bordered">Change Password
-      <p/><span class="bigger"><%= button_to "GO", :action => :change_password %></span></td>
-  <td class="bordered">Forgot Password, Please Reset<br/><span style="font-size: smaller">(New Password Sent by Email)</span>
-      <p/><span class="bigger"><%= button_to "GO", :action => :new_password %></span></td>
-  </tr>
-
-   <tr>
-     <td class="bordered">Create New Account
-       <p/>
-       <%= button_to "GO", :action => :new_password %>
-     </td>   
-     <% if @email %> 	
-     <td class="bordered">Log Out
-       <%= button_to "GO", :action => :logout %>
-       <% else %>
-     <td class="bordered">Log In
-       <%= button_to "GO", :action => :login %>
-       <% end %>
-     </td>
-   </tr>
-
+<!--  Footer -->
+<table id="reg-index-table">
 <tr>
   <td class="bordered" colspan="2">
   Please read information about 
     <a href="http://www.musicalretreat.org/registration-policy" target="_parent">registration policies</a>
- and 
+        and 
     <a href="http://www.musicalretreat.org/fees" target="_parent">fees</a> prior to registering online.
   </td>
 </tr>
 </table>
+
 </div>
 
 

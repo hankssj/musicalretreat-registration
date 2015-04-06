@@ -10,16 +10,18 @@ class RegistrationController < ApplicationController
   ############################################################################  
 
   def index
-    @email = session_email
-    @status = status
+    # Registration system status
+    @status = registration_system_status
     @can_register = can_register
     @can_pay = can_pay
-  end
 
-  def begin
+    # This user's status
+    @logged_in = session_user
     @email = session_email
-    @status = status
-    @can_register = can_register
+    @registration = session_registration
+    @registered = !@registration.nil?
+    @has_balance = @registration && @registration.balance > 0
+    @needs_evals = @registration && @registration.ensemble_primaries_incomplete?
   end
 
   ####################################################

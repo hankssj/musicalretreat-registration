@@ -256,6 +256,60 @@ class AdminController < ApplicationController
     @sent = early_invitees.size
   end
 
+  def send_self_eval_invitations
+
+    if Invitee.count == 0
+      User.all.reject{|u|u.bounced_at}.each{|u|Invitee.create(:email => u.email)}
+    end
+    
+    limit = 100
+
+    invitees = Invitee.all.reject{|i| i.sent}
+    invitees = invitees[0..limit-1] if invitees.size > limit
+
+    @sent = []
+    @skipped = []
+
+    invitees.each do |invitee|
+      email = invitee.email
+      if invitee.sent?
+        Event.log("Skipped #{email} due to already sent")
+        @skipped << email
+        next
+      end
+      user = User.find_by_email(email)
+      unless user
+        Event.log("PAY ATTENTION!  SKIPPED #{email} ALTOGETHER BECAUSE OF NO ACCOUNT")
+        next
+      end
+
+      # NB -- the call to ensemble_primaries_complete? will actually
+      # blow away any incomplete ensemble primaries -- so it will suck
+      # to send the invitation at the time the user is actually filling
+      # out the form.  
+
+      # TODO:  uncomment this for production, though it probably should be OK anyway
+
+      # if !user.has_current_registration 
+      #    Event.log("Skipped #{email} due to no existing registration")
+      #    @skipped << email
+      # elsif user.current_registration.ensemble_primaries_complete?
+      #   Event.log("Skipped #{email} due to no existing registration")
+      #   @skipped << email
+      # elsif user.bounced_at
+      #   Event.log("Skipped #{email} due to bounceage")
+      #   @skipped << email
+      # else 
+        RegistrationMailer.self_eval_invitation(user)
+        Event.log("Bulk invitation to user #{email}")
+        @sent << email
+        invitee.sent = true
+        invitee.save!
+      # end
+    end
+    @remaining = Invitee.all.reject{|r|r.sent}.size
+  end
+
   ####################################################################
   ## Drop Registration and Payment records, which are then picked up 
 

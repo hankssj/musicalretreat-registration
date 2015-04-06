@@ -1,0 +1,34 @@
+<div id="main">
+<%= render :partial => 'shared/errors', locals: { subject: @ensemble_primary } %>
+<div id="reg-form-main" class="larger-font">
+<%= form_for @ensemble_primary, url: wizard_path, method: :put do |form| %>
+<table width="100%">
+  <tr class="reg-form-section-title">
+    <td>
+      Afternoon Ensemble Preferences
+    </td>
+  </tr>
+
+  <tr>
+    <td class="reg-form-column">
+      <p>
+        Now give us some information about your afternoon ensemble preferences.  You have asked to 
+        be assigned to <%= @num_assigned %> <%= "group".pluralize(@num_assigned) %> assigned by
+        MMR and <%= @num_prearranged %> <%= "group".pluralize(@num_prearranged) %> you will pre-arrange.
+      </p>
+    </td>
+  </tr>
+   <%= form.fields_for :prearranged_chambers do |prearranged_chamber| %>
+      <%= render :partial => "prearranged_chamber", :object => prearranged_chamber %>
+   <% end %>
+   <%= form.fields_for :mmr_chambers do |mmr_chamber| %>
+      <%= render :partial => "mmr_chamber", :object => mmr_chamber %>
+   <% end %>
+<p/>
+<tr>
+  <td class="reg-form-column">
+<%= submit_tag "Next" %>
+  </td>
+</tr>
+</table>
+<% end %>

@@ -454,3 +454,143 @@ tr.reg-list-row td{
 	font-weight: bold;
 	color: red;
 }
+
+.larger-font {
+  font-size: 1.2em;
+}
+.hidden {
+  display: none;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.two-third-column {
+  width: 66%;
+}
+.one-third-column {
+  width: 33%;
+  margin-right: 1%;
+}
+.indented-top {
+  margin-top: 5px;
+}
+.with-background {
+	background-color: DarkSeaGreen;
+  padding: 5px;
+  box-sizing: border-box;
+
+  ul {
+    margin: 0px;
+  }
+}
+ul.sortable-electives {
+  padding: 10px 0px;
+
+  li {
+    list-style-type: none;
+    margin: 4px 4px 2px;
+    border: 1px solid #666;
+    padding: 3px;
+    background-color: DarkSeaGreen;
+    box-shadow: 3px 3px 1px #888888;
+
+    .remove {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      color: red;
+
+    }
+  }
+  li {
+    cursor: row-resize;
+  }
+  li.placeholder {
+    box-shadow: -3px -3px -1px #888888;
+    padding-top: 20px;
+    text-align: center;
+    height: 30px;
+    border: 1px dashed #666;
+    cursor: inherit;
+  }
+}
+#choosen-electives {
+  .instrument {
+    display: block;
+  }
+}
+#aviliable-electives {
+  .instrument {
+    display: none;
+  }
+
+  li.indented-top {
+    margin-top: 0px;
+  }
+
+  li {
+    cursor: move;
+
+    &.ui-draggable-disabled {
+      cursor: inherit;
+    }
+  }
+  .remove {
+    display: none;
+  }
+}
+.elective-evaluations {
+  label, .label {
+    font-weight: bold;
+  }
+
+  .label {
+    margin-bottom: 5px;
+    font-size: 1.1em
+  }
+
+  .indented-top {
+    margin-top: 15px;
+  }
+
+  .skill-description {
+    padding: 0px 12px 0px 12px;
+    height: 70px;
+
+    p {
+      margin: 0px;
+    }
+  }
+
+  ul.checkboxes-list {
+    margin: 0px;
+    padding-left: 0px;
+
+    li {
+      list-style-type: none;
+      margin: 2px 0;
+    }
+  }
+}
+
+table.eval-table {
+  width: 65%;
+  border: 2px solid black;
+  border-spacing: 5px 15px;
+}
+
+table.eval-table th {
+  border-bottom: thin solid black;
+}
+
+table.eval-table td {
+  text-align: center;
+}
+
+.pseudolink {
+   color: blue;
+   text-decoration: underline;
+}
