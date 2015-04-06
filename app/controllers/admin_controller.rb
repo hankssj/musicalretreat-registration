@@ -288,22 +288,24 @@ class AdminController < ApplicationController
       # to send the invitation at the time the user is actually filling
       # out the form.  
 
-      if !user.has_current_registration 
-         Event.log("Skipped #{email} due to no existing registration")
-         @skipped << email
-      elsif user.current_registration.ensemble_primaries_complete?
-        Event.log("Skipped #{email} due to no existing registration")
-        @skipped << email
-      elsif user.bounced_at
-        Event.log("Skipped #{email} due to bounceage")
-        @skipped << email
-      else 
+      # TODO:  uncomment this for production, though it probably should be OK anyway
+
+      # if !user.has_current_registration 
+      #    Event.log("Skipped #{email} due to no existing registration")
+      #    @skipped << email
+      # elsif user.current_registration.ensemble_primaries_complete?
+      #   Event.log("Skipped #{email} due to no existing registration")
+      #   @skipped << email
+      # elsif user.bounced_at
+      #   Event.log("Skipped #{email} due to bounceage")
+      #   @skipped << email
+      # else 
         RegistrationMailer.self_eval_invitation(user)
         Event.log("Bulk invitation to user #{email}")
         @sent << email
         invitee.sent = true
         invitee.save!
-       end
+      # end
     end
     @remaining = Invitee.all.reject{|r|r.sent}.size
   end
