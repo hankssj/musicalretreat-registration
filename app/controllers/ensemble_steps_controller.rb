@@ -56,7 +56,7 @@ class EnsembleStepsController < ApplicationController
       :comments,
       mmr_chambers_attributes: [
         :instrument_id,
-        :jazz_ensamble,
+        :jazz_ensemble,
         :string_novice,
         :notes
       ],
