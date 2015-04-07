@@ -45,7 +45,7 @@ class EnsemblesController < ApplicationController
     elsif params[:commit] == 'FINISH'
       flash[:notice] = "Ensemble and elective choices complete"
       ep = registration.ensemble_primaries.first
-      ep.update_attributes(post_params)
+      ep.update_attributes(params[:ensemble_primary])
       ep.complete = true
       ep.save!      
     elsif params[:commit] == 'CANCEL'
