@@ -42,12 +42,17 @@ class EnsemblesController < ApplicationController
       flash[:notice] = "Error finishing ensemble: no registration"
     elsif !registration.ensemble_primaries || registration.ensemble_primaries.empty?
       flash[:notice] = "Error finishing ensemble: no ensemble record"
-    else 
+    elsif params[:commit] == 'FINISH'
       flash[:notice] = "Ensemble and elective choices complete"
       ep = registration.ensemble_primaries.first
       ep.update_attributes(post_params)
       ep.complete = true
-      ep.save!
+      ep.save!      
+    elsif params[:commit] == 'CANCEL'
+      flash[:notice] = "Ensemble choice cancelled"
+      registration.ensemble_primaries.first.destroy
+    else
+      Rails.logger.fatal("Problem in ensemble finish with #{params}")
     end
     redirect_to controller: :registration, action: :index
   end

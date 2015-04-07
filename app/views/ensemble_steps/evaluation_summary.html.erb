@@ -33,7 +33,7 @@
                 <%= render partial: "summary_evaluations", locals: {ensemble_primary: @ensemble_primary} %>
               </li>
           </ul>
-          <%= form_for @ensemble_primary, url: wizard_path, method: :put do |form| %>
+          <%= form_for @ensemble_primary, {url: {controller: :ensembles, action: :finish}, method: :put} do |form| %>
             <%= form.label :comments, 'Any questions or comments to help us with your selections?' %>
             <br />
             <%= form.text_area :comments, cols: 60, rows: 5 %>
@@ -50,14 +50,14 @@
           I have read and acknowlege the Waiver and Release &nbsp;&nbsp;&nbsp
           <%= check_box_tag :terms %>
           </p>
-          <% end %>
 
           <table width="75%">
             <tr>
-              <td width="50%"><%= button_to "FINISH", {controller: :ensembles, action: :finish}, {class: 'submit-ensemble', disabled: true} %></td>
-              <td width="50%"><%= button_to "CANCEL", ensemble_path(@ensemble_primary), method: :delete %></td>
+              <td width="50%"><%= f.submit_tag "FINISH", {class: 'submit-ensemble', disabled: true} %></td>
+              <td width="50%"><%= f.submit_tag "CANCEL" %></td>
             </tr>
           </table>
+          <% end %>
         </td>
       </tr>
     </table>
