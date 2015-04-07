@@ -106,6 +106,7 @@ class EnsembleStepsController < ApplicationController
         :other_instrument_bass_flute,
         :other_instrument_drum_set,
         :other_instrument_mallets,
+        :other_instrument_bassoon_contrabassoon,
         :other_instruments_you_tell_us,
         :percussion_snare,
         :percussion_timpani,
