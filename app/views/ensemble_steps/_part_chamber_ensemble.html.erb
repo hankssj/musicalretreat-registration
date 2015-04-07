@@ -1,9 +1,10 @@
 <div class='indented-top'>
 <table class="eval-table">
-<tr><th colspan="2">What part would you prefer to play in Chamber Ensembles?</th></tr>
-<tr><td>First</td><td>Second</td></tr>
+<tr><th colspan="3">What part would you prefer to play in Chamber Ensembles?</th></tr>
+<tr><td>First</td><td>Second</td><td>No Preference</td></tr>
 <tr><td><%= form.radio_button :chamber_ensemble_part, 0 %></td>
     <td><%= form.radio_button :chamber_ensemble_part, 1 %></td>
+    <td><%= form.radio_button :chamber_ensemble_part, 2, {:checked => true} %></td>
 </tr>
 </table>
 </div>
