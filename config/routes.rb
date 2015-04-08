@@ -35,6 +35,10 @@ RegistrationDevelopment::Application.routes.draw do
   resources :ensembles, only: [:new, :create, :destroy, :finish]
   resources :ensemble_steps, only: [:index, :show, :update]
   resources :registration
+  namespace :admin do
+    resources :payments, only: [:index]
+    resources :registrations, only: [:index]
+  end
   put "ensembles/finish"
 
   get "login/change_password"

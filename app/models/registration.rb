@@ -414,5 +414,21 @@ class Registration < ActiveRecord::Base
     file.puts Registration.fields.map{|field| self.send(field)}.join("\t")
   end
 
+  def self.list
+    first_download = Download.where(download_type: 'payments').first
+    download_cutoff = first_download ? first_download.downloaded_at : Date.new(2000,1,1).to_time
+    output = ""
+    output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
+    records =  Registration.find_all_by_year(Year.this_year).select{|r| r.updated_at > download_cutoff}
+    Registration.boolean_to_yesno(true)
+    output += records.map { |r| r.to_txt_row }.join("\n")
+    Registration.boolean_to_yesno(false)
+    Download.create(download_type: "registrations", downloaded_at: Time.now)
+    output
+  end
+
+  def to_txt_row
+    Registration.fields.map { |field| self.send(field) }.join("\t")
+  end
 end
 
