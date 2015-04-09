@@ -278,7 +278,7 @@ class Registration < ActiveRecord::Base
   end
 
   def clean_comments
-    comments.strip.gsub(/\s+/, " ")
+    comments.nil? ? comments : comments.strip.gsub(/\s+/, " ")
   end
 
   def clean_home_phone; home_phone ? home_phone.gsub(/[^\d]/, "") : ""; end
