@@ -62,6 +62,7 @@ class EnsembleStepsController < ApplicationController
       ],
       prearranged_chambers_attributes: [
         :instrument_id,
+        :group_name,                                       
         :i_am_contact,
         :contact_name,
         :contact_email,
