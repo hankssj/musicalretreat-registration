@@ -129,6 +129,9 @@ class EnsemblesForm
     $('.submit-ensemble').on 'click', ->
       $('.edit_ensemble_primary').submit()
 
+    $('select.anchor').on 'change', ->
+      window.location.replace($(this).val())
+
   handleMorningEnsembleChoice: (value)->
     if value == '0'
       $('.toggled-morning-ensemble-options').hide()

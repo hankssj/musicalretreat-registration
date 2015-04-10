@@ -30,7 +30,7 @@ class Registration < ActiveRecord::Base
   end
 
   def has_complete_eval
-    !ensemble_primaries.empty? && ensemble_primaries.first.complete
+    !ensemble_primaries.empty? && ensemble_primaries.last.complete
   end
     
   # Ensemble primaries can be left in an incomplete state if user exits the work flow
@@ -408,6 +408,10 @@ class Registration < ActiveRecord::Base
 
   def to_txt_row
     Registration.fields.map { |field| self.send(field) }.join("\t")
+  end
+
+  def ensemble_primary
+    ensemble_primaries.where(complete: true).last
   end
 end
 

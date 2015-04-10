@@ -1,12 +1,12 @@
-<%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %>
+<%= render partial: "ensemble_steps/contact_info", locals: {instrument: instrument, form: form} %>
 
-<%= render :partial => "groups", :locals => {:instrument => instrument, :form => form} %>
+<%= render partial: "ensemble_steps/groups", locals: {instrument: instrument, form: form} %>
 
-<%= render :partial => "practice_frequency", :locals => {:instrument => instrument, :form => form} %>
+<%= render partial: "ensemble_steps/practice_frequency", locals: {instrument: instrument, form: form} %>
 
-<%= render :partial => "private_study", :locals => {:instrument => instrument, :form => form} %>
+<%= render partial: "ensemble_steps/private_study", locals: {instrument: instrument, form: form} %>
 
-<%= render :partial => "jazz_experience", :locals => {:instrument => instrument, :form => form} %>
+<%= render partial: "ensemble_steps/jazz_experience", locals: {instrument: instrument, form: form} %>
 
 <div class='indented-top'>
 <label>
@@ -25,8 +25,8 @@
 Please bring Mallets listed <a href="http://musicalretreat.org/mallet-list-percussion-players">here</a>
 </div>
 
-<%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %>
+<%= render partial: "ensemble_steps/overall_assessment", locals: {instrument: instrument, form: form} %>
 
-<%= render :partial => "extra_instruments", :locals => {:instrument => instrument, :form => form} %>
+<%= render partial: "ensemble_steps/extra_instruments", locals: {instrument: instrument, form: form} %>
 
 

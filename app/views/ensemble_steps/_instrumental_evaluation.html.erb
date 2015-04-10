@@ -1,4 +1,4 @@
-<table width="100%">
+<table width="100%" class="evaluation-form">
   <tr class="reg-form-section-title">
     <td>
       Evaluation for <%= instrument.display_name %>
@@ -8,11 +8,11 @@
     <td class="reg-form-column">
 
       <% if instrument.string? %>
-        <%= render partial: "string_evaluation", locals: {instrument: instrument, form: form} %>
+        <%= render partial: "ensemble_steps/string_evaluation", locals: {instrument: instrument, form: form} %>
       <% elsif instrument.brass? || instrument.woodwind? %>
-        <%= render partial: "wind_evaluation", locals: {instrument: instrument, form: form} %>
+        <%= render partial: "ensemble_steps/wind_evaluation", locals: {instrument: instrument, form: form} %>
       <% else %>
-        <%= render partial: "percussion_evaluation", locals: {instrument: instrument, form: form} %>
+        <%= render partial: "ensemble_steps/percussion_evaluation", locals: {instrument: instrument, form: form} %>
       <% end %>
     </td>
   </tr>

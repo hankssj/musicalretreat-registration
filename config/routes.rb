@@ -36,6 +36,10 @@ RegistrationDevelopment::Application.routes.draw do
   resources :ensemble_steps, only: [:index, :show, :update]
   resources :registration
   namespace :admin do
+    resources :reports, only: [:show] do
+      get "chose", on: :collection
+      get "section_index/:type", to: 'reports#section_index', on: :collection, as: 'section_index'
+    end
     resources :payments, only: [:index]
     resources :registrations, only: [:index]
   end

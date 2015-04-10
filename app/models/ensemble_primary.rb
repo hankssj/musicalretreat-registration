@@ -6,6 +6,7 @@ class EnsemblePrimary < ActiveRecord::Base
   has_many :ensemble_primary_elective_ranks, dependent: :destroy, inverse_of: :ensemble_primary
   has_many :electives, through: :ensemble_primary_elective_ranks
   has_many :evaluations, dependent: :destroy
+  has_many :instruments, through: :evaluations
 
   validates :registration, presence: true
   validates :large_ensemble_choice,
@@ -169,5 +170,15 @@ class EnsemblePrimary < ActiveRecord::Base
 
   def build_ensemble_primary_elective_ranks
     Elective.where.not(id: ensemble_primary_elective_ranks.map(&:elective_id)).map{|elective|ensemble_primary_elective_ranks.build(elective: elective)}
+  end
+
+  def secondary_instruments
+    instruments - [instrument]
+  end
+
+  def secondary_instruments_of_type(type)
+    (instruments - [instrument]).select do |instrument|
+      instrument.instrument_type == type
+    end
   end
 end

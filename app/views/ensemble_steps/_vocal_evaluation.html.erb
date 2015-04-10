@@ -8,7 +8,7 @@
 <tr>
   <td class="reg-form-column">
 
-<%= render :partial => "contact_info", :locals => {:instrument => instrument, :form => form} %></p>
+<%= render partial: "ensemble_steps/contact_info", locals: {instrument: instrument, form: form} %></p>
 
 <div class='indented-top overall-rating'>
 <table>
@@ -22,7 +22,7 @@
            <td class='advanced' style='color:blue;'>Advanced</td>
         </tr>
         <tr>
-           <td class='beginner'> <%= form.radio_button :vocal_overall_ability, 0, {:checked => true} %></td>   <td/>
+           <td class='beginner'> <%= form.radio_button :vocal_overall_ability, 0, {checked: true} %></td>   <td/>
            <td class='intermediate'> <%= form.radio_button :vocal_overall_ability, 1 %></td>                   <td/>
            <td class='experienced'> <%= form.radio_button :vocal_overall_ability, 2 %></td>                    <td/>
            <td class='advanced'> <%= form.radio_button :vocal_overall_ability, 3 %></td>
@@ -41,13 +41,13 @@
 
 <p/>
 
-<%= render :partial => "groups", :locals => {:instrument => instrument, :form => form} %>
+<%= render partial: "ensemble_steps/groups", locals: {instrument: instrument, form: form} %>
 
 <div class='indented-top'>
 <table class="eval-table">
 <tr><th colspan="2"><%= form.label :vocal_how_learn, "How best do you learn a new piece?" %></th></tr>
 <tr><td>Reading the music</td><td>By ear, with repetition</td></tr>
-<tr><td><%= form.radio_button :vocal_how_learn, 0, {:checked => true} %></td>
+<tr><td><%= form.radio_button :vocal_how_learn, 0, {checked: true} %></td>
     <td><%= form.radio_button :vocal_how_learn, 1 %></td>
 </td>
 </table>
@@ -56,7 +56,7 @@
 <div class='indented-top'>
 <table class='eval-table'>
   <tr><th colspan="1"><%= form.label :vocal_most_difficult_piece, 'Most difficult piece you have learned' %></th></td>
-  <tr><td style="padding-bottom: 5px"><%= form.text_field :vocal_most_difficult_piece, :size => 60 %></td></tr>
+  <tr><td style="padding-bottom: 5px"><%= form.text_field :vocal_most_difficult_piece, size: 60 %></td></tr>
 </table>
 </div>
 
@@ -71,7 +71,7 @@
       <%= form.check_box :vocal_music_theory %> &nbsp;&nbsp; 
       <!-- <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>"> -->
       <span class="relative-input">
-	What year? &nbsp; &nbsp; <%= form.text_field :vocal_music_theory_year, :size => 8 %>
+	What year? &nbsp; &nbsp; <%= form.text_field :vocal_music_theory_year, size: 8 %>
       </span>
     </li>
     <li class='checkbox-with-relative'>
@@ -79,7 +79,7 @@
       <%= form.check_box :vocal_voice_class %> &nbsp;&nbsp; 
       <!-- <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>"> -->
       <span class="relative-input">
-	What year? &nbsp; &nbsp; <%= form.text_field :vocal_voice_class_year, :size => 8 %>
+	What year? &nbsp; &nbsp; <%= form.text_field :vocal_voice_class_year, size: 8 %>
       </span>
     </li>
     <li class='checkbox-with-relative'>
@@ -87,7 +87,7 @@
       <%= form.check_box :vocal_voice_lessons %> &nbsp;&nbsp; 
       <!-- <span class="relative-input <%= 'hidden' unless form.object.studying_privately %>"> -->
       <span class="relative-input">
-	What year? &nbsp; &nbsp; <%= form.text_field :vocal_voice_lessons_year, :size => 8 %>
+	What year? &nbsp; &nbsp; <%= form.text_field :vocal_voice_lessons_year, size: 8 %>
       </span>
     </li>
   </ul>
@@ -101,14 +101,14 @@
 <td>Prefer to sing with others, with or without accompaniment</td>
 <td>Can handle your own part, without accompaniment</td>
 </tr>
-<tr><td><%= form.radio_button :vocal_small_ensemble_skills, 0, {:checked => true} %></td>
+<tr><td><%= form.radio_button :vocal_small_ensemble_skills, 0, {checked: true} %></td>
     <td><%= form.radio_button :vocal_small_ensemble_skills, 1 %></td>
     <td><%= form.radio_button :vocal_small_ensemble_skills, 2 %></td>
 </tr>
 </table>
 </div>
 
-<%= render :partial => "overall_assessment", :locals => {:instrument => instrument, :form => form} %>
+<%= render partial: "ensemble_steps/overall_assessment", locals: {instrument: instrument, form: form} %>
 
 </td>
 </tr>

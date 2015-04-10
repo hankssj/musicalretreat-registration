@@ -1,0 +1,19 @@
+<table width="100%" class="admin-reports admin-reports-chose">
+  <tr class="reg-form-section-title">
+    <td>Self Evals</td>
+  </tr>
+  <tr>
+    <td>
+      <%= select('', '', [
+        ['brass', section_index_admin_reports_path(type: 'brass')],
+        ['woodwind', section_index_admin_reports_path(type: 'woodwind')],
+        ['strings', section_index_admin_reports_path(type: 'string')],
+        ['percussion', section_index_admin_reports_path(type: 'percussion')],
+        ['voice', section_index_admin_reports_path(type: 'voice')],
+      ], {prompt: 'Section report'}, {
+        class: 'anchor'
+      }) %>
+    </td>
+  </tr>
+</table>
+

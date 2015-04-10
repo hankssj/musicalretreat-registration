@@ -1,0 +1,39 @@
+<table width="100%" class="admin-reports admin-reports-chose">
+  <tr class="reg-form-section-title">
+    <td>Individuals whose primary instrument is <%= params[:type] %></td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <% @primary_registrations.each do |registration|%>
+          <li>
+            <%= registration.display_name %>
+            <%= mail_to registration.email %>
+            (<%= registration.instrument_name %>)
+          </li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+  <tr class="reg-form-section-title">
+    <td>Individuals related with this type of instrument</td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <% @secondary_registrations.each do |registration|%>
+          <li>
+            <%= registration.display_name %>
+            <%= mail_to registration.email %>
+            (<%= registration.ensemble_primary
+              .secondary_instruments_of_type(params[:type])
+              .map(&:display_name).join(', ') %>)
+          </li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+</table>
+<% @concantated_registrations.each do |registration| %>
+  <%= render template: 'admin/reports/show', locals: { registration: registration } %>
+<% end %>

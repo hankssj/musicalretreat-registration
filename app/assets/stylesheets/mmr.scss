@@ -130,6 +130,18 @@ background:white;
 	text-align: center;
 }
 
+/*********************** Admin reports page   */
+.admin-reports {
+  .contact {
+    display: none;
+  }
+  .evaluation-form .reg-form-section-title, .reg-form-section-title.chamber-form {
+    background-color: DarkSeaGreen;
+    text-align: left;
+    border: none;
+  }
+
+}
 /*********************** Registration form (reg and login)  */
 
 #reg-form-container {
@@ -457,6 +469,9 @@ tr.reg-list-row td{
 
 .larger-font {
   font-size: 1.2em;
+}
+.center {
+  text-align: center;
 }
 .hidden {
   display: none;

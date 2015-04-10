@@ -16,6 +16,13 @@
 			 {:class => "reg-list-row-button"} %> 
 	</td>
 	<td class="reg-list-line-summary-cell">
+    <% if registration_line_summary.ensemble_primary %>
+      <%= link_to "REPORT", admin_report_path(registration_line_summary), {class: 'reg-list-row-button'} %>
+    <% else %>
+      <span class="reg-list-row-button">REPORT</span>
+    <% end %>
+	</td>
+	<td class="reg-list-line-summary-cell">
 		<%= link_to "EDIT", 
               {:controller => :registration, :action => :edit, :id => registration_line_summary.user_id},
               {:class => "reg-list-row-button"} %> 

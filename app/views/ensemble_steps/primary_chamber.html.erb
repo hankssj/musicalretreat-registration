@@ -19,10 +19,10 @@
     </td>
   </tr>
    <%= form.fields_for :prearranged_chambers do |prearranged_chamber| %>
-      <%= render :partial => "prearranged_chamber", :object => prearranged_chamber %>
+       <%= render :partial => "prearranged_chamber", locals: { prearranged_chamber: prearranged_chamber, ensemble_primary: @ensemble_primary } %>
    <% end %>
    <%= form.fields_for :mmr_chambers do |mmr_chamber| %>
-      <%= render :partial => "mmr_chamber", :object => mmr_chamber %>
+     <%= render :partial => "ensemble_steps/mmr_chamber", locals: { mmr_chamber: mmr_chamber, ensemble_primary: @ensemble_primary } %>
    <% end %>
 <p/>
 <tr>
