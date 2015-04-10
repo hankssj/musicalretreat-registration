@@ -391,7 +391,6 @@ class Registration < ActiveRecord::Base
     updated_at.strftime("%m/%d/%Y")
   end
 
-  # Download file for FileMaker input.  Called from admin/registrations_controller
   def self.list
     output = ""
     output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
@@ -407,11 +406,10 @@ class Registration < ActiveRecord::Base
   end
 
   def to_txt_row
-    Registration.fields.map { |field| self.send(field) }.join("\t")
+    Registration.fields.map { |field| self.send(field) || '' }.join("\t")
   end
 
   def ensemble_primary
     ensemble_primaries.where(complete: true).last
   end
 end
-

@@ -94,6 +94,6 @@ class Payment < ActiveRecord::Base
   end
 
   def to_txt_row
-    Payment.fields.map { |field| self.send(field) }.join("\t")
+    Payment.fields.map { |field| self.send(field) || '' }.join("\t")
   end
 end
