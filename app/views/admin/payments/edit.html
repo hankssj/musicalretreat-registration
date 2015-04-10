@@ -1,0 +1,25 @@
+<div class="reg-form-main">
+
+  <table width="100%">
+
+    <% if @payment.errors.any? %>
+      <tr>
+        <td>
+          <ul>
+            <% @payment.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+      </td>
+    </tr>
+    <% end %>
+
+    <tr>
+      <td>
+        <% @payments.each do |payment| %>
+          <%= render partial: 'form', locals: {registration: @registration, payment: payment} %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -29,8 +29,17 @@
 	</td>
 	<td class="reg-list-line-summary-cell">
 		<%= link_to "PAYMENT",
-					{:action => :new_payment, :id => registration_line_summary.id},
+					new_admin_registration_payment_path(registration_line_summary.id),
 					{:class => "reg-list-row-button"} %>
+	</td>
+	<td class="reg-list-line-summary-cell">
+    <% if registration_line_summary.payments.any? %>
+      <%= link_to "EDIT PAYMENT", 
+        edit_admin_registration_payment_path(registration_line_summary.id, registration_line_summary.payments.last),
+        {:class => "reg-list-row-button"} %>
+    <% else %>
+      EDIT PAYMENT
+    <% end %>
 	</td>
 	<td class="reg-list-line-summary-cell">
         <%= link_to "CANCEL",

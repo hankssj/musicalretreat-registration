@@ -43,10 +43,13 @@ RegistrationDevelopment::Application.routes.draw do
       get "prearranged_index", to: 'reports#prearranged_index', on: :collection
     end
     resources :payments, only: [:index]
-    resources :registrations, only: [:index]
+    resources :registrations, only: [:index] do
+      resources :payments, except: :index
+    end
   end
   put "ensembles/finish"
 
+  get "admin/list_registrations"
   get "login/change_password"
   post "login/change_password"
   get "login/login"

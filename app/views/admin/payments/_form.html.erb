@@ -1,0 +1,46 @@
+<table width='100%'>
+  <tr>
+    <td colspan="2" style="text-align: center; border: 1px solid black; font-variant: small-caps">
+      <b>
+        <% if payment.persisted? %>
+          Edit Payment for <%= registration.email %>
+          <div class="float-right">
+            <%= button_to "Delete It!", admin_registration_payment_path(registration, payment), method: :delete %>
+          </div>
+        <% else %>
+          New Payment for <%= registration.email %>
+        <% end %>
+      </b>
+    </td>
+  </tr>
+</table>
+<%= form_for [:admin, registration, payment], html: { class: 'float-left' } do |form| %>
+<table width='100%'>
+  <tr>
+    <td>Payment Amount:</td>
+    <td><%= form.text_field :amount, :size => 8 %></td>
+  </tr>
+  <tr>
+    <td>Check Number:</td>
+    <td><%= form.text_field :check_number, :size => 5 %></td>
+  </tr>
+  <tr>
+    <td>Date Received:</td>
+    <td><%= form.text_field :date_received, :size => 24 %></td>
+  </tr>
+  <tr>
+    <td>Note:</td><td><%= form.text_field :note, :size => 48 %></td>
+  </tr>
+  <tr>
+    <td>Scholarship?:</td>
+    <td><%= form.check_box :scholarship %></td>
+  </tr>
+</table>
+Send confirm email to camper?  <%= form.check_box :send_confirm_email, :checked => true %>
+
+<div style="padding: 20px">
+  <%= submit_tag "Record It!" %>&nbsp;&nbsp;&nbsp;
+  <%= submit_tag "Clear", :type => 'reset', form: '' %>
+</div>
+<% end %>
+

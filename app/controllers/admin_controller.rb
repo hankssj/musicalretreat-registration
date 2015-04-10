@@ -7,62 +7,30 @@ class AdminController < ApplicationController
    :reg_invitation, :send_all_invitations, :send_early_invitations, :send_balance_reminders, :show_events, :delete_events, :list_scholarships, 
    :list_online_payments ]
   before_filter :authorize_registrar, :only => [ 
-   :new_payment, :add_payment, :delete_payment, :new_registration,
-   :cancel_registration, :change_email, :drop_records  ]
-  
-  def index
-    # We should be able to count on a valid user here, but just in case...
-    @admin_email = session[:user_id] && User.find_by_id(session[:user_id]) && User.find_by_id(session[:user_id]).email
-  end
-  
-  def logout
-    redirect_to(:controller => :login,  :action => :logout)
-  end
-  
-  ############################
-  #  User operations
-  
-  def reset_password
-    session[:original_uri] = url_for(:controller => :admin, :action => :index)
-    redirect_to(:controller => :login, :action => :reset_password)
-  end
+ :add_payment, :delete_payment, :new_registration,
+ :cancel_registration, :change_email, :drop_records  ]
 
-  def change_email
-    session[:original_uri] = url_for(:controller => :admin, :action => :index)
-    redirect_to(:controller => :login, :action => :change_email)
-  end
-  
-  ##########################
-  ###    Payment operations get called from the payment screen
-  
-  def new_payment
-    @payment = Payment.new(:registration_id => params[:id], :date_received => Date.today)
-  end
-  
-  def add_payment
-    confirm_email = params[:payment][:email]
-    params[:payment].delete(:email)
-    @payment = Payment.new(payment_post_params)
-    @payment.date_received = Date.today unless @payment
-    if @payment.save
-      RegistrationMailer.confirm_payment(@payment) if confirm_email == "1"
-      flash[:notice] = sprintf("Payment of \$%6.2f recorded for %s", @payment.amount, @payment.registration.email)
-      Event.log("Admin created payment for #{@payment.registration.email} amount #{@payment.amount}")
-      redirect_to :action => :list_registrations, :page => session[:backlink_page], :sort => session[:backlink_sort]
-    else
-      render :action => :new_payment, :id => params[:payment][:registration_id]
-    end
-  end
+def index
+  # We should be able to count on a valid user here, but just in case...
+  @admin_email = session[:user_id] && User.find_by_id(session[:user_id]) && User.find_by_id(session[:user_id]).email
+end
 
+def logout
+  redirect_to(:controller => :login,  :action => :logout)
+end
 
-  def delete_payment
-    payment = Payment.find(params[:id])
-    reg_id = payment.registration.id
-    user_id = payment.registration.user.id
-    payment.destroy
-    Event.log("Deleted payment #{payment.id} in amount of #{payment.amount} for registration #{reg_id}, user #{user_id}")
-    redirect_to :action => {:controller => 'registration', :action => 'edit'}, :id => user_id
-  end
+############################
+#  User operations
+
+def reset_password
+  session[:original_uri] = url_for(:controller => :admin, :action => :index)
+  redirect_to(:controller => :login, :action => :reset_password)
+end
+
+def change_email
+  session[:original_uri] = url_for(:controller => :admin, :action => :index)
+  redirect_to(:controller => :login, :action => :change_email)
+end
 
   #############################
   #  New, cancel, edit registration
@@ -345,10 +313,6 @@ class AdminController < ApplicationController
 
   ################################################################
   private
-
-  def payment_post_params
-    params.require(:payment).permit(:registration_id, :amount, :check_number, :date_received, :note, :scholarship, :email)
-  end
 
   def user_post_params
     params.require(:user).permit(:email, :password)

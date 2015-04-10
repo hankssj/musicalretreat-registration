@@ -24,6 +24,8 @@ class Payment < ActiveRecord::Base
   validates_presence_of :date_received
   validates_numericality_of :amount
   
+  attr_accessor :send_confirm_email
+
   def validate
     unless amount
       errors.add_to_base("Amount cannot be empty")
