@@ -29,6 +29,7 @@ class EnsemblesForm
       receive: (event, ui)->
         $(this).sortable('refresh')
         $(ui.sender).draggable('disable')
+        $(ui.sender).removeAttr('style')
         $(ui.sender).find('input, select').prop('disabled', false)
         $('#choosen-electives .placeholder').addClass('hidden')
         if($(this).children().not('.placeholder').length >= 5)
@@ -37,7 +38,6 @@ class EnsemblesForm
         $(this).children().not('.placeholder').each (i, item)->
           console.log(i+1)
           $(item).find('.rank').val(i+1)
-    .disableSelection()
 
     $('#choosen-electives').on 'click', 'li .remove', ->
       if ($('#choosen-electives').children().not('.placeholder').length <= 1)
@@ -54,7 +54,6 @@ class EnsemblesForm
       connectToSortable: '#choosen-electives'
       revert: 'invalid'
       revertDuration: 1
-    .disableSelection()
 
     $('#choosen-electives li').draggable('disable')
     if($('#choosen-electives').children().not('placeholder').length >= 5)

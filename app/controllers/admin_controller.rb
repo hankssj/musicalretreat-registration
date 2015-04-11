@@ -134,6 +134,12 @@ class AdminController < ApplicationController
   def list_online_payments
     @payments = Payment.find(:all, :conditions => 'online = 1').select{|p| p.registration && (p.registration.year == Year.this_year)}.sort_by(&:created_at)
   end
+
+  #####################################
+  ## Filemaker
+
+  def file_maker
+  end
     
   #######################################
   ##  Invitations and other emails
