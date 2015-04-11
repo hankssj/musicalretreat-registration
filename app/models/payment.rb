@@ -114,7 +114,7 @@ class Payment < ActiveRecord::Base
     download_cutoff = first_download ? first_download.downloaded_at : Date.new(2000,1,1).to_time
     output = ""
     output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
-    records = Payment.where(["year = ? and updated_at > ?", Year.this_year, download_cutoff])
+    records = Payment.where([updated_at > ?", download_cutoff]).select{|p|p.year == Year.this_year}
     begin
       Registration.boolean_to_yesno(true)
       output += records.map { |p| p.to_txt_row }.join("\n")
