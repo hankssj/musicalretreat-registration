@@ -277,10 +277,7 @@ class Registration < ActiveRecord::Base
     end
   end
 
-  def clean_comments
-    comments.nil? ? comments : comments.strip.gsub(/\s+/, " ")
-  end
-
+  def clean_comments; comments ? comments.strip.gsub(/\s+/, " ") : ""; end
   def clean_home_phone; home_phone ? home_phone.gsub(/[^\d]/, "") : ""; end
   def clean_cell_phone; cell_phone ? cell_phone.gsub(/[^\d]/, "") : ""; end
   def clean_work_phone; work_phone ? work_phone.gsub(/[^\d]/, "") : ""; end
@@ -383,46 +380,19 @@ class Registration < ActiveRecord::Base
     updated_at.strftime("%m/%d/%Y")
   end
 
-  def self.default_filename
-    dir = "/home/deploy/Dropbox/FilemakerDownloads/#{Time.now.strftime('%Y')}"
-    type = "registrations"
-    timestring = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
-    Time.now.strftime("#{dir}/#{type}-#{timestring}.txt")
-  end
-
-  def self.dump_records(filename = nil)
-    boolean_to_yesno(true)
-    filename = default_filename unless filename
-    records = []
-    downloads = Download.find_all_by_download_type("registrations").sort{|d1, d2| d2.downloaded_at <=> d1.downloaded_at}
-    download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
-
-    File.open(filename, 'w') do |file|
-      file.puts fields.map{|field|field.to_s}.map{|m| m.gsub(/clean_/,"")}.join("\t")
-      records =  Registration.find_all_by_year(Year.this_year).select{|r| r.updated_at > download_cutoff}
-      records.each{|r| r.export(file)}
-    end
-
-    boolean_to_yesno(false)
-    Download.create(:download_type => "registrations", :downloaded_at => Time.now)
-    records.size
-  end
-
-  def export(file)
-    downloaded_at = Time.now
-    save!
-    file.puts Registration.fields.map{|field| self.send(field)}.join("\t")
-  end
-
+  # Download file for FileMaker input.  Called from admin/registrations_controller
   def self.list
-    first_download = Download.where(download_type: 'payments').first
+    first_download = Download.where(download_type: 'registrations').order(downloaded_at: :desc).first
     download_cutoff = first_download ? first_download.downloaded_at : Date.new(2000,1,1).to_time
     output = ""
     output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
-    records =  Registration.find_all_by_year(Year.this_year).select{|r| r.updated_at > download_cutoff}
-    Registration.boolean_to_yesno(true)
-    output += records.map { |r| r.to_txt_row }.join("\n")
-    Registration.boolean_to_yesno(false)
+    records =  Registration.where(["year = ? and updated_at > ?", Year.this_year, download_cutoff])
+    begin
+      Registration.boolean_to_yesno(true)
+      output += records.map {|r| r.to_txt_row}.join("\n")
+    ensure
+      Registration.boolean_to_yesno(false)
+    end
     Download.create(download_type: "registrations", downloaded_at: Time.now)
     output
   end
