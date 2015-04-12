@@ -78,43 +78,13 @@ class Payment < ActiveRecord::Base
     date_received.strftime("%m/%d/%Y")
   end
 
-  def self.default_filename
-    dir = "/home/deploy/Dropbox/FilemakerDownloads/#{Time.now.strftime('%Y')}"
-    type = "payments"
-    timestring = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
-    Time.now.strftime("#{dir}/#{type}-#{timestring}.txt")
-  end
-
-  def self.dump_records(filename = nil)
-    Registration.boolean_to_yesno(true)
-    filename = default_filename unless filename
-    records = []
-
-    downloads = Download.find_all_by_download_type("payments").sort{|d1, d2| d2.downloaded_at <=> d1.downloaded_at}
-    download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
-
-    File.open(filename, 'w') do |file|
-      file.puts fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t")
-      records = Payment.find(:all).select{|p| p.year == Year.this_year && p.updated_at > download_cutoff}
-      records.each{|p| p.export(file)}
-    end
-    Registration.boolean_to_yesno(false)
-    Download.create(:download_type => "payments", :downloaded_at => Time.now)
-    records.size
-  end
-
-  def export(file)
-    downloaded_at = Time.now
-    save!
-    file.puts Payment.fields.map{|field| self.send(field)}.join("\t")
-  end
-
   def self.list
     first_download = Download.where(download_type: 'payments').order(downloaded_at: :desc).first
     download_cutoff = first_download ? first_download.downloaded_at : Date.new(2000,1,1).to_time
     output = ""
     output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
-    records = Payment.where(['updated_at > ?', download_cutoff]).select{|p|p.year == Year.this_year}
+    records = Payment.where(['updated_at > ?', download_cutoff]).select{|p|p.year == Year.this_year}.
+      reject{|p| p.registration.nil? || p.registration.test}
     begin
       Registration.boolean_to_yesno(true)
       output += records.map { |p| p.to_txt_row }.join("\n")
