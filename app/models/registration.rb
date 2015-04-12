@@ -29,6 +29,10 @@ class Registration < ActiveRecord::Base
     user.test?
   end
 
+  def has_complete_eval
+    !ensemble_primaries.empty? && ensemble_primaries.first.complete
+  end
+    
   # Ensemble primaries can be left in an incomplete state if user exits the work flow
   # Delete all the incomplete ones and 
   def ensemble_primaries_incomplete?

@@ -9,6 +9,7 @@
 	<td style="width:55px" class="reg-list-line-summary-cell">
 	  <%= registration_line_summary.deposit_date ? registration_line_summary.deposit_date.strftime("%m-%d") : "None" %></td>
 	<td style="width:65px" class="reg-list-line-summary-cell"><%= number_to_currency(registration_line_summary.balance) %></td>
+	<td style="width:65px" class="reg-list-line-summary-cell"><%= registration_line_summary.has_complete_eval ? "Y" : "N" %></td>
 	<td class="reg-list-line-summary-cell">
 		<%= link_to "VIEW", 
 			{:controller => :registration, :action => :show, :id => registration_line_summary.user_id},
