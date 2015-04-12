@@ -26,7 +26,7 @@ class Registration < ActiveRecord::Base
 
   # Testing through creating test users
   def test
-    user.test
+    user.test?
   end
 
   # Ensemble primaries can be left in an incomplete state if user exits the work flow
