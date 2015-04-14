@@ -26,7 +26,7 @@ class Registration < ActiveRecord::Base
 
   # Testing through creating test users
   def test
-    user.test
+    user.test?
   end
 
   def has_complete_eval

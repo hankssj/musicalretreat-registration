@@ -51,6 +51,13 @@ class EnsemblesController < ApplicationController
     elsif params[:commit] == 'CANCEL'
       flash[:notice] = "Ensemble choice cancelled"
       registration.ensemble_primaries.first.destroy
+    elsif params[:ensemble_primary] 
+      Rails.logger.warn("Got finish without a commit param; acting like it is a save")
+      flash[:notice] = "Ensemble and elective choices complete"
+      ep = registration.ensemble_primaries.first
+      ep.update_attributes(post_params)
+      ep.complete = true
+      ep.save!      
     else
       Rails.logger.fatal("Problem in ensemble finish with #{params}")
     end
