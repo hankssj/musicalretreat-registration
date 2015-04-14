@@ -111,7 +111,8 @@ class AdminController < ApplicationController
     params[:sort_key] = "sort_name" unless params[:sort_key]
     params[:sort_direction] = "asc" unless params[:sort_direction]
     
-    @registrations = Registration.sort(Registration.find_all_by_year(Year.this_year), params[:sort_key], params[:sort_direction]).reject{|r|r.test}
+    #@registrations = Registration.sort(Registration.find_all_by_year(Year.this_year), params[:sort_key], params[:sort_direction]).reject{|r|r.test}
+    @registrations = Registration.sort(Registration.find_all_by_year(Year.this_year), params[:sort_key], params[:sort_direction])
     @reg_count = @registrations.size
   end
 
