@@ -79,12 +79,10 @@ class Payment < ActiveRecord::Base
   end
 
   def self.list
-    first_download = Download.where(download_type: 'payments').order(downloaded_at: :desc).first
-    download_cutoff = first_download ? first_download.downloaded_at : Date.new(2000,1,1).to_time
     output = ""
     output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
-    records = Payment.where(['updated_at > ?', download_cutoff]).select{|p|p.year == Year.this_year}.
-      reject{|p| p.registration.nil? || p.registration.test}
+    records = Payment.where('updated_at >= ?', Download.where(download_type: 'payments').last.downloaded_at)
+      .reject{|p| p.registration.nil? || p.registration.test}
     begin
       Registration.boolean_to_yesno(true)
       output += records.map { |p| p.to_txt_row }.join("\n")

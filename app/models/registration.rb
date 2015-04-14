@@ -391,11 +391,9 @@ class Registration < ActiveRecord::Base
 
   # Download file for FileMaker input.  Called from admin/registrations_controller
   def self.list
-    first_download = Download.where(download_type: 'registrations').order(downloaded_at: :desc).first
-    download_cutoff = first_download ? first_download.downloaded_at : Date.new(2000,1,1).to_time
     output = ""
     output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
-    records =  Registration.where(["year = ? and updated_at > ?", Year.this_year, download_cutoff]).reject{|r|r.test}
+    records =  Registration.where('updated_at >= ?', Download.where(download_type: 'registrations').last.downloaded_at).reject{|r|r.test}
     begin
       Registration.boolean_to_yesno(true)
       output += records.map {|r| r.to_txt_row}.join("\n")
