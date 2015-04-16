@@ -8,6 +8,7 @@ class EnsemblePrimary < ActiveRecord::Base
   has_many :evaluations, dependent: :destroy
   has_many :instruments, through: :evaluations
 
+  scope :completed, lambda { where(complete: true) }
   validates :registration, presence: true
   validates :large_ensemble_choice,
       presence: { message: "Morning large ensemble choice is required", on: :create }
@@ -180,5 +181,9 @@ class EnsemblePrimary < ActiveRecord::Base
     (instruments - [instrument]).select do |instrument|
       instrument.instrument_type == type
     end
+  end
+
+  def instrument_for_elective(elective)
+    ensemble_primary_elective_ranks.where(elective: elective).last.instrument
   end
 end

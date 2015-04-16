@@ -13,6 +13,15 @@
       ], {prompt: 'Section report'}, {
         class: 'anchor'
       }) %>
+      <%= select('', '',
+        Elective.all.map { |e|
+          [e.name, elective_index_admin_reports_path(e.id)]
+        }, {prompt: 'Elective report'}, {
+        class: 'anchor'
+        }) %>
+      <%= link_to prearranged_index_admin_reports_path do %>
+        <button>Prearranged report</button>
+      <% end %>
     </td>
   </tr>
 </table>

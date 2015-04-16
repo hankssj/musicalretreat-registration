@@ -1,0 +1,26 @@
+<table width="100%" class="admin-reports admin-reports-chose">
+  <tr class="reg-form-section-title">
+    <td>Elective report</td>
+  </tr>
+  <tr>
+    <td>
+      <p>Elective name: <%= @elective.name  %></p>
+      <p>Elective instructor: <%= @elective.instructor %></p>
+      <ul>
+        <% @ensemble_primaries.each do |ensemble_primary|%>
+          <li>
+            <%= ensemble_primary.registration.display_name %>
+            <%= mail_to ensemble_primary.registration.email %>
+            <%= "(#{ensemble_primary.instrument_for_elective(@elective).display_name})" if ensemble_primary.instrument_for_elective(@elective) %>
+          </li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+  <tr class="reg-form-section-title">
+    <td>Individual Reports</td>
+  </tr>
+</table>
+<% @ensemble_primaries.completed.each do |ensemble_primary| %>
+  <%= render template: 'admin/reports/show', locals: { registration: ensemble_primary.registration } %>
+<% end %>

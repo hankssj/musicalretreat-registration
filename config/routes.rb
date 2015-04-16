@@ -39,6 +39,8 @@ RegistrationDevelopment::Application.routes.draw do
     resources :reports, only: [:show] do
       get "chose", on: :collection
       get "section_index/:type", to: 'reports#section_index', on: :collection, as: 'section_index'
+      get "elective_index/:elective_id", to: 'reports#elective_index', on: :collection, as: 'elective_index'
+      get "prearranged_index", to: 'reports#prearranged_index', on: :collection
     end
     resources :payments, only: [:index]
     resources :registrations, only: [:index]
