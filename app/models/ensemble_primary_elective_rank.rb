@@ -8,4 +8,6 @@ class EnsemblePrimaryElectiveRank < ActiveRecord::Base
   validates :elective, presence: true
 
   scope :by_rank, lambda{ order(:rank) }
+
+  delegate :registration, to: :ensemble_primary
 end

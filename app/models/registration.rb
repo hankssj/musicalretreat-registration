@@ -4,7 +4,9 @@ class Registration < ActiveRecord::Base
   has_many :payments
   belongs_to :instrument
   has_many :ensemble_primaries, dependent: :destroy
+  has_many :electives, through: :ensemble_primaries
 
+  scope :with_completed_electives, lambda { joins(:electives).merge(EnsemblePrimary.completed) }
   # Validation:  first and last name not empty; first line of street address, city, state, zip not empty
   # Phone numbers validate
   # Primary instrument must be selected if particpant

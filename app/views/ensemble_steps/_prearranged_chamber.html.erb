@@ -10,7 +10,7 @@
       <tr>
         <td>
           What instrument or vocal part are you playing in this group? &nbsp;&nbsp;&nbsp;
-          <%= prearranged_chamber.select :instrument_id, Instrument.menu_selection, :selected => ensemble_primary.registration.instrument_id %>
+          <%= prearranged_chamber.select :instrument_id, Instrument.menu_selection, :selected => prearranged_chamber.object.instrument_id || ensemble_primary.registration.instrument_id %>
         </td>
       </tr>
       <tr height="20">

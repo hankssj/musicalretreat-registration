@@ -1,0 +1,12 @@
+<table width="100%" class="admin-reports admin-reports-chose">
+  <tr class="reg-form-section-title">
+    <td>Prearranged group report</td>
+  </tr>
+  <% @ensemble_primaries.completed.each do |ensemble_primary| %>
+      <%= form_for ensemble_primary, url: '' do |form| %>
+        <%= form.fields_for :prearranged_chambers do |prearranged_chamber| %>
+          <%= render :partial => "ensemble_steps/prearranged_chamber", locals: { prearranged_chamber: prearranged_chamber, ensemble_primary: ensemble_primary } %>
+        <% end %>
+      <% end %>
+  <% end %>
+</table>
