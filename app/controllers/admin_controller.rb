@@ -111,7 +111,8 @@ class AdminController < ApplicationController
     params[:sort_key]       = params[:sort_key]       || "sort_name" 
     params[:sort_direction] = params[:sort_direction] || "asc"
 
-    @registrations = Registration.sort(Registration.where(year: Year.this_year), params[:sort_key], params[:sort_direction])
+    @registrations = Registration.where(year: Year.this_year)
+    @registrations = Registration.sort(@registrations, params[:sort_key], params[:sort_direction])
     @registrations = @registrations.reject{|r|r.test} if Rails.env == "production"
     @reg_count = @registrations.size
   end
