@@ -1,4 +1,4 @@
-<%= form_for registration.ensemble_primary, url: '' do |form| %>
+1<%= form_for registration.ensemble_primary, url: '' do |form| %>
 <table width="100%" class="admin-reports admin-reports-show">
   <tr class="reg-form-section-title">
     <td>
@@ -21,7 +21,7 @@
           Instrument: <%= registration.instrument_name %>
         </li>
         <li>
-            <%= form.label :comments, 'Any questions or comments to help us with your selections?' %>
+            <%= form.label :comments, 'Comments' %><br>
             <%= form.text_area :comments, cols: 60, rows: 5 %>
         </li>
       </ul>
