@@ -108,11 +108,13 @@ class AdminController < ApplicationController
 
     Event.log("Admin registration list")
     
-    params[:sort_key] = "sort_name" unless params[:sort_key]
-    params[:sort_direction] = "asc" unless params[:sort_direction]
-    
-    #@registrations = Registration.sort(Registration.find_all_by_year(Year.this_year), params[:sort_key], params[:sort_direction]).reject{|r|r.test}
-    @registrations = Registration.sort(Registration.find_all_by_year(Year.this_year), params[:sort_key], params[:sort_direction])
+    params[:sort_key]       = params[:sort_key]       || "sort_name" 
+    params[:sort_direction] = params[:sort_direction] || "asc"
+
+    @registrations = Registration.sort(Registration.where(year:, Year.this_year), 
+                                       params[:sort_key], 
+                                       params[:sort_direction])
+    @registrations = @registrations.reject{|r|r.test} if Rails.env == "production"
     @reg_count = @registrations.size
   end
 
