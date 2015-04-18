@@ -2,10 +2,10 @@
   <tr class="reg-form-section-title">
     <td>Prearranged group report</td>
   </tr>
-  <% @ensemble_primaries.completed.each do |ensemble_primary| %>
-      <%= form_for ensemble_primary, url: '' do |form| %>
-        <%= form.fields_for :prearranged_chambers do |prearranged_chamber| %>
-          <%= render :partial => "ensemble_steps/prearranged_chamber", locals: { prearranged_chamber: prearranged_chamber, ensemble_primary: ensemble_primary } %>
+  <% @prearranged_chambers.each do |prearranged_chamber| %>
+      <%= form_for prearranged_chamber.ensemble_primary, url: '' do |form| %>
+        <%= form.fields_for prearranged_chamber do |prearranged_chamber| %>
+          <%= render :partial => "ensemble_steps/prearranged_chamber", locals: { prearranged_chamber: prearranged_chamber, ensemble_primary: prearranged_chamber.object.ensemble_primary } %>
         <% end %>
       <% end %>
   <% end %>
