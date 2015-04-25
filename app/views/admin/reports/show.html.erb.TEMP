@@ -29,7 +29,7 @@
       </ul>
     </td>
   </tr>
-<!--   <tr class="reg-form-section-title">
+  <tr class="reg-form-section-title">
     <td>
       Morning Ensemble Section
     </td>
@@ -87,6 +87,4 @@
       <% end %>
       </td>
     </tr>
-
--->
 </table>
