@@ -2,8 +2,7 @@
 <ul>
 <li>Group name: <%= prearranged_chamber_summary.group_name %></li>
 <% if prearranged_chamber_summary.i_am_contact %>
-  <li>(I am contact for this ensemble)</li>
-  <li>Contact name and email: <%= prearranged_chamber_summary.ensemble_primary.display_name %>  <%= prearranged_chamber_summary.ensemble_primary.email %> </li>
+  <li>Contact name and email (me): <%= prearranged_chamber_summary.ensemble_primary.display_name %>  <%= prearranged_chamber_summary.ensemble_primary.email %> </li>
   <li>Other players <div style="width:500px;border:1px solid #000;"><%= prearranged_chamber_summary.participant_names %></div></li>
   <% if prearranged_chamber_summary.bring_own_music %>
      <li>Music: <%= prearranged_chamber_summary.music_composer_and_name %></li>

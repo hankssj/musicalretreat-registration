@@ -1,6 +1,8 @@
 <li>Assigned chamber on <%= mmr_chamber_summary.instrument.display_name %>
 <ul>
+<% if mmr_chamber_summary.string_novice || mmr_chamber_summary.jazz_ensemble %>
 <li>Other options: <% if mmr_chamber_summary.string_novice %>Wants doubled parts<% end %> <% if mmr_chamber_summary.jazz_ensemble %>Wants jazz ensemble<% end %></li>
+<% end %>
 <li>
   <% if mmr_chamber_summary.notes.blank? %>
   (No notes)

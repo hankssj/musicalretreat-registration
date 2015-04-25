@@ -20,7 +20,6 @@
                <% if ensemble_primary.text_for(:large_ensemble_alternative) %> <li><%= ensemble_primary.text_for(:large_ensemble_alternative)%></li><% end %>
              </ul>
           <% end %>
-	<li>Afternoon Ensemble Preference: <%= ensemble_primary.text_for(:chamber_ensemble_choice) %>
 	<li>Elective Preferences:
 	  <ol>
 	    <% ensemble_primary.ensemble_primary_elective_ranks.order(:rank).each do |er| %>
@@ -28,6 +27,7 @@
 	    <% end %>
 	  </ol>
 	</li>
+	<li>Afternoon Ensemble Preference: <%= ensemble_primary.text_for(:chamber_ensemble_choice) %>
 	<li>Afternoon Ensemble Details
 	  <ul>
 	    <%= render :partial => "mmr_chamber_summary", :collection => ensemble_primary.mmr_chambers %>
