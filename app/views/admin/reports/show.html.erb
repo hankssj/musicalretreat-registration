@@ -34,6 +34,15 @@
 	    <% end %>
 	  </ol>
 	</li>
+	<% chambers = ensemble_primaries.mmr_chambers + ensemble_primaries.prearranged_chambers %>
+	<% unless chambers.empty? %>
+	<li>Afternoon Ensemble Details:
+	  <ul>
+	    <%= render :partial => mmr_chamber_summary %>
+	    <%= render :partial => prearranged_chamber_summary %>
+	  </ul>
+	</li>
+	<% end %>
       </ul>
     </td>
   </tr>

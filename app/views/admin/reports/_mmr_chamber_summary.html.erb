@@ -1,0 +1,12 @@
+<li>Assigned chamber on <%= mmr_chamber_summary.instrument.display_name %>
+<ul>
+<li>Other options: <%= if mmr_chamber_summary.string_novice %>Wants doubled parts<% end %> <%= if mmr_chamber_summary.jazz_ensemble %>Wants jazz ensemble<% end %></li>
+<li>
+  <% if mmr_chamber_summary.notes.blank? %>
+  (No notes)
+  <% else %>
+  Notes:<div style="width:500px;border:1px solid #000;"><%= mmr_chamber_summary.notes %></div>
+  <% end %>
+</li>
+</ul>
+</li>
