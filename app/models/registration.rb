@@ -428,7 +428,7 @@ class Registration < ActiveRecord::Base
     boolean_to_yesno(true)
     filename = default_filename unless filename
     records = []
-    downloads = Download.where(download_type: "registrations").sort_by(&:downloaded_at).reverse
+    downloads = Download.where(download_type: "registrations").order(downloaded_at: :desc)
     download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
   
     File.open(filename, 'w') do |file|
