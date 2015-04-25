@@ -412,4 +412,39 @@ class Registration < ActiveRecord::Base
   def ensemble_primary
     ensemble_primaries.where(complete: true).last
   end
+
+  #######################################
+
+  # TODO:  somebody needs to create the directory once a year
+  def self.default_filename
+    #dir = "/home/deploy/Dropbox/FilemakerDownloads/#{Year.this_year}"
+    dir = "/home/deploy/Dropbox/FilemakerDownloads/TEST"
+    type = "registrations"
+    timestring = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
+    "#{dir}/#{type}-#{timestring}.txt"
+  end
+
+  def self.dump_records(filename = nil)
+    boolean_to_yesno(true)
+    filename = default_filename unless filename
+    records = []
+    downloads = Download.where(type: "registrations").sort_by(&:downloaded_at).reverse
+    download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
+  
+    File.open(filename, 'w') do |file|
+      file.puts fields.map{|field|field.to_s}.map{|m| m.gsub(/clean_/,"")}.join("\t")
+      records =  Registration.where(year: Year.this_year).select{|r| r.updated_at > download_cutoff}
+      records.each{|r| r.export(file)}
+    end
+
+    boolean_to_yesno(false)
+    Download.create(:download_type => "registrations", :downloaded_at => Time.now)
+    records.size
+  end
+
+  def export(file)
+    downloaded_at = Time.now
+    save!
+    file.puts Registration.fields.map{|field| self.send(field)}.join("\t")
+  end
 end
