@@ -196,8 +196,11 @@ class EnsemblePrimary < ActiveRecord::Base
   def text_for(attribute)
     case attribute
     when :large_ensemble_choice
+      large_ensemble_choice_text
     when :large_ensemble_part
+      large_ensemble_part_text
     when :large_ensemble_alternative
+      large_ensemble_alternative_text
     end
   end
 
