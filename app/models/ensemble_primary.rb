@@ -202,13 +202,13 @@ class EnsemblePrimary < ActiveRecord::Base
   end
 
   def large_ensemble_choice_text
-    text = ["", 
-            "Either Symphonic Band or Festival Orchestra", 
-            "Symphonic Band", 
-            "Festival Orchestra", 
-            "Festival Chorus", 
-            "String Orchestra", 
-            "Either Festival or String Orchestra"]
+    texts = ["", 
+             "Either Symphonic Band or Festival Orchestra", 
+             "Symphonic Band", 
+             "Festival Orchestra", 
+             "Festival Chorus", 
+             "String Orchestra", 
+             "Either Festival or String Orchestra"]
     return unless large_ensemble_choice
     return "No morning large ensemble" if large_ensemble_choice == -1
     texts[large_ensemble_choice]
