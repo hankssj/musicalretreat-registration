@@ -201,7 +201,10 @@ class EnsemblePrimary < ActiveRecord::Base
       large_ensemble_part_text
     when :large_ensemble_alternative
       large_ensemble_alternative_text
+    when :chamber_ensemble_choice
+      text_for_chamber_ensemble_choice
     end
+    
   end
 
   def large_ensemble_choice_text

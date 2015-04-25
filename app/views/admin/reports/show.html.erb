@@ -22,10 +22,12 @@
 	<li>Morning Ensemble Preference: <%= ensemble_primary.text_for(:large_ensemble_choice) %>
 	  <% if ensemble_primary.text_for(:large_ensemble_part) || ensemble_primary.text_for(:large_ensemble_alternative) %> 
 	     <ul> 
-	       <% if ensemble_primary.text_for(:large_ensemble_part) %>        <li><%= ensemble_primary.text_for(:large_ensemble_part)%></li>       <% end %>
+	       <% if ensemble_primary.text_for(:large_ensemble_part) %>        <li>Part preference: <%= ensemble_primary.text_for(:large_ensemble_part)%></li>       <% end %>
                <% if ensemble_primary.text_for(:large_ensemble_alternative) %> <li><%= ensemble_primary.text_for(:large_ensemble_alternative)%></li><% end %>
              </ul>
           <% end %>
+	<li>Afternoon Ensemble Preference: <%= ensemble_primary.text_for(:chamber_ensemble_choice) %>
+
       </ul>
     </td>
   </tr>
