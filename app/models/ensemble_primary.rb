@@ -223,6 +223,7 @@ class EnsemblePrimary < ActiveRecord::Base
   end
 
   def large_ensemble_alternative_text
+    return unless want_sing_in_chorus || want_percussion_in_band
     s = ""
     s += "Would like to sing in the Festival Chorus.  " if want_sing_in_chorus
     s += "Would like to talk to a faculty member about playing percussion in Symphonic Band." if want_percussion_in_band

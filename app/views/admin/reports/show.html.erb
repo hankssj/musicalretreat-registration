@@ -20,7 +20,7 @@
 	  <% end %>
         </li>
 	<li>Morning Ensemble Preference: <%= ensemble_primary.text_for(:large_ensemble_choice) %>
-	  <% if ensemble_primary.has_large_ensemble_part || ensemble_primary.has_large_ensemble_alternative %> 
+	  <% if ensemble_primary.text_for(:large_ensemble_part) || ensemble_primary.text_for(:large_ensemble_alternative) %> 
 	     <ul> 
 	       <% if ensemble_primary.text_for(:large_ensemble_part) %>        <li><%= ensemble_primary.text_for(:large_ensemble_part)%></li>       <% end %>
                <% if ensemble_primary.text_for(:large_ensemble_alternative) %> <li><%= ensemble_primary.text_for(:large_ensemble_alternative)%></li><% end %>
