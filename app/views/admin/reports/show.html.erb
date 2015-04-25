@@ -12,13 +12,7 @@
         <li>Phone number: <%= number_to_phone(ensemble_primary.phone_number) %></li>
         <li>Primary Instrument: <%= ensemble_primary.primary_instrument_name %></li>
 	<li>Other Instruments: <%= ensemble_primary.secondary_instruments.map(&:display_name).join(", ") %></li>
-	<li>
-	  <% if ensemble_primary.comments.blank? %>
-	  (No comments)
-	  <% else %>
-          Comments:<div style="width:500px;border:1px solid #000;"><%= ensemble_primary.comments %></div>
-	  <% end %>
-        </li>
+
 	<li>Morning Ensemble Preference: <%= ensemble_primary.text_for(:large_ensemble_choice) %>
 	  <% if ensemble_primary.text_for(:large_ensemble_part) || ensemble_primary.text_for(:large_ensemble_alternative) %> 
 	     <ul> 
@@ -34,7 +28,7 @@
 	    <% end %>
 	  </ol>
 	</li>
-	<% chambers = ensemble_primaries.mmr_chambers + ensemble_primaries.prearranged_chambers %>
+	<% chambers = ensemble_primary.mmr_chambers + ensemble_primary.prearranged_chambers %>
 	<% unless chambers.empty? %>
 	<li>Afternoon Ensemble Details:
 	  <ul>
