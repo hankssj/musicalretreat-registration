@@ -27,7 +27,13 @@
              </ul>
           <% end %>
 	<li>Afternoon Ensemble Preference: <%= ensemble_primary.text_for(:chamber_ensemble_choice) %>
-
+	<li>Elective Preferences:
+	  <ol>
+	    <% ensemble_primary.ensemble_primary_elective_ranks.sort_on(&:rank) do |elective| %>
+	    <li> <%= elective.name %> <% if summary_ensemble_primary_elective.instrument %> (on <%= elective.instrument.display_name %>) <% end %></li>
+	    <% end %>
+	  </ol>
+	</li>
       </ul>
     </td>
   </tr>
