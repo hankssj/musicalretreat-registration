@@ -28,12 +28,10 @@
 	    <% end %>
 	  </ol>
 	</li>
-	<% chambers = ensemble_primary.mmr_chambers + ensemble_primary.prearranged_chambers %>
-	<% unless chambers.empty? %>
-	<li>Afternoon Ensemble Details:
+	<li>Afternoon Ensemble Details
 	  <ul>
-	    <%= render :partial => "mmr_chamber_summary" %>
-	    <%= render :partial => "prearranged_chamber_summary" %>
+	    <%= render :partial => "mmr_chamber_summary", :collection => ensemble_primary.mmr_chambers %>
+	    <%= render :partial => "prearranged_chamber_summary", :collection => ensemble_primary.prearranged_chambers %>
 	  </ul>
 	</li>
 	<% end %>
