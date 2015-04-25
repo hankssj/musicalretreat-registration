@@ -7,26 +7,30 @@
   <tr>
     <td class="reg-form-column">
       <ul>
-        <li>
-          Name: <%= ensemble_primary.display_name %>
-        </li>
-        <li>
-          Email: <%= ensemble_primary.email %>
-        </li>
-        <li>
-          Phone number: <%= number_to_phone(ensemble_primary.phone_number) %>
-        </li>
-        <li>
-          Instrument: <%= ensemble_primary.primary_instrument_name %>
-        </li>
-        <li>
+        <li>Name: <%= ensemble_primary.display_name %></li>
+        <li>Email: <%= ensemble_primary.email %></li>
+        <li>Phone number: <%= number_to_phone(ensemble_primary.phone_number) %></li>
+        <li>Primary Instrument: <%= ensemble_primary.primary_instrument_name %></li>
+	<li>Other Instruments: <%= ensemble_primary.secondary_instruments.map(&:display_name).join(", ") %></li>
+	<li>
 	  <% if ensemble_primary.comments.blank? %>
 	  (No comments)
 	  <% else %>
           Comments:<div style="width:500px;border:1px solid #000;"><%= ensemble_primary.comments %></div>
 	  <% end %>
         </li>
+	<li>Morning Ensemble Preference: <%= ensemble_primary.text_for(:large_ensemble_choice) %>
+	  <% if ensemble_primary.has_large_ensemble_part || ensemble_primary.has_large_ensemble_alternative %> 
+	     <ul> 
+	       <% if ensemble_primary.text_for(:large_ensemble_part) %>        <li><%= ensemble_primary.text_for(:large_ensemble_part)</li>       <% end %>
+               <% if ensemble_primary.text_for(:large_ensemble_alternative) %> <li><%= ensemble_primary.text_for(:large_ensemble_alternative)</li><% end %>
+             </ul>
+          <% end %>
       </ul>
     </td>
   </tr>
+
+  <!-------------------------------------------------------------------------------------->
+
+  
 </table>

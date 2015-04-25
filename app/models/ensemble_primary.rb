@@ -193,4 +193,39 @@ class EnsemblePrimary < ActiveRecord::Base
   def phone_number; registration.phone_number; end
   def primary_instrument_name; primary_instrument.display_name; end
 
+  def text_for(attribute)
+    case attribute
+    when :large_ensemble_choice
+    when :large_ensemble_part
+    when :large_ensemble_alternative
+    end
+  end
+
+  def large_ensemble_choice_text
+    text = ["", 
+            "Either Symphonic Band or Festival Orchestra", 
+            "Symphonic Band", 
+            "Festival Orchestra", 
+            "Festival Chorus", 
+            "String Orchestra", 
+            "Either Festival or String Orchestra"]
+    return unless large_ensemble_choice
+    return "No morning large ensemble" if large_ensemble_choice == -1
+    texts[large_ensemble_choice]
+  end
+
+  def large_ensemble_part_text
+    return unless large_ensemble_part
+    return ["No preference", "Prefer first violin", "Prefer second violin"][large_ensemble_part] if primary_instrument.violin? 
+    return ["No preference", "Prefer first flute", "Prefer second flute", "", "", "", "", "", "", "", "Prefer piccolo"][large_ensemble_part] if primary_instrument.flute?
+    return ["No preference", "Prefer first clarinet", "Prefer second clarinet", "Prefer third clarinet"][large_ensemble_part] if primary_instrument.clarinet?
+    return ["No preference", "Prefer soprano sax", "Prefer alto sax", "Prefer tenor sax", "Prefer baritone sax"][large_ensemble_part-101] if primary_instrument.saxophone_nonspecific?
+  end
+
+  def large_ensemble_alternative_text
+    s = ""
+    s += "Would like to sing in the Festival Chorus.  " if want_sing_in_chorus
+    s += "Would like to talk to a faculty member about playing percussion in Symphonic Band." if want_percussion_in_band
+    s
+  end
 end
