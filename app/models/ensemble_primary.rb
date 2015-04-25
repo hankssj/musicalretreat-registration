@@ -186,4 +186,11 @@ class EnsemblePrimary < ActiveRecord::Base
   def instrument_for_elective(elective)
     ensemble_primary_elective_ranks.where(elective: elective).last.instrument
   end
+  
+  ############ Helpers for report/display
+  def display_name; registration.display_name; end
+  def email; registration.email; end
+  def phone_number; registration.phone_number; end
+  def primary_instrument_name; primary_instrument.name; end
+
 end

@@ -47,6 +47,13 @@ class Registration < ActiveRecord::Base
     !ensemble_primaries_incomplete?
   end
 
+  # TODO:  The one-to-many on ensemble primary is not helpful.
+
+  def ensemble_primary
+    return unless ensemble_primaries_complete?
+    ensemble_primaries.first
+  end
+
   def instrument_name
     instrument_id ? Instrument.find(instrument_id).display_name : "None"
   end
@@ -58,6 +65,8 @@ class Registration < ActiveRecord::Base
   def phone
     home_phone || cell_phone || work_phone
   end
+
+  def phone_number; phone; end
 
   ## for sorting
   def sort_name

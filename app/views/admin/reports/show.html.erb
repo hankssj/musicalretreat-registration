@@ -1,28 +1,30 @@
-1<%= form_for registration.ensemble_primary, url: '' do |form| %>
 <table width="100%" class="admin-reports admin-reports-show">
   <tr class="reg-form-section-title">
     <td>
-      Overview Section
+      <%= ensemble_primary.display_name %> / <%= ensemble_primary.primary_instrument_name %> %>
     </td>
   </tr>
   <tr>
     <td class="reg-form-column">
       <ul>
         <li>
-          Name: <%= registration.display_name %>
+          Name: <%= ensemble_primary.display_name %>
         </li>
         <li>
-          Email: <%= registration.email %>
+          Email: <%= ensemble_primary.email %>
         </li>
         <li>
-          Primary phone number: <%= registration.phone %>
+          Phone number: <%= number_to_phone(ensemble_primary.phone_number) %>
         </li>
         <li>
-          Instrument: <%= registration.instrument_name %>
+          Instrument: <%= ensemble_primary.primary_instrument_name %>
         </li>
         <li>
-            <%= form.label :comments, 'Comments' %><br>
-            <%= form.text_area :comments, cols: 60, rows: 5 %>
+	  <% if ensemble_primary.comments.blank? %>
+	  (No comments)
+	  <% else %>
+          Comments:<div style="width:500px;height:100px;border:1px solid #000;">ensemble_primary.comments</div>
+	  <% end %>
         </li>
       </ul>
     </td>

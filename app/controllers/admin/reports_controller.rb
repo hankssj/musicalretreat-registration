@@ -5,7 +5,7 @@ class Admin::ReportsController < ApplicationController
 
   def show
     @registration = Registration.find(params[:id])
-    render :show, locals: { registration: @registration }
+    render :show, locals: { ensemble_primary: @registration.ensemble_primary }
   end
 
   def chose
