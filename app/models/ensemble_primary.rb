@@ -191,6 +191,6 @@ class EnsemblePrimary < ActiveRecord::Base
   def display_name; registration.display_name; end
   def email; registration.email; end
   def phone_number; registration.phone_number; end
-  def primary_instrument_name; primary_instrument.name; end
+  def primary_instrument_name; primary_instrument.display_name; end
 
 end
