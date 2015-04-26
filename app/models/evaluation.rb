@@ -18,7 +18,7 @@ class Evaluation < ActiveRecord::Base
     :vocal_how_learn => ["Reading the music", "By ear, with repetition"],
     :vocal_small_ensemble_skills => ["Prefer to sing with others, accompanied", 
                                      "Prefer to sing with others, with or without accompaniment",
-                                     "Can handle your own part, without accompaniment"]
+                                     "Can handle your own part, without accompaniment"],
   }
 
   OTHER_INSTRUMENT_TEXT = {
@@ -103,6 +103,7 @@ class Evaluation < ActiveRecord::Base
     when :vocal_training
       vocal_training_text
     end
+  end
 end
 
 class InstrumentalEvaluation < Evaluation
