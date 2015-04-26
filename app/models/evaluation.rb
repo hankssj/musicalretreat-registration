@@ -58,18 +58,18 @@ class Evaluation < ActiveRecord::Base
     :fifth_position => "Fifth Position", 
     :sixth_position => "Sixth Position", 
     :seventh_position => "Seventh Position", 
-    :thumb_position => "Thumb Position"
+    :thumb_position => "Thumb Position",
   }
 
   JAZZ_TEXT = {
-    :jazz_want_ensemble  => "Request jazz ensemble"
+    :jazz_want_ensemble  => "Request jazz ensemble",
     :jazz_small_ensemble => "Jazz small combo experience", 
-    :jazz_big_band => "Jazz big band experience"
+    :jazz_big_band       => "Jazz big band experience", 
   }
 
   TRANSPOSITION_TEXT = {
     :trumpet => {"C", "B", "E-flat"}, 
-    :horn    => {"E", "E-flat", "D"}
+    :horn    => {"E", "E-flat", "D"},
   }
 
   def checkbox_text(text_hash)
@@ -82,9 +82,9 @@ class Evaluation < ActiveRecord::Base
     
   def vocal_training_text
     tt = ""
-    tt +=  ("Music theory " + (vocal_music_theory_year ? "(vocal_music_theory_year)")) : "" if vocal_music_theory
-    tt +=  ("Voice lessons " + (vocal_voice_lessons ? "(vocal_voice_lessons_year)"))   : "" if vocal_voice_lessons
-    tt +=  ("Voice classes " + (vocal_voice_classes ? "(vocal_voice_classes_year)"))   : "" if vocal_voice_classes
+    tt +=  ("Music theory "  + (vocal_music_theory_year ? "(vocal_music_theory_year)")) : "" if vocal_music_theory
+    tt +=  ("Voice lessons " + (vocal_voice_lessons ? "(vocal_voice_lessons_year)"))    : "" if vocal_voice_lessons
+    tt +=  ("Voice classes " + (vocal_voice_classes ? "(vocal_voice_classes_year)"))    : "" if vocal_voice_classes
     tt
   end
 
