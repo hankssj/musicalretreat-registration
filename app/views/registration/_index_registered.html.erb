@@ -23,7 +23,7 @@
 <td>
    <%= render :partial => "reg_index_button",
      :locals => {:text => "View Evaluation",
-                 :options => {:path => admin_report_path}, :html_options => {:method => :get}} %>
+                 :options => {:path => admin_report_path, :id = @registration.id}, :html_options => {:method => :get}} %>
 </td>
 <td/>
 <tr>
