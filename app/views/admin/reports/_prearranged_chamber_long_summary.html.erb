@@ -1,4 +1,8 @@
-<li>Prearranged chamber by <%= ensemble_primary.display_name %> instrument <%= prearranged_chamber.instrument.display_name %>
+<table style="border: 2px solid black; margin: 3px">
+<tr>
+<td><%= ensemble_primary.display_name %> instrument <%= prearranged_chamber.instrument.display_name %></td>
+</tr>
+<tr><td>
 <ul>
 <li>Group name: <%= prearranged_chamber.group_name %></li>
 <% if prearranged_chamber.i_am_contact %>
@@ -18,4 +22,6 @@
   <% end %>
 </li>
 </ul>
-</li>
+</td>
+</tr>
+</table>
