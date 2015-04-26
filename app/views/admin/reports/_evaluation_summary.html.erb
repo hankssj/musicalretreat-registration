@@ -47,7 +47,7 @@
 
 <!-- other_instruments -->
 <% unless es.text_for(:other_instruments).blank? %>
-<li>Also bringing: <%= es.text_for(:other_instruments) %></li>
+<li>Also Bringing: <%= es.text_for(:other_instruments) %></li>
 <% end %>
 
 <!-- can_read_in_position -->
@@ -58,6 +58,19 @@
 <!-- jazz_experience -->
 <% unless es.text_for(:jazz).blank? %>
 <li>Jazz interest and experience: <%= es.text_for(:jazz) %></li>
+<% end %>
+
+<!-- overall_rating_large_ensemble overall_rating_chamber overall_rating_sightreading -->
+<% unless es.radio_button_text(:overall_rating_large_ensemble).blank? %>
+<li>Self assessment band/orchestra/chorus: <%= es.radio_button_text(:overall_rating_large_ensemble) %></li>
+<% end %>
+
+<% unless es.radio_button_text(:overall_rating_chamber).blank? %>
+<li>Self assessment chamber music: <%= es.radio_button_text(:overall_rating_chamber) %></li>
+<% end %>
+
+<% unless es.radio_button_text(:overall_rating_sightreading).blank? %>
+<li>Self assessment sightreading: <%= es.radio_button_text(:overall_rating_sightreading) %></li>
 <% end %>
 
 </ul>
