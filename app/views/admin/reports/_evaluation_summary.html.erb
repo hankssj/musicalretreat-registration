@@ -6,7 +6,7 @@
       Self Evaluation / <%= ep.display_name %> / <%= es.instrument.display_name %>
     </td>
   </tr>
-
+<tr><td>
 <!-- contact_info -->
 <li>Contact Info: <%= ep.display_name %>, <%= ep.email %>, <%= number_to_phone(ep.primary_phone) %>
 
@@ -96,5 +96,5 @@
 <% if es.radio_button_text(:vocal_small_ensemble_skills) %>
 <li> Singing in small ensemble: <%= es.radio_button_text(:vocal_small_ensemble_skills) %></li>
 <% end %>
-
-
+</td></tr>
+</table>
