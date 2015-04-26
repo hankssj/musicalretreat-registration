@@ -95,7 +95,7 @@ class Evaluation < ActiveRecord::Base
       return check_box_text(TRANSPOSITION_TEXT[:horn]) if instrument.horn?
       raise "Transposition for unknown instrument"
     when :other_instruments
-      check_box_text(OTHER_INSTRUMENTS_TEXT)
+      checkbox_text(OTHER_INSTRUMENTS_TEXT)
     when :jazz
       checkbox_text(JAZZ_TEXT)
     when :positions
