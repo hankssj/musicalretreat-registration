@@ -28,12 +28,14 @@
 	  </ol>
 	</li>
 	<li>Afternoon Ensemble Preference: <%= ensemble_primary.text_for(:chamber_ensemble_choice) %>
+	<% if ensemble_primary.has_afternoon_ensembles %>
 	<li>Afternoon Ensemble Details
 	  <ul>
 	    <%= render :partial => "mmr_chamber_summary", :collection => ensemble_primary.mmr_chambers %>
 	    <%= render :partial => "prearranged_chamber_summary", :collection => ensemble_primary.prearranged_chambers %>
 	  </ul>
 	</li>
+	<% end %>
 	<% unless ensemble_primary.comments.blank? %>
 	   <li>Comments <div class="eval-report-comment-box"><%= ensemble_primary.comments %></div>
         <% else %>

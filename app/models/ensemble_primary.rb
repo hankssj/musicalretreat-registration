@@ -45,6 +45,10 @@ class EnsemblePrimary < ActiveRecord::Base
     Instrument.find(default_instrument_id)
   end
 
+  def has_afternoon_ensembles
+    chamber_ensemble_choice && chamber_ensemble_choice > 0
+  end
+
   #######################################################################################
   # Chamber music choices. AKA afternoon groups.  Driven by chamber_music_choice variable
 
