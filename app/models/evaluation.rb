@@ -10,7 +10,7 @@ class Evaluation < ActiveRecord::Base
     :chamber_ensemble_part => ["First", "Second", "No Preference"],
     :practicing_how_much => ["Rarely", "2 or 3 times a week", "4 or more times a week"],
     :overall_rating_sightreading => ["Poor", "Average", "Good", "Excellent"],
-    :chamber_music_frequency => ["Less than once a week", "Weekly", "More than once a week"],
+    :chamber_music_how_often => ["Less than once a week", "Weekly", "More than once a week"],
     :overall_rating_large_ensemble => ["Beginner", "Novice", "Intermediate", "Experienced", "Advanced"],
     :overall_rating_chamber => ["Beginner", "Novice", "Intermediate", "Experienced", "Advanced"],
     :overall_rating_sightreading => ["Poor", "Average", "Good", "Excellent"],
