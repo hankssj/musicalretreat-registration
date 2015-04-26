@@ -68,12 +68,12 @@ class Evaluation < ActiveRecord::Base
   }
 
   TRANSPOSITION_TEXT = {
-    :trumpet => ["C", "B", "E-flat"], 
-    :horn    => ["E", "E-flat", "D"],
+    :trumpet => {:transposition_0 => "C", :transposition_1 => "B", :transposition_2 => "E-flat"},
+    :horn    => {:transposition_0 => "E", :transposition_1 => "E-flat", :transposition_2 => "D"},
   }
 
-  def checkbox_text(text_array)
-    text_array.map{|p| send(p) ? text_array[p] : nil}.compact.join(", ")
+  def checkbox_text(text_hash)
+    text_hash.keys.map{|p| send(p) ? text_array[p] : nil}.compact.join(", ")
   end
 
   def radio_button_text(att)
