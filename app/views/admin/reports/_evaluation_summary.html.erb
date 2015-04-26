@@ -36,6 +36,7 @@
 <!-- practice_frequency -->
 <% unless es.text_for(:practicing_how_much).blank? %>
 <li>Practice Frequency: <%= es.radio_button_text(:practicing_how_much) %></li>
+<% end %>
 
 <!-- private_study -->
 <li>Private Study: <% if es.studying_privately %>Yes<% else %>No<% end %> 
