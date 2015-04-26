@@ -1,0 +1,21 @@
+<li>Prearranged chamber by <%= ensemble_primary.display_name %> instrument <%= prearranged_chamber.instrument.display_name %>
+<ul>
+<li>Group name: <%= prearranged_chamber.group_name %></li>
+<% if prearranged_chamber.i_am_contact %>
+  <li>Contact name and email (me): <%= prearranged_chamber.ensemble_primary.display_name %>  <%= prearranged_chamber.ensemble_primary.email %> </li>
+  <li>Other players <div style="width:500px;border:1px solid #000;"><%= prearranged_chamber.participant_names %></div></li>
+  <% if prearranged_chamber.bring_own_music %>
+     <li>Music: <%= prearranged_chamber.music_composer_and_name %></li>
+  <% end %>
+<% else %>
+   <li>Contact name and email: <%= prearranged_chamber.contact_name %>  <%= prearranged_chamber.contact_email %> </li>
+<% end %>
+<li>
+  <% if prearranged_chamber.notes.blank? %>
+  (No notes)
+  <% else %>
+  Notes:<div style="width:500px;border:1px solid #000;"><%= prearranged_chamber.notes %></div>
+  <% end %>
+</li>
+</ul>
+</li>
