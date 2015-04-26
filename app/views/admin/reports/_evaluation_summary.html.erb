@@ -28,6 +28,23 @@
 </li>
 <% end %>
 
+<!-- transposition -->
+<% if es.text_for(:transposition) %>
+<li>Transposition: <%= es.text_for(:transposition) %></li>
+<% end %>
+
+<!-- practice_frequency -->
+<li>Practice Frequency: <%= es.radio_button_text(:practicing_how_much) %></li>
+
+<!-- private_study -->
+<li>Private Study: <% if es.studying_privately %>Yes<% else %>No<% end %> 
+  <% if es.studying_privately_how_long %>(<%= es.studying_privately_how_long %>)<% end %></li>
+
+<!-- chamber_frequency -->
+<% if es.radio_button_text(:chamber_music_frequency) %>
+<li>Chamber music frequency: <%= es.radio_button_text(:chamber_music_frequency) %></li>
+<% end %>
+
 
 </ul>
 </td></tr>
