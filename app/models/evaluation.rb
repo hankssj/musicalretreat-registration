@@ -78,7 +78,7 @@ class Evaluation < ActiveRecord::Base
 
   def radio_button_text(att)
     return unless send(att)
-    ENUM_TEXT[att][send(att)]
+    ENUM_TEXT[att][send(att).to_i]
   end
     
   def vocal_training_text
