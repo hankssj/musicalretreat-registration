@@ -16,7 +16,7 @@
     </td>
   </tr>
   <tr class="reg-form-section-title">
-    <td>Individuals related with this type of instrument</td>
+    <td>Individuals with a secondar instrument of <%= params[:type] %></td>
   </tr>
   <tr>
     <td>
@@ -35,5 +35,7 @@
   </tr>
 </table>
 <% @concantated_registrations.each do |registration| %>
-  <%= render template: 'admin/reports/show', locals: { ensemble_primary: registration.ensemble_primary, registration: registration } %>
+  <div style="border:1px solid black; margin: 10px;"
+       <%= render template: 'admin/reports/show', locals: { ensemble_primary: registration.ensemble_primary, registration: registration } %>
+  </div>
 <% end %>
