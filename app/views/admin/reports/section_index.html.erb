@@ -35,5 +35,5 @@
   </tr>
 </table>
 <% @concantated_registrations.each do |registration| %>
-  <%= render template: 'admin/reports/show', locals: { registration: registration } %>
+  <%= render template: 'admin/reports/show', locals: { ensemble_primary: registration.ensemble_primary, registration: registration } %>
 <% end %>
