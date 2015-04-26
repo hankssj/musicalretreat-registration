@@ -23,9 +23,10 @@
 
 <!-- groups -->
 <% if es.groups %>
-  <div class="eval-report-comment-box"><%= es.groups %></div>
-<% end %>
+<li>Groups (audition <% if es.require_audition %>yes<% else %>no<% end %>)
+   <div class="eval-report-comment-box"><%= es.groups %></div>
 </li>
+<% end %>
 
 
 </ul>
