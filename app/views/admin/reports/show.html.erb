@@ -34,7 +34,9 @@
 	    <%= render :partial => "prearranged_chamber_summary", :collection => ensemble_primary.prearranged_chambers %>
 	  </ul>
 	</li>
-	<li>Comments <div style="width:500px;border:1px solid #000;"><%= ensemble_primary.comments %></div>
+	<% unless ensemble_primary.comments.blank? %>
+	   <li>Comments <div class="eval-report-comment-box"><%= ensemble_primary.comments %></div>
+        <% end %>
       </ul>
     </td>
   </tr>

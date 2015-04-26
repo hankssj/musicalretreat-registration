@@ -34,6 +34,7 @@
 <% end %>
 
 <!-- practice_frequency -->
+<% unless es.text_for(:practicing_how_much).blank? %>
 <li>Practice Frequency: <%= es.radio_button_text(:practicing_how_much) %></li>
 
 <!-- private_study -->
