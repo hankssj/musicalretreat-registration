@@ -91,8 +91,8 @@ class Evaluation < ActiveRecord::Base
   def text_for(attribute)
     case attribute
     when :transposition 
-      return check_box_text(TRANSPOSITION_TEXT[:trumpet]) if instrument.trumpet?
-      return check_box_text(TRANSPOSITION_TEXT[:horn]) if instrument.horn?
+      return checkbox_text(TRANSPOSITION_TEXT[:trumpet]) if instrument.trumpet?
+      return checkbox_text(TRANSPOSITION_TEXT[:horn]) if instrument.horn?
       raise "Transposition for unknown instrument"
     when :other_instruments
       checkbox_text(OTHER_INSTRUMENTS_TEXT)
