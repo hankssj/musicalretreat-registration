@@ -144,6 +144,7 @@ background:white;
 }
 
 .border-below {
+   border-top:    2px solid black;
    border-bottom: 2px solid black;
 }
 
@@ -626,3 +627,11 @@ table.eval-table td {
    color: blue;
    text-decoration: underline;
 }
+
+.eval-report-comment-box {
+   width: 500px;
+   border: 1px solid #000;
+   margin: 3px;
+}
+
+			 

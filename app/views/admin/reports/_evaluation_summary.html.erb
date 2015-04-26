@@ -1,7 +1,100 @@
+<% es = evaluation_summary;  ep = es.ensemble_primary %>
+
 <table width="100%" class="admin-reports admin-reports-show space-below border-below">
   <tr class="reg-form-section-title">
     <td>
-      Self Evaluation / <%= evaluation_summary.ensemble_primary.display_name %> / <%= evaluation_summary.instrument.display_name %>
+      Self Evaluation / <%= ep.display_name %> / <%= es.instrument.display_name %>
     </td>
   </tr>
-</table>
+
+<!-- contact_info -->
+<li>Contact Info: <%= ep.display_name %>, <%= ep.email %>, <%= number_to_phone(ep.primary_phone) %>
+
+<!-- composers -->
+<% if es.composers %>
+<li>Favorite composers and pieces for practice <div class="eval-report-comment-box"><%= es.composers %></div></li>
+<% end %>
+
+<!-- chamber_ensemble_part -->
+<% if es.chamber_ensemble_part %>
+<li>Chamber music part preference: <% es.radio_button_text(:chamber_ensemble_part) %></li>
+<% end %>
+
+<!-- groups -->
+<% if es.groups %>
+<li>Groups (audition <% if es.require_audition %>yes<% else %>no<% end %>)
+  <div class="eval-report-comment-box"><%= es.groups %></div>
+</li>
+
+<!-- transposition -->
+<% if es.transposition_0 || es.transposition_1 || es.transposition_2 %>
+<li>Transposition: <%= es.text_for(:transposition) %></li>
+<% end %>
+
+<!-- practice_frequency -->
+<li>Practice Frequency: <%= es.radio_button_text(:practicing_how_much) %></li>
+
+<!-- private_study -->
+<li>Private Study: <%= if es.studying_privately %>Yes<% else %>No<% end %> 
+  <% if es.studying_privately_how_long %>(<%= es.studying_privately_how_long %>)<% end %></li>
+
+<!-- chamber_frequency -->
+<% if es.radio_button_text(:chamber_music_frequency) %>
+<li>Chamber music frequency: <%= es.radio_button_text(:chamber_music_frequency) %></li>
+<% end %>
+
+<!-- extra_instruments -->
+<% if es.text_for(:other_instruments) %>
+<li>Also bringing: <%= es.text_for(:other_instruments) %></li>
+<% end %>
+
+<!-- can_read_in_position -->
+<% if es.text_for(:positions) %>
+<li>Can read in: <%= es.text_for(:positions) %></li>
+<% end %>
+
+<!-- jazz_experience -->
+<% if es.text_for(:jazz) %>
+<li>Jazz interest and experience: <%= es.text_for(:jazz)</li>
+<% end %>
+
+<!-- overall_rating_large_ensemble overall_rating_chamber overall_rating_sightreading -->
+<% if es.radio_button_text(:overall_rating_large_ensemble) %>
+<li>Self assessment band/orchestra/chorus: <%= es.radio_button_text(:overall_rating_large_ensemble) %></li>
+<% end %>
+
+<% if es.radio_button_text(:overall_rating_chamber) %>
+<li>Self assessment chamber music: <%= es.radio_button_text(:overall_rating_chamber) %></li>
+<% end %>
+
+<% if es.radio_button_text(:overall_rating_sightreading) %>
+<li>Self assessment sightreading: <%= es.radio_button_text(:overall_rating_sightreading) %></li>
+<% end %>
+
+<!-- vocal_overall_ability -->
+<% if es.radio_button_text(:vocal_overall_ability) %>
+<li>Self assessment general vocal ability: <%= es.radio_button_text(:vocal_overall_ability) %></li>
+<% end %>
+
+<!-- vocal_how_learn -->
+<% if es.radio_button_text(:vocal_how_learn) %>
+<li>How do you lean new music? <%= es.radio_button_text(:vocal_how_learn) %></li>
+<% end %>
+
+<!-- vocal_most_difficult -->
+<% if es.vocal_most_difficult %>
+<li>Most difficult piece learned: <%= vocal_most_difficult %></li>
+<% end %>
+
+<!-- vocal_music_theory vocal_voice_lessons vocal_voice_class -->
+<% if es.text_for(:vocal_training) %>
+<li>Vocal training: <%= es.text_for(:vocal_training) %></li>
+<% end %>
+
+
+<!-- vocal_small_ensemble_skills -->
+<% if es.radio_button_text(:vocal_small_ensemble_skills) %>
+<li> Singing in small ensemble: <%= es.radio_button_text(:vocal_small_ensemble_skills) %></li>
+<% end %>
+
+
