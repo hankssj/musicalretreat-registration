@@ -1,3 +1,5 @@
+<% es = evaluation_summary;  ep = es.ensemble_primary %>
+
 <table width="100%" class="admin-reports admin-reports-show space-below border-below">
   <tr class="reg-form-section-title">
     <td>
@@ -6,7 +8,7 @@
   </tr>
 <tr><td>
 <ul>
-<li>Contact Info: <%= ep.display_name %>, <%= ep.email %>, <%= number_to_phone(ep.primary_phone) %></li>
+<li>Contact Info: <%= ep.display_name %>, <%= ep.email %>, <%= number_to_phone(ep.phone_number) %></li>
 </ul>
 </td></tr>
 </table>
