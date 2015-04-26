@@ -9,6 +9,28 @@
 <tr><td>
 <ul>
 <li>Contact Info: <%= ep.display_name %>, <%= ep.email %>, <%= number_to_phone(ep.phone_number) %></li>
+
+<!-- composers -->
+<% if es.composers %>
+<li>Favorite composers and pieces for practice <div class="eval-report-comment-box"><%= es.composers %></div></li>
+<% end %>
+
+<!-- chamber_ensemble_part -->
+<% if es.chamber_ensemble_part %>
+<li>Chamber music part preference: <% es.radio_button_text(:chamber_ensemble_part) %></li>
+<% end %>
+
+<!-- groups -->
+<% if es.groups %>
+<li>Groups (audition <% if es.require_audition %>yes<% else %>no<% end %>)
+  <div class="eval-report-comment-box"><%= es.groups %></div>
+</li>
+
+<!-- transposition -->
+<% if es.text_for(:transposition) %>
+<li>Transposition: <%= es.text_for(:transposition) %></li>
+<% end %>
+
 </ul>
 </td></tr>
 </table>
