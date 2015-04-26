@@ -68,8 +68,8 @@ class Evaluation < ActiveRecord::Base
   }
 
   TRANSPOSITION_TEXT = {
-    :trumpet => {"C", "B", "E-flat"}, 
-    :horn    => {"E", "E-flat", "D"},
+    :trumpet => ["C", "B", "E-flat"], 
+    :horn    => ["E", "E-flat", "D"],
   }
 
   def checkbox_text(text_hash)
