@@ -73,7 +73,7 @@ class Evaluation < ActiveRecord::Base
   }
 
   def checkbox_text(text_hash)
-    text_hash.keys.map{|p| send(p) ? text_array[p] : nil}.compact.join(", ")
+    text_hash.keys.map{|p| send(p) ? text_hash[p] : nil}.compact.join(", ")
   end
 
   def radio_button_text(att)
