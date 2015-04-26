@@ -12,24 +12,24 @@
 <li>Contact Info: <%= ep.display_name %>, <%= ep.email %>, <%= number_to_phone(ep.phone_number) %></li>
 
 <!-- composers -->
-<% if es.composers %>
+<% unless es.composers.blank? %>
 <li>Favorite composers and pieces for practice <div class="eval-report-comment-box"><%= es.composers %></div></li>
 <% end %>
 
 <!-- chamber_ensemble_part -->
-<% if es.chamber_ensemble_part %>
+<% unless es.chamber_ensemble_part.blank? %>
 <li>Chamber music part preference: <%= es.radio_button_text(:chamber_ensemble_part) %></li>
 <% end %>
 
 <!-- groups -->
-<% if es.groups %>
+<% unless es.groups.blank? %>
 <li>Groups (audition <% if es.require_audition %>yes<% else %>no<% end %>)
    <div class="eval-report-comment-box"><%= es.groups %></div>
 </li>
 <% end %>
 
 <!-- transposition -->
-<% if es.text_for(:transposition) %>
+<% unless es.text_for(:transposition).blank? %>
 <li>Transposition: <%= es.text_for(:transposition) %></li>
 <% end %>
 
@@ -38,10 +38,10 @@
 
 <!-- private_study -->
 <li>Private Study: <% if es.studying_privately %>Yes<% else %>No<% end %> 
-  <% unless es.studying_privately_how_long.empty? %>(<%= es.studying_privately_how_long %>)<% end %></li>
+  <% unless es.studying_privately_how_long.blank? %>(<%= es.studying_privately_how_long %>)<% end %></li>
 
 <!-- chamber_frequency -->
-<% if es.radio_button_text(:chamber_music_how_often) %>
+<% unless es.radio_button_text(:chamber_music_how_often).blank? %>
 <li>Chamber music frequency: <%= es.radio_button_text(:chamber_music_how_often) %></li>
 <% end %>
 
