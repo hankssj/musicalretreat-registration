@@ -22,8 +22,9 @@
 <tr>
 <td>
    <%= render :partial => "reg_index_button",
-     :locals => {:text => "View Evaluation",
-                 :options => {:path => admin_report_path, :id = @registration.id}, :html_options => {:method => :get}} %>
+     locals: {text:         "View Evaluation",
+              options:      {path: admin_report_path, id: @registration.id}, 
+              html_options: {:method => :get}} %>
 </td>
 <td/>
 <tr>
