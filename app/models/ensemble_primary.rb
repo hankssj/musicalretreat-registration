@@ -53,6 +53,7 @@ class EnsemblePrimary < ActiveRecord::Base
   # Chamber music choices. AKA afternoon groups.  Driven by chamber_music_choice variable
 
   def text_for_chamber_ensemble_choice
+    return unless chamber_ensemble_choice
     ["No afternoon chamber groups",
      "One assigned chamber group",
      "One prearranged chamber group, one coached hour",
