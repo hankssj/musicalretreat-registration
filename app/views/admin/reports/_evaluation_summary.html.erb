@@ -16,6 +16,11 @@
 <li>Favorite composers and pieces for practice <div class="eval-report-comment-box"><%= es.composers %></div></li>
 <% end %>
 
+<!-- chamber_ensemble_part -->
+<% if es.chamber_ensemble_part %>
+<li>Chamber music part preference: <%= es.radio_button_text(:chamber_ensemble_part) %></li>
+<% end %>
+
 
 </ul>
 </td></tr>
