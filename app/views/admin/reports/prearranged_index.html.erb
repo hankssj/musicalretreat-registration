@@ -4,7 +4,7 @@
   </tr>
   <% @prearranged_chambers.each do |prearranged_chamber| %>
   <tr><td>
-    <%= render :partial => "admin/reports/_prearranged_chamber_long_summary.html.erb", 
+    <%= render :partial => "prearranged_chamber_long_summary.html.erb", 
 	  locals: { prearranged_chamber: prearranged_chamber, ensemble_primary: prearranged_chamber.ensemble_primary } %>
   <% end %>
   </td></tr>
