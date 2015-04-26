@@ -45,6 +45,20 @@
 <li>Chamber music frequency: <%= es.radio_button_text(:chamber_music_how_often) %></li>
 <% end %>
 
+<!-- other_instruments -->
+<% unless es.text_for(:other_instruments).blank? %>
+<li>Also bringing: <%= es.text_for(:other_instruments) %></li>
+<% end %>
+
+<!-- can_read_in_position -->
+<% unless es.text_for(:positions).blank? %>
+<li>Can read in: <%= es.text_for(:positions) %></li>
+<% end %>
+
+<!-- jazz_experience -->
+<% unless es.text_for(:jazz).blank? %>
+<li>Jazz interest and experience: <%= es.text_for(:jazz) %></li>
+<% end %>
 
 </ul>
 </td></tr>
