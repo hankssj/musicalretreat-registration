@@ -73,6 +73,32 @@
 <li>Self assessment sightreading: <%= es.radio_button_text(:overall_rating_sightreading) %></li>
 <% end %>
 
+<!-- vocal_overall_ability -->
+<% unless es.radio_button_text(:vocal_overall_ability).blank? %>
+<li>Self assessment general vocal ability: <%= es.radio_button_text(:vocal_overall_ability) %></li>
+<% end %>
+
+<!-- vocal_how_learn -->
+<% unless es.radio_button_text(:vocal_how_learn).blank? %>
+<li>How do you lean new music? <%= es.radio_button_text(:vocal_how_learn) %></li>
+<% end %>
+
+<!-- vocal_most_difficult -->
+<% if es.vocal_most_difficult %>
+<li>Most difficult piece learned: <%= vocal_most_difficult %></li>
+<% end %>
+
+<!-- vocal_music_theory vocal_voice_lessons vocal_voice_class -->
+<% unless es.text_for(:vocal_training).blank? %>
+<li>Vocal training: <%= es.text_for(:vocal_training) %></li>
+<% end %>
+
+
+<!-- vocal_small_ensemble_skills -->
+<% unless es.radio_button_text(:vocal_small_ensemble_skills).blank? %>
+<li> Singing in small ensemble: <%= es.radio_button_text(:vocal_small_ensemble_skills) %></li>
+<% end %>
+
 </ul>
 </td></tr>
 </table>
