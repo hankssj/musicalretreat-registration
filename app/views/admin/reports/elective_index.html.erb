@@ -22,5 +22,5 @@
   </tr>
 </table>
 <% @ensemble_primaries.completed.each do |ensemble_primary| %>
-  <%= render template: 'admin/reports/show', locals: { registration: ensemble_primary.registration } %>
+  <%= render template: 'admin/reports/show', locals: { ensemble_primary: ensemble_primary, registration: ensemble_primary.registration } %>
 <% end %>
