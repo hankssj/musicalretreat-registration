@@ -1,6 +1,6 @@
 class Admin::ReportsController < ApplicationController
   include RegistrationGating
-  before_filter :authorize_admin
+  before_filter :authorize_admin, :except => [:show]
   layout 'admin'
 
   def show
