@@ -18,6 +18,16 @@
                  :options => {:controller => :ensembles, :action => :reselect}, :html_options => {:method => :get}} %>
   <% end %>
 </tr>
+<% unless @needs_evals %>
+<tr>
+<td>
+   <%= render :partial => "reg_index_button",
+     :locals => {:text => "View Evaluation",
+                 :options => {:path => admin_report_path}, :html_options => {:method => :get}} %>
+</td>
+<td/>
+<tr>
+
 <tr>
   <%= render :partial => "reg_index_button", :locals => {:text => "Change Password", :options => {:action => :change_password}, :html_options => {}} %>
   <%= render :partial => "reg_index_button", :locals => {:text => "Log Out", :options => {:action => :logout}, :html_options => {}} %>
