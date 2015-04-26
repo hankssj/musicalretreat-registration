@@ -85,7 +85,7 @@ class Evaluation < ActiveRecord::Base
     tt = ""
     tt +=  ("Music theory "  + (vocal_music_theory_year ? "(vocal_music_theory_year)" : "")) if vocal_music_theory
     tt +=  ("Voice lessons " + (vocal_voice_lessons ? "(vocal_voice_lessons_year)"    : "")) if vocal_voice_lessons
-    tt +=  ("Voice classes " + (vocal_voice_classes ? "(vocal_voice_classes_year)"    : "")) if vocal_voice_classes
+    tt +=  ("Voice classes " + (vocal_voice_class ? "(vocal_voice_class_year)"    : "")) if vocal_voice_class
     tt
   end
 
