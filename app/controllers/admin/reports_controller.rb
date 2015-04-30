@@ -13,7 +13,7 @@ class Admin::ReportsController < ApplicationController
 
   def section_index
     @primary_registrations = Registration.joins(:ensemble_primaries).joins(:instrument).where(instruments: {instrument_type: params[:type]}).where(ensemble_primaries: {complete: true}).all
-    @primary_registration = @primary_registrations.sort{|r1, r2| r1.instrument.display_name <=> r2.instrument.display_name}
+    @primary_registrations = @primary_registrations.sort{|r1, r2| r1.instrument.display_name <=> r2.instrument.display_name}
     @secondary_registrations = Registration.joins(ensemble_primaries: {evaluations: :instrument}).where(instruments: {instrument_type: params[:type]}).where(ensemble_primaries: {complete: true}).all.uniq
     @secondary_registrations = @secondary_registrations.sort{|r1, r2| r1.instrument.display_name <=> r2.instrument.display_name}
     @secondary_registrations -= @primary_registrations
