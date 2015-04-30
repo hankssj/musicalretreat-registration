@@ -149,12 +149,13 @@ background:white;
 }
 
 .admin-reports {
-
+  backgroun-image: none;
   .contact {
     display: none;
   }
   .evaluation-form .reg-form-section-title, .reg-form-section-title.chamber-form {
-    background-color: DarkSeaGreen;
+#    background-color: DarkSeaGreen;
+    background-color: White;
     text-align: left;
     border: none;
   }
