@@ -27,7 +27,7 @@
             <%= mail_to registration.email %>
             (<%= registration.ensemble_primary
               .secondary_instruments_of_type(params[:type])
-              .map(&:display_name).join(', ') %>)
+              .map(&:display_name).join(', ') + "Primarily " + registration.display_name + ")"%>)
           </li>
         <% end %>
       </ul>
