@@ -24,6 +24,7 @@ class Admin::ReportsController < ApplicationController
   def elective_index
     @elective = Elective.find(params[:elective_id])
     @ensemble_primaries = @elective.ensemble_primaries.completed
+    render layout: "reports"
   end
 
   def prearranged_index
