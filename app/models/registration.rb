@@ -50,8 +50,7 @@ class Registration < ActiveRecord::Base
   # TODO:  The one-to-many on ensemble primary is not helpful.
 
   def ensemble_primary
-    return unless ensemble_primaries_complete?
-    ensemble_primaries.first
+    ensemble_primaries.where(complete: true).last
   end
 
   def instrument_name
@@ -401,10 +400,17 @@ class Registration < ActiveRecord::Base
   end
 
   def self.records_to_send
+    downloads = Download.where(download_type: "registrations").order(downloaded_at: :desc)
+    download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
     Registration.where(year: Year.this_year).
       reject{|r|r.test}.
       select{|r| r.updated_at > download_cutoff}.
       sort_by(&:contact_id)
+  end
+
+  def to_txt_row
+    #Registration.fields.map{ |field| self.send(field) || '' }.join("\t")
+    Registration.fields.map{|field| self.send(field)}.join("\t")
   end
 
   def self.list
@@ -423,15 +429,6 @@ class Registration < ActiveRecord::Base
     output + "\n"
   end
 
-  def to_txt_row
-    #Registration.fields.map{ |field| self.send(field) || '' }.join("\t")
-    Registration.fields.map{|field| self.send(field)}.join("\t")
-  end
-
-  def ensemble_primary
-    ensemble_primaries.where(complete: true).last
-  end
-
   #######################################
 
   def self.default_filename
@@ -447,8 +444,6 @@ class Registration < ActiveRecord::Base
     boolean_to_yesno(true)
     filename = default_filename unless filename
     records = []
-    downloads = Download.where(download_type: "registrations").order(downloaded_at: :desc)
-    download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
   
     File.open(filename, 'w') do |file|
       file.puts fields.map{|field|field.to_s}.map{|m| m.gsub(/clean_/,"")}.join("\t")
