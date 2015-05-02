@@ -405,7 +405,7 @@ class Registration < ActiveRecord::Base
     output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
     downloads = Download.where(download_type: "registrations").order(downloaded_at: :desc)
     download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
-    records =  Registration.where('updated_at >= ?', download_cutoff).reject{|r|r.test}
+    records =  Registration.where('updated_at >= ?', download_cutoff).reject{|r|r.test}.sort(&:contact_id)
     begin
       Registration.boolean_to_yesno(true)
       output += records.map {|r| r.to_txt_row}.join("\n")
@@ -444,7 +444,7 @@ class Registration < ActiveRecord::Base
   
     File.open(filename, 'w') do |file|
       file.puts fields.map{|field|field.to_s}.map{|m| m.gsub(/clean_/,"")}.join("\t")
-      records =  Registration.where(year: Year.this_year).reject{|r|r.test}.select{|r| r.updated_at > download_cutoff}
+      records =  Registration.where(year: Year.this_year).reject{|r|r.test}.select{|r| r.updated_at > download_cutoff}.sort(&:contact_id)
       records.each{|r| r.export(file)}
     end
 
