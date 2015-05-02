@@ -413,20 +413,20 @@ class Registration < ActiveRecord::Base
     Registration.fields.map{|field| self.send(field)}.join("\t")
   end
 
+  def header_row
+    fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t")
+  end
+
+  def update_download_time
+    Download.create!(download_type: "registrations", downloaded_at: Time.now)
+  end
+
   def self.list
-    output = ""
-    output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
-    downloads = Download.where(download_type: "registrations").order(downloaded_at: :desc)
-    download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
-    records = records_to_send
-    begin
-      boolean_to_yesno(true)
-      output += records.map {|r| r.to_txt_row}.join("\n")
-    ensure
-      boolean_to_yesno(false)
-    end
-    Download.create(download_type: "registrations", downloaded_at: Time.now)
-    output + "\n"
+    boolean_to_yesno(true)
+    output = header_row + records_to_send.map{|r| r.to_txt_row}.join("\n") + "\n"
+    boolean_to_yesno(false)
+    update_download_time
+    output
   end
 
   #######################################
@@ -436,21 +436,16 @@ class Registration < ActiveRecord::Base
     dir = "/home/deploy/Dropbox/FilemakerDownloads/TEST"
     Dir.mkdir(dir) unless File.exists?(dir)
     type = "registrations"
-    timestring = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
-    "#{dir}/#{type}-#{timestring}.txt"
+    "#{dir}/registrations-#{Time.now.strftime('%Y-%m-%d-%H-%M-%S')}.txt"
   end
 
   def self.dump_records(filename = nil)
-    boolean_to_yesno(true)
-    filename = default_filename unless filename
-    records = []
-  
-    File.open(filename, 'w') do |file|
-      file.puts fields.map{|field|field.to_s}.map{|m| m.gsub(/clean_/,"")}.join("\t")
-      records = records_to_send.each{|r| file.puts(r.to_txt_row)}
+    File.open(filename || default_filename, 'w') do |file| 
+      file.puts header_row
+      records_to_send.each{|r| file.puts(r.to_txt_row)}
     end
     boolean_to_yesno(false)
-    Download.create!(:download_type => "registrations", :downloaded_at => Time.now)
+    update_download_time
     records.size
   end
 end
