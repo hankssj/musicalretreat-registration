@@ -1,6 +1,6 @@
 <table width="100%" class="admin-reports admin-reports-chose">
   <tr class="reg-form-section-title">
-    <td>Individuals whose primary instrument is <%= params[:type] %></td>
+    <td>Individuals whose primary instrument/voice is <%= params[:type] %></td>
   </tr>
   <tr>
     <td>
@@ -16,7 +16,7 @@
     </td>
   </tr>
   <tr class="reg-form-section-title">
-    <td>Individuals with a secondary instrument of <%= params[:type] %></td>
+    <td>Individuals with a secondary instrument/voice of <%= params[:type] %></td>
   </tr>
   <tr>
     <td>
@@ -27,7 +27,7 @@
             <%= mail_to registration.email %>
             (<%= registration.ensemble_primary
               .secondary_instruments_of_type(params[:type])
-              .map(&:display_name).join(', ') + " Primarily " + registration.instrument.display_name + ")"%>)
+              .map(&:display_name).join(', ') + "; Primarily " + registration.instrument.display_name %>)
           </li>
         <% end %>
       </ul>

@@ -9,4 +9,7 @@
 #
 
 class Download < ActiveRecord::Base
+  def self.reset_to(date)
+    Download.all.select{|d| d.downloaded_at > date}.each{|d| d.destroy!}
+  end
 end
