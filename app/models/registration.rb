@@ -405,12 +405,12 @@ class Registration < ActiveRecord::Base
     output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
     downloads = Download.where(download_type: "registrations").order(downloaded_at: :desc)
     download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
-    records =  Registration.where('updated_at >= ?', download_cutoff).reject{|r|r.test}.sort_by(&:contact_id)
+    records =  Registration.where('updated_at > ?', download_cutoff).reject{|r|r.test}.sort_by(&:contact_id)
     begin
-      Registration.boolean_to_yesno(true)
+      boolean_to_yesno(true)
       output += records.map {|r| r.to_txt_row}.join("\n")
     ensure
-      Registration.boolean_to_yesno(false)
+      boolean_to_yesno(false)
     end
     Download.create(download_type: "registrations", downloaded_at: Time.now)
     output
