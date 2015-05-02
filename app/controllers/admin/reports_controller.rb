@@ -29,5 +29,6 @@ class Admin::ReportsController < ApplicationController
 
   def prearranged_index
     @prearranged_chambers = PrearrangedChamber.joins(:ensemble_primary).order('prearranged_chambers.i_am_contact desc').where(ensemble_primaries: {complete: true})
+    render layout: "reports"
   end
 end
