@@ -643,4 +643,11 @@ table.eval-table td {
    margin: 3px;
 }
 
-			 
+/*************************************************/
+/*  Specifically for eval reports. No background etc.
+
+#reports-main {
+  background-color: none;
+  border: 3px solid black;
+  width: 1000px;
+}
