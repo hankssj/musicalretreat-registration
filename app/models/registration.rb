@@ -441,6 +441,7 @@ class Registration < ActiveRecord::Base
 
   def self.dump_records(filename = nil)
     records = records_to_send
+    boolean_to_yesno(true)
     File.open(filename || default_filename, 'w') do |file| 
       file.puts header_row
       records_to_send.each{|r| file.puts(r.to_txt_row)}
