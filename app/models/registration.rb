@@ -423,7 +423,7 @@ class Registration < ActiveRecord::Base
 
   def self.list
     boolean_to_yesno(true)
-    output = header_row + records_to_send.map{|r| r.to_txt_row}.join("\n") + "\n"
+    output = header_row + "\n" + records_to_send.map{|r| r.to_txt_row}.join("\n") + "\n"
     boolean_to_yesno(false)
     update_download_time
     output
