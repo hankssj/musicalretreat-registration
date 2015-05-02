@@ -413,11 +413,11 @@ class Registration < ActiveRecord::Base
     Registration.fields.map{|field| self.send(field)}.join("\t")
   end
 
-  def header_row
+  def self.header_row
     fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t")
   end
 
-  def update_download_time
+  def self.update_download_time
     Download.create!(download_type: "registrations", downloaded_at: Time.now)
   end
 
