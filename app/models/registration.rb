@@ -417,7 +417,8 @@ class Registration < ActiveRecord::Base
   end
 
   def to_txt_row
-    Registration.fields.map { |field| self.send(field) || '' }.join("\t")
+    #Registration.fields.map{ |field| self.send(field) || '' }.join("\t")
+    Registration.fields.map{|field| self.send(field)}.join("\t")
   end
 
   def ensemble_primary
@@ -426,10 +427,10 @@ class Registration < ActiveRecord::Base
 
   #######################################
 
-  # TODO:  somebody needs to create the directory once a year
   def self.default_filename
     #dir = "/home/deploy/Dropbox/FilemakerDownloads/#{Year.this_year}"
     dir = "/home/deploy/Dropbox/FilemakerDownloads/TEST"
+    Dir.mkdir(dir) unless File.exists?(dir)
     type = "registrations"
     timestring = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
     "#{dir}/#{type}-#{timestring}.txt"
@@ -444,18 +445,15 @@ class Registration < ActiveRecord::Base
   
     File.open(filename, 'w') do |file|
       file.puts fields.map{|field|field.to_s}.map{|m| m.gsub(/clean_/,"")}.join("\t")
-      records =  Registration.where(year: Year.this_year).reject{|r|r.test}.select{|r| r.updated_at > download_cutoff}.sort_by(&:contact_id)
-      records.each{|r| r.export(file)}
+      records = 
+        Registration.where(year: Year.this_year).
+        reject{|r|r.test}.
+        select{|r| r.updated_at > download_cutoff}.
+        sort_by(&:contact_id).
+        each{|r| file.puts(to_txt_row(r))}
     end
-
     boolean_to_yesno(false)
-    Download.create(:download_type => "registrations", :downloaded_at => Time.now)
+    Download.create!(:download_type => "registrations", :downloaded_at => Time.now)
     records.size
-  end
-
-  def export(file)
-    downloaded_at = Time.now
-    save!
-    file.puts Registration.fields.map{|field| self.send(field)}.join("\t")
   end
 end
