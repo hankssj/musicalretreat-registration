@@ -1,4 +1,4 @@
-<table width="100%" class="admin-reports admin-reports-chose">
+<table width="100%" style="border: 3px solid black;">
   <tr class="reg-form-section-title">
     <td>Elective report</td>
   </tr>
@@ -21,6 +21,9 @@
     <td>Individual Reports</td>
   </tr>
 </table>
+
 <% @ensemble_primaries.completed.each do |ensemble_primary| %>
+  <div style="border:5px solid black; margin: 10px;">
   <%= render template: 'admin/reports/show', locals: { ensemble_primary: ensemble_primary, registration: ensemble_primary.registration } %>
+  </div>
 <% end %>
