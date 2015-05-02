@@ -450,7 +450,7 @@ class Registration < ActiveRecord::Base
         reject{|r|r.test}.
         select{|r| r.updated_at > download_cutoff}.
         sort_by(&:contact_id).
-        each{|r| file.puts(to_txt_row(r))}
+        each{|r| file.puts(r.to_txt_row)}
     end
     boolean_to_yesno(false)
     Download.create!(:download_type => "registrations", :downloaded_at => Time.now)
