@@ -107,10 +107,7 @@ class Payment < ActiveRecord::Base
     def records_to_send
       downloads = Download.where(download_type: 'payments').order(downloaded_at: :desc)
       download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
-      Payment.where(year: Year.this_year).
-        reject{|p| !p.registration || p.registration.test}.
-        select{|r| r.updated_at > download_cutoff}.
-        sort_by(&:contact_id)
+      self.all.reject{|p| !p.registration || p.registration.test}.select{|r| r.updated_at > download_cutoff}.sort_by(&:contact_id)
     end
 
     def update_download_time
