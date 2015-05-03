@@ -36,8 +36,9 @@ class EnsemblePrimary < ActiveRecord::Base
   def wrap(s, width=78)
     s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n")
   end
-  def wrapped_comment
-    wrap(comment)
+
+  def wrapped_comments
+    wrap(comments)
   end
 
   def elective_ranks
