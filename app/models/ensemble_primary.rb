@@ -10,20 +10,19 @@ class EnsemblePrimary < ActiveRecord::Base
 
   scope :completed, lambda { where(complete: true) }
   validates :registration, presence: true
-  validates :large_ensemble_choice,
-      presence: { message: "Morning large ensemble choice is required", on: :create }
+  validates :large_ensemble_choice, presence: { message: "Morning large ensemble choice is required", on: :create }
 
   validates :large_ensemble_part,
      presence: { message: "Please provide a seating preference for your large ensemble", on: :create },
      if: lambda{|e| e.large_ensemble_choice > 0 && 
-                    (e.instrument.violin?  || e.instrument.flute? || e.instrument.clarinet? || e.instrument.saxophone_nonspecific?)}
+      (e.instrument.violin?  || e.instrument.flute? || e.instrument.clarinet? || e.instrument.saxophone_nonspecific?)}
 
   validates :chamber_ensemble_choice, presence: {message: "You must specify your chamber ensemble preferences"}, 
-       if: lambda{|e| e.step === :afternoon_ensembles_and_electives }
+  if: lambda{|e| e.step === :afternoon_ensembles_and_electives }
 
   validates :ensemble_primary_elective_ranks,
-    length: { within: 1..5, message: 'You have to choose at least one elective' },
-    if: lambda{|e| e.step === :chamber_elective }
+  length: { within: 1..5, message: 'You have to choose at least one elective' },
+  if: lambda{|e| e.step === :chamber_elective }
       
   accepts_nested_attributes_for :mmr_chambers
   accepts_nested_attributes_for :prearranged_chambers
@@ -31,7 +30,15 @@ class EnsemblePrimary < ActiveRecord::Base
   accepts_nested_attributes_for :ensemble_primary_elective_ranks
 
   attr_accessor :step, :choosed_prearranged_ensembles, :choosed_assigned_ensembles
-  delegate :instrument, to: :registration
+      delegate :instrument, to: :registration
+
+  # Try to fix problem where exporting the ensemble listing to Word causes long lines
+  def wrap(s, width=78)
+    s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n")
+  end
+  def wrapped_comment
+    wrap(comment)
+  end
 
   def elective_ranks
     ensemble_primary_elective_ranks

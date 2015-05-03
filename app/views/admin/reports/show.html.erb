@@ -37,7 +37,7 @@
 	</li>
 	<% end %>
 	<% unless ensemble_primary.comments.blank? %>
-	   <li>Comments <div class="eval-report-comment-box"><%= ensemble_primary.comments %></div>
+	   <li>Comments <div class="eval-report-comment-box"><%= ensemble_primary.wrapped_comments %></div>
         <% else %>
 	   <li>(No comments)</li>
 	<% end %>
