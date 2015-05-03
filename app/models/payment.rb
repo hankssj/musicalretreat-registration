@@ -73,18 +73,21 @@ class Payment < ActiveRecord::Base
     note ? note.strip.gsub(/\s+/, " ") : ""
   end
 
-  def self.fields
-    [:contact_id, :amount, :payment_type, :check_no, :clean_note, :received_on_date, :online]
-  end
-
   def received_on_date
     date_received.strftime("%m/%d/%Y")
   end
 
+  def to_txt_row
+    Payment.fields.map {|field| self.send(field)}.join("\t")
+  end
 
   ######################
   
   class << self
+
+    def fields
+      [:contact_id, :amount, :payment_type, :check_no, :clean_note, :received_on_date, :online]
+    end
 
     def boolean_to_yesno(which)
       if which
@@ -100,14 +103,13 @@ class Payment < ActiveRecord::Base
       fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t")
     end
 
-    def to_txt_row
-      Payment.fields.map {|field| self.send(field)}.join("\t")
-    end
-
     def records_to_send
       downloads = Download.where(download_type: 'payments').order(downloaded_at: :desc)
       download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
-      self.all.reject{|p| !p.registration || p.registration.test}.select{|r| r.updated_at > download_cutoff}.sort_by(&:contact_id)
+      self.all.select{|p| p.year == Year.this_year}.
+        reject{|p| !p.registration || p.registration.test}.
+        select{|r| r.updated_at > download_cutoff}.
+        sort_by(&:contact_id)
     end
 
     def update_download_time
