@@ -409,7 +409,6 @@ class Registration < ActiveRecord::Base
   end
 
   def to_txt_row
-    #Registration.fields.map{ |field| self.send(field) || '' }.join("\t")
     Registration.fields.map{|field| self.send(field)}.join("\t")
   end
 
@@ -430,24 +429,25 @@ class Registration < ActiveRecord::Base
   end
 
   #######################################
+  # Should not be used any more.  Use self.list
 
-  def self.default_filename
-    #dir = "/home/deploy/Dropbox/FilemakerDownloads/#{Year.this_year}"
-    dir = "/home/deploy/Dropbox/FilemakerDownloads/TEST"
-    Dir.mkdir(dir) unless File.exists?(dir)
-    type = "registrations"
-    "#{dir}/registrations-#{Time.now.strftime('%Y-%m-%d-%H-%M-%S')}.txt"
-  end
+  # def self.default_filename
+  #   #dir = "/home/deploy/Dropbox/FilemakerDownloads/#{Year.this_year}"
+  #   dir = "/home/deploy/Dropbox/FilemakerDownloads/TEST"
+  #   Dir.mkdir(dir) unless File.exists?(dir)
+  #   type = "registrations"
+  #   "#{dir}/registrations-#{Time.now.strftime('%Y-%m-%d-%H-%M-%S')}.txt"
+  # end
 
-  def self.dump_records(filename = nil)
-    records = records_to_send
-    boolean_to_yesno(true)
-    File.open(filename || default_filename, 'w') do |file| 
-      file.puts header_row
-      records_to_send.each{|r| file.puts(r.to_txt_row)}
-    end
-    boolean_to_yesno(false)
-    update_download_time
-    records.size
-  end
+  # def self.dump_records(filename = nil)
+  #   records = records_to_send
+  #   boolean_to_yesno(true)
+  #   File.open(filename || default_filename, 'w') do |file| 
+  #     file.puts header_row
+  #     records_to_send.each{|r| file.puts(r.to_txt_row)}
+  #   end
+  #   boolean_to_yesno(false)
+  #   update_download_time
+  #   records.size
+  # end
 end

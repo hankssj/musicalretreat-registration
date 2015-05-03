@@ -80,22 +80,34 @@ class Payment < ActiveRecord::Base
     date_received.strftime("%m/%d/%Y")
   end
 
-  def self.list
-    output = ""
-    output += fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t") + "\n"
-    records = Payment.where('updated_at >= ?', Download.where(download_type: 'payments').last.downloaded_at)
-      .reject{|p| p.registration.nil? || p.registration.test}
-    begin
-      Registration.boolean_to_yesno(true)
-      output += records.map { |p| p.to_txt_row }.join("\n")
-    ensure
-      Registration.boolean_to_yesno(false)
-    end
-    Download.create(download_type: "payments", downloaded_at: Time.now)
-    output
+  ######################
+
+  def header_row
+    fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t")
   end
 
   def to_txt_row
-    Payment.fields.map { |field| self.send(field) || '' }.join("\t")
+    Payment.fields.map {|field| self.send(field)}.join("\t")
+  end
+
+  def records_to_send
+    downloads = Download.where(download_type: 'payments').order(downloaded_at: :desc)
+    download_cutoff = downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
+    Payment.where(year: Year.this_year).
+      reject{|p| !p.registration || p.registration.test}.
+      select{|r| r.updated_at > download_cutoff}.
+      sort_by(&:contact_id)
+  end
+
+  def update_download_time
+    Download.create(download_type: "payments", downloaded_at: Time.now)
+  end
+
+  def self.list
+    boolean_to_yesno(true)
+    output =  header_row + "\n" + records_to_send.map{|p| p.to_txt_row}.join("\n") + "\n"
+    boolean_to_yesno(false)
+    update_download_time
+    output
   end
 end
