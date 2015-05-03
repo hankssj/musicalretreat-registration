@@ -60,6 +60,7 @@ class Payment < ActiveRecord::Base
   #  In the case of manual payment, it's a field in the payment record.
   #  Split out the two and surface both payment_type and a renamed check_no.
   #  
+
   def check_no
     check_number == "Online/CC" ? "" : check_number
   end
@@ -80,9 +81,21 @@ class Payment < ActiveRecord::Base
     date_received.strftime("%m/%d/%Y")
   end
 
+
   ######################
   
   class << self
+
+    def boolean_to_yesno(which)
+      if which
+        TrueClass.send(:define_method, "to_s"){"Yes"}
+        FalseClass.send(:define_method, "to_s"){"No"}
+      else
+        TrueClass.send(:define_method, "to_s"){"true"}
+        FalseClass.send(:define_method, "to_s"){"false"}
+      end
+    end
+
     def header_row
       fields.map{|field|field.to_s}.map{|m|m.gsub(/clean_/,"")}.join("\t")
     end
