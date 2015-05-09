@@ -51,6 +51,7 @@
 	      <tr><td colspan="3">Share Housing With:</td></tr>
 	      <tr><td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= form.text_field :share_housing_with, :size => 20, :disabled => @disabled  %></td></tr>
 	      <% if @admin_session || !@registration.dorm_selection.blank? %>
+	      <% Logger.warning("#{@registration.id} /#{@registration.dorm_selection}/ #{@registration.dorm_selection.size}") %>
 	      <tr><td colspan="3">Dorm Assignment: &nbsp;&nbsp;&nbsp;<%= form.text_field :dorm_assignment, :size => 12, :disabled => @disabled %></td></tr>
 	      <% end %>
 	    </table>
