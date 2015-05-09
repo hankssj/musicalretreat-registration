@@ -45,6 +45,7 @@ class RegistrationController < ApplicationController
       reg_redirect
     else
       session[:registration] = @registration = Registration.populate(user)
+      @admin_session = admin_session?
     end
   end
 
@@ -100,6 +101,7 @@ class RegistrationController < ApplicationController
       end
     end
     session[:registration] = @registration = registration
+    @admin_session = admin_session?
   end
 
   def update
