@@ -53,7 +53,7 @@
 	      <% Rails.logger.warn("Admin $#{@admin_session}$ / ID #{@registration.id} / Blank: #{@registration.dorm_assignment.blank?} / Txt: /#{@registration.dorm_assignment}/ Size: #{@registration.dorm_assignment.nil? ? -1 : @registration.dorm_assignment.size}") %>
 	      <% if @admin_session || !@registration.dorm_assignment.blank? %>
 	      <tr><td colspan="3">Dorm Assignment: &nbsp;&nbsp;&nbsp;<%= form.text_field :dorm_assignment, :size => 12, 
-		  :disabled => !@disabled && @admin_session%></td></tr>
+		  :disabled => @disabled || !@admin_session%></td></tr>
 	      <% end %>
 	    </table>
 	  </td>
