@@ -192,7 +192,7 @@ class RegistrationController < ApplicationController
                                          :home_phone, :cell_phone, :work_phone, 
                                          :comments, :firsttime, :mailinglist, :donotpublish,
                                          :participant, :instrument_id, :meals_selection, :vegetarian, :airport_pickup, 
-                                         :dorm_selection, :single_room, :aircond, :fan, :handicapped_access, 
+                                         :dorm_selection, :dorm_assignment, :single_room, :aircond, :fan, :handicapped_access, 
                                          :share_housing_with,
                                          :sunday, :donation, :wine_glasses,
                                          :tshirts, :tshirtm, :tshirtl, :tshirtxl, :tshirtxxl, :tshirtxxxl)
