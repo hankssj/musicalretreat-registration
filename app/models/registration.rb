@@ -156,15 +156,21 @@ class Registration < ActiveRecord::Base
     #   c.set_quantity("No Breakfast", meals && meals_lunch_and_dinner_only ? 1 : 0)
     # end
     #c.set_quantity("Commemorative Wine Glass", wine_glasses)
+    #
+    # 2015 pre change
+    # elsif board?
+    #   tstotal = tstotal <= 1 ? 0 : tstotal - 1
+    #   c.set_quantity("Dorm", (dorm_selection == 'd' || dorm_selection == 's') ? 1 : 0)
+    #   c.set_quantity("Single Room", dorm_selection == 's' ? 1 : 0)
+    #   c.set_quantity("Meals", (meals_selection == 'f' || meals_selection == 'l') ? 1 : 0)
+    #   c.set_quantity("No Breakfast", meals_selection == 'l' ? 1 : 0)
 
     if staff?
       tstotal = tstotal <= 1 ? 0 : tstotal - 1
-    elsif board?
-      tstotal = tstotal <= 1 ? 0 : tstotal - 1
-      c.set_quantity("Dorm", (dorm_selection == 'd' || dorm_selection == 's') ? 1 : 0)
-      c.set_quantity("Single Room", dorm_selection == 's' ? 1 : 0)
-      c.set_quantity("Meals", (meals_selection == 'f' || meals_selection == 'l') ? 1 : 0)
-      c.set_quantity("No Breakfast", meals_selection == 'l' ? 1 : 0)
+    elsif board? #  Board gets flat rate, with dorm rooms, sunday arrival and one T-shirt included
+      c.set_quantity("Board Member Flat Rate", 1)
+      tstotal = tstotal - 1
+      tstotal = 0 if tstotal < 0
     else
       c.set_quantity("Registration", 1)
       c.set_quantity("Tuition", participant ? 1 : 0)
