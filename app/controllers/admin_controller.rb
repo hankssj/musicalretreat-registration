@@ -160,8 +160,8 @@ class AdminController < ApplicationController
   end
 
   def send_eval_reminders
-    #test_emails = ["hanks.steve@gmail.com"]
-    test_emails = nil
+    test_emails = ["hanks.steve@gmail.com"]
+    #test_emails = nil
     rr = Registration.where(year: Year.this_year).reject{|r| r.has_complete_eval?}
     rr = rr.select{|r|test_emails.include?(r.email)} if test_emails
     rr.each{|r| RegistrationMailer.eval_reminder(r)}
