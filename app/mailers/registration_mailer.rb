@@ -65,4 +65,10 @@ class RegistrationMailer < ActionMailer::Base
     @balance = registration.balance
     mail(:to => registration.email, :subject => 'MMR Balance Due Reminber').deliver!
   end
+
+  def eval_reminder(registration)
+    @name = registration.display_name
+    mail(:to => registration.email, :subject => 'MMR Ensemble Choice and Self-Evaluation Reminber').deliver!
+  end
+
 end

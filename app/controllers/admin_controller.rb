@@ -2,35 +2,36 @@ class AdminController < ApplicationController
 
   include RegistrationGating
 
-  before_filter :authorize_admin, :only => [
-   :index, :new_user, :reset_password, :view_registration, :edit_registration, :list_registrations,
-   :reg_invitation, :send_all_invitations, :send_early_invitations, :send_balance_reminders, :show_events, :delete_events, :list_scholarships, 
-   :list_online_payments ]
-  before_filter :authorize_registrar, :only => [ 
- :add_payment, :delete_payment, :new_registration,
- :cancel_registration, :change_email, :drop_records  ]
+  before_filter :authorize_admin, 
+  :only => [ :index, :new_user, :reset_password, :view_registration, :edit_registration, :list_registrations,
+             :reg_invitation, :send_all_invitations, :send_early_invitations, :send_balance_reminders, :send_eval_reminders,
+             :show_events, :delete_events, :list_scholarships, :list_online_payments ]
 
-def index
-  # We should be able to count on a valid user here, but just in case...
-  @admin_email = session[:user_id] && User.find_by_id(session[:user_id]) && User.find_by_id(session[:user_id]).email
-end
+  before_filter :authorize_registrar, 
+  :only => [ :add_payment, :delete_payment, :new_registration,
+             :cancel_registration, :change_email, :drop_records ]
 
-def logout
-  redirect_to(:controller => :login,  :action => :logout)
-end
+  def index
+    # We should be able to count on a valid user here, but just in case...
+    @admin_email = session[:user_id] && User.find_by_id(session[:user_id]) && User.find_by_id(session[:user_id]).email
+  end
 
-############################
-#  User operations
+  def logout
+    redirect_to(:controller => :login,  :action => :logout)
+  end
 
-def reset_password
-  session[:original_uri] = url_for(:controller => :admin, :action => :index)
-  redirect_to(:controller => :login, :action => :reset_password)
-end
+  ############################
+  #  User operations
 
-def change_email
-  session[:original_uri] = url_for(:controller => :admin, :action => :index)
-  redirect_to(:controller => :login, :action => :change_email)
-end
+  def reset_password
+    session[:original_uri] = url_for(:controller => :admin, :action => :index)
+    redirect_to(:controller => :login, :action => :reset_password)
+  end
+
+  def change_email
+    session[:original_uri] = url_for(:controller => :admin, :action => :index)
+    redirect_to(:controller => :login, :action => :change_email)
+  end
 
   #############################
   #  New, cancel, edit registration
@@ -110,7 +111,7 @@ end
 
   def file_maker
   end
-    
+  
   #######################################
   ##  Invitations and other emails
 
@@ -158,6 +159,15 @@ end
     @emails = rr.map{|r|r.email}
   end
 
+  def send_eval_reminders
+    #test_emails = ["hanks.steve@gmail.com"]
+    test_emails = nil
+    rr = Registration.where(year: Year.this_year).reject{|r| r.has_complete_eval?}
+    rr = rr.select{|r|test_emails.include?(r.email)} if test_emails
+    rr.each{|r| RegistrationMailer.eval_reminder(r)}
+    @emails = rr.map{|r|r.email}
+  end
+
   #  Testing outbound email.  Delete me eventually.
   def send_test_email
     @email = "hanks@pobox.com"
@@ -201,26 +211,26 @@ end
         @skipped << email
         next
       end
-        
+      
       user = User.find_by_email(email)
       unless user
         Event.log("PAY ATTENTION!  SKIPPED #{email} ALTOGETHER BECAUSE OF NO ACCOUNT")
         next
       end
 
-       if user.has_current_registration 
-         Event.log("Skipped #{email} due to existing registration")
-         @skipped << email
-       elsif user.bounced_at
-         Event.log("Skipped #{email} due to bounceage")
-         @skipped << email
-       else 
+      if user.has_current_registration 
+        Event.log("Skipped #{email} due to existing registration")
+        @skipped << email
+      elsif user.bounced_at
+        Event.log("Skipped #{email} due to bounceage")
+        @skipped << email
+      else 
         RegistrationMailer.invitation(user)
         Event.log("Bulk invitation to user #{email}")
         @sent << email
         invitee.sent = true
         invitee.save!
-       end
+      end
     end
     @remaining = Invitee.all.reject{|r|r.sent}.size
   end
@@ -276,11 +286,11 @@ end
       #   Event.log("Skipped #{email} due to bounceage")
       #   @skipped << email
       # else 
-        RegistrationMailer.self_eval_invitation(user)
-        Event.log("Bulk invitation to user #{email}")
-        @sent << email
-        invitee.sent = true
-        invitee.save!
+      RegistrationMailer.self_eval_invitation(user)
+      Event.log("Bulk invitation to user #{email}")
+      @sent << email
+      invitee.sent = true
+      invitee.save!
       # end
     end
     @remaining = Invitee.all.reject{|r|r.sent}.size
