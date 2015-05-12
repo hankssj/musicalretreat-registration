@@ -10,10 +10,10 @@ class PrearrangedChamber < ActiveRecord::Base
 
   def self.ensemble_options
     [
-      ['No prearranged groups                   ', 0],
-      ['One prearranged group, one coached hour', 1],
-      ['One prearranged group, two coached hours', 2],
-      ['Two prearranged groups                  ', 3]
+      ['No Prearranged Groups                   ', 0],
+      ['One Prearranged Group, One Coached Hour',  1],
+      ['One Prearranged Group, Two Coached Hours', 2],
+      ['Two Prearranged Groups                  ', 3]
     ]
   end
 end
