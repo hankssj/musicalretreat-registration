@@ -49,9 +49,9 @@ Please Keep in Mind:
 	<td style="text-align:center"><b>Prearranged Groups</b></td>
       </tr>
       <tr>
-	<td><%= form.select :choosed_assigned_ensembles, MmrChamber.ensemble_options, {}, { class: 'ensembles_select' } %></td>
+	<td style="align:center"><%= form.select :choosed_assigned_ensembles, MmrChamber.ensemble_options, {}, { class: 'ensembles_select' } %></td>
 	<td width="20"></td>
-	<td><%= form.select :choosed_prearranged_ensembles, PrearrangedChamber.ensemble_options, {}, { class: 'ensembles_select' } %></td>
+	<td style="align:center"><%= form.select :choosed_prearranged_ensembles, PrearrangedChamber.ensemble_options, {}, { class: 'ensembles_select' } %></td>
       </tr>
     </table>
   </tr>
