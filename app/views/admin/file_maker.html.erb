@@ -7,5 +7,11 @@
       <td class="bordered">Download Registrations file<%= button_to "GO", admin_registrations_path(:txt), method: :get %></td>
     </tr>
   </table>
+
+  Next download
+  <ul>
+    <li>Registrations, last download was <%= Registration.last_download %> and there are <%= Registration.num_records_to_download %> records.</li>
+    <li>Payments, last download was <%= Payment.last_download %> and there are <%= Payment.num_records_to_download %> records.</li>
+  </ul>
 </div>
 

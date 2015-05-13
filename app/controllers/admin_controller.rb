@@ -165,7 +165,7 @@ class AdminController < ApplicationController
       test_emails = ["hanks.steve@gmail.com"]
       rr = Registration.where(year: Year.this_year).select{|r| test_emails.include?(r.email)}
     else
-      rr = Registration.where(year: Year.this_year).reject{|r| r.has_complete_eval}.reject{|r|r.test}
+      rr = Registration.where(year: Year.this_year).reject{|r| r.has_complete_eval}.reject{|r|r.test}.reject{|r|!r.instrument_id}
     end
     rr.each{|r| RegistrationMailer.eval_reminder(r)}
     @emails = rr.map{|r|r.email}

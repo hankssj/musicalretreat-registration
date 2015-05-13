@@ -123,5 +123,15 @@ class Payment < ActiveRecord::Base
       update_download_time
       output
     end
+
+      ##   To decorate the download page
+    def self.last_download
+      downloads = Download.where(download_type: "payments").order(downloaded_at: :desc)
+      downloads.empty? ? Date.new(2000,1,1).to_time : downloads.first.downloaded_at
+    end
+
+    def self.num_records_to_download
+      records_to_send.length
+    end
   end
 end
