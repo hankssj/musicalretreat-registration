@@ -171,13 +171,6 @@ class AdminController < ApplicationController
     @emails = rr.map{|r|r.email}
   end
 
-  def send_eval_reminders
-    rr = Registration.where(year: Year.this_year).reject{|r| r.has_complete_eval}
-    rr = rr.select{|r|r.email == "groupw@rocketwire.net" || r.email == "hanks.steve@gmail.com"}
-    rr.each{|r| RegistrationMailer.eval_reminder(r)}
-    @emails = rr.map{|r|r.email}
-  end
-
   #  Testing outbound email.  Delete me eventually.
   def send_test_email
     @email = "hanks@pobox.com"
