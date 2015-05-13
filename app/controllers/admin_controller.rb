@@ -110,6 +110,11 @@ class AdminController < ApplicationController
   ## Filemaker
 
   def file_maker
+    @registration_last_download = Registration.last_download
+    @registration_num_records_to_download = Registration.num_records_to_download
+    @payment_last_download = Payment.last_download
+    @payment_num_records_to_download = Payment.num_records_to_download
+
   end
   
   #######################################
