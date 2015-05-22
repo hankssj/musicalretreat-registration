@@ -17,7 +17,7 @@
   </td>
   <td class="reg-list-line-summary-cell">
     <% if !registration_line_summary.participant %>
-    <span class="reg-list-row-button">N/A</span>
+    <span class="reg-list-row-button"><b>N/A</b></span>
     <% elsif registration_line_summary.ensemble_primary %>
     <%= link_to "EVAL", admin_report_path(registration_line_summary), {class: 'reg-list-row-button'} %>
     <% else %>
