@@ -14,8 +14,7 @@
   <%= render partial: "reg_index_button", 
              locals:  {text: "View Evaluation", 
                        options: {controller: "admin/reports", action: "show", id: @registration.id}, 
-                       html_options: {:method => :get} %>
-  <td/>
+                       html_options: {:method => :get}} %>
 </tr>
 <% end %>
 
