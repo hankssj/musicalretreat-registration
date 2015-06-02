@@ -1,22 +1,46 @@
-<% if @logged_in %>
-   <tr>
-    <%= render :partial => "reg_index_button", :locals => {:text => "Change Password", :options => {:action => :change_password}, :html_options => {}} %>
-   </tr>
-   <tr>
-    <%= render :partial => "reg_index_button", :locals => {:text => "Log Out", :options => {:action => :logout}, :html_options => {} %>
-   </tr>
-<% else %>
+<% if @logged_in && @registered %>
 
-<% end %>
-</tr>
 <tr>
+  <%= render :partial => "reg_index_button", :locals => {:text => "View Registration", :options => {:action => :show}, :html_options => {}} %>
+  <% if @has_balance %>
+     <%= render :partial => "reg_index_button", :locals => {:text => "Pay Online", :options => {:action => :payment}, :html_options => {}} %>
+  <% else %>
+     <%= render :partial => "reg_index_button_filler", :locals => {:text => "You Are Fully Paid"} %>
+  <% end %>
+</tr>
+
+<tr>
+<% unless @needs_evals %>
+<tr>
+   <%= render :partial => "reg_index_button",
+     locals: {text:         "View Evaluation",
+              options:      {controller: "admin/reports", action: "show", id: @registration.id}, 
+              html_options: {:method => :get}} %>
+   <td/>
+<tr>
+<% end %>
+
+<tr>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Change Password", :options => {:action => :change_password}, :html_options => {}} %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Log Out", :options => {:action => :logout}, :html_options => {} %>
+</tr>
+
+<% elsif @logged_in %>
+
+<tr>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Change Password", :options => {:action => :change_password}, :html_options => {}} %>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Log Out", :options => {:action => :logout}, :html_options => {} %>
+</tr>
+
+<% else %>
+<tr>
+  <%= render :partial => "reg_index_button", :locals => {:text => "Log Out", :options => {:action => :logout}, :html_options => {} %>
   <%= render :partial => "reg_index_button", :locals => {:text => "Forgot Password -- Send New Password By Email", 
                                                          :options => {:action => :new_password}, :html_options => {} %>
 </tr>
+
 <tr>
   <%= render :partial => "reg_index_button", :locals => {:text => "Create New Account", :options => {:action => :new_password}, :html_options => {}} %>
-</tr>
-<tr>
   <%= render :partial => "reg_index_button_filler" %>
 </tr>
 
