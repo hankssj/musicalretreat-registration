@@ -262,6 +262,6 @@ class EnsemblePrimary < ActiveRecord::Base
      text_for_morning_ensemble_choice, text_for_morning_ensemble_part,
      piano_want_sing_in_chorus, piano_want_percussion_in_band,
      text_for_chamber_ensemble_choice, text_for_chamber_ensemble_choice,
-     comments
+     comments]
    end
 end
