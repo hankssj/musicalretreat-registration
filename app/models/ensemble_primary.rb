@@ -258,10 +258,10 @@ class EnsemblePrimary < ActiveRecord::Base
     
   def file_line
     [registration.first_name, registration.last_name, email, 
-     primary_instrument.display_name, (instruments - primary_instrument).map{|i|i.display_name}.sort.join(","),
+     primary_instrument.display_name, (instruments.to_a - [primary_instrument]).map{|i|i.display_name}.sort.join(","),
      text_for_morning_ensemble_choice, text_for_morning_ensemble_part,
      piano_want_sing_in_chorus, piano_want_percussion_in_band,
      text_for_chamber_ensemble_choice, text_for_chamber_ensemble_choice,
-     comments]
+     comments].join("\t")
    end
 end
