@@ -248,4 +248,20 @@ class EnsemblePrimary < ActiveRecord::Base
     s += "Would like to talk to a faculty member about playing percussion in Symphonic Band." if want_percussion_in_band
     s
   end
+
+  #####################################
+  #  TSV text output
+
+  def self.file_header_line
+    "first_name\tlast_name\temail\tprimary_instrument\tother_instrument\tmorning_ensemble_preference\tmorning_ensemble_part\tpiano_want_sing_in_chorus\tpiano_want_percussion_in_band\tafternoon_ensemble_preference\tcomments"
+  end
+    
+  def file_line
+    [registration.first_name, registration.last_name, email, 
+     primary_instrument.display_name, (instruments - primary_instrument).map{|i|i.display_name}.sort.join(","),
+     text_for_morning_ensemble_choice, text_for_morning_ensemble_part,
+     piano_want_sing_in_chorus, piano_want_percussion_in_band,
+     text_for_chamber_ensemble_choice, text_for_chamber_ensemble_choice,
+     comments
+   end
 end
