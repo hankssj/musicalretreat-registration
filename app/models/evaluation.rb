@@ -95,6 +95,8 @@ class Evaluation < ActiveRecord::Base
       return unless (instrument.trumpet? || instrument.horn?)
       return checkbox_text(TRANSPOSITION_TEXT[:trumpet]) if instrument.trumpet?
       return checkbox_text(TRANSPOSITION_TEXT[:horn]) if instrument.horn?
+    when :practicing_how_much
+      radio_button_text(:practicing_how_much)
     when :other_instruments
       checkbox_text(OTHER_INSTRUMENT_TEXT)
     when :jazz
