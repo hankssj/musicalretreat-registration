@@ -253,15 +253,31 @@ class EnsemblePrimary < ActiveRecord::Base
   #  TSV text output
 
   def self.file_header_line
-    "first_name\tlast_name\temail\tprimary_instrument\tother_instrument\tmorning_ensemble_preference\tmorning_ensemble_part\tpiano_want_sing_in_chorus\tpiano_want_percussion_in_band\tafternoon_ensemble_preference\tcomments"
+    "first_name\tlast_name\temail\tprimary_instrument\tother_instrument\tmorning_ensemble_preference\tmorning_ensemble_part\tpiano_want_sing_in_chorus\tpiano_want_percussion_in_band\tafternoon_ensemble_preference\t" + 
+      "elective_1\telective_2\telective_3\telective_4\telective_5\t" + 
+      "comments"
   end
     
   def file_line
     [registration.first_name, registration.last_name, email, 
      primary_instrument.display_name, (instruments.to_a - [primary_instrument]).map{|i|i.display_name}.sort.join(","),
      text_for_morning_ensemble_choice, text_for_morning_ensemble_part,
-     piano_want_sing_in_chorus, piano_want_percussion_in_band,
+     want_sing_in_chorus, want_percussion_in_band,
      text_for_chamber_ensemble_choice, text_for_chamber_ensemble_choice,
-     comments].join("\t")
+     elective_name(0), elective_name(1), elective_name(2), elective_name(3), elective_name(4),
+     comments.gsub("\t", " ").gsub("\n", "").gsub("\r", "")].join("\t")
    end
+
+  def elective_name(n)
+    elective_names = elective_ranks.sort{|r1, r2| r1.rank <=> r2.rank}.map{|r| r.elective.name}
+    elective_names.length > n ? elective_names[n] : ""
+  end
+    
+  def self.dump_file(filename=nil)
+    filename ||= "/home/deploy/Dropbox/SelfEvalDownloads/#{Year.this_year}/main_eval.tsv"
+    File.open(filename, "w") do |outfile|
+      outfile.puts file_header_line
+      all.select(&:complete).reject{|e|e.registration.test}.each{|e| outfile.puts(e.file_line)}
+    end
+  end
 end
