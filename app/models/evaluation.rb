@@ -2,6 +2,10 @@ class Evaluation < ActiveRecord::Base
   belongs_to :ensemble_primary
   belongs_to :instrument
 
+  def active?
+    ensemble_primary && ensemble_primary.registration && ensemble_primary.complete
+  end
+
   def partial_name
     type.underscore
   end
@@ -113,6 +117,31 @@ class InstrumentalEvaluation < Evaluation
 end
 
 class VocalEvaluation < Evaluation
+
+
+  def self.file_header_line
+    "first_name\tlast_name\temail\tphone_number\tvoice\t" +
+      "groups\trequire_audition\tstudy_privately\tstudy_privately_how_long\t" +
+      "practice_how_much\tvocal_overall_ability\tvocal_how_learn\tvocal_most_difficult_piece\t"+
+      "vocal_music_theory\tvocal_music_theory_year\tvocal_voice_class\tvocal_voice_class_year\t" + 
+      "vocal_voice_lessons\tvocal_voice_lessons_year\tvocal_small_ensemble_skills"
+  end
+
+  def file_line
+        [ensemble_primary.registration.first_name, ensemble_primary.registration.last_name, ensemble_primary.email, ensemble_primary.phone_number, instrument.display_name,
+         groups, require_audition, studying_privately, studying_privately_how_long,
+         text_for(:practicing_how_much), radio_button_text(:vocal_overall_ability), radio_button_text(:vocal_how_learn), vocal_most_difficult_piece, 
+         vocal_music_theory, vocal_music_theory_year, vocal_voice_class, vocal_voice_class_year, 
+         vocal_voice_lessons, vocal_voice_lessons_year, radio_button_text(:vocal_small_ensemble_skills)].join("\t")
+  end
+
+  def self.dump_file(filename=nil)
+    filename ||= "/home/deploy/Dropbox/SelfEvalDownloads/#{Year.this_year}/vocal_self_eval.tsv"
+    File.open(filename, "w") do |outfile|
+      outfile.puts file_header_line
+      all.select(&:complete).reject{|e|e.registration.test}.each{|e| outfile.puts(e.file_line)}
+    end
+  end
 end
 
 
