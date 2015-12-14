@@ -7,7 +7,7 @@ To convert to a new year assuming you were just on the host:
 	    so this probably won't amount to anything
   *  Look at the registration dates in reg_dates.rb -- these should stay the same, but who knows?
   *  Advance the year in year.rb
-  *  Look at the early invitees in the registration controller to see if these are really the right people.
+  *  Look at the early invitees in app/controllers/registration_gating.rb to see if these are really the right people.
      These are the people who will be let in prior to the 1st
   *  Note the flags in the registration_controller.  Probably registration and payments are both forced closed.  The logic is:
        *  at the end of a cycle (i.e. June) both are forced closed, and nobody can register or pay
