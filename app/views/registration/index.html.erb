@@ -21,7 +21,7 @@
 </table>
 
 <table id="reg-index-table">
-<% if @status == :premature %>
+<% if @status == :premature && !@can_register%>
 <%= render :partial => "index_premature" %>
 <% elsif !@logged_in %>
 <%= render :partial => "index_not_logged_in" %>
