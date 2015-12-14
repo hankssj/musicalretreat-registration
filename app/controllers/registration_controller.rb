@@ -14,6 +14,7 @@ class RegistrationController < ApplicationController
     @status = registration_system_status
     @can_register = can_register
     @can_pay = can_pay
+    @allow_self_evals = allow_self_evals
 
     # This user's status
     @logged_in = session_user

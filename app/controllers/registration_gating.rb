@@ -6,12 +6,16 @@
 #    -- if the variables are false, the controller checks whether current date < registration date.
 #            if it is (not time yet), the session email is checked against an early test list
 #    -- this is communicated only by the methods can_register  and can_pay
+#
+#    -- for self-evals we don't want that to turn on right in January, so we have ALLOW_EVALS
+#       which is set manually and communicated only by the method allow_evals
 
 module RegistrationGating
 
   FORCE_REGISTRATION_CLOSED = false
  # FORCE_REGISTRATION_CLOSED = true
   FORCE_PAYMENT_CLOSED = false
+  ALLOW_SELF_EVALS = false
 
   EARLY_INVITEES = %w{
       mtnester@seanet.com
@@ -76,6 +80,10 @@ module RegistrationGating
 
   def can_pay
     return !FORCE_PAYMENT_CLOSED
+  end
+
+  def allow_self_evals
+    ALLOW_SELF_EVALS
   end
 end
 
