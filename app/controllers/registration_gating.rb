@@ -69,7 +69,7 @@ module RegistrationGating
   end
 
   def can_register
-    logger.info("Can register, status is #{status} email is #{session_email}, invitees has #{EARLY_INVITEES.length}, flag is #{EARLY_INVITEES.include?(session_email.downcase)}")
+    logger.info("Can register, status is #{status} email is #{session_email}, invitees has #{EARLY_INVITEES.length}, flag is #{session_email && EARLY_INVITEES.include?(session_email.downcase)}")
     return false if status == :closed
     return true if status == :open
     return session_email && EARLY_INVITEES.include?(session_email.downcase)
