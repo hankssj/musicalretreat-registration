@@ -17,40 +17,40 @@ module RegistrationGating
   FORCE_PAYMENT_CLOSED = false
   ALLOW_SELF_EVALS = false
 
-#   EARLY_INVITEES = %w{
-#       mtnester@seanet.com
-#       susanstpleslie@gmail.com
-#       warmsun06@gmail.com
-#       jessicacroysdale@yahoo.com
-#       doug@conicwave.net
-#       jenny2247@hotmail.co.uk
-#       brantallen@earthlink.net
-#       conniebrennand@hotmail.com
-#       donamac2011@gmail.com
-#       genniewinkler@mac.com
-#       gorakr@comcast.net
-#       gpurkhiser@msn.com
-#       groupw@rocketwire.net 
-#       hanks@pobox.com 
-#       hanks.steve@gmail.com
-#       ivoryharp@comcast.net
-#       jessicacroysdale@yahoo.com
-#       june.hiratsuka@comcast.net
-#       ksunmark@yahoo.com
-#       lhpilcher@frontier.com
-#       rbhudson@comcast.net
-#       rkremers@earthlink.net
-#       rm.thompson@comcast.net
-#       rumeimistry@yahoo.com
-#       stkeene@mac.com
-#       szell41534@aol.com
-#       tricia616@msn.com
-#       trptplayer@mac.com
-#       brad@sixteenpenny.net
-#       suecdc@msn.com
-# }
+  EARLY_INVITEES = %w{
+      mtnester@seanet.com
+      susanstpleslie@gmail.com
+      warmsun06@gmail.com
+      jessicacroysdale@yahoo.com
+      doug@conicwave.net
+      jenny2247@hotmail.co.uk
+      brantallen@earthlink.net
+      conniebrennand@hotmail.com
+      donamac2011@gmail.com
+      genniewinkler@mac.com
+      gorakr@comcast.net
+      gpurkhiser@msn.com
+      groupw@rocketwire.net 
+      hanks@pobox.com 
+      hanks.steve@gmail.com
+      ivoryharp@comcast.net
+      jessicacroysdale@yahoo.com
+      june.hiratsuka@comcast.net
+      ksunmark@yahoo.com
+      lhpilcher@frontier.com
+      rbhudson@comcast.net
+      rkremers@earthlink.net
+      rm.thompson@comcast.net
+      rumeimistry@yahoo.com
+      stkeene@mac.com
+      szell41534@aol.com
+      tricia616@msn.com
+      trptplayer@mac.com
+      brad@sixteenpenny.net
+      suecdc@msn.com
+}
 
-  EARLY_INVITEES = ["hanks@pobox.com"]
+ # EARLY_INVITEES = ["hanks@pobox.com"]
 
   def self.early_invitees
     EARLY_INVITEES
