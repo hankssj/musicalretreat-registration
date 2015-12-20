@@ -247,7 +247,7 @@ class AdminController < ApplicationController
 
   def send_early_invitations
     RegistrationGating.early_invitees.each{|email| RegistrationMailer.early_invitation(email)}
-    @sent = early_invitees.size
+    @sent = RegistrationGating.early_invitees.size
   end
 
   def send_self_eval_invitations
