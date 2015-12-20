@@ -27,12 +27,16 @@ Events
 ===========================================================
 Emails we can send, and how to send them.
 
-Configuration is in environment.rb.   Remember this if you change the password for registration-mailer!
+Configuration is in environmenst/$ENV.rb   Remember this if you change the password for registration-mailer!
 
 ->  Controller (registration controller in case of things like payment confirmation, admin controller for bulk mailings) 
 ->  initiates the process with static method calls to RegistrationMailer
 ->     *  the parameters like email addresses, subject are in the registration_mailer class
 ->     *  the templates are in app/views/registration_mailer, and there are two per mail type
+
+0. Sending early registration invitations
+   *  admin/send_early_invitations
+   *  app/controller/registration_gating.rb contains the list of early invitees
 
 1. Sending all registration invitations
      *  The entry point is admin/send_all_invitations
@@ -54,6 +58,7 @@ Configuration is in environment.rb.   Remember this if you change the password f
   NOTE 12/2011 -- Gennie sent a template that does not distinguish between existing and new users.
   So the single template will be reg_invitation, and the others will be retired.
 
+  NOTE 12/2015 -- Now that we're off Bluehost, may not need the rate limiting.
 ============
 
 2.  Payment confirmation -- this is done when Tricia records a payment on the site.
@@ -73,6 +78,6 @@ Configuration is in environment.rb.   Remember this if you change the password f
 Testing the registraiton system
 
 How it works:
-1.  The list of testers is in registraiton_controller in a class variable @@EARLY_INVITEES
+1.  The list of testers is in Registration_gating.early_invitees
 2.  Prior to Jan 1, they need to log in (button on lower right, currently) and the system will recognize them
 3.  Right now the email is sent manually 
