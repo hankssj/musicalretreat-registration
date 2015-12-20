@@ -50,7 +50,7 @@ module RegistrationGating
 #       suecdc@msn.com
 # }
 
-  @@EARLY_INVITEES = ["hanks@pobox.com"]
+  EARLY_INVITEES = ["hanks@pobox.com"]
 
   def self.early_invitees
     EARLY_INVITEES
