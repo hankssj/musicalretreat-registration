@@ -246,7 +246,7 @@ class AdminController < ApplicationController
   #  This is to the early invitees.  Use the list in the registration gating module directly.
 
   def send_early_invitations
-    early_invitees.each{|email| RegistrationMailer.early_invitation(email)}
+    RegistrationGating.early_invitees.each{|email| RegistrationMailer.early_invitation(email)}
     @sent = early_invitees.size
   end
 
