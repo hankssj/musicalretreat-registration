@@ -52,7 +52,7 @@ module RegistrationGating
 
   @@EARLY_INVITEES = ["hanks@pobox.com"]
 
-  def early_invitees
+  def self.early_invitees
     EARLY_INVITEES
   end
 
