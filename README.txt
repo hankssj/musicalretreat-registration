@@ -43,20 +43,14 @@ Configuration is in environmenst/$ENV.rb   Remember this if you change the passw
      *  It keys off a table invitees.  You need either to empty it out, or fill it with your email addresses.  If 
 	it's empty, it will be populated with the emails of all users whose emails have not bounced.
      *  It will not generate any output, but it uses the Event model, so a good idea to delete events first then keep an eye on the events
-     *  The two separate templates are reg_invitation_with_new_password, and reg_invitation_without_new_password
 
      =>  As an initial test, put your email only in the invitees list, and browse to admin/send_all_invitations
-     =>  Since invitees is active record, easiest to do it from the console
-
 
   => there's still some residual ugliness.  Bluehost kills on exceeding 350 emails per hour, so the first
   =>  call failed.  Semi-fixed it by putting a sent field in the invitee record.  Then if it limits out
   =>  the first time you can run it again.  It's possible there's an off-by-one error because the one 
   =>  that causes the error might be listed as sent.  Much better next time to restore the limit, which 
   =>  along with the sent flag should fix everything.
-
-  NOTE 12/2011 -- Gennie sent a template that does not distinguish between existing and new users.
-  So the single template will be reg_invitation, and the others will be retired.
 
   NOTE 12/2015 -- Now that we're off Bluehost, may not need the rate limiting.
 ============
