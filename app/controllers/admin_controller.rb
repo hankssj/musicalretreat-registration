@@ -193,7 +193,7 @@ class AdminController < ApplicationController
   def send_all_invitations
 
     if Invitee.count == 0
-      User.all.reject{|u|u.bounced_at}.each{|u|Invitee.create(:email => u.email)}
+      User.all.reject{|u|u.bounced_at}.reject{|u|u.test}.each{|u|Invitee.create(:email => u.email)}
     end
     
     limit = 10000

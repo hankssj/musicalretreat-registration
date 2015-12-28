@@ -32,7 +32,7 @@ module RegistrationGating
       groupw@rocketwire.net 
       hanks@pobox.com 
       hanks.steve@gmail.com
-      ivoryharp@comcast.net
+      ivoryharp1@gmail.com
       jessicacroysdale@yahoo.com
       june.hiratsuka@comcast.net
       ksunmark@yahoo.com
