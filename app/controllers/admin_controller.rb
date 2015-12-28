@@ -196,7 +196,7 @@ class AdminController < ApplicationController
       User.all.reject{|u|u.bounced_at}.each{|u|Invitee.create(:email => u.email)}
     end
     
-    limit = 100
+    limit = 10000
 
     invitees = Invitee.all.reject{|i| i.sent}
     invitees = invitees[0..limit-1] if invitees.size > limit
