@@ -62,7 +62,7 @@ module RegistrationGating
 
   def registration_system_status
     return :closed if FORCE_REGISTRATION_CLOSED
-    return :open if Time.now > RegDates.registration_opens
+    return :open if Time.now.in_time_zone("Pacific Time (US & Canada)") > RegDates.registration_opens
     return :premature
   end
 
