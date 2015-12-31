@@ -31,7 +31,6 @@ module RegistrationGating
       gpurkhiser@msn.com
       groupw@rocketwire.net 
       hanks@pobox.com 
-      hanks.steve@gmail.com
       ivoryharp1@gmail.com
       jessicacroysdale@yahoo.com
       june.hiratsuka@comcast.net
