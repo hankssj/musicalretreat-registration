@@ -18,7 +18,6 @@ module RegistrationGating
   ALLOW_SELF_EVALS = false
 
   EARLY_INVITEES = %w{
-      susanstpleslie@gmail.com
       warmsun06@gmail.com
       jessicacroysdale@yahoo.com
       doug@conicwave.net
