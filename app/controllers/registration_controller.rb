@@ -57,7 +57,7 @@ class RegistrationController < ApplicationController
     @registration = Registration.new(post_params)
     if Registration.find_by_user_id_and_year(@registration.user_id, @registration.year)
       flash[:notice] = "We already have a registration for #{@registration.user.email}"
-      redirect_to :controller => (admin ? :admin :registration) , :action => :index
+      redirect_to :controller => (admin ? :admin :  :registration) , :action => :index
     elsif @registration.save
       FileMakerContact.setContactID(@registration)
       Event.log("New registration created for #{@registration.user.email}")
