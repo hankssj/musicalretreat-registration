@@ -15,6 +15,7 @@ class RegistrationController < ApplicationController
     @can_register = can_register
     @can_pay = can_pay
     @allow_self_evals = allow_self_evals
+    @suppress_dorm_assignment = suppress_dorm_assignment
 
     # This user's status
     @logged_in = session_user

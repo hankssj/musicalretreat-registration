@@ -16,6 +16,7 @@ module RegistrationGating
  # FORCE_REGISTRATION_CLOSED = true
   FORCE_PAYMENT_CLOSED = false
   ALLOW_SELF_EVALS = false
+  SUPPRESS_DORM_ASSIGNMENT= false
 
   EARLY_INVITEES = %w{
       warmsun06@gmail.com
@@ -84,5 +85,10 @@ module RegistrationGating
   def allow_self_evals
     ALLOW_SELF_EVALS
   end
+
+  def suppress_dorm_assignment
+    SUPPRESS_DORM_ASSIGNMENT
+  end
+
 end
 

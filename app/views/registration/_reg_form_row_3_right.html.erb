@@ -50,7 +50,7 @@
 	      </tr>
 	      <tr><td colspan="3">Share Housing With:</td></tr>
 	      <tr><td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= form.text_field :share_housing_with, :size => 20, :disabled => @disabled  %></td></tr>
-	      <% if @admin_session || !@registration.dorm_assignment.blank? %>
+	      <% if !@suppress_dorm_assignment && (@admin_session || !@registration.dorm_assignment.blank?) %>
 	      <tr><td colspan="3">Dorm Assignment: &nbsp;&nbsp;&nbsp;<%= form.text_field :dorm_assignment, :size => 12, 
 		  :disabled => @disabled || !@admin_session%></td></tr>
 	      <% end %>
