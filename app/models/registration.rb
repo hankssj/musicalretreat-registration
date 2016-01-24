@@ -26,6 +26,11 @@ class Registration < ActiveRecord::Base
     end
   end
 
+  # For console use only
+  def self.this_year
+    self.where('year = ?', Year.this_year).all
+  end
+
   # Testing through creating test users
   def test
     user.test?
@@ -115,6 +120,7 @@ class Registration < ActiveRecord::Base
     new_reg.year = Year.this_year
     new_reg.user_id = user.id
     new_reg.comments = ""
+    new_reg.dorm_assignment = nil
 
     # defaults
     new_reg.firsttime = reg.nil?
