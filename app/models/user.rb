@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
   def self.authenticate(email, password)
     Rails.logger.error("Authenticating #{email} against #{password}")
     Rails.logger.error("Database #{User.connection.current_database} has #{User.all.size} users")
-    User.all.each{|u| Rails.logger.error("Email #{u.email}")
+    User.all.each{|u| Rails.logger.error("Email #{u.email}")}
     password = password.strip
     user = self.find_by_email(email)
     if user
