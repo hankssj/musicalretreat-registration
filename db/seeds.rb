@@ -58,6 +58,8 @@ end
 
 def create_test_registrations
   Instrument.all.each do |instrument|
+    email = "#{instrument.display_name.gsub(' ', '-').downcase}@mmr.org"
+    u = User.find_by_email(email)
     Registration.create!(year: Year.this_year, user_id: u.id, first_name: "Test", 
                          last_name: instrument.display_name, street1: "Any", city: "Any", state: "WA", zip: "98101",
                          home_phone: "2061111111", work_phone: "2061111111", cell_phone: "2061111111",
@@ -81,7 +83,7 @@ def create_electives
                       )
 
   e = Elective.create(
-                      :id -> 2,
+                      :id => 2,
                       :name => "Composition",
                       :instructor => "Roupen Shakarian",
                       :description => "The composition class is a workshop for those who are already working on a piece or would like to have input on their completed work(s). Prior experience and knowledge of intermediate theory is required."
@@ -249,7 +251,7 @@ def create_electives
   link_elective_to_instruments(e, [1,2])
 
   e = Elective.create(
-                      :id 22,
+                      :id => 22,
                       :name => "Music Fundamentals for Singers",
                       :instructor => "Loren Ponten",
                       :description => "Sing in a choir and want to hone your music reading skills? Study with the proven Kodaly Method. Through this introductory workshop, you will develop your musical thinking, and inner hearing through direct experience with the elements of music."
@@ -302,6 +304,6 @@ end
 ############# Adds the reference account, but all other accounts are test accounts, and all registrations are 
 ############# attached to test accounts.
 
-create_reference_user
-create_instruments
-create_electives
+#create_reference_user
+#create_instruments
+#create_electives
