@@ -96,18 +96,9 @@ class User < ActiveRecord::Base
   end
   
   def self.authenticate(email, password)
-    Rails.logger.error("Authenticating #{email} against #{password}")
-    Rails.logger.error("Database #{User.connection.current_database} has #{User.all.size} users")
-    User.all.each{|u| Rails.logger.error("Email #{u.email}")}
     password = password.strip
     user = self.find_by_email(email)
-    if user
-      Rails.logger.error("Found user #{user.id}")
-    else
-      Rails.logger.error("Found no such user")
-    end
     return nil unless user
-    Rails.logger.error("user hashed is #{user.hashed_password} salt is #{user.salt} encrypted is #{encrypted_password(password, user.salt)}")
     return nil unless user.hashed_password == encrypted_password(password, user.salt)
     return user
   end
