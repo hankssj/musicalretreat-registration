@@ -104,21 +104,21 @@ def create_electives
                       )
   link_elective_to_instruments(e, [1,2,3,4,5])
 
-  e = Elective.create(
-                      :id => 5,
-                      :name => "Bowing Techniques",
-                      :instructor => "Cecilia Archuleta",
-                      :description => "A class emphasizing bow control. How to sustain a beautiful sound, on those slow movements.  Learn to play comfortably at the frog and tip of the bow.  Produce the sound you want to hear!"
-                      )
-  link_elective_to_instruments(e, [6,7,8,9])
+  # e = Elective.create(
+  #                     :id => 5,
+  #                     :name => "Bowing Techniques",
+  #                     :instructor => "Cecilia Archuleta",
+  #                     :description => "A class emphasizing bow control. How to sustain a beautiful sound, on those slow movements.  Learn to play comfortably at the frog and tip of the bow.  Produce the sound you want to hear!"
+  #                     )
+  # link_elective_to_instruments(e, [6,7,8,9])
 
-  e = Elective.create(
-                      :id => 6,
-                      :name => "Baroque String Ensemble",
-                      :instructor => "Sandi Schwarz",
-                      :description => "A chance to explore repertoire, style and technique with a true master of baroque performance.  Open to all strings."
-                      )
-  link_elective_to_instruments(e, [6,7,8,9])
+  # e = Elective.create(
+  #                     :id => 6,
+  #                     :name => "Baroque String Ensemble",
+  #                     :instructor => "Sandi Schwarz",
+  #                     :description => "A chance to explore repertoire, style and technique with a true master of baroque performance.  Open to all strings."
+  #                     )
+  # link_elective_to_instruments(e, [6,7,8,9])
 
   e = Elective.create(
                       :id => 7,
@@ -173,7 +173,7 @@ def create_electives
   e = Elective.create(
                       :id => 12,
                       :name => "Jazz Big Band",
-                      :instructor => "Greg Yasinitsky",
+                      :instructor => "Jim Sisko",
                       :description => "The Jazz Big Band features traditional big band instrumentation: saxophones, trumpets, trombones and rhythm section players -- piano, bass and drums. Repertoire is drawn from a mix of unique arrangements of  jazz standards and originals. The band performs at Skit Night."
                       )
   link_elective_to_instruments(e, [17,18,19,20,21,22,24,25,28,34,9])
@@ -181,7 +181,7 @@ def create_electives
   e = Elective.create(
                       :id => 13,
                       :name => "Jazz Improvisation",
-                      :instructor => "Greg Yasinitsky",
+                      :instructor => "Jim Sisko",
                       :description => "Open to instrumentalists and vocalists, this class will cover the basics of improvising: chord progressions, what scales to use with what chords, articulation styles, and how to develop a melody."
                       )
   link_elective_to_instruments(e, [])
@@ -194,21 +194,21 @@ def create_electives
                       )
   link_elective_to_instruments(e, [17,18,19,20,21])
 
-  e = Elective.create(
-                      :id => 15,
-                      :name => "Fiddling",
-                      :instructor => "Carol Ann Wheeler",
-                      :description => "Delve into fiddle styles and techniques with a master fiddler."
-                      )
-  link_elective_to_instruments(e, [6,7])
+  # e = Elective.create(
+  #                     :id => 15,
+  #                     :name => "Fiddling",
+  #                     :instructor => "Carol Ann Wheeler",
+  #                     :description => "Delve into fiddle styles and techniques with a master fiddler."
+  #                     )
+  # link_elective_to_instruments(e, [6,7])
 
-  e = Elective.create(
-                      :id => 16,
-                      :name => "Solo Bach For The String Player",
-                      :instructor => "Meg Brennand",
-                      :description => "Now offered for all strings!  Explore the mystical world of solo Bach. Get the insider's perspective on tempi, articulation, and style that Bach would have expected any accomplished 18th century string player to know. Master class format (performance optional). Prepare a movement to perform from the Bach cello suites, the violin sonatas or partitas; or simply come and observe."
-                      )
-  link_elective_to_instruments(e, [6,7,8,9])
+  # e = Elective.create(
+  #                     :id => 16,
+  #                     :name => "Solo Bach For The String Player",
+  #                     :instructor => "Meg Brennand",
+  #                     :description => "Now offered for all strings!  Explore the mystical world of solo Bach. Get the insider's perspective on tempi, articulation, and style that Bach would have expected any accomplished 18th century string player to know. Master class format (performance optional). Prepare a movement to perform from the Bach cello suites, the violin sonatas or partitas; or simply come and observe."
+  #                     )
+  # link_elective_to_instruments(e, [6,7,8,9])
 
   e = Elective.create(
                       :id => 17,
@@ -218,61 +218,61 @@ def create_electives
                       )
   link_elective_to_instruments(e, [])
 
-  e = Elective.create(
-                      :id => 18,
-                      :name => "Building A Vocal Community",
-                      :instructor => "Margaret Green",
-                      :description => "Participants in this elective will create a community through our singing together. All music will be taught in call and response style (up to four parts) and will include music from African, spiritual, and gospel vocal traditions. Participants may also experiment with playing djembe and other percussion that enhances the singing. No prior singing experience is necessary."
-                      )
-  link_elective_to_instruments(e, [])
+  # e = Elective.create(
+  #                     :id => 18,
+  #                     :name => "Building A Vocal Community",
+  #                     :instructor => "Margaret Green",
+  #                     :description => "Participants in this elective will create a community through our singing together. All music will be taught in call and response style (up to four parts) and will include music from African, spiritual, and gospel vocal traditions. Participants may also experiment with playing djembe and other percussion that enhances the singing. No prior singing experience is necessary."
+  #                     )
+  # link_elective_to_instruments(e, [])
 
-  e = Elective.create(
-                      :id => 19,
-                      :name => "Opera Choruses for Women",
-                      :instructor => "Adam Burdick",
-                      :description => "Explore choruses for women's voices from great English and Italian operas in a supportive, creative learning environment. Learn the stories behind the choruses and their place in each production. Good sight-reading skills required."
-                      )
-  link_elective_to_instruments(e, [1,2])
+  # e = Elective.create(
+  #                     :id => 19,
+  #                     :name => "Opera Choruses for Women",
+  #                     :instructor => "Adam Burdick",
+  #                     :description => "Explore choruses for women's voices from great English and Italian operas in a supportive, creative learning environment. Learn the stories behind the choruses and their place in each production. Good sight-reading skills required."
+  #                     )
+  # link_elective_to_instruments(e, [1,2])
 
-  e = Elective.create(
-                      :id => 20,
-                      :name => "Just for Mens\' Voices",
-                      :instructor => "Jason Anderson",
-                      :description => "Breath, imagination, text/meaning, and body/mind will help guide participants in this vocal elective as we explore music from chant to music of the 21st century. Prior singing experience and a working knowledge of music fundamentals is recommended."
-                      )
-  link_elective_to_instruments(e, [3,4,5])
+  # e = Elective.create(
+  #                     :id => 20,
+  #                     :name => "Just for Mens\' Voices",
+  #                     :instructor => "Jason Anderson",
+  #                     :description => "Breath, imagination, text/meaning, and body/mind will help guide participants in this vocal elective as we explore music from chant to music of the 21st century. Prior singing experience and a working knowledge of music fundamentals is recommended."
+  #                     )
+  # link_elective_to_instruments(e, [3,4,5])
 
-  e = Elective.create(
-                      :id => 21,
-                      :name => "Just for Womens\' Voices",
-                      :instructor => "Lisa Cardwell Ponten",
-                      :description => "Breath, imagination, text/meaning, and body/mind will help guide participants in this vocal elective as we explore music from chant to music of the 21st century. Prior singing experience and a working knowledge of music fundamentals is recommended."
-                      )
-  link_elective_to_instruments(e, [1,2])
+  # e = Elective.create(
+  #                     :id => 21,
+  #                     :name => "Just for Womens\' Voices",
+  #                     :instructor => "Lisa Cardwell Ponten",
+  #                     :description => "Breath, imagination, text/meaning, and body/mind will help guide participants in this vocal elective as we explore music from chant to music of the 21st century. Prior singing experience and a working knowledge of music fundamentals is recommended."
+  #                     )
+  # link_elective_to_instruments(e, [1,2])
 
-  e = Elective.create(
-                      :id => 22,
-                      :name => "Music Fundamentals for Singers",
-                      :instructor => "Loren Ponten",
-                      :description => "Sing in a choir and want to hone your music reading skills? Study with the proven Kodaly Method. Through this introductory workshop, you will develop your musical thinking, and inner hearing through direct experience with the elements of music."
-                      )
-  link_elective_to_instruments(e, [1,2,3,4,5])
+  # e = Elective.create(
+  #                     :id => 22,
+  #                     :name => "Music Fundamentals for Singers",
+  #                     :instructor => "Loren Ponten",
+  #                     :description => "Sing in a choir and want to hone your music reading skills? Study with the proven Kodaly Method. Through this introductory workshop, you will develop your musical thinking, and inner hearing through direct experience with the elements of music."
+  #                     )
+  # link_elective_to_instruments(e, [1,2,3,4,5])
 
-  e = Elective.create(
-                      :id => 23,
-                      :name => "Solfege is Fun!",
-                      :instructor => "Katie Weld",
-                      :description => "Connect solfege to part song singing, mix in some music theory, some more singing, a bit more theory, and much more singing. In this elective you will learn to turn your DO RE MIs into music and perform some good ol' madrigals and/or part songs along the way."
-                      )
-  link_elective_to_instruments(e, [])
+  # e = Elective.create(
+  #                     :id => 23,
+  #                     :name => "Solfege is Fun!",
+  #                     :instructor => "Katie Weld",
+  #                     :description => "Connect solfege to part song singing, mix in some music theory, some more singing, a bit more theory, and much more singing. In this elective you will learn to turn your DO RE MIs into music and perform some good ol' madrigals and/or part songs along the way."
+  #                     )
+  # link_elective_to_instruments(e, [])
 
-  e = Elective.create(
-                      :id => 24,
-                      :name => "Opera Workshop",
-                      :instructor => "Charles Robert Stephens",
-                      :description => "Participants will explore short scenes from selected operas, hone stage presence skills, and learn to work both as a soloist and ensemble cast member. Ability to sing in German, Italian, and/or French required; previous stage experience recommended."
-                      )
-  link_elective_to_instruments(e, [1,2,3,4,5])
+  # e = Elective.create(
+  #                     :id => 24,
+  #                     :name => "Opera Workshop",
+  #                     :instructor => "Charles Robert Stephens",
+  #                     :description => "Participants will explore short scenes from selected operas, hone stage presence skills, and learn to work both as a soloist and ensemble cast member. Ability to sing in German, Italian, and/or French required; previous stage experience recommended."
+  #                     )
+  # link_elective_to_instruments(e, [1,2,3,4,5])
 
   e = Elective.create(
                       :id => 25,

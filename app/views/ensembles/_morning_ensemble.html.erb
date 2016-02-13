@@ -1,3 +1,26 @@
+<% @le = ensemble_primary.registration.instrument.large_ensemble %>
+
+<% if @le == "band" || @le == "band_or_orchestra" %>
+<p>
+<b>2016 Band Repertoire</b>
+<ul>
+<li> Variations on a Korean Folk Song &emdash; John Barnes Chance</li>
+<li> Rest &emdash; Frank Ticheli</li>
+<li> The Ringmaster¹s March &emdash John Mackey</li>
+</ul>
+</p>
+<% end %>
+
+<% if @le == "festival_or_string_orchestra" || @le == "band_or_orchestra" %>
+<p>
+<b>2015 Orchestra Repertoire</b>
+<ul>
+<li> String Orchestra will play Mozart <i>Divertimento in B-flat major, K. 137/125b</i></li>
+<li> Full Orchestra will play <b>WE DON'T KNOW YET</b></li>
+</ul>
+</p>
+<% end %>
+
 <% if ensemble_primary.registration.instrument.large_ensemble == "band_or_orchestra" %>
 
 <table class="eval-table">
@@ -23,14 +46,6 @@
 </table>
 
 <% elsif ensemble_primary.registration.instrument.large_ensemble == "festival_or_string_orchestra" %>
-
-<p>
-<b>2015 Orchestra Repertoire</b>
-<ul>
-<li> String Orchestra will play Mendelssohn, <i>Symphony #12</i>
-<li> Full Orchestra will play Elgar, <i>The Wand of Youth</i>
-</ul>
-</p>
 
 <table class="eval-table">
   <tr><th colspan="3">Ensemble Choice</th></tr>
