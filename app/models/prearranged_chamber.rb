@@ -16,7 +16,7 @@ class PrearrangedChamber < ActiveRecord::Base
     [
       ['No Prearranged Groups                   ', 0],
       ['One Prearranged Group, One Coached Hour',  1],
-      ['One Prearranged Group, Two Coached Hours', 2],
+      #['One Prearranged Group, Two Coached Hours', 2],
       ['Two Prearranged Groups                  ', 3]
     ]
   end
