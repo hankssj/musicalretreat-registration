@@ -183,7 +183,7 @@ class EnsemblePrimary < ActiveRecord::Base
   end
 
   def build_ensemble_primary_elective_ranks
-    Elective.where.not(id: ensemble_primary_elective_ranks.map(&:elective_id)).map{|elective|ensemble_primary_elective_ranks.build(elective: elective)}
+    Elective.where(active: true).where.not(id: ensemble_primary_elective_ranks.map(&:elective_id)).map{|elective|ensemble_primary_elective_ranks.build(elective: elective)}
   end
 
   def secondary_instruments

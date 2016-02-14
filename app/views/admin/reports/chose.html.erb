@@ -14,7 +14,7 @@
         class: 'anchor'
       }) %>
       <%= select('', '',
-        Elective.all.map { |e|
+        Elective.active.map { |e|
           [e.name, elective_index_admin_reports_path(e.id)]
         }, {prompt: 'Elective report'}, {
         class: 'anchor'

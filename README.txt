@@ -16,7 +16,8 @@ To convert to a new year assuming you were just on the host:
        *  at midnight on the 1st, registration should automatically open to everybody
        *  when Tricia calls it closed, force registration closed, but keep payments open
        *  after the payment deadline (June 1??) force payments closed too, and we're reset for next year!
-
+  *  Adjust electives.  The code is in db/seeds.db.  Check the electives that are de-activated.  If anything changed,
+        run create_electives, edit the code in deactivate_electives, then run it.
 
 ===========================================================
 Events
@@ -27,7 +28,7 @@ Events
 ===========================================================
 Emails we can send, and how to send them.
 
-Configuration is in environmenst/$ENV.rb   Remember this if you change the password for registration-mailer!
+Configuration is in environments/$ENV.rb   Remember this if you change the password for registration-mailer!
 
 ->  Controller (registration controller in case of things like payment confirmation, admin controller for bulk mailings) 
 ->  initiates the process with static method calls to RegistrationMailer
