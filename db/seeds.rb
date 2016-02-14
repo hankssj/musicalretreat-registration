@@ -339,7 +339,7 @@ def create_electives
   ###################  New for 2016 ########################
 
   e = Elective.create(
-                      :id => 27,
+                      :id => 28,
                       :name => "Bach and (Adult) Beverages", 
                       :instructor => "Katie Weld",
                       :description => "Back by popular demand.songs for both sides of your brain! Explore drinking songs in English and other languages (when your tongue is appropriately unfettered at Fermata Bar) and then dive head first into Johann Sebastian Bach's demented and glorious music. What's a little fugue among friends? Prior singing experience and a working knowledge of music fundamentals is helpful."
@@ -348,7 +348,7 @@ def create_electives
 
   #####
   e = Elective.create(
-                      :id => 28,
+                      :id => 29,
                       :name => "Great American Songbook: Women's Voices", 
                       :instructor => "Margaret Green",
                       :description => "Rekindle your love of songs from the Great American Songbook or dive into a genre of music that you haven't yet experienced. We will experience the music of George and Ira Gershwin, Cole Porter, Rodgers and Hart, Irving Berlin, Jerome Kern, and many other prolific composers.  This elective will involve listening, lively discussion, singing, and performance.  While we will explore these great composers from this time in history, we will also look at some of the distinctive voices that made the music come to life. Previous singing experience and good sight-reading skills recommended."
@@ -357,7 +357,7 @@ def create_electives
 
   #####
     e = Elective.create(
-                        :id => 28,
+                        :id => 30,
                         :name => "Great American Songbook: Men's Voices", 
                         :instructor => "Jason Anderson",
                         :description => "Rekindle your love of songs from the Great American Songbook or dive into a genre of music that you haven't yet experienced. We will experience the music of George and Ira Gershwin, Cole Porter, Rodgers and Hart, Irving Berlin, Jerome Kern, and many other prolific composers.  This elective will involve listening, lively discussion, singing, and performance.  While we will explore these great composers from this time in history, we will also look at some of the distinctive voices that made the music come to life. Previous singing experience and good sight-reading skills recommended."
@@ -366,12 +366,12 @@ def create_electives
 
   #####
   e = Elective.create(
-                      :id => 29, 
+                      :id => 31, 
                       :name => "I Hate to Read Music, But I Love to Sing!",
                       :instructor => "Lisa Cardwell Ponten", 
                       :description => "Are you intimidated by sight-reading? Here is a class for you! We'll work on various strategies for looking at music for the first time and making sense out it. Even if you feel you are a beginner, this can help you get to the next level. This will be a 100% supportive and fun learning environment! Instrumentalists are welcome; please know participants will be using their voices a great deal."
                       )
-  link_elective_to_instruments(e, [1,2,3,4,5]
+  link_elective_to_instruments(e, [1,2,3,4,5])
 
 end
 
@@ -379,7 +379,7 @@ end
 ## This is year-specific controlling of electives.  Should be moved to a config file!
 
 def deactivate_electives
-  [5, 6, 15, 16, 18, 19, 20, 21, 22, 23, 24].each{|n| Elective.find(n).active = false}
+  [5, 6, 15, 16, 18, 19, 20, 21, 22, 23, 24].each{|n| e = Elective.find(n); e.active = false; e.save!}
 end
 
 ############# Assumes all tables and nothing in them.  Affects only Instrument, Elective and their links.
