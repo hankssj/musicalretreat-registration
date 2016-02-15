@@ -285,7 +285,7 @@ def create_electives
   #####
   e = Elective.create(
                       :id => 22,
-                      :name => "Music Fundamentals for Singers",
+                      :name => "Musicianship for Singers",
                       :instructor => "Loren Ponten",
                       :description => "Are you overwhelmed by what you see in a choral or vocal score? Do you self-select out of MMR electives because you think your sight-reading or music fundamentals skills are subpar? Do you always learn music by hearing it first? This elective is for you! Through this introductory level elective using the tried and tested Kodaly Method, participants will develop critical musical thinking and reading skills, and cultivate inner hearing through direct experience with the fundamentals of music."
                       )
@@ -314,7 +314,7 @@ def create_electives
                       :id => 25,
                       :name => "Rock Orchestra for Strings",
                       :instructor => "Adam Burdick",
-                      :description => "From the earliest days of rock and roll, creative producers explored ways to add a touch of class to rock and pop arrangements, branching beyond the basic lineup with the additions of strings and other orchestral instruments. Come explore a variety of styles, from Nashville to New York and Los Angeles to London. Note: Area coordinators will work together to assign participants to this elective as instrumentation and space allow."
+                      :description => "From the earliest days of rock and roll, creative producers explored ways to add a touch of class to rock and pop arrangements, branching beyond the basic lineup with the additions of strings and other orchestral instruments. Come explore a variety of styles, from Nashville to New York and Los Angeles to London. Note: area coordinators will work together to assign participants to this elective as instrumentation and space allow."
                       )
   link_elective_to_instruments(e, [6,7,8,9])
 
@@ -379,7 +379,7 @@ end
 ## This is year-specific controlling of electives.  Should be moved to a config file!
 
 def deactivate_electives
-  [5, 6, 15, 16, 18, 19, 20, 21, 22, 23, 24].each{|n| e = Elective.find(n); e.active = false; e.save!}
+  [5, 6, 15, 16, 18, 19, 20, 21, 23, 24].each{|n| e = Elective.find(n); e.active = false; e.save!}
 end
 
 ############# Assumes all tables and nothing in them.  Affects only Instrument, Elective and their links.
