@@ -4,19 +4,26 @@
 <p>
 <b>2016 Band Repertoire</b>
 <ul>
-<li> Variations on a Korean Folk Song &mdash; John Barnes Chance</li>
-<li> Rest &mdash; Frank Ticheli</li>
-<li> The Ringmaster¹s March &mdash; John Mackey</li>
+<li> John Barnes Chancs, <i>Variations on a Korean Folk Song</i></li>
+<li> Frank Ticheli, <i>Rest</i></li>
+<li> John Mackey, <i>The Ringmaster¹s March</i></li>
+</ul>
+<% end %>
+</p>
+
+<% if @le == "festival_or_string_orchestra" %>
+<p>
+<b>2015 String Orchestra Repertoire</b>
+<ul>
+<li> Mozart, <i>Divertimento in B-flat major, K. 137/125b</i></li>
 </ul>
 </p>
 <% end %>
 
 <% if @le == "festival_or_string_orchestra" || @le == "band_or_orchestra" %>
-<p>
-<b>2015 Orchestra Repertoire</b>
-<ul>
-<% if @le == "festival_or_string_orchestra" %> <li> String Orchestra will play Mozart <i>Divertimento in B-flat major, K. 137/125b</i></li> <% end %>
-<li> Full Orchestra will play Dvorak <i>Festival March</i> and Elgar <i>Three Bavarian Dances</i>
+<b>2015 Festival Orchestra Repertoire</b>
+<li> Dvorak,  <i>Festival March</i></li>
+<li> Elgar <i>Three Bavarian Dances</i></li>
 </ul>
 </p>
 <% end %>
