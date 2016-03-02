@@ -12,7 +12,12 @@
     <td class="reg-form-column">
 
 <p>
-In this section you will choose and rank up to 5 electives.  This is a ranking
+In this section you will choose and rank at least three and up to five electives.  You must
+choose at least three electives in case one or more is not available at a time compatible with
+your schedule.
+</p>
+<p>
+This is a ranking
 for electives only.  Your chamber selections will be prioritized higher than electives
 unless you tell us otherwise (use the comments box on the Summary page to do so).
 </p>
@@ -70,7 +75,7 @@ elective and supply an Instrument for all of your chosen electives that have a w
     <% end %>
   <% end %>
     </ul>
-    <%= submit_tag 'I am finished selecting; go to next screen' %>
+    <%= submit_tag 'I am finished selecting; go to next screen', disabled: @ensemble_primary.ensemble_primary_elective_ranks.length >= 3 %>
   </div>
   <div id='info-box' class='indented-top hidden'>
     <div class='name reg-form-section-title'></div>

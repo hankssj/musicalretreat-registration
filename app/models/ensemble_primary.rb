@@ -21,7 +21,7 @@ class EnsemblePrimary < ActiveRecord::Base
   if: lambda{|e| e.step === :afternoon_ensembles_and_electives }
 
   validates :ensemble_primary_elective_ranks,
-  length: { within: 1..5, message: 'You have to choose at least one elective' },
+  length: { within: 3..5, message: 'You have to choose at least three electives' },
   if: lambda{|e| e.step === :chamber_elective }
       
   accepts_nested_attributes_for :mmr_chambers
