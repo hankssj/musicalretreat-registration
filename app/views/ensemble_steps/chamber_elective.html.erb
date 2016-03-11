@@ -81,7 +81,7 @@ electives and supply an instrument or voice for all of your chosen electives tha
     <% end %>
   <% end %>
     </ul>
-    <%= submit_tag 'I am finished selecting; go to next screen', id: submitbutton, disabled: @ensemble_primary.ensemble_primary_elective_ranks.length >= 3 %>
+    <%= submit_tag 'I am finished selecting; go to next screen', id: 'submitbutton', disabled: @ensemble_primary.ensemble_primary_elective_ranks.length >= 3 %>
   </div>
   <div id='info-box' class='indented-top hidden'>
     <div class='name reg-form-section-title'></div>
