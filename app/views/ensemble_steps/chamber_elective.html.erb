@@ -1,5 +1,7 @@
 <%= javascript_tag do %>
-  alert("My example alert box.");
+$(window).unload(function() {
+  $.rails.enableFormElements($($.rails.formSubmitSelector));
+});
 <% end %>
 
 <div id="main">
