@@ -25,6 +25,15 @@ class RegistrationMailer < ActionMailer::Base
     Event.log("Sent invitation email to #{user.id}")
   end
 
+  def self_eval_reminder(user)
+    @first_name = user.first_name
+    @year = Year.this_year
+    mail(:from => "online-registration@musicalretreat.org", 
+         :to => user.email, 
+         :subject=> "REMINDER: Fill out your MMR #{Year.this_year} Ensemble Selection and Self Evaluation").deliver!
+    Event.log("Sent invitation email to #{user.id}")
+  end
+
   def early_invitation(email)
     mail(:to => email, :subject => "Please register early and test the registration system").deliver!
   end

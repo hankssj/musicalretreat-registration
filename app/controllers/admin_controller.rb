@@ -257,6 +257,12 @@ class AdminController < ApplicationController
     @sent = users.map(&:email)
   end
 
+  def send_self_eval_reminders
+    users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
+    users.each{|u| RegistrationMailer.self_eval_invitation(u)}
+    @sent = users.map(&:email)
+  end
+
   ####################################################################
   ## Drop Registration and Payment records, which are then picked up 
 
