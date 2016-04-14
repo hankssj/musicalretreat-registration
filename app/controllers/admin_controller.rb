@@ -259,7 +259,7 @@ class AdminController < ApplicationController
 
   def send_self_eval_reminders
     users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
-    users.each{|u| RegistrationMailer.self_eval_invitation(u)}
+    users.each{|u| RegistrationMailer.self_eval_reminder(u)}
     @sent = users.map(&:email)
   end
 
