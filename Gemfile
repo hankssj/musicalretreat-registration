@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'figaro'
+
 gem 'activerecord-session_store'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
