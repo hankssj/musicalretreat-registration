@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 
   before_filter :authorize_admin, 
   :only => [ :index, :new_user, :reset_password, :view_registration, :edit_registration, :list_registrations,
-             :reg_invitation, :send_all_invitations, :send_early_invitations, :send_balance_reminders, :send_eval_reminders,
+             :reg_invitation, :send_all_invitations, :send_early_invitations, :send_balance_reminders, :send_self_eval_reminders,
              :show_events, :delete_events, :list_scholarships, :list_online_payments ]
 
   before_filter :authorize_registrar, 
@@ -164,18 +164,6 @@ class AdminController < ApplicationController
     @emails = rr.map{|r|r.email}
   end
 
-  def send_eval_reminders(testing=false)
-    rr = []
-    if testing
-      test_emails = ["hanks.steve@gmail.com"]
-      rr = Registration.where(year: Year.this_year).select{|r| test_emails.include?(r.email)}
-    else
-      rr = Registration.where(year: Year.this_year).reject{|r| r.has_complete_eval}.reject{|r|r.test}.reject{|r|!r.instrument_id}
-    end
-    rr.each{|r| RegistrationMailer.eval_reminder(r)}
-    @emails = rr.map{|r|r.email}
-  end
-
   #  Testing outbound email.  Delete me eventually.
   def send_test_email
     @email = "hanks@pobox.com"
@@ -259,8 +247,7 @@ class AdminController < ApplicationController
   end
 
   def send_self_eval_reminders
-    #users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
-    users = [User.find(3)]
+    users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
     users.each{|u| RegistrationMailer.self_eval_reminder(u)}
     @sent = users.map(&:email)
   end
