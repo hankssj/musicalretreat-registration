@@ -35,7 +35,7 @@ RegistrationDevelopment::Application.configure do
   ActionMailer::Base.raise_delivery_errors = true
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :address => ENV["smtp_endpoint"]
+    :address => ENV["smtp_endpoint"],
     :port => ENV["smtp_port"].to_i,
     :domain => "mmr-registration.org",
     :authentication => :login,
