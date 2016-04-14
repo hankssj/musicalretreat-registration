@@ -36,7 +36,7 @@ RegistrationDevelopment::Application.configure do
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :address => ENV["smtp_endpoint"]
-    :port => ENV["smtp_port"],
+    :port => ENV["smtp_port"].to_i,
     :domain => "mmr-registration.org",
     :authentication => :login,
     :enable_starttls_auto => true,
