@@ -251,6 +251,7 @@ class AdminController < ApplicationController
   end
 
   # Send to all users that have current registration and are a participant, and do not have a complete eval already
+
   def send_self_eval_invitations
     users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
     users.each{|u| RegistrationMailer.self_eval_invitation(u)}
