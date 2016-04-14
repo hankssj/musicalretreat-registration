@@ -5,7 +5,7 @@ class RegistrationMailer < ActionMailer::Base
           :cc => "online-registration@musicalretreat.org"
 
   def test(email)
-    mail(:to => email, :subject => "New Message, just checking this peram").deliver!
+    mail(:from => "online-registration@musicalretreat.org", :to => email, :subject => "New Message, just checking this peram").deliver!
   end
 
   # Bulk email inviting to register
