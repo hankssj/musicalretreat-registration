@@ -76,3 +76,8 @@ How it works:
 1.  The list of testers is in Registration_gating.early_invitees
 2.  Prior to Jan 1, they need to log in (button on lower right, currently) and the system will recognize them
 3.  Right now the email is sent manually 
+
+===========================================================
+Sending mail via AWS SES
+
+1. 

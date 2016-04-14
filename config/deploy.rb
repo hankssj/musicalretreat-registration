@@ -33,7 +33,7 @@ set :keep_releases, 5
 
 after "deploy", "deploy:cleanup"
 after "deploy:migrations", "deploy:cleanup"
-after "deploy:finalize_update", "deploy:symlink_configs" #, "deploy:symlink_custom"
+after "deploy:finalize_update", "deploy:symlink_configs", "deploy:symlink_custom"
 
 namespace :deploy do
 
@@ -51,6 +51,7 @@ namespace :deploy do
 
   desc "Custom Symlinks"
   task :symlink_custom, :roles => [:app] do
+    run "ln -nfs #{deploy_to}/#{shared_dir}/config/application.yml #{release_path}/config/application.yml"
   end
 
 end
