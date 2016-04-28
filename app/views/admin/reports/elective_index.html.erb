@@ -19,7 +19,7 @@
   </tr>
 </table>
 
-<% @ensemble_primaries.completed.each do |ensemble_primary| %>
+<% @ensemble_primaries.each do |ensemble_primary| %>
   <div style="border:5px solid black; margin: 10px;">
   <%= render template: 'admin/reports/show', locals: { ensemble_primary: ensemble_primary, registration: ensemble_primary.registration } %>
   </div>
