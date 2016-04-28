@@ -23,7 +23,7 @@ class Admin::ReportsController < ApplicationController
 
   def elective_index
     @elective = Elective.find(params[:elective_id])
-    @ensemble_primaries = @elective.ensemble_primaries.completed.select{|e|e.year == Year.this_year}
+    @ensemble_primaries = @elective.ensemble_primaries.select{|e|e.year == Year.this_year && e.complete}
     render layout: "reports"
   end
 

@@ -12,6 +12,10 @@ class PrearrangedChamber < ActiveRecord::Base
     ensemble_primary && ensemble_primary.registration && ensemble_primary.complete
   end
 
+  def year
+    ensemble_primary.year
+  end
+
   def self.ensemble_options
     [
       ['No Prearranged Groups                   ', 0],
