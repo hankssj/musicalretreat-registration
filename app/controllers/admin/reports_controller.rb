@@ -23,12 +23,19 @@ class Admin::ReportsController < ApplicationController
 
   def elective_index
     @elective = Elective.find(params[:elective_id])
-    @ensemble_primaries = @elective.ensemble_primaries.select{|e|e.year == Year.this_year && e.complete}
+    @ensemble_primaries = @elective.ensemble_primaries.all.select{|e|e.year == Year.this_year && e.complete}
     render layout: "reports"
   end
 
+#   def prearranged_index
+# P    @prearranged_chambers = PrearrangedChamber.where(year: Year.this_year).joins(:ensemble_primary).order('prearranged_chambers.i_am_contact desc').where(ensemble_primaries: {complete: true})
+#     render layout: "reports"
+#   end
+
   def prearranged_index
-    @prearranged_chambers = PrearrangedChamber.where(year: Year.this_year).joins(:ensemble_primary).order('prearranged_chambers.i_am_contact desc').where(ensemble_primaries: {complete: true})
+    @prearranged_chambers = PrearrangedChamber.all.select{|p| p.year == Year.this_year && p.ensemble_primary.complete}
+    @prearranged_chambers = @prearranged_chambers.partition{|p| p.i_am_contact}.flatten
     render layout: "reports"
   end
+
 end
