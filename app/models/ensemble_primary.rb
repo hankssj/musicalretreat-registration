@@ -41,6 +41,10 @@ class EnsemblePrimary < ActiveRecord::Base
     wrap(comments)
   end
 
+  def year
+    registration.year
+  end
+
   def elective_ranks
     ensemble_primary_elective_ranks
   end
