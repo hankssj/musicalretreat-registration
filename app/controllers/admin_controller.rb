@@ -248,6 +248,7 @@ class AdminController < ApplicationController
     @sent = users.map(&:email)
   end
 
+## TODO:  get rid of print statements
   def send_self_eval_reminders
     #users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
     users = [User.find(3), User.new(email: "foo@bar.com")]
@@ -258,8 +259,10 @@ class AdminController < ApplicationController
       else
         begin
           RegistrationMailer.self_eval_reminder(u)
+          puts("Succeed on #{u.email}"
           @sent << u.email
         rescue => e
+          puts("Failed on #{u.email}"
           Rails.logger.error("Send eval throws #{e}, skipping #{u.email}")
         end
       end
