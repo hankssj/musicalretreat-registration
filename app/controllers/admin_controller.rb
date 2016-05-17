@@ -240,6 +240,8 @@ class AdminController < ApplicationController
 
   # Send to all users that have current registration and are a participant, and do not have a complete eval already
 
+  ## TODO:  looks like a bounce throws an exception.  Need to harden off all of these send methods.
+
   def send_self_eval_invitations
     users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
     users.each{|u| RegistrationMailer.self_eval_invitation(u)}
@@ -247,9 +249,21 @@ class AdminController < ApplicationController
   end
 
   def send_self_eval_reminders
-    users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
-    users.each{|u| RegistrationMailer.self_eval_reminder(u)}
-    @sent = users.map(&:email)
+    #users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
+    users = [User.find(3), User.new(email: "foo@bar.com")]
+    @sent = []
+    users.each do |u| 
+      if u.bounced_at 
+        Rails.logger.error("Found bounced email #{u.email} in sending self eval_reminder")
+      else
+        begin
+          RegistrationMailer.self_eval_reminder(u)
+          @sent += u.email
+        rescue => e
+          Rails.logger.error("Send eval throws #{e}, skipping #{u.email}")
+        end
+      end
+    end
   end
 
   ####################################################################
