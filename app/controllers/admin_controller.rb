@@ -258,7 +258,7 @@ class AdminController < ApplicationController
       else
         begin
           RegistrationMailer.self_eval_reminder(u)
-          @sent += u.email
+          @sent << u.email
         rescue => e
           Rails.logger.error("Send eval throws #{e}, skipping #{u.email}")
         end
