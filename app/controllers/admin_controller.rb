@@ -259,10 +259,10 @@ class AdminController < ApplicationController
       else
         begin
           RegistrationMailer.self_eval_reminder(u)
-          puts("Succeed on #{u.email}"
+          puts("Succeed on #{u.email}")
           @sent << u.email
         rescue => e
-          puts("Failed on #{u.email}"
+          puts("Failed on #{u.email}")
           Rails.logger.error("Send eval throws #{e}, skipping #{u.email}")
         end
       end
