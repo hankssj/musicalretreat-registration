@@ -156,12 +156,24 @@ class AdminController < ApplicationController
   #  Balance reminder (sent one week prior to June 1 payment deadline)
 
   def send_balance_reminders
-    #test_emails = ["hanks.steve@gmail.com"]
-    test_emails = nil
+    test_emails = ["hanks@pobox.com"]
+    #test_emails = nil
     rr = Registration.where(year: Year.this_year).select{|r|r.balance > 0}
     rr = rr.select{|r|test_emails.include?(r.email)} if test_emails
-    rr.each{|r| RegistrationMailer.balance_reminder(r)}
-    @emails = rr.map{|r|r.email}
+    rr.each do |r| 
+      u = r.user
+      if u.bounced_at
+        puts("Found bounced email #{u.email} in sending balance reminder")
+      else
+        begin
+          RegistrationMailer.balance_reminder(r)
+          puts("Succeeded on #{u.email}")
+        rescue => e
+          puts("Failed on #{u.email} due to #{e}")
+          Rails.logger.error("Send balance throws #{e}, skipping #{u.email}")
+        end
+      end
+    end
   end
 
   #  Testing outbound email.  Delete me eventually.
