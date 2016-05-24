@@ -156,8 +156,8 @@ class AdminController < ApplicationController
   #  Balance reminder (sent one week prior to June 1 payment deadline)
 
   def send_balance_reminders
-    test_emails = ["hanks@pobox.com"]
-    #test_emails = nil
+    #test_emails = ["hanks@pobox.com"]
+    test_emails = nil
     rr = Registration.where(year: Year.this_year).select{|r|r.balance > 0}
     rr = rr.select{|r|test_emails.include?(r.email)} if test_emails
     rr.each do |r| 
