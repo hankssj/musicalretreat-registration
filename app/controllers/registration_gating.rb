@@ -60,12 +60,10 @@ module RegistrationGating
   #   Open => allow everything
   #   Closed => disable new registrations and edit registration, but allow everything else
 
-# Remember to change this back!
   def registration_system_status
-    #   return :closed if FORCE_REGISTRATION_CLOSED
-    #   return :open if Time.now.in_time_zone("Pacific Time (US & Canada)") > RegDates.registration_opens
-    #   return :premature
-    return :open
+    return :closed if FORCE_REGISTRATION_CLOSED
+    return :open if Time.now.in_time_zone("Pacific Time (US & Canada)") > RegDates.registration_opens
+    return :premature
   end
 
   def session_email
