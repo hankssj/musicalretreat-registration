@@ -4,7 +4,8 @@ class AdminController < ApplicationController
 
   before_filter :authorize_admin, 
   :only => [ :index, :new_user, :reset_password, :view_registration, :edit_registration, :list_registrations,
-             :reg_invitation, :send_all_invitations, :send_early_invitations, :send_balance_reminders, :send_self_eval_reminders,
+             :reg_invitation, :send_all_invitations, :send_early_invitations, :send_balance_reminders, 
+             :send_self_eval_reminders, :send_registration_summary,
              :show_events, :delete_events, :list_scholarships, :list_online_payments ]
 
   before_filter :authorize_registrar, 
@@ -175,6 +176,33 @@ class AdminController < ApplicationController
       end
     end
   end
+
+#######################################################
+#  Sent around July 1 to all campers -- has dorm assigment, balance reminder,
+#  other instructions
+
+  def send_registration_summary
+    test_emails = ["hanks@pobox.com"]
+    #test_emails = nil
+    rr = Registration.where(year: Year.this_year)
+    rr = rr.select{|r|test_emails.include?(r.email)} if test_emails
+    rr.each do |r| 
+      u = r.user
+      if u.bounced_at
+        puts("Found bounced email #{u.email} in sending registration reminder")
+      else
+        begin
+          RegistrationMailer.registration_summary(r)
+          puts("Succeeded on #{u.email}")
+        rescue => e
+          puts("Failed on #{u.email} due to #{e}")
+          Rails.logger.error("Send registration reminder throws #{e}, skipping #{u.email}")
+        end
+      end
+    end
+  end
+
+#########################################
 
   #  Testing outbound email.  Delete me eventually.
   def send_test_email
