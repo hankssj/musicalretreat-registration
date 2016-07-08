@@ -58,11 +58,23 @@ class RegistrationMailer < ActionMailer::Base
   def registration_summary(registration)
     @registration = registration
     @name = "#{registration.first_name} #{registration.last_name}"
-    @cart = registration.cart
-    @payment = -@cart.payment_net
-    @balance = @cart.balance
+    # @cart = registration.cart
+    # @payment = -@cart.payment_net
+    # @balance = @cart.balance
+    @balance = @registration.balance
     mail(:to => registration.user.email, :subject => "MMR Housing Assignment and Account Balance").deliver!
     Event.log("Sent registration confirmation email to #{registration.user.email}")
+  end
+
+  ## This is a one-off I hope -- the registration_summary mailing computed balance on the basis of 
+  ## aRegistration.cart.balance rather than aRegistration.balance and for reasons I haven't figured out 
+  ## yet, there are a number of cases where the latter is 0 (and correctly 0) but the former is > 0.
+  ## For now just send them an apology email.  Also I corrected the code above.  
+  def registration_summary_balance_correction(registration)
+    @name = "#{registration.first_name} #{registration.last_name}"
+    mail(:to => registration.user.email, 
+         :cc => "registrar@musicalretreat.org", 
+         :subject => "MMR Housing Assignment and Account Balance").deliver!
   end
 
   def confirm_payment(payment)
