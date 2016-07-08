@@ -74,7 +74,7 @@ class RegistrationMailer < ActionMailer::Base
     @name = "#{registration.first_name} #{registration.last_name}"
     mail(:to => registration.user.email, 
          :cc => "registrar@musicalretreat.org", 
-         :subject => "MMR Housing Assignment and Account Balance").deliver!
+         :subject => "MMR Account Balance CORRECTION").deliver!
   end
 
   def confirm_payment(payment)
