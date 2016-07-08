@@ -7,7 +7,7 @@ We are almost ready for MMR <%= Year.this_year %>
 <ul>
 
 <% if @balance > 0 %>
-<li>You have an outstanding balance of <% @balance %>. Please bring payment in cash, check or
+<li>You have an outstanding balance of <%= number_to_currency(@balance) %>. Please bring payment in cash, check or
 credit card to check-in at Whitman.</li>
 <% else %>
 <li>You have no outstanding balance.  Thanks!</li>
@@ -20,7 +20,7 @@ credit card to check-in at Whitman.</li>
   <ul>
     <li>You may move in to your dorm after 2PM on Monday August 1</li>
     <li>Room keys will be in the lobby of your dorm</li>
-   <li> Remember to bring a fan if you are in Douglas, or College House</li>
+   <li> Remember to bring a fan if you are in Douglas or College House</li>
  </ul>
 </li>
 <% end %>
