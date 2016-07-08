@@ -1,0 +1,53 @@
+Dear <%= @name %>
+
+We are almost ready for MMR <%= Year.this_year %>
+
+<ul>
+
+<% if @balance > 0 %>
+<li>You have an outstanding balance of <% @balance %>. Please bring payment in cash, check or
+credit card to check-in at Whitman.</li>
+<% else %>
+<li>You have no outstanding balance.  Thanks!</li>
+<% end %>
+
+<% if @registration.dorm_selection == "n" %>
+<li>You have selected off-campus housing</li>
+<% else %>
+<li>Your dorm assignment is <% @registration.dorm_assignment %>.
+You may move in to your dorm after 2PM on Monday August 1. 
+Room keys will be in the lobby of your dorm. Remember to bring a fan if you are in Douglas, or College House.
+</li>
+<% end %>
+
+<li> Here is a <a href="https://www.whitman.edu/Documents/Campus-Map-2013.pdf">Whitman campus map</a></li>
+
+<% if @registration.meals_selection == "f" %>
+<li>You have opted for breakfast lunch and dinner meal plan. The first meal is dinner on Monday,
+August 1 at 6pm.</li>
+<% elsif @registration.meals_selection == "l" %>
+<li>You have opted for lunch and dinner only meal plan. The first meal is dinner on Monday,
+August 1 at 6pm.</li>
+<% else %>
+<li>You have opted for no meal plan. </li>
+<% end %>
+
+<li>Be sure to let me know flight information if you are flying to Walla Walla. We will arrange
+ground transportation.
+</li>
+
+<li>Carpools can be organized at <a href="https://www.groupcarpool.com/t/ocxnui">https://www.groupcarpool.com/t/ocxnui</a>
+</li>
+
+<li>Please read and keep the final Newsletter.  It will be sent to you via postal mail, 
+or you can view it <a href="http://musicalretreat.org/sites/default/files/2016 camper letter6.15.pdf">here</a>.
+</li>
+
+<li>MMR Check-In will be in Reid Campus Center 2 to 7 pm August 1, 2016.</li>
+</ul>
+
+<p>
+Jessica Stittsworth
+<a href="mailto:registrar@musicalretreat.org">registrar@musicalretreat.org</a>
+(800)471-2419
+</p>

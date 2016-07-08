@@ -55,6 +55,16 @@ class RegistrationMailer < ActionMailer::Base
     Event.log("Sent registration confirmation email to #{registration.user.email}")
   end
 
+  def registration_summary(registration)
+    @registration = registration
+    @name = "#{registration.first_name} #{registration.last_name}"
+    @cart = registration.cart
+    @payment = -@cart.payment_net
+    @balance = @cart.balance
+    mail(:to => registration.user.email, :subject => "MMR Housing Assignment and Account Balance").deliver!
+    Event.log("Sent registration confirmation email to #{registration.user.email}")
+  end
+
   def confirm_payment(payment)
     @name = "#{payment.registration.first_name} #{payment.registration.last_name}"
     @payment = payment
