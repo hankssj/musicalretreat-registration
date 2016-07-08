@@ -40,15 +40,14 @@ cap development deploy
 from a project directory (seems like it doesn't matter which one since the deploy file is the same)?
 
 ======================
+==>  NO longer relevant since we're off Mandrill
 
 Email credentials
 Mandrill.com
 account is webmaster@musicalretreat.org
-Walla2walla2!
 
 SMTP credentials
 smtp.mandrillapp.com
 587
 webmaster@musicalretreat.org
 Password is "any valid API key"
-This might be one:  RGp7RkTx5LXIc8S40hRZfA
