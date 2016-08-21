@@ -12,12 +12,10 @@
 
 module RegistrationGating
 
- # FORCE_REGISTRATION_CLOSED = false
   FORCE_REGISTRATION_CLOSED = true
-  FORCE_PAYMENT_CLOSED = false
-#  ALLOW_SELF_EVALS = false
-  ALLOW_SELF_EVALS = true
-  SUPPRESS_DORM_ASSIGNMENT= false
+  FORCE_PAYMENT_CLOSED = true
+  ALLOW_SELF_EVALS = false
+  SUPPRESS_DORM_ASSIGNMENT= true
 
   EARLY_INVITEES = %w{
       warmsun06@gmail.com
