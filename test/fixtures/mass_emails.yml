@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email_address: MyString
+  url_code: MyString
+  bounced_at: 2016-12-14 18:51:26
+  unsubscribed_at: 2016-12-14 18:51:26
+
+two:
+  email_address: MyString
+  url_code: MyString
+  bounced_at: 2016-12-14 18:51:26
+  unsubscribed_at: 2016-12-14 18:51:26
