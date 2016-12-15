@@ -274,7 +274,7 @@ class AdminController < ApplicationController
   #  TODO: maybe fix exception on bounce?  Might be nice to have some instrumentation about how many were send
 
   def send_mass_email_invitations
-    MassEmail.all.reject{|m| m.bounced_at || m.unsubscribed_at}.each{|m| RegistrationMailer.mass_email_invitation(m.email_address)}
+    MassEmail.all.reject{|m| m.bounced_at || m.unsubscribed_at}.each{|m| RegistrationMailer.mass_email_invitation(m.email_address, m.url_code)}
   end
 
   ############################################
