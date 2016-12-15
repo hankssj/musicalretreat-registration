@@ -20,6 +20,7 @@ class RegistrationMailer < ActionMailer::Base
   def mass_email_invitation(email)
     mail(:from => "online-registration@musicalretreat.org", :to => user.email, :subject=> "MMR #{Year.this_year} Registration").deliver!
     Event.log("Sent mass invitation email to #{email}")
+  end
     
   def self_eval_invitation(user)
     @first_name = user.first_name
