@@ -17,7 +17,8 @@ class RegistrationMailer < ActionMailer::Base
   end
 
   #  This might/should replace the invitation above
-  def mass_email_invitation(email)
+  def mass_email_invitation(email, unsubscribe_id)
+    @unsubscribe_id = unsubscribe_id
     attachments.inline['logo.jpg'] = { data: File.read(Rails.root.join('app/assets/images/mmr_logo_email_header.jpg')), mime_type: 'image/jpg'}
     mail(:from => "online-registration@musicalretreat.org", :to => email, :subject=> "MMR #{Year.this_year} Registration").deliver!
     Event.log("Sent mass invitation email to #{email}")
