@@ -18,7 +18,7 @@ class RegistrationMailer < ActionMailer::Base
 
   #  This might/should replace the invitation above
   def mass_email_invitation(email)
-    mail(:from => "online-registration@musicalretreat.org", :to => user.email, :subject=> "MMR #{Year.this_year} Registration").deliver!
+    mail(:from => "online-registration@musicalretreat.org", :to => email, :subject=> "MMR #{Year.this_year} Registration").deliver!
     Event.log("Sent mass invitation email to #{email}")
   end
     
