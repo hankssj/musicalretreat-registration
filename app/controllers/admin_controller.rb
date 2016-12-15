@@ -214,9 +214,6 @@ class AdminController < ApplicationController
   #  This is the bulk send near the end of the year.  Either populate the invitee table manually
   #  with email addresses, or it will be done for you.  By finding all Users whose emails have not 
   #  previously bounced.  
-  #
-  #   Note this may have to be run multiple times due to the Bluehost outbound email limit
-  #
 
   def send_all_invitations
 
@@ -271,6 +268,16 @@ class AdminController < ApplicationController
     @remaining = Invitee.all.reject{|r|r.sent}.size
   end
 
+  ###############################
+  #  This should replace send_all_invitations if we decide the registration will go to the mass email list, 
+  #  and not just to the User list.  But if so we should make sure all new Users get on the mass email list.
+  #  TODO: maybe fix exception on bounce?  Might be nice to have some instrumentation about how many were send
+
+  def send_mass_email_invitations
+    MassEmail.all.reject{|m| m.bounced_at || m.unsubscribed_at}.each{|m| RegistrationMailer.mass_email_invitation(m.email)}
+  end
+
+  ############################################
   #  This is to the early invitees.  Use the list in the registration gating module directly.
 
   def send_early_invitations
