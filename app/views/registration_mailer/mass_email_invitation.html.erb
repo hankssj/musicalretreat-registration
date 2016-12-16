@@ -16,8 +16,8 @@
 
 <hr>
 
-Stop messages like this?  <%= link_to("Unsubscribe", controller: 'mass_mailer', 
+Stop messages like this?  <%= link_to("Unsubscribe", {controller: 'mass_mailer', 
                                                  action: 'unsubscribe', 
                                                  id: @unsubscribe_id, 
-                                                 path_only: false) %>
+                                                 path_only: false}) %>
 </center>
