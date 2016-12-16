@@ -32,6 +32,8 @@ RegistrationDevelopment::Application.configure do
 
   config.log_level = :info
 
+  config.action_mailer.default_url_options = { host: "development.mmr-registration.org"}
+
   ActionMailer::Base.raise_delivery_errors = true
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
