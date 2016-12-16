@@ -3,7 +3,7 @@ RegistrationDevelopment::Application.routes.draw do
   get "static/index"
   root 'static#index'
 
-  get "mass_mail/unsubscribe"
+  get "mass_mailer/unsubscribe"
 
   get "registration/update_participant"
   get "registration/update_meals_selection"
