@@ -12,38 +12,16 @@
 
 module RegistrationGating
 
-  FORCE_REGISTRATION_CLOSED = true
-  FORCE_PAYMENT_CLOSED = true
+  FORCE_REGISTRATION_CLOSED = false
+  FORCE_PAYMENT_CLOSED = false
   ALLOW_SELF_EVALS = false
   SUPPRESS_DORM_ASSIGNMENT= true
 
   EARLY_INVITEES = %w{
-      warmsun06@gmail.com
       jessicacroysdale@yahoo.com
-      doug@conicwave.net
-      jenny2247@hotmail.co.uk
-      brantallen@earthlink.net
-      conniebrennand@hotmail.com
-      donamac2011@gmail.com
       genniewinkler@mac.com
-      gorakr@comcast.net
-      gpurkhiser@msn.com
-      groupw@rocketwire.net 
       hanks@pobox.com 
       ivoryharp1@gmail.com
-      jessicacroysdale@yahoo.com
-      june.hiratsuka@comcast.net
-      ksunmark@yahoo.com
-      lhpilcher@frontier.com
-      rbhudson@comcast.net
-      rkremers@earthlink.net
-      rm.thompson@comcast.net
-      rumeimistry@yahoo.com
-      stkeene@mac.com
-      szell41534@aol.com
-      tricia616@msn.com
-      trptplayer@mac.com
-      brad@sixteenpenny.net
       suecdc@msn.com
 }
 

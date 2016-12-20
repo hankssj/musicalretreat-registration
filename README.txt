@@ -19,6 +19,9 @@ To convert to a new year assuming you were just on the host:
   *  Adjust electives.  The code is in db/seeds.db.  Check the electives that are de-activated.  If anything changed,
         run create_electives, edit the code in deactivate_electives, then run it.
 
+  *  Update list of faculty, staff, major volunteer, board in db/seeds.rb  and run the reset_* on each
+        *  Remember that for faculty especially you need to add an account first
+
 ===========================================================
 Events
    Various things get dumped to the events table (password changes, emails sent)
@@ -39,21 +42,31 @@ Configuration is in environments/$ENV.rb   Remember this if you change the passw
    *  admin/send_early_invitations
    *  app/controller/registration_gating.rb contains the list of early invitees
 
-1. Sending all registration invitations
-     *  The entry point is admin/send_all_invitations
-     *  It keys off a table invitees.  You need either to empty it out, or fill it with your email addresses.  If 
-	it's empty, it will be populated with the emails of all users whose emails have not bounced.
-     *  It will not generate any output, but it uses the Event model, so a good idea to delete events first then keep an eye on the events
 
-     =>  As an initial test, put your email only in the invitees list, and browse to admin/send_all_invitations
+##  1. Sending all registration invitations
+##       *  The entry point is admin/send_all_invitations
+##       *  It keys off a table invitees.  You need either to empty it out, or fill it with your email addresses.  If 
+##  	it's empty, it will be populated with the emails of all users whose emails have not bounced.
+##       *  It will not generate any output, but it uses the Event model, so a good idea to delete events first then keep an eye on the events
+##  
+##       =>  As an initial test, put your email only in the invitees list, and browse to admin/send_all_invitations
+##  
+##    => there's still some residual ugliness.  Bluehost kills on exceeding 350 emails per hour, so the first
+##    =>  call failed.  Semi-fixed it by putting a sent field in the invitee record.  Then if it limits out
+##    =>  the first time you can run it again.  It's possible there's an off-by-one error because the one 
+##    =>  that causes the error might be listed as sent.  Much better next time to restore the limit, which 
+##    =>  along with the sent flag should fix everything.
+##  
+##    NOTE 12/2015 -- Now that we're off Bluehost, may not need the rate limiting.
 
-  => there's still some residual ugliness.  Bluehost kills on exceeding 350 emails per hour, so the first
-  =>  call failed.  Semi-fixed it by putting a sent field in the invitee record.  Then if it limits out
-  =>  the first time you can run it again.  It's possible there's an off-by-one error because the one 
-  =>  that causes the error might be listed as sent.  Much better next time to restore the limit, which 
-  =>  along with the sent flag should fix everything.
+NOTE 12/2016
 
-  NOTE 12/2015 -- Now that we're off Bluehost, may not need the rate limiting.
+Now on AWS email, so believe there is no rate limit.  Also we are getting rid of the invite email to users;  instead we have 
+a larger mass email list and we will send the emails to them.  Entry point is AdminController.new.send_mass_email_invitations.
+To populate the table, run refresh_mailing list which in turn pulls from a file config/mailing_list.txt
+
+The system should handle unsubscribes OK but you will have to do bounces manually.
+
 ============
 
 2.  Payment confirmation -- this is done when Tricia records a payment on the site.
