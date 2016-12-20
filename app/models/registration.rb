@@ -185,15 +185,16 @@ class Registration < ActiveRecord::Base
       tstotal = 0 if tstotal < 0
     elsif major_volunteer?  #Major volunteer -- no registration or tuition, but pay for everything else
       c.set_quantity("Dorm", (dorm_selection == 'd' || dorm_selection == 's') ? 1 : 0)
-      c.set_quantity("Single Room", (dorm_selection == 's') ? 1 : 0)
       c.set_quantity("Meals", (meals_selection == 'f' || meals_selection == 'l') ? 1 : 0)
       c.set_quantity("No Breakfast", meals_selection == 'l' ? 1 : 0)
       c.set_quantity("Sunday Arrival", (sunday && dorm) ? 1 : 0)
+    elsif faculty?
+      tstotal = tstotal - 1
+      tstotal = 0 if tstotal < 0
     else
       c.set_quantity("Registration", 1)
       c.set_quantity("Tuition", participant ? 1 : 0)
       c.set_quantity("Dorm", (dorm_selection == 'd' || dorm_selection == 's') ? 1 : 0)
-      c.set_quantity("Single Room", (dorm_selection == 's') ? 1 : 0)
       c.set_quantity("Meals", (meals_selection == 'f' || meals_selection == 'l') ? 1 : 0)
       c.set_quantity("No Breakfast", meals_selection == 'l' ? 1 : 0)
       c.set_quantity("Sunday Arrival", (sunday && dorm) ? 1 : 0)
@@ -201,6 +202,7 @@ class Registration < ActiveRecord::Base
 
     #  Add-ons for everybody
     c.set_quantity("Tshirts", tstotal)
+    c.set_quantity("Single Room", (dorm_selection == 's') ? 1 : 0)
     c.set_quantity("Commemorative Wine Glass", wine_glasses)
     donation ? c.install_charge("Donation", donation) : c.set_quantity("Donation", 0)
 

@@ -3,7 +3,7 @@
   <td style="width:133px" class="reg-list-line-summary-cell"><%= registration_line_summary.first_name %> <%= registration_line_summary.last_name %></td>
   <td style="width:90px" class="reg-list-line-summary-cell"><%= registration_line_summary.instrument_name[0..11] %></td>
   <td style="width:60px" class="reg-list-line-summary-cell"><%= registration_line_summary.dorm ? "Y" : "N" %></td>
-  <td style="width:60px" class="reg-list-line-summary-cell"><%= registration_line_summary.single_room ? "Y" : "N" %></td>
+  <td style="width:60px" class="reg-list-line-summary-cell"><%= registration_line_summary.dorm_selection == 's' ? "Y" : "N" %></td>
   <td style="width:60px" class="reg-list-line-summary-cell"><%= registration_line_summary.meals ? "Y" : "N" %></td>
   <td style="width:51px" class="reg-list-line-summary-cell"><%= registration_line_summary.firsttime ? "Y" : "N" %></td>
   <td style="width:55px" class="reg-list-line-summary-cell">

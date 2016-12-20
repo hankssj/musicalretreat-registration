@@ -376,7 +376,7 @@ def create_electives
 end
 
 #######################################################################################
-## This is year-specific controlling of electives.  Should be moved to a config file!
+## This is year-specific controlling of electives.  Should be moved to a config file! #
 
 def deactivate_electives
   [5, 6, 15, 16, 18, 19, 20, 21, 23, 24].each{|n| e = Elective.find(n); e.active = false; e.save!}
@@ -389,3 +389,95 @@ end
 #create_reference_user
 #create_instruments
 #create_electives
+
+##############################################################################################
+##   Board, staff, faculty, and major volunteers
+
+def staff
+  ["jessicacroysdale@yahoo.com", 
+   "margynewton@comcast.net", 
+   "brantallen@earthlink.net", 
+   "RM.Thompson@comcast.net", 
+   "ksunmark@yahoo.com", 
+   "gorakr@comcast.net", 
+   "lhpilcher@frontier.com", 
+   "mmr@brantallen.com", 
+   "manbeardo@gmail.com"]
+end
+
+def reset_staff
+  User.all.each{|u| u.staff = false; u.save!}
+  staff.each{|e| u = User.find_by_email(e); u.staff = true; u.save!}
+end
+
+def faculty
+  []
+end
+
+def reset_faculty
+  User.all.each{|u| u.faculty = false; u.save!}
+  faculty.each{|e| u = User.find_by_email(e); u.faculty = true; u.save!}
+end
+
+def major_volunteers
+  []
+end
+
+def reset_major_volunteer
+  User.all.each{|u| u.major_volunteer = false; u.save!}
+  major_volunteer.each{|e| u = User.find_by_email(e); u.major_volunteer = true; u.save!}
+end
+
+def board
+  ["June.hiratsuka@comcast.net",
+   "suecdc@msn.com",
+   "rbhudson@comcast.net",
+   "Ivoryharp1@gmail.com",
+   "hutcheson@seanet.com",
+   "genniewinkler@comcast.net",
+   "rkremers@earthlink.net",
+   "szell41534@aol.com",
+   "donamac@mac.com",
+   "rumeimistry@yahoo.com",
+   "rm.thompson@frontier.com"
+]
+end
+
+def reset_board
+  User.all.each{|u| u.board = false; u.save!}
+  board.each{|e| u = User.find_by_email(e); u.board = true; u.save!}
+end
+
+###########################################
+#  Mailing list is different --
+#  Read from a file in config
+#  Do not start from scratch because otherwise unsubscribe and bounces will be lost
+#    -- real deletes will have to be manual
+
+def new_random_url_code
+  codes = MassEmail.all.map{|m|m.url_code}.map{|u|u.to_i}
+  new_code = Random.rand(9999999)
+  while codes.include?(new_code)
+    new_code = Random.rand(9999999)
+  end
+  puts new_code
+  new_code.to_s.rjust(7, '0')
+end
+
+def refresh_mailing_list
+  File.open(File.join(Rails.root, 'config', 'mailing_list.txt')).each_line do |e|
+    e = e.chomp
+    unless MassEmail.find_by_email(e)
+      m = MassEmail.new(email: e, url_code: new_random_url_code)
+      puts "Adding from file #{e} #{url_code}"
+      m.save!
+    end
+  end
+  User.all.map{|u| u.email}.each do |e| 
+    unless MassEmail.find_by_email(e)
+      m = MassEmail.new(email: e, url_code: new_random_url_code)
+      puts "Adding from file #{e} #{url_code}"
+      m.save!
+    end
+  end
+end
