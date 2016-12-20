@@ -340,14 +340,6 @@ class AdminController < ApplicationController
   end
 
   ################################################################
-  #  Stealthy method so I can review the invitation email without
-  #  having to send it
-
-  def render_invitation_email
-    render "registration_mailer/mass_email_invitation"
-  end
-
-  ################################################################
   private
 
   def user_post_params
