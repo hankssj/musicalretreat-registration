@@ -397,7 +397,6 @@ def staff
   ["jessicacroysdale@yahoo.com", 
    "margynewton@comcast.net", 
    "brantallen@earthlink.net", 
-   "RM.Thompson@comcast.net", 
    "ksunmark@yahoo.com", 
    "gorakr@comcast.net", 
    "lhpilcher@frontier.com", 
