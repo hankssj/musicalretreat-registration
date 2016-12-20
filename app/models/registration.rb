@@ -139,6 +139,10 @@ class Registration < ActiveRecord::Base
     user.staff?
   end
   
+  def faculty?
+    user.faculty?
+  end
+
   def major_volunteer?
     user.major_volunteer?
   end
