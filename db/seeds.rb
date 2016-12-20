@@ -465,16 +465,19 @@ def new_random_url_code
 end
 
 def refresh_mailing_list
+  emails = MassEmail.all.map{|m|m.email}
   File.open(File.join(Rails.root, 'config', 'mailing_list.txt')).each_line do |e|
     e = e.chomp
-    unless MassEmail.find_by_email(e)
+    unless emails.include?(e)
       m = MassEmail.new(email: e, url_code: new_random_url_code)
       puts "Adding from file #{e} #{url_code}"
       m.save!
     end
   end
+
+  emails = MassEmail.all.map{|m|m.email}
   User.all.map{|u| u.email}.each do |e| 
-    unless MassEmail.find_by_email(e)
+    unless emails.include?(e)
       m = MassEmail.new(email: e, url_code: new_random_url_code)
       puts "Adding from file #{e} #{url_code}"
       m.save!
