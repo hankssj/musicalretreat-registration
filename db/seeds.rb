@@ -407,7 +407,12 @@ end
 
 def reset_staff
   User.all.each{|u| u.staff = false; u.save!}
-  staff.each{|e| u = User.find_by_email(e); u.staff = true; u.save!}
+  staff.each do |e| 
+    u = User.find_by_email(e); 
+    raise "no record for #{e}" unless u
+    u.staff = true
+    u.save!
+  end
 end
 
 def faculty
@@ -416,16 +421,25 @@ end
 
 def reset_faculty
   User.all.each{|u| u.faculty = false; u.save!}
-  faculty.each{|e| u = User.find_by_email(e); u.faculty = true; u.save!}
+  faculty.each do |e| 
+    u = User.find_by_email(e); 
+    raise "no record for #{e}" unless u
+    u.faculty = true; 
+    u.save!
+  end
 end
 
-def major_volunteers
+def major_volunteer
   []
 end
 
 def reset_major_volunteer
   User.all.each{|u| u.major_volunteer = false; u.save!}
-  major_volunteer.each{|e| u = User.find_by_email(e); u.major_volunteer = true; u.save!}
+  major_volunteer.each do |e| 
+    u = User.find_by_email(e); 
+    raise "no record for #{e}" unless u
+    u.major_volunteer = true; u.save!
+  end
 end
 
 def board
@@ -445,7 +459,11 @@ end
 
 def reset_board
   User.all.each{|u| u.board = false; u.save!}
-  board.each{|e| u = User.find_by_email(e); u.board = true; u.save!}
+  board.each do |e| 
+    u = User.find_by_email(e)
+    raise "no record for #{e}" unless u
+    u.board = true; u.save!
+  end
 end
 
 ###########################################
@@ -460,9 +478,12 @@ def new_random_url_code
   while codes.include?(new_code)
     new_code = Random.rand(9999999)
   end
-  puts new_code
   new_code.to_s.rjust(7, '0')
 end
+
+##  At the end, guarantee that all emails in the file config/mailing_list.txt are on the list,
+##  that all User emails are on the list.  But do not delete anything on the list, and do not
+##  overwrite anything on the list.   (You can effectively do that by setting the unsubscribe bit.)
 
 def refresh_mailing_list
   emails = MassEmail.all.map{|m|m.email_address}
