@@ -471,7 +471,6 @@ def refresh_mailing_list
     unless emails.include?(e)
       url_code = new_random_url_code
       m = MassEmail.new(email_address: e, url_code: url_code)
-      puts "Adding from file #{e} #{url_code}"
       m.save!
     end
   end
@@ -481,7 +480,6 @@ def refresh_mailing_list
     unless emails.include?(e)
       url_code = new_random_url_code
       m = MassEmail.new(email_address: e, url_code: url_code)
-      puts "Adding from file #{e} #{url_code}"
       m.save!
     end
   end
