@@ -469,7 +469,8 @@ def refresh_mailing_list
   File.open(File.join(Rails.root, 'config', 'mailing_list.txt')).each_line do |e|
     e = e.chomp
     unless emails.include?(e)
-      m = MassEmail.new(email_address: e, url_code: new_random_url_code)
+      url_code = new_random_url_code
+      m = MassEmail.new(email_address: e, url_code: url_code)
       puts "Adding from file #{e} #{url_code}"
       m.save!
     end
@@ -478,7 +479,8 @@ def refresh_mailing_list
   emails = MassEmail.all.map{|m|m.email_address}
   User.all.map{|u| u.email}.each do |e| 
     unless emails.include?(e)
-      m = MassEmail.new(email_address: e, url_code: new_random_url_code)
+      url_code = new_random_url_code
+      m = MassEmail.new(email_address: e, url_code: url_code)
       puts "Adding from file #{e} #{url_code}"
       m.save!
     end
