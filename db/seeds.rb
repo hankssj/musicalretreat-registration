@@ -26,12 +26,12 @@ def create_instruments
   Instrument.create(:id => 7,  :display_name => "Viola",              :large_ensemble => "festival_or_string_orchestra", :instrument_type => "string")
   Instrument.create(:id => 8,  :display_name => "Cello",              :large_ensemble => "festival_or_string_orchestra", :instrument_type => "string")
   Instrument.create(:id => 9,  :display_name => "Double Bass",        :large_ensemble => "festival_or_string_orchestra", :instrument_type => "string")
-  Instrument.create(:id => 10, :display_name => "Piccolo",            :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
+#  Instrument.create(:id => 10, :display_name => "Piccolo",            :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
   Instrument.create(:id => 11, :display_name => "Flute",              :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
   Instrument.create(:id => 12, :display_name => "Oboe",               :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
   Instrument.create(:id => 14, :display_name => "Bassoon",            :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
   Instrument.create(:id => 15, :display_name => "Clarinet",           :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
-  Instrument.create(:id => 37, :display_name => "Clarinet-Alto",      :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
+#  Instrument.create(:id => 37, :display_name => "Clarinet-Alto",      :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
   Instrument.create(:id => 16, :display_name => "Clarinet-Bass",      :large_ensemble => "band_or_orchestra", :instrument_type => "woodwind")
   Instrument.create(:id => 17, :display_name => "Saxophone",          :large_ensemble => "band", :instrument_type => "woodwind")
   Instrument.create(:id => 18, :display_name => "Saxophone-Soprano",  :large_ensemble => "band", :instrument_type => "woodwind")
@@ -41,7 +41,7 @@ def create_instruments
   Instrument.create(:id => 22, :display_name => "Trumpet",            :large_ensemble => "band_or_orchestra", :instrument_type => "brass")
   Instrument.create(:id => 23, :display_name => "Horn",               :large_ensemble => "band_or_orchestra", :instrument_type => "brass")
   Instrument.create(:id => 24, :display_name => "Trombone",           :large_ensemble => "band_or_orchestra", :instrument_type => "brass")
-  Instrument.create(:id => 25, :display_name => "Trombone-Bass",      :large_ensemble => "band_or_orchestra", :instrument_type => "brass")
+#  Instrument.create(:id => 25, :display_name => "Trombone-Bass",      :large_ensemble => "band_or_orchestra", :instrument_type => "brass")
   Instrument.create(:id => 26, :display_name => "Euphonium",          :large_ensemble => "band", :instrument_type => "brass")
   Instrument.create(:id => 27, :display_name => "Tuba",               :large_ensemble => "band_or_orchestra", :instrument_type => "brass")
   Instrument.create(:id => 28, :display_name => "Percussion",         :large_ensemble => "band_or_orchestra", :instrument_type => "percussion")
@@ -181,7 +181,7 @@ def create_electives
                       :instructor => "Roger Nelson",
                       :description => "An afternoon ensemble for strings and classical brass and winds. Repertoire drawn from all eras. Lots of sight reading; low key performance. Very fun!"
                       )
-  link_elective_to_instruments(e, [6,7,8,9,10,11,12,14,15,16,22,23,24,25,27,28,31,32])
+  link_elective_to_instruments(e, [6,7,8,9,11,12,14,15,16,22,23,24,27,28,31,32])
 
   #####
   e = Elective.create(
@@ -190,7 +190,7 @@ def create_electives
                       :instructor => "William Berry",
                       :description => "Open to all brass. Uses standard, modern instruments. So if you have non-standard non-modern instruments, leave them in your dorm room!"
                       )
-  link_elective_to_instruments(e, [22,23,24,25,26,27])
+  link_elective_to_instruments(e, [22,23,24,26,27])
 
   #####
   e = Elective.create(
@@ -199,7 +199,7 @@ def create_electives
                       :instructor => "Jim Sisko",
                       :description => "The Jazz Big Band features traditional big band instrumentation: saxophones, trumpets, trombones and rhythm section players -- piano, bass and drums. Repertoire is drawn from a mix of unique arrangements of  jazz standards and originals. The band performs at Skit Night."
                       )
-  link_elective_to_instruments(e, [17,18,19,20,21,22,24,25,28,34,9])
+  link_elective_to_instruments(e, [17,18,19,20,21,22,24,28,34,9])
 
   #####
   e = Elective.create(
@@ -334,7 +334,7 @@ def create_electives
                       :instructor => "Faculty",
                       :description => "A Choir!  Of Clarinets!! What could be more heavenly than that? I mean let's face it, clarinet is the Rodney Dangerfield of woodwinds.  It gets no respect.  But it should -- it should get lots of respect!! And if you join the Clarinet Choir, you can help prove everybody wrong and stop all those nasty and false things they are saying about clarinets.  So in some sense it is your moral duty to sign up for Clarinet Choir.  Whether or not you are a clarinet player."
                       )
-  link_elective_to_instruments(e, [15,16,37])
+  link_elective_to_instruments(e, [15,16])
 
   ###################  New for 2016 ########################
 
