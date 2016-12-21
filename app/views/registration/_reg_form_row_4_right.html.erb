@@ -23,7 +23,7 @@
 	</tr>
 	<tr><td>Commemorative Wine Glasses:&nbsp; &nbsp; &nbsp;
 	    <%= form.select :wine_glasses, 
-		[[0,0], [1,1], [2,2]],
+		[[0,0], [1,1], [2,2], [3,3]],
 		{:default => 0},
 	    :disabled => @disabled,
    	    :data => {:remote => true, :url => url_for(:action => :update_wine_glasses)}

@@ -80,7 +80,7 @@
         <tr><td>Sunday Arrival?</td><td width="55"/><td><%= form.check_box :sunday,  {:class => "bigcheck",  :data => {:remote => true, :url => url_for(:action => :update_sunday)}} %></td></tr>
         <% end %>
 	<tr><td>Vegetarian Meals?</td><td width="55"/><td><%= form.check_box :vegetarian, :class => "bigcheck" %></td></tr>
-	<tr><td>Need Airport Pickup?</td><td width="55"/><td><%= form.check_box :airport_pickup, :class => "bigcheck" %></td></tr>
+<%--	<tr><td>Need Airport Pickup?</td><td width="55"/><td><%= form.check_box :airport_pickup, :class => "bigcheck" %></td></tr> -->
         <tr><td>Need Fan?</td>  <td width="55"/> <td><%= form.check_box :fan, :class => "bigcheck" %></td></tr>
         <tr><td>Need Handicap Access?</td>  <td width="55"/> <td><%= form.check_box :handicapped_access, :class => "bigcheck" %></td></tr>
       </table>

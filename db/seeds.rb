@@ -394,14 +394,17 @@ end
 ##   Board, staff, faculty, and major volunteers
 
 def staff
-  ["jessicacroysdale@yahoo.com", 
+  [
+   "jessicacroysdale@yahoo.com", 
    "margynewton@comcast.net", 
    "brantallen@earthlink.net", 
    "ksunmark@yahoo.com", 
    "gorakr@comcast.net", 
    "lhpilcher@frontier.com", 
    "mmr@brantallen.com", 
-   "manbeardo@gmail.com"]
+   "manbeardo@gmail.com", 
+   "jcermak53@gmail.com"
+  ]
 end
 
 def reset_staff
