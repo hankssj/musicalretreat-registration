@@ -33,7 +33,10 @@ The session with Paypal will open in a new window, so you will need to disable p
   <%= hidden_field_tag :no_note, @no_note %>
   <%= hidden_field_tag :no_shipping, @no_shipping %>
   <%= hidden_field_tag :rm, @rm %>
-  <%= hidden_field_tag :return, "http://registration.musicalretreat.org/registration/index" %>
+  <!-- FIXME:  should at least be in config.  Possibly could be eliminated altogether.  Not clear
+       from Paypal documentation whether this always/sometimes overrides the return URL value that we 
+       set in the Paypal web sellers tools dashboard -->
+  <%= hidden_field_tag :return, "http://home.mmr-registration.org/registration/index" %>
   <%= hidden_field_tag :cbt, @cbt %>
   <%= hidden_field_tag :custom, @custom %>
 	
