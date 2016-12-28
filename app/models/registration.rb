@@ -181,9 +181,7 @@ class Registration < ActiveRecord::Base
 
     #  FIXME:  Nothing is preventing these from being mutually exclusive in the database.
 
-    if true
-      c.set_quantity("Test Charge", 1)
-    elsif staff?
+    if staff?
       tstotal = tstotal <= 1 ? 0 : tstotal - 1
     elsif board? #  Board gets flat rate, with dorm rooms, sunday arrival and one T-shirt included
       c.set_quantity("Board Member Flat Rate", 1)
