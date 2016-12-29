@@ -216,7 +216,7 @@ class AdminController < ApplicationController
   #  previously bounced.  
 
   def send_all_invitations
-    uu = [User.find(3)]
+    uu = [User.find(913)]
     # uu = User.all.reject{|u| u.bounced_at || u.test || u.email =~ /musicalretreat.org/ || u.has_current_registration}
     Rails.logger.info("Going to send #{uu.size} invitations")
     uu.each do |u|
