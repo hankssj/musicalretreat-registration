@@ -216,57 +216,71 @@ class AdminController < ApplicationController
   #  previously bounced.  
 
   def send_all_invitations
-
-    if Invitee.count == 0
-      User.all.reject{|u|u.bounced_at}.reject{|u|u.test}.each{|u|Invitee.create(:email => u.email)}
-    end
-    
-    limit = 10000
-
-    invitees = Invitee.all.reject{|i| i.sent}
-    invitees = invitees[0..limit-1] if invitees.size > limit
-
-    @sent = []
-    @skipped = []
-
-    invitees.each do |invitee|
-
-      email = invitee.email
-
-      if invitee.sent?
-        Event.log("Skipped #{email} due to already sent")
-        @skipped << email
-        next
-      end
-
-      if email =~ /musicalretreat.org/
-        Event.log("Skipped #{email} due to internal")
-        @skipped << email
-        next
-      end
-      
-      user = User.find_by_email(email)
-      unless user
-        Event.log("PAY ATTENTION!  SKIPPED #{email} ALTOGETHER BECAUSE OF NO ACCOUNT")
-        next
-      end
-
-      if user.has_current_registration 
-        Event.log("Skipped #{email} due to existing registration")
-        @skipped << email
-      elsif user.bounced_at
-        Event.log("Skipped #{email} due to bounceage")
-        @skipped << email
-      else 
-        RegistrationMailer.invitation(user)
-        Event.log("Bulk invitation to user #{email}")
-        @sent << email
-        invitee.sent = true
-        invitee.save!
+    uu = [User.find(3)]
+    # uu = User.all.reject{|u| u.bounced_at || u.test || u.email =~ /musicalretreat.org/ || u.has_current_registration}
+    Rails.logger.info("Going to send #{uu.size} invitations")
+    uu.each do |u|
+      begin
+        RegistrationMailer.invitation(u)
+        Rails.logger.info("Successfully sent to #{u.email}")
+      rescue StandardError => e
+        Rails.logger.error("Failed to send to #{u.email} due to #{e}")
       end
     end
-    @remaining = Invitee.all.reject{|r|r.sent}.size
   end
+
+  # def send_all_invitations
+
+  #   if Invitee.count == 0
+  #     User.all.reject{|u|u.bounced_at}.reject{|u|u.test}.each{|u|Invitee.create(:email => u.email)}
+  #   end
+    
+  #   limit = 10000
+
+  #   invitees = Invitee.all.reject{|i| i.sent}
+  #   invitees = invitees[0..limit-1] if invitees.size > limit
+
+  #   @sent = []
+  #   @skipped = []
+
+  #   invitees.each do |invitee|
+
+  #     email = invitee.email
+
+  #     if invitee.sent?
+  #       Event.log("Skipped #{email} due to already sent")
+  #       @skipped << email
+  #       next
+  #     end
+
+  #     if email =~ /musicalretreat.org/
+  #       Event.log("Skipped #{email} due to internal")
+  #       @skipped << email
+  #       next
+  #     end
+      
+  #     user = User.find_by_email(email)
+  #     unless user
+  #       Event.log("PAY ATTENTION!  SKIPPED #{email} ALTOGETHER BECAUSE OF NO ACCOUNT")
+  #       next
+  #     end
+
+  #     if user.has_current_registration 
+  #       Event.log("Skipped #{email} due to existing registration")
+  #       @skipped << email
+  #     elsif user.bounced_at
+  #       Event.log("Skipped #{email} due to bounceage")
+  #       @skipped << email
+  #     else 
+  #       RegistrationMailer.invitation(user)
+  #       Event.log("Bulk invitation to user #{email}")
+  #       @sent << email
+  #       invitee.sent = true
+  #       invitee.save!
+  #     end
+  #   end
+  #   @remaining = Invitee.all.reject{|r|r.sent}.size
+  # end
 
   ###############################
   #  This should replace send_all_invitations if we decide the registration will go to the mass email list, 
