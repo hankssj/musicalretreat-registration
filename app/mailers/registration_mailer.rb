@@ -9,6 +9,7 @@ class RegistrationMailer < ActionMailer::Base
   end
 
   # Bulk email inviting to register
+  #  User.all.reject{|u| u.bounced_at || u.test || u.has_current_registration}.each{|u| invitation
   def invitation(user)
     @first_name = user.first_name
     @year = Year.this_year
