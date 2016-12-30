@@ -216,12 +216,11 @@ class AdminController < ApplicationController
   #  previously bounced.  
 
   def send_all_invitations
-    uu = [User.find(913)]
-    # uu = User.all.reject{|u| u.bounced_at || u.test || u.email =~ /musicalretreat.org/ || u.has_current_registration}
+    uu = User.all.reject{|u| u.bounced_at || u.test || u.email =~ /musicalretreat.org/ || u.has_current_registration}
     Rails.logger.info("Going to send #{uu.size} invitations")
     uu.each do |u|
       begin
-        RegistrationMailer.invitation(u)
+        #RegistrationMailer.invitation(u)
         Rails.logger.info("Successfully sent to #{u.email}")
       rescue StandardError => e
         Rails.logger.error("Failed to send to #{u.email} due to #{e}")
