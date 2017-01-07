@@ -305,10 +305,10 @@ class AdminController < ApplicationController
     #User.all.select{|u| u.faculty && !u.bounced_at} do |user|
     User.find(3) do |user|
       begin
-        puts user.email_address
-        RegistrationMailer.faculty_registration_invitation(user.email_address)
+        puts user.email
+        RegistrationMailer.faculty_registration_invitation(user.email)
       rescue StandardError => e
-        puts "Failed on email #{user.email_address} due to #{e}"
+        puts "Failed on email #{user.email} due to #{e}"
         user.bounced_at = Time.now
         user.save!
       end
