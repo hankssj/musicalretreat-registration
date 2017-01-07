@@ -308,9 +308,9 @@ class AdminController < ApplicationController
         puts user.email_address
         RegistrationMailer.faculty_registration_invitation(user.email_address)
       rescue StandardError => e
-        puts "Failed on email #{m.email_address} due to #{e}"
-        m.bounced_at = Time.now
-        m.save!
+        puts "Failed on email #{user.email_address} due to #{e}"
+        user.bounced_at = Time.now
+        user.save!
       end
     end
   end
