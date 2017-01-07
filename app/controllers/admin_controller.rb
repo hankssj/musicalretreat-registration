@@ -285,6 +285,8 @@ class AdminController < ApplicationController
   #  This should replace send_all_invitations if we decide the registration will go to the mass email list, 
   #  and not just to the User list.  But if so we should make sure all new Users get on the mass email list.
 
+  #  TODO:  check why the m.id > 2080.   
+
   def send_mass_email_invitations
     MassEmail.all.reject{|m| m.bounced_at || m.unsubscribed_at}.each do |m|
       begin
@@ -298,6 +300,20 @@ class AdminController < ApplicationController
     end
   end
 
+
+  def send_faculty_registration_invitations
+    #User.all.select{|u| u.faculty && !u.bounced_at} do |user|
+    User.find(3) do |user|
+      begin
+        puts user.email_address
+        RegistrationMailer.faculty_registration_invitation(user.email_address)
+      rescue StandardError => e
+        puts "Failed on email #{m.email_address} due to #{e}"
+        m.bounced_at = Time.now
+        m.save!
+      end
+    end
+  end
 
   ############################################
   #  This is to the early invitees.  Use the list in the registration gating module directly.

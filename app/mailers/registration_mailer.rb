@@ -17,6 +17,11 @@ class RegistrationMailer < ActionMailer::Base
     Event.log("Sent invitation email to #{user.id}")
   end
 
+  def faculty_registration_invitation(e)
+    @year = Year.this_year
+    mail(:from => "online-registration@musicalretreat.org", :to => e, :subject=> "MMR #{Year.this_year} Registration").deliver!
+  end
+
   #  This might/should replace the invitation above
   def mass_email_invitation(email, unsubscribe_id)
     @unsubscribe_id = unsubscribe_id
