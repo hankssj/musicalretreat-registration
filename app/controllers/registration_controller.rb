@@ -48,6 +48,7 @@ class RegistrationController < ApplicationController
     else
       session[:registration] = @registration = Registration.populate(user)
       @admin_session = admin_session?
+      @faculty = user.faculty
     end
   end
 
