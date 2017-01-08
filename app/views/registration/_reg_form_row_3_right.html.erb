@@ -18,6 +18,7 @@
 		<td> <%= form.radio_button :participant, @faculty, {:class => "bigradio", :disabled => @disabled || @faculty, :data => {:remote => true, :url => url_for(:action => :update_participant)}} %>
 		</td>
 	      </tr>
+	      <% unless @faculty %>
 	      <tr>
 		<td>Primary Instrument or Voice:</td><td/><td/>
 	      </tr>
@@ -26,6 +27,7 @@
 		  <%= form.select :instrument_id, Instrument.menu_selection, :prompt => "- select -", :default => -1, :disabled => @disabled || @faculty %>
 		</td>
 	      </tr>
+	      <% end %>
 	    </table>
 	  </td>
 	  <td width="50"/>
