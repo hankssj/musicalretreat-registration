@@ -23,7 +23,7 @@
 	      </tr>
 	      <tr>
 		<td colspan="3", align="right">
-		  <%= form.select :instrument_id, Instrument.menu_selection, :prompt => "- select -", :default => -1, :disabled => @disabled %>
+		  <%= form.select :instrument_id, Instrument.menu_selection, :prompt => "- select -", :default => -1, :disabled => @disabled || @faculty %>
 		</td>
 	      </tr>
 	    </table>
