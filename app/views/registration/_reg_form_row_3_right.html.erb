@@ -6,25 +6,28 @@
 	<tr>
 	  <td>
 	    <table>
+	      <% if @faculty %>
+	          <%= form.hidden_field :participant, :value => false %>
+	          <%= form.hidden_field :instrument_id, :value => -1 %>
+	      <% else  %>
 	      <tr>
 		<td>Instrumental or Vocal Participant</td>
 		<td width="15"/>
-		<td><%= form.radio_button :participant, !@faculty, {:class => "bigradio", :disabled => @disabled || @faculty, :data => {:remote => true, :url => url_for(:action => :update_participant)}} %>
+		<td><%= form.radio_button :participant, true, {:class => "bigradio", :disabled => @disabled, :data => {:remote => true, :url => url_for(:action => :update_participant)}} %>
 		</td>
 	      </tr>
 	      <tr>
 		<td>Non-participant</td>
 		<td width="15"/>
-		<td> <%= form.radio_button :participant, @faculty, {:class => "bigradio", :disabled => @disabled || @faculty, :data => {:remote => true, :url => url_for(:action => :update_participant)}} %>
+		<td> <%= form.radio_button :participant, @false, {:class => "bigradio", :disabled => @disabled, :data => {:remote => true, :url => url_for(:action => :update_participant)}} %>
 		</td>
 	      </tr>
-	      <% unless @faculty %>
 	      <tr>
 		<td>Primary Instrument or Voice:</td><td/><td/>
 	      </tr>
 	      <tr>
 		<td colspan="3", align="right">
-		  <%= form.select :instrument_id, Instrument.menu_selection, :prompt => "- select -", :default => -1, :disabled => @disabled || @faculty %>
+		  <%= form.select :instrument_id, Instrument.menu_selection, :prompt => "- select -", :default => -1, :disabled => @disabled %>
 		</td>
 	      </tr>
 	      <% end %>
