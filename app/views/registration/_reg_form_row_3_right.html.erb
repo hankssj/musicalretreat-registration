@@ -19,7 +19,7 @@
 	      <tr>
 		<td>Non-participant</td>
 		<td width="15"/>
-		<td> <%= form.radio_button :participant, @false, {:class => "bigradio", :disabled => @disabled, :data => {:remote => true, :url => url_for(:action => :update_participant)}} %>
+		<td> <%= form.radio_button :participant, false, {:class => "bigradio", :disabled => @disabled, :data => {:remote => true, :url => url_for(:action => :update_participant)}} %>
 		</td>
 	      </tr>
 	      <tr>
