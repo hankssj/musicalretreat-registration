@@ -302,7 +302,7 @@ class AdminController < ApplicationController
 
 
   def send_faculty_registration_invitations
-    User.all.select{|u| u.faculty && !u.bounced_at} do |user|
+    User.all.select{|u| u.faculty && !u.bounced_at}.each do |user|
       begin
         puts user.email
         RegistrationMailer.faculty_registration_invitation(user.email)
