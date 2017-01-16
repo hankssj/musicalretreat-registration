@@ -8,7 +8,7 @@
 	    <table>
 	      <% if @faculty %>
 	          <%= form.hidden_field :participant, :value => false %>
-	          <%= form.hidden_field :instrument_id, :value => -1 %>
+	          <%= form.hidden_field :instrument_id, :value => nil %>
 	      <% else  %>
 	      <tr>
 		<td>Instrumental or Vocal Participant</td>
