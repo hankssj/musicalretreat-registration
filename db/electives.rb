@@ -51,7 +51,7 @@ def create_electives
                       :id => 6,
                       :name => "Baroque Orchestra for Strings",
                       :instructor => "Sandi Schwarz",
-                      :description => "Explore repertoire and techniques with master. Will perform at Saturday Tea."
+                      :description => "Explore repertoire and techniques with a master. Will perform at Saturday Tea."
                       )
   link_elective_to_instruments(e, [6,7,8,9])
 
@@ -213,9 +213,9 @@ def create_electives
   #### 2017
   e = Elective.create(
                       :id => 35,
-                      :name => "Womens&rsquo; &quot;Anything But Classical&quot; Vocal Ensemble",
+                      :name => "Womens\' \"Anything But Classical\" Vocal Ensemble",
                       :instructor => "Adam Burdick",
-                      :description => "There is plenty of popular music out there that is challenging enough to satisfy a discriminating singer with catchy tunes, rich harmonies, and interesting arrangements that are a lot of fun to sing. We will explore music by vocally &lsquotight&rsquo trios of the 40s, 50s, 60s, and 90s, solo artists like Karen Carpenter and Enya, world- and folk-influenced groups like Sweet Honey In the Rock, and a new generation of creative a cappella women&rsquo;s groups like Moira Smiley and VOCO. Previous singing experience and good sight-reading skills recommended"
+                      :description => "There is plenty of popular music out there that is challenging enough to satisfy a discriminating singer with catchy tunes, rich harmonies, and interesting arrangements that are a lot of fun to sing. We will explore music by vocally \"tight\" trios of the 40s, 50s, 60s, and 90s, solo artists like Karen Carpenter and Enya, world- and folk-influenced groups like Sweet Honey In the Rock, and a new generation of creative a cappella women\'s groups like Moira Smiley and VOCO. Previous singing experience and good sight-reading skills recommended"
                       )
   link_elective_to_instruments(e, [1,2])
 
@@ -224,14 +224,14 @@ def create_electives
                     :id => 36,
                     :name => "Madrigal Madness",
                     :instructor => "Katie Weld",
-                    :description => "This elective is perfect for instrumentalists and vocalists who want to explore English and Italian madrigals.and who want to get their fill of &lsquo;fa la la la las%rsquo. Instrumentalists: Consider playing a vocal line on your instrument or singing; vocalists: consider singing or playing your vocal line on a secondary instrument. Good sight-reading skills recommended."
+                    :description => "This elective is perfect for instrumentalists and vocalists who want to explore English and Italian madrigals and who want to get their fill of &lsquo;fa la la la las%rsquo. Instrumentalists: Consider playing a vocal line on your instrument or singing; vocalists: consider singing or playing your vocal line on a secondary instrument. Good sight-reading skills recommended."
 )
   link_elective_to_instruments(e, [1,2])
 
 ### New for 2017 needs linking
   e = Elective.create(
                     :id => 37,
-                    :name => "They&rsquot;re Not Dead Yet: Choral Music of Living Composers",
+                    :name => "They're Not Dead Yet: Choral Music of Living Composers",
                     :instructor => "Scott Kovacs",
                     :description => "Open to all voice types, this elective will explore choral music by living composers, an area of passion and expertise for Scott. This elective will involve critical listening, singing, and performance. Previous singing experience and good sight-reading skills recommended."
                     )
