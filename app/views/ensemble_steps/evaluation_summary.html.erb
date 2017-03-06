@@ -51,7 +51,7 @@
 	    <% if (@balance == 0.0) %>
               <%= You are paid up -- good job! %>
             <% else %>
-              <%= You have a balance of number_to_currency(@balance).  Pay it by June 1!
+              <%= You have a balance of #{number_to_currency(@balance)}.  Pay it by June 1! %>
             <% end %>
           </p>
 	  <p>
