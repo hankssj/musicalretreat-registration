@@ -1,3 +1,4 @@
+<% @balance = @ensemble_primary.registration.balance %>
 <div id="main">
   <%= render partial: 'shared/errors', locals: { subject: @ensemble_primary } %>
   <div id="reg-form-main" class='larger-font elective-evaluations'>
@@ -47,7 +48,11 @@
           <%= check_box_tag :terms %>
           </p>
 	  <p>
-	    Tuition balance is due by June 1.
+	    <% if (@balance == 0.0) %>
+              <%= You are paid up -- good job! %>
+            <% else %>
+              <%= You have a balance of number_to_currency(@balance).  Pay it by June 1!
+            <% end %>
           </p>
 	  <p>
 	    After you push the FINISH button you will not be able to edit your choices, but you will be able to view your self-evaluation / ensemble forms and start over.
