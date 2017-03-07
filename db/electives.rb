@@ -87,7 +87,7 @@ def create_electives
   e = Elective.create(
                       :id => 9,
                       :name => "Drum Circle",
-                      :instructor => "Percussion Faculty",
+                      :instructor => "Patrick Roulet",
                       :description => "You do not have to be a master drummer to succeed in this class. After learning the basic technique for hand drumming we will learn African and Latin drumming patterns. Through these patterns we practice our ensemble skills of listening, feeling the internal pulse and fitting our rhythm into the pattern. Past students have said that transferring what they learn in this class to their other instruments helps them in rehearsal and performance settings. "
                       )
   link_elective_to_instruments(e, [])
