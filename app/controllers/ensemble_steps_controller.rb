@@ -37,7 +37,12 @@ class EnsembleStepsController < ApplicationController
       @ensemble_primary.update_attributes(post_params)
     when :evaluation_summary
       if @ensemble_primary.update_attributes(post_params)
-        @ensemble_primary.registration.update_attributes(:minor_volunteer, post_params[:minor_volunteer])
+        reg = @ensemble_primary.registration
+        Rails.logger.error("updating for #{reg} with #{post_params[:minor_volunteer]}")
+        reg.minor_volunteer = post_params[:minor_volunteer]
+        reg.save!
+        reg = @ensemble_primary.registration
+        Rails.logger.error("recalling #{reg}")
         return redirect_to registration_index_path 
       end
     end
