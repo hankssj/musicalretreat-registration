@@ -37,7 +37,7 @@ class EnsembleStepsController < ApplicationController
       @ensemble_primary.update_attributes(post_params)
     when :evaluation_summary
       if @ensemble_primary.update_attributes(post_params)
-        @ensemble_primary.registration.minor_volunteer = post_params[:minor_volunteer]
+        @ensemble_primary.registration.update_attributes(:minor_volunteer, post_params[:minor_volunteer])
         return redirect_to registration_index_path 
       end
     end
