@@ -62,7 +62,7 @@ class EnsemblesController < ApplicationController
       ep.update_attributes(post_params)
       ep.complete = true
       ep.save!      
-      registration.minor_volunteer = post_params[:minor_volunteer]
+      registration.minor_volunteer = params[:minor_volunteer]
       registration.save!
     else
       Rails.logger.fatal("Problem in ensemble finish with #{params}")
@@ -85,7 +85,6 @@ class EnsemblesController < ApplicationController
                                              :mmr_chambers,
                                              :prearranged_chambers, 
                                              :comments,
-                                             :minor_volunteer
                                              )
 
   end
