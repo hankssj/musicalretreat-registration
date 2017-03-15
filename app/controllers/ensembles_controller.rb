@@ -49,7 +49,7 @@ class EnsemblesController < ApplicationController
       ep.complete = true
       ep.save!      
       Rails.logger.error("In finish, reg is #{registration.id} minor is #{post_params[:minor_volunteer]}")
-      registration.minor_volunteer = post_params[:minor_volunteer]
+      registration.minor_volunteer = params[:minor_volunteer]
       registration.save!
       Rails.logger.error("Post save, registration is #{Registration.find(registration.id)}")
     elsif params[:commit] == 'CANCEL'
