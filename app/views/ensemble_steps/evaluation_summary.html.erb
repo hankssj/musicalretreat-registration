@@ -43,7 +43,8 @@
 	    Midsummer Musical Retreat relies on volunteers to make things run smoothly. 
 	    Helpers are needed to set chairs for ensembles and performances, make copies for faculty and campers, 
 	    and to fold and distribute programs.  
-	    <ul> <li>  <%= check_box_tag :minor_volunteer %> I volunteer to help as needed </li></ul>
+	    </p>
+	    <p>I volunteer to help as needed &nbsp;&nbsp;&nbsp; <%= check_box_tag :minor_volunteer %> </li></ul>
 	  </p>
 	  <hr/>
           <p>
@@ -51,7 +52,7 @@
           <%= link_to 'MMR Waiver and Release', '/terms/Release2017.pdf', target: :blank %>
 	  </p>
           <p>
-          I have read and acknowlege the Waiver and Release &nbsp;&nbsp;&nbsp
+          I have read and acknowlege the Waiver and Release &nbsp;&nbsp;&nbsp;
           <%= check_box_tag :terms %>
           </p>
 	    <% if @balance > 0.0 %>
