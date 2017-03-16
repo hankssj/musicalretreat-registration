@@ -14,7 +14,7 @@ module RegistrationGating
 
   FORCE_REGISTRATION_CLOSED = false
   FORCE_PAYMENT_CLOSED = false
-  ALLOW_SELF_EVALS = false
+  ALLOW_SELF_EVALS = true
   SUPPRESS_DORM_ASSIGNMENT= true
 
   EARLY_INVITEES = %w{

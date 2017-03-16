@@ -36,7 +36,12 @@ class EnsembleStepsController < ApplicationController
     when :elective_evaluation
       @ensemble_primary.update_attributes(post_params)
     when :evaluation_summary
-      return redirect_to registration_index_path if @ensemble_primary.update_attributes(post_params)
+      if @ensemble_primary.update_attributes(post_params)
+        reg = @ensemble_primary.registration
+        reg.minor_volunteer = post_params[:minor_volunteer]
+        reg.save!
+        return redirect_to registration_index_path 
+      end
     end
     @ensemble_primary.step = step
     render_wizard @ensemble_primary
@@ -54,6 +59,7 @@ class EnsembleStepsController < ApplicationController
       :want_sing_in_chorus,
       :want_percussion_in_band,
       :comments,
+      :minor_volunteer,
       mmr_chambers_attributes: [
         :instrument_id,
         :jazz_ensemble,

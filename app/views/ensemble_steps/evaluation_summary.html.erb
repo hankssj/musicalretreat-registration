@@ -1,3 +1,4 @@
+<% @balance = @ensemble_primary.registration.balance %>
 <div id="main">
   <%= render partial: 'shared/errors', locals: { subject: @ensemble_primary } %>
   <div id="reg-form-main" class='larger-font elective-evaluations'>
@@ -37,19 +38,32 @@
             <%= form.label :comments, 'Any questions or comments to help us with your selections?' %>
             <br />
             <%= form.text_area :comments, cols: 60, rows: 5 %>
-
+	    <hr/>
+          <p>
+	    Midsummer Musical Retreat relies on volunteers to make things run smoothly. 
+	    Helpers are needed to set chairs for ensembles and performances, make copies for faculty and campers, 
+	    and to fold and distribute programs.  
+	    </p>
+	    <p>I volunteer to help as needed &nbsp;&nbsp;&nbsp; <%= check_box_tag :minor_volunteer %> </li></ul>
+	  </p>
+	  <hr/>
           <p>
           To finish the process, please read and acknowledge the
           <%= link_to 'MMR Waiver and Release', '/terms/Release2017.pdf', target: :blank %>
 	  </p>
           <p>
-          I have read and acknowlege the Waiver and Release &nbsp;&nbsp;&nbsp
+          I have read and acknowlege the Waiver and Release &nbsp;&nbsp;&nbsp;
           <%= check_box_tag :terms %>
           </p>
-	  <p>
-	    Tuition balance is due by June 1.
-          </p>
-	  <p>
+	    <% if @balance > 0.0 %>
+	  <hr/>
+	    <p>
+               You have a balance of <%= number_to_currency(@balance) %>.  Pay up by June 1!
+            </p>
+            <% end %>
+
+	    <hr/>
+	      <p>
 	    After you push the FINISH button you will not be able to edit your choices, but you will be able to view your self-evaluation / ensemble forms and start over.
 	    </p>
 

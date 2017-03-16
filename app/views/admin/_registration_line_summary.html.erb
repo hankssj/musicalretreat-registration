@@ -6,6 +6,7 @@
   <td style="width:60px" class="reg-list-line-summary-cell"><%= registration_line_summary.dorm_selection == 's' ? "Y" : "N" %></td>
   <td style="width:60px" class="reg-list-line-summary-cell"><%= registration_line_summary.meals ? "Y" : "N" %></td>
   <td style="width:51px" class="reg-list-line-summary-cell"><%= registration_line_summary.firsttime ? "Y" : "N" %></td>
+  <td style="width:51px" class="reg-list-line-summary-cell"><%= registration_line_summary.minor_volunteer ? "Y" : "N" %></td>
   <td style="width:55px" class="reg-list-line-summary-cell">
     <%= registration_line_summary.deposit_date ? registration_line_summary.deposit_date.strftime("%m-%d") : "None" %></td>
   <td style="width:65px" class="reg-list-line-summary-cell"><%= number_to_currency(registration_line_summary.balance) %></td>

@@ -48,6 +48,10 @@ class EnsemblesController < ApplicationController
       ep.update_attributes(post_params)
       ep.complete = true
       ep.save!      
+      Rails.logger.error("In finish, reg is #{registration.id} minor is #{params[:minor_volunteer]}")
+      registration.minor_volunteer = params[:minor_volunteer]
+      registration.save!
+      Rails.logger.error("Post save, registration is #{Registration.find(registration.id)}")
     elsif params[:commit] == 'CANCEL'
       flash[:notice] = "Ensemble choice cancelled"
       registration.ensemble_primaries.first.destroy
@@ -58,6 +62,8 @@ class EnsemblesController < ApplicationController
       ep.update_attributes(post_params)
       ep.complete = true
       ep.save!      
+      registration.minor_volunteer = params[:minor_volunteer]
+      registration.save!
     else
       Rails.logger.fatal("Problem in ensemble finish with #{params}")
     end
@@ -78,7 +84,7 @@ class EnsemblesController < ApplicationController
                                              :want_percussion_in_band,
                                              :mmr_chambers,
                                              :prearranged_chambers, 
-                                             :comments
+                                             :comments,
                                              )
 
   end
