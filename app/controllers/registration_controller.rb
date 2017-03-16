@@ -67,7 +67,10 @@ class RegistrationController < ApplicationController
         redirect_to :controller => :admin, :action => :index
       else
         RegistrationMailer.confirm_registration(@registration)
-        flash[:notice] = RegistrationGating.allow_self_evals ? "New registration successful.  Why not fill out your self-eval not?" : "New registration successful."
+        flash[:notice] = 
+          RegistrationGating.allow_self_evals ? 
+               "New registration successful.  Why not fill out your self-eval now?" : 
+               "New registration successful."
         if @registration.payment_mode =~ /check/
           redirect_to :controller => :registration, :action => :index
         else

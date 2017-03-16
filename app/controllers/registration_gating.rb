@@ -57,7 +57,7 @@ module RegistrationGating
     return !FORCE_PAYMENT_CLOSED
   end
 
-  def allow_self_evals
+  def self.allow_self_evals
     ALLOW_SELF_EVALS
   end
 
