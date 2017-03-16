@@ -38,14 +38,14 @@
             <%= form.label :comments, 'Any questions or comments to help us with your selections?' %>
             <br />
             <%= form.text_area :comments, cols: 60, rows: 5 %>
-
+	    <hrule/>
           <p>
 	    Midsummer Musical Retreat relies on volunteers to make things run smoothly. 
 	    Helpers are needed to set chairs for ensembles and performances, make copies for faculty and campers, 
 	    and to fold and distribute programs.  
 	    <ul> <li>  <%= check_box_tag :minor_volunteer %> I volunteer to help as needed </li></ul>
 	  </p>
-
+	  <hrule/>
           <p>
           To finish the process, please read and acknowledge the
           <%= link_to 'MMR Waiver and Release', '/terms/Release2017.pdf', target: :blank %>
@@ -54,14 +54,15 @@
           I have read and acknowlege the Waiver and Release &nbsp;&nbsp;&nbsp
           <%= check_box_tag :terms %>
           </p>
-	  <p>
-	    <% if @balance == 0.0 %>
-              You are paid up -- good job!
-            <% else %>
+	    <% if @balance > 0.0 %>
+	  <hrule/>
+	    <p>
                You have a balance of <%= number_to_currency(@balance) %>.  Pay up by June 1!
+            </p>
             <% end %>
-          </p>
-	  <p>
+
+	    <hrule/>
+	      <p>
 	    After you push the FINISH button you will not be able to edit your choices, but you will be able to view your self-evaluation / ensemble forms and start over.
 	    </p>
 
