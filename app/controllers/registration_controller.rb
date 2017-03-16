@@ -68,7 +68,7 @@ class RegistrationController < ApplicationController
       else
         RegistrationMailer.confirm_registration(@registration)
         flash[:notice] = 
-          RegistrationGating.allow_self_evals ? 
+          allow_self_evals ? 
                "New registration successful.  Why not fill out your self-eval now?" : 
                "New registration successful."
         if @registration.payment_mode =~ /check/
