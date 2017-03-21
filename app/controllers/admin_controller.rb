@@ -332,8 +332,8 @@ class AdminController < ApplicationController
       u.current_registration.participant && 
       !u.faculty && 
       !u.test && 
-      !u.current_registration.has_complete_eval
-      && u.id == 3
+      !u.current_registration.has_complete_eval &&
+      u.id == 3
     }
      users.each do |u| 
       if u.bounced_at 
