@@ -332,11 +332,25 @@ class AdminController < ApplicationController
       u.current_registration.participant && 
       !u.faculty && 
       !u.test && 
-      !u.current_registration.has_complete_eval}
-     users.each{|u| RegistrationMailer.self_eval_invitation(u)}
-    @sent = users.map(&:email)
+      !u.current_registration.has_complete_eval
+      && u.id == 3
+    }
+     users.each do |u| 
+      if u.bounced_at 
+        Rails.logger.error("Found bounced email #{u.email} in sending self eval_reminder")
+      else
+        begin
+          RegistrationMailer.self_eval_invitation(u)
+          puts("Succeed on #{u.email}")
+          @sent << u.email
+        rescue => e
+          puts("Failed on #{u.email}")
+          Rails.logger.error("Send eval throws #{e}, skipping #{u.email}")
+        end
+      end
+    end
   end
-
+  
 ## TODO:  get rid of print statements
   def send_self_eval_reminders
     users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
