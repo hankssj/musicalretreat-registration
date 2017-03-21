@@ -327,8 +327,13 @@ class AdminController < ApplicationController
   ## TODO:  looks like a bounce throws an exception.  Need to harden off all of these send methods.
 
   def send_self_eval_invitations
-    users = User.all.select{|u| u.has_current_registration && u.current_registration.participant && !u.current_registration.has_complete_eval}
-    users.each{|u| RegistrationMailer.self_eval_invitation(u)}
+    users = User.all.select{|u| 
+      u.has_current_registration && 
+      u.current_registration.participant && 
+      !u.faculty && 
+      !u.test && 
+      !u.current_registration.has_complete_eval}
+     users.each{|u| RegistrationMailer.self_eval_invitation(u)}
     @sent = users.map(&:email)
   end
 
