@@ -101,6 +101,7 @@ class EnsemblePrimary < ActiveRecord::Base
   end
 
   def rebuild_chamber_ensembles
+    Rails.logger.warn("rebuilding chambers on EP#{id}")
     prearranged_chambers.each(&:destroy!)
     mmr_chambers.each(&:destroy!)
     prearranged_chambers.reload
@@ -130,10 +131,12 @@ class EnsemblePrimary < ActiveRecord::Base
   end
 
   def build_evaluations
+    Rails.logger.warn("building evals on #{id}")
     need_eval_for.each{|iid| evaluations.build(:instrument_id => iid, :type => Instrument.find(iid).instrumental? ? "InstrumentalEvaluation" : "VocalEvaluation")}
   end
 
   def rebuild_evaluations
+    Rails.logger.warn("rebuilding evals on #{id}")
     evaluations.each(&:destroy!)
     evaluations.reload
     build_evaluations

@@ -12,6 +12,7 @@ class EnsembleStepsController < ApplicationController
   def show
     case step
     when :primary_chamber
+      Rails.logger.warn("ensemble steps show primary chamber #{@ensemble_primary.id}")
       @ensemble_primary.rebuild_chamber_ensembles
       skip_step if @ensemble_primary.no_chamber_ensembles?
       @instrument_menu_selection = Instrument.menu_selection
@@ -19,6 +20,7 @@ class EnsembleStepsController < ApplicationController
       session[:ensemble_primary_id] = @ensemble_primary.id
     when :chamber_elective
     when :elective_evaluation
+      Rails.logger.warn("ensemble steps show chamber_elective elective_evaluation, rebuild evaluations  #{@ensemble_primary.id}")
       @ensemble_primary.rebuild_evaluations
     end
     render_wizard
@@ -27,20 +29,27 @@ class EnsembleStepsController < ApplicationController
   def update
     case step
     when :primary_chamber, :afternoon_ensembles_and_electives
+      Rails.logger.warn("ensemble steps update primary_chamber, afternoon_ensembles  #{@ensemble_primary.id}")
       @ensemble_primary.update_attributes(post_params)
       @instrument_menu_selection = Instrument.menu_selection
     when :chamber_elective
+      Rails.logger.warn("ensemble steps update chamber_elective, destroy elective ranks  #{@ensemble_primary.id}")
       @ensemble_primary.ensemble_primary_elective_ranks.each(&:destroy!)
       @ensemble_primary.ensemble_primary_elective_ranks.reload
       @ensemble_primary.update_attributes(post_params)
     when :elective_evaluation
+      Rails.logger.warn("ensemble steps update elective_evaluation  #{@ensemble_primary.id}")
       @ensemble_primary.update_attributes(post_params)
     when :evaluation_summary
+      Rails.logger.warn("ensemble steps update evaluation_summary  #{@ensemble_primary.id}")
       if @ensemble_primary.update_attributes(post_params)
+        Rails.logger.warn("ensemble steps update evaluation_summary succeeded  #{@ensemble_primary.id}")
         reg = @ensemble_primary.registration
         reg.minor_volunteer = post_params[:minor_volunteer]
         reg.save!
         return redirect_to registration_index_path 
+      else
+        Rails.logger.warn("ensemble steps update evaluation_summary failed  #{@ensemble_primary.id}")
       end
     end
     @ensemble_primary.step = step
