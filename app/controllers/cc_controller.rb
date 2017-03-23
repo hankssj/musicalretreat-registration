@@ -22,7 +22,7 @@ class CcController < ApplicationController
     end
 
     #  Shouldn't this go in a config file?  Maybe, if it's the only one.  Maybe not, if it is
-    @user = "treasurer@musicalretreat.org"
+    @user = "treasurer.mmr@gmail.com"
     @cmd = "_xclick"
     @item_name = "MMR Registration"
     @quantity = 1
