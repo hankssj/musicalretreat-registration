@@ -27,12 +27,21 @@ class RegistrationMailer < ActionMailer::Base
   #  This might/should replace the invitation above
   def mass_email_invitation(email, unsubscribe_id)
     @unsubscribe_id = unsubscribe_id
-    #attachments.inline['logo.jpg'] = { data: File.read(Rails.root.join('app/assets/images/mmr_logo_email_header.jpg')), mime_type: 'image/jpg'}
-    attachments.inline['facebook_icon.jpg'] = { data: File.read(Rails.root.join('app/assets/images/facebook_icon.jpg')), mime_type: 'image/jpg'}
-    // DEV ONLY mail(:from => "online-registration@musicalretreat.org", :to => email, :subject=> "MMR #{Year.this_year} Registration").deliver!
-    Event.log("Sent mass invitation email to #{email}")
+    #attachments.inline['facebook_icon.jpg'] = { data: File.read(Rails.root.join('app/assets/images/facebook_icon.jpg')), mime_type: 'image/jpg'}
+    mail(:from => "online-registration@musicalretreat.org", :to => email, :subject=> "MMR #{Year.this_year} Registration").deliver!
+    Rails.logger.info("Sent mass invitation email to #{email} with code #{unsubscribe_id}")
   end
-    
+
+  # Some other kind of mass mailing 
+  def mass_email_generic(email, unsubscribe_id)
+    @unsubscribe_id = unsubscribe_id
+    subject = "Put your subject here"
+    attachments.inline['givebig_2017_email_header.png'] = { data: File.read(Rails.root.join('app/assets/images/givebig_2017_email_header.png')), mime_type: 'image/png'}
+    attachments.inline['mmr_email_logo.jpg'] = { data: File.read(Rails.root.join('app/assets/images/mmr_email_logo.jpg')), mime_type: 'image/jpg'}
+    mail(:from => "midsummer@musicalretreat.org", :to => email, :subject=> subject).deliver!
+    Rails.logger.info("Sent mass invitation email to #{email} with code #{unsubscribe_id}")
+  end
+
   def self_eval_invitation(user)
     @first_name = user.first_name
     @year = Year.this_year

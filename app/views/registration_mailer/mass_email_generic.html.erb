@@ -1,0 +1,32 @@
+<%= image_tag(attachments['givebig_2017_email_header.png'].url) %>
+
+Dear Friends,
+ 
+<p>
+Midsummer Musical Retreat has provided adult amateur musicians with vibrant and supportive musical experiences for over four decades. From beginners to lifelong learners, we have come together each year to immerse ourselves in music and friendship.  At its core, MMR is a musical community - a place where we practice our skills and establish musical networks that enrich our lives well beyond our time at camp. For many of us, summer just isn't complete without MMR!
+</p>
+
+<p>We are reaching out now to ask you to support our program by donating to MMR through GiveBig.  Your donations will support our musical programming and our scholarship program, ensuring that we can make rich musical opportunities available to all who wish to join us.  
+</p>
+
+<p>
+You can schedule your gift anytime from now through May 10 at Seattle Foundation's GiveBIG website:  
+<a href = "https://www.givebigseattle.org/MidSummerMusicalRetreat">Midsummer Musical Retreat Society</a>
+</p>
+
+<p>
+<a href = "https://www.givebigseattle.org/MidSummerMusicalRetreat"><%= image_tag(attachments['mmr_email_logo.jpg'].url) %></a>
+</p>
+
+<p>
+Thank you for your support of MMR!
+</p>
+<p>
+Gennie Winkler<br/>
+Steering Committee Chair
+</p>
+
+Stop messages like this?  <%= link_to("Unsubscribe", {controller: 'mass_mail', 
+                                                 action: 'unsubscribe', 
+                                                 id: @unsubscribe_id, 
+                                                 only_path: false}) %>
