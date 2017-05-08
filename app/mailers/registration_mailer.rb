@@ -1,9 +1,9 @@
 class RegistrationMailer < ActionMailer::Base
 
   default :from => "registrar@musicalretreat.org", 
-  // DEV ONLY :reply_to => "registrar@musicalretreat.org", 
-          :reply_to => "online-registration@musicalretreat.org", 
-          :cc => "online-registration@musicalretreat.org"
+  :reply_to => "registrar@musicalretreat.org", 
+  :reply_to => "online-registration@musicalretreat.org", 
+  :cc => "online-registration@musicalretreat.org"
 
   def test(email)
     mail(:from => "online-registration@musicalretreat.org", :to => email, :subject => "New Message, just checking this peram").deliver!
@@ -14,14 +14,13 @@ class RegistrationMailer < ActionMailer::Base
   def invitation(user)
     @first_name = user.first_name
     @year = Year.this_year
-    //DEV ONLY
-    //mail(:from => "online-registration@musicalretreat.org", :to => user.email, :subject=> "MMR #{Year.this_year} Registration").deliver!
+    mail(:from => "online-registration@musicalretreat.org", :to => user.email, :subject=> "MMR #{Year.this_year} Registration").deliver!
     Event.log("Sent invitation email to #{user.id}")
   end
 
   def faculty_registration_invitation(e)
     @year = Year.this_year
-    //DEV ONLY mail(:from => "online-registration@musicalretreat.org", :to => e, :subject=> "MMR #{Year.this_year} Registration").deliver!
+    mail(:from => "online-registration@musicalretreat.org", :to => e, :subject=> "MMR #{Year.this_year} Registration").deliver!
   end
 
   #  This might/should replace the invitation above
@@ -45,28 +44,28 @@ class RegistrationMailer < ActionMailer::Base
   def self_eval_invitation(user)
     @first_name = user.first_name
     @year = Year.this_year
-    // DEV ONLY mail(:from => "online-registration@musicalretreat.org", :to => user.email, :subject=> "MMR #{Year.this_year} Ensemble Selection and Self Evaluation").deliver!
+    mail(:from => "online-registration@musicalretreat.org", :to => user.email, :subject=> "MMR #{Year.this_year} Ensemble Selection and Self Evaluation").deliver!
     Event.log("Sent invitation email to #{user.id}")
   end
 
   def self_eval_reminder(user)
     @first_name = user.first_name
     @year = Year.this_year
-    // DEV ONLY mail(:from => "online-registration@musicalretreat.org", 
-                     // :to => user.email, 
-                     // :subject=> "REMINDER: Fill out your MMR #{Year.this_year} Ensemble Selection and Self Evaluation").deliver!
+    mail(:from => "online-registration@musicalretreat.org", 
+         :to => user.email, 
+         :subject=> "REMINDER: Fill out your MMR #{Year.this_year} Ensemble Selection and Self Evaluation").deliver!
     Event.log("Sent invitation email to #{user.id}")
   end
 
   def early_invitation(email)
-    // DEV ONLY mail(:to => email, :subject => "Please register early and test the registration system").deliver!
+    mail(:to => email, :subject => "Please register early and test the registration system").deliver!
   end
     
   # From the reg invitation button on admin.  This either creates or uses a password
   def invitation_with_new_password(email, password)
     @email = email
     @password = password
-    // DEV ONLY mail(:to => email, :subject => "Come register for MMR #{Year.this_year}").deliver!
+    mail(:to => email, :subject => "Come register for MMR #{Year.this_year}").deliver!
   end
 
   # After successfull form submit
@@ -111,19 +110,19 @@ class RegistrationMailer < ActionMailer::Base
   def new_account(email, password)
     @email = email
     @password = password
-    // DEV ONLY mail(:to => email, :subject => "MMR New Account or Password Reset").deliver!
+    mail(:to => email, :subject => "MMR New Account or Password Reset").deliver!
     Event.log("Sent new account or password reset to #{@email} and #{@password}")
   end
 
   def balance_reminder(registration)
     @name = registration.display_name
     @balance = registration.balance
-    // DEV ONLY mail(:to => registration.email, :subject => 'MMR Balance Due Reminber').deliver!
+    mail(:to => registration.email, :subject => 'MMR Balance Due Reminber').deliver!
   end
 
   def eval_reminder(registration)
     @name = registration.display_name
-    // DEV ONLY mail(:to => registration.email, :subject => 'MMR Ensemble Choice and Self-Evaluation Reminber').deliver!
+    mail(:to => registration.email, :subject => 'MMR Ensemble Choice and Self-Evaluation Reminber').deliver!
   end
 
 end
