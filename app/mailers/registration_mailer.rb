@@ -34,7 +34,7 @@ class RegistrationMailer < ActionMailer::Base
   # Some other kind of mass mailing 
   def mass_email_generic(email, unsubscribe_id)
     @unsubscribe_id = unsubscribe_id
-    subject = "Put your subject here"
+    subject = "GiveBig to Midsummer Musical Retreat!"
     attachments.inline['givebig_2017_email_header.png'] = { data: File.read(Rails.root.join('app/assets/images/givebig_2017_email_header.png')), mime_type: 'image/png'}
     attachments.inline['mmr_email_logo.jpg'] = { data: File.read(Rails.root.join('app/assets/images/mmr_email_logo.jpg')), mime_type: 'image/jpg'}
     mail(:from => "online-registration@musicalretreat.org", :to => email, :subject=> subject).deliver!
