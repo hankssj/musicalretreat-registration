@@ -299,8 +299,7 @@ class AdminController < ApplicationController
   end
 
   def send_mass_email_generics
-    #MassEmail.all.reject{|m| m.bounced_at || m.unsubscribed_at}.each do |m|
-    [MassEmail.find(1510)].each do |m|
+    MassEmail.all.reject{|m| m.bounced_at || m.unsubscribed_at}.each do |m|
       begin
         RegistrationMailer.mass_email_generic(m.email_address, m.url_code)
       rescue StandardError => e
