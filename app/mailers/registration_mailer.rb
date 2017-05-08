@@ -93,12 +93,12 @@ class RegistrationMailer < ActionMailer::Base
   ## aRegistration.cart.balance rather than aRegistration.balance and for reasons I haven't figured out 
   ## yet, there are a number of cases where the latter is 0 (and correctly 0) but the former is > 0.
   ## For now just send them an apology email.  Also I corrected the code above.  
-//  def registration_summary_balance_correction(registration)
-//    @name = "#{registration.first_name} #{registration.last_name}"
-//    mail(:to => registration.user.email, 
-//         :cc => "registrar@musicalretreat.org", 
-//         :subject => "MMR Account Balance CORRECTION").deliver!
-//  end
+  # def registration_summary_balance_correction(registration)
+  #   @name = "#{registration.first_name} #{registration.last_name}"
+  #   mail(:to => registration.user.email, 
+  #        :cc => "registrar@musicalretreat.org", 
+  #        :subject => "MMR Account Balance CORRECTION").deliver!
+  # end
 
   def confirm_payment(payment)
     @name = "#{payment.registration.first_name} #{payment.registration.last_name}"
