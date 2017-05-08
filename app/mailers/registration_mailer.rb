@@ -37,7 +37,7 @@ class RegistrationMailer < ActionMailer::Base
     subject = "Put your subject here"
     attachments.inline['givebig_2017_email_header.png'] = { data: File.read(Rails.root.join('app/assets/images/givebig_2017_email_header.png')), mime_type: 'image/png'}
     attachments.inline['mmr_email_logo.jpg'] = { data: File.read(Rails.root.join('app/assets/images/mmr_email_logo.jpg')), mime_type: 'image/jpg'}
-    mail(:from => "midsummer@musicalretreat.org", :to => email, :subject=> subject).deliver!
+    mail(:from => "online-registration@musicalretreat.org", :to => email, :subject=> subject).deliver!
     Rails.logger.info("Sent mass invitation email to #{email} with code #{unsubscribe_id}")
   end
 
