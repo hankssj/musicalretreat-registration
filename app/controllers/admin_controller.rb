@@ -302,11 +302,11 @@ class AdminController < ApplicationController
     MassEmail.all.reject{|m| m.bounced_at || m.unsubscribed_at}.each do |m|
       begin
         #RegistrationMailer.mass_email_generic(m.email_address, m.url_code)
-        puts "#{m.email} #{m.url_code}"
+        puts "#{m.email_address} #{m.url_code}"
       rescue StandardError => e
         Rails.logger.fatal("Mass email generic attempt failed on email #{m.email_address} due to #{e}")
-        m.bounced_at = Time.now
-        m.save!
+        #m.bounced_at = Time.now
+        #m.save!
       end
     end
   end
