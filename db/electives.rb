@@ -224,7 +224,7 @@ def create_electives
                     :id => 36,
                     :name => "Madrigal Madness",
                     :instructor => "Katie Weld",
-                    :description => "This elective is perfect for instrumentalists and vocalists who want to explore English and Italian madrigals and who want to get their fill of &lsquo;fa la la la las%rsquo. Instrumentalists: Consider playing a vocal line on your instrument or singing; vocalists: consider singing or playing your vocal line on a secondary instrument. Good sight-reading skills recommended."
+                    :description => "This elective is perfect for instrumentalists and vocalists who want to explore English and Italian madrigals and who want to get their fill of \'fa la la la las\'. Instrumentalists: Consider playing a vocal line on your instrument or singing; vocalists: consider singing or playing your vocal line on a secondary instrument. Good sight-reading skills recommended."
 )
   link_elective_to_instruments(e, [1,2,3,4,5])
 
