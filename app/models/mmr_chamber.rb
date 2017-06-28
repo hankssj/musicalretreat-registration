@@ -37,7 +37,7 @@ class MmrChamber < ActiveRecord::Base
     filename ||= "/home/deploy/Dropbox/SelfEvalDownloads/#{Year.this_year}/assigned_afternoon_ensemble.tsv"
     File.open(filename, "w") do |outfile|
       outfile.puts file_header_line
-      all.select{|m|m.enseble_primary.registration.year == Year.this_year && m.active?}.reject{|e|e.ensemble_primary.registration.test}.each{|e| outfile.puts(e.file_line)}
+      all.select{|m|m.ensemble_primary.registration.year == Year.this_year && m.active?}.reject{|e|e.ensemble_primary.registration.test}.each{|e| outfile.puts(e.file_line)}
     end
   end
 
