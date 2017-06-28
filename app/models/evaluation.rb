@@ -142,7 +142,7 @@ class VocalEvaluation < Evaluation
     filename ||= "/home/deploy/Dropbox/SelfEvalDownloads/#{Year.this_year}/vocal_self_eval.tsv"
     File.open(filename, "w") do |outfile|
       outfile.puts file_header_line
-      all.select(&:active?).reject{|e|e.registration.test}.each{|e| outfile.puts(e.file_line)}
+      all.select{|v|v.year == Year.this_year && v.active?}.reject{|e|e.registration.test}.each{|e| outfile.puts(e.file_line)}
     end
   end
 end
