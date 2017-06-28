@@ -285,7 +285,7 @@ class EnsemblePrimary < ActiveRecord::Base
     filename ||= "/home/deploy/Dropbox/SelfEvalDownloads/#{Year.this_year}/main_eval.tsv"
     File.open(filename, "w") do |outfile|
       outfile.puts file_header_line
-      all.select{|e|e.registration.year = Year.this_year && e.complete}.reject{|e|e.registration.test}.each{|e| outfile.puts(e.file_line)}
+      all.select{|e|e.registration.year == Year.this_year && e.complete}.reject{|e|e.registration.test}.each{|e| outfile.puts(e.file_line)}
     end
   end
 end
