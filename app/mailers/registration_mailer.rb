@@ -81,6 +81,7 @@ class RegistrationMailer < ActionMailer::Base
   def registration_summary(registration)
     @registration = registration
     @name = "#{registration.first_name} #{registration.last_name}"
+    @movein = "Monday July 31"
     # @cart = registration.cart
     # @payment = -@cart.payment_net
     # @balance = @cart.balance

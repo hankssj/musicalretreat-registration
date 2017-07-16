@@ -18,7 +18,7 @@ credit card to check-in at Whitman.</li>
 <% else %>
 <li>Your dorm assignment is <b><%= @registration.dorm_assignment %></b>.
   <ul>
-    <li>You may move in to your dorm after 2PM on Monday August 1</li>
+    <li>You may move in to your dorm after 2PM on <%= @movein %></li>
     <li>Room keys will be in the lobby of your dorm</li>
    <li> Remember to bring a fan if you are in Douglas or College House</li>
  </ul>
@@ -28,11 +28,11 @@ credit card to check-in at Whitman.</li>
 <li> Here is a <a href="https://www.whitman.edu/Documents/Campus-Map-2013.pdf">Whitman campus map</a></li>
 
 <% if @registration.meals_selection == "f" %>
-<li>You have opted for <b>breakfast lunch and dinner meal plan</b>. The first meal is dinner on Monday,
-August 1 at 6pm.</li>
+<li>You have opted for <b>breakfast lunch and dinner meal plan</b>. The first meal is dinner on 
+<%= @movein %> at 6pm.</li>
 <% elsif @registration.meals_selection == "l" %>
-<li>You have opted for <b>lunch and dinner only</b> meal plan. The first meal is dinner on Monday,
-August 1 at 6pm.</li>
+<li>You have opted for <b>lunch and dinner only</b> meal plan. The first meal is dinner 
+<%= @movein %> at 6pm.</li>
 <% else %>
 <li>You have opted for no meal plan. </li>
 <% end %>
@@ -41,14 +41,16 @@ August 1 at 6pm.</li>
 ground transportation.
 </li>
 
-<li>Carpools can be organized at <a href="https://www.groupcarpool.com/t/ocxnui">https://www.groupcarpool.com/t/ocxnui</a>
-</li>
+<li>We have created carpool sign-up sheets at <a href="https://www.prepatrip.com/">Prep.a.trip</a>
+<ul>
+</ul>
+<li>
 
 <li>Please read and keep the final Newsletter.  It will be sent to you via postal mail, 
-or you can view it <a href="http://musicalretreat.org/sites/default/files/2016 camper letter6.15.pdf">here</a>.
+or you can view it <a href="http://www.musicalretreat.org/sites/default/files/MMR%20spring%20news%203.17.17.pdf">here</a>.
 </li>
 
-<li>MMR Check-In will be in Reid Campus Center 2 to 7 pm August 1, 2016.</li>
+<li>MMR Check-In will be in Reid Campus Center 2 to 7 PM <%= movein %>.</li>
 </ul>
 
 <p>
