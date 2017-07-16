@@ -51,7 +51,7 @@ class PrearrangedChamber < ActiveRecord::Base
     filename ||= "/home/deploy/Dropbox/SelfEvalDownloads/#{Year.this_year}/prearranged_afternoon_ensemble.tsv"
     File.open(filename, "w") do |outfile|
       outfile.puts file_header_line
-      all.select(&:active?).reject{|e|e.ensemble_primary.registration.test}.each{|e| outfile.puts(e.file_line)}
+      all.select{|p|p.ensemble_primary.registration.year == Year.this_year && p.active?}.reject{|e|e.ensemble_primary.registration.test}.each{|e| outfile.puts(e.file_line)}
     end
   end
 
