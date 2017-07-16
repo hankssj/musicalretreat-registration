@@ -182,8 +182,8 @@ class AdminController < ApplicationController
 #  other instructions
 
   def send_registration_summary
-    #test_emails = ["hanks@pobox.com"]
-    test_emails = nil
+    test_emails = ["hanks@pobox.com"]
+    #test_emails = nil
     rr = Registration.where(year: Year.this_year)
     rr = rr.select{|r|test_emails.include?(r.email)} if test_emails
     rr.each do |r| 
